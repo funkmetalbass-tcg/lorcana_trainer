@@ -1,0 +1,219 @@
+"""Gauntlet: test candidate cuts from Deck A against a FIELD of opponent decks,
+using paired seeds and multiprocessing, to find cuts that are universally good
+(help on average and don't tank any single matchup).
+
+Statistical design
+------------------
+For each (candidate cut, opponent) we play the SAME set of game seeds with two
+configurations -- the baseline deck and the deck with one copy of the candidate
+removed (and one copy of an existing card duplicated to keep 60). Because both
+configs see identical shuffles and opponent behavior per seed, the luck largely
+cancels: the per-seed win difference isolates the effect of the single card.
+
+We aggregate the cut-minus-baseline win-rate delta per opponent, then summarize
+each candidate by:
+  mean_delta   -- average improvement across the field (higher = better cut)
+  worst_delta  -- the single worst matchup (guards against matchup-dependent cuts)
+A universally-good cut has mean_delta > 0 AND worst_delta not badly negative.
+
+Parallelism
+-----------
+Work is a flat list of (config_id, opponent_id, seed) tasks. A multiprocessing
+pool plays them; each worker loads decks once per task-chunk. Seeds are carried
+in the task so results are deterministic regardless of worker scheduling.
+"""
+import os
+import random
+from collections import defaultdict
+from multiprocessing import Pool
+
+from .cards import CardDB, parse_decklist
+from .engine import Game
+from .policies import default_mulligan
+from .analyze import make_policy
+
+
+# ---------------------------------------------------------------------
+# Lightweight game runner (win/loss only -- no per-card tracking overhead)
+# ---------------------------------------------------------------------
+def _play(deckU, deckO, polU, polO, seed, study_on_seat0):
+    if study_on_seat0:
+        g = Game(deckU, deckO, seed=seed); seat = 0
+    else:
+        g = Game(deckO, deckU, seed=seed); seat = 1
+    g.start(mulligan_fn=lambda game, p: default_mulligan(game, p))
+    rng = random.Random(seed)
+    while g.winner is None and g.turn < 120:
+        pol = polU if g.active == seat else polO
+        g.apply(pol(g, rng))
+    if g.winner is None and g.players[0].lore != g.players[1].lore:
+        g.winner = 0 if g.players[0].lore > g.players[1].lore else 1
+    return int(g.winner == seat)
+
+
+# ---------------------------------------------------------------------
+# Deck construction helpers
+# ---------------------------------------------------------------------
+def _apply_cut(deck, cut_name):
+    """Return a new decklist with one copy of cut_name removed and one copy of
+    another existing card duplicated (keeps the deck size constant so tempo/
+    consistency aren't perturbed by simply running 59 cards)."""
+    out = list(deck)
+    for i, c in enumerate(out):
+        if c.name == cut_name:
+            del out[i]
+            break
+    else:
+        return out  # card not present; no-op
+    filler = next((c for c in out if c.name != cut_name), None)
+    if filler is not None:
+        out.append(filler)
+    return out
+
+
+# Worker globals (populated once per process via initializer to avoid
+# re-parsing the big JSON for every task).
+_W = {}
+
+
+def _init_worker(db_path, deckA_path, field_paths, a_pol, b_pol, iters):
+    db = CardDB(db_path)
+    deckA, _, _ = parse_decklist(deckA_path, db)
+    field = []
+    for fp in field_paths:
+        d, _, _ = parse_decklist(fp, db)
+        field.append(d)
+    _W["deckA"] = deckA
+    _W["field"] = field
+    _W["a_pol_name"] = a_pol
+    _W["b_pol_name"] = b_pol
+    _W["iters"] = iters
+
+
+def _run_task(task):
+    """task = (config, opp_idx, seed, study_seat0)
+    config is None (baseline) or a card name to cut.
+    Returns (config, opp_idx, won)."""
+    config, opp_idx, seed, study_seat0 = task
+    deckA = _W["deckA"]
+    deckU = deckA if config is None else _apply_cut(deckA, config)
+    deckO = _W["field"][opp_idx]
+    # fresh policies per task, seeded off the game seed for determinism
+    polU = make_policy(_W["a_pol_name"], _W["iters"], seed=seed * 2 + 1)
+    polO = make_policy(_W["b_pol_name"], _W["iters"], seed=seed * 2 + 2)
+    won = _play(deckU, deckO, polU, polO, seed, study_seat0)
+    return (config, opp_idx, won)
+
+
+def run_gauntlet(db_path, deckA_path, field_paths, candidates, games, iters,
+                 a_pol="mcts", b_pol="mcts", workers=None, seed0=0,
+                 progress=None):
+    """Returns a results dict:
+        baseline[opp_idx]   -> win rate (0..1)
+        cut[config][opp_idx]-> win rate (0..1)
+    plus the raw win counts for significance if wanted."""
+    n_opp = len(field_paths)
+    workers = workers or os.cpu_count() or 1
+
+    # Build task list. Baseline (config=None) shares seeds with every cut so
+    # the comparison is paired. Alternate who's on the play via the seed parity.
+    configs = [None] + list(candidates)
+    tasks = []
+    for config in configs:
+        for opp_idx in range(n_opp):
+            for gi in range(games):
+                seed = seed0 + gi
+                study_seat0 = (gi % 2 == 0)
+                tasks.append((config, opp_idx, seed, study_seat0))
+
+    wins = defaultdict(int)     # (config, opp_idx) -> win count
+    played = defaultdict(int)
+
+    initargs = (db_path, deckA_path, field_paths, a_pol, b_pol, iters)
+    done = 0
+    total = len(tasks)
+    if workers == 1:
+        _init_worker(*initargs)
+        for t in tasks:
+            config, opp_idx, won = _run_task(t)
+            wins[(config, opp_idx)] += won
+            played[(config, opp_idx)] += 1
+            done += 1
+            if progress and done % progress == 0:
+                _emit_progress(done, total)
+    else:
+        with Pool(workers, initializer=_init_worker, initargs=initargs) as pool:
+            for config, opp_idx, won in pool.imap_unordered(_run_task, tasks, chunksize=4):
+                wins[(config, opp_idx)] += won
+                played[(config, opp_idx)] += 1
+                done += 1
+                if progress and done % progress == 0:
+                    _emit_progress(done, total)
+
+    def wr(config, opp_idx):
+        n = played[(config, opp_idx)]
+        return (wins[(config, opp_idx)] / n) if n else 0.0
+
+    baseline = [wr(None, o) for o in range(n_opp)]
+    cut = {}
+    for config in candidates:
+        cut[config] = [wr(config, o) for o in range(n_opp)]
+    return {"baseline": baseline, "cut": cut, "n_opp": n_opp,
+            "games": games, "wins": dict(wins), "played": dict(played)}
+
+
+def _emit_progress(done, total):
+    import sys
+    sys.stderr.write(f"\r  gauntlet {done}/{total} games "
+                     f"({100.0*done/total:.0f}%)   ")
+    sys.stderr.flush()
+
+
+# ---------------------------------------------------------------------
+# Reporting
+# ---------------------------------------------------------------------
+def format_gauntlet(R, field_labels, candidate_order=None):
+    base = R["baseline"]
+    n = R["n_opp"]
+    lines = []
+    lines.append("\n" + "=" * 78)
+    lines.append("GAUNTLET: candidate cuts vs. a field of opponent decks")
+    lines.append("=" * 78)
+    base_mean = sum(base) / n if n else 0.0
+    lines.append("\nBaseline Deck A win rate per opponent:")
+    for i, lab in enumerate(field_labels):
+        lines.append(f"    vs {lab:24s} {100*base[i]:5.0f}%")
+    lines.append(f"    {'FIELD MEAN':27s} {100*base_mean:5.0f}%")
+
+    # per-candidate deltas
+    rows = []
+    for config, wrs in R["cut"].items():
+        deltas = [wrs[i] - base[i] for i in range(n)]
+        mean_d = sum(deltas) / n if n else 0.0
+        worst_d = min(deltas) if deltas else 0.0
+        rows.append((config, mean_d, worst_d, deltas))
+    # good universal cut = high mean, and worst-case not badly negative
+    rows.sort(key=lambda r: (-(r[1]), -r[2]))
+    if candidate_order == "worst":
+        rows.sort(key=lambda r: r[2])
+
+    lines.append("\nCANDIDATE CUTS (delta = win rate WITHOUT the card minus baseline)")
+    lines.append("  Positive mean = cutting helps on average. worst = weakest matchup.")
+    lines.append(f"\n  {'cut this card':34s} {'mean':>6s} {'worst':>6s}   per-opponent deltas")
+    lines.append("  " + "-" * 74)
+    for config, mean_d, worst_d, deltas in rows:
+        per = " ".join(f"{100*d:+4.0f}" for d in deltas)
+        flag = ""
+        if mean_d > 0.02 and worst_d > -0.05:
+            flag = "  <- universal cut"
+        elif mean_d > 0.02 and worst_d <= -0.05:
+            flag = "  (matchup-dependent)"
+        lines.append(f"  {config[:34]:34s} {100*mean_d:+5.0f}% {100*worst_d:+5.0f}%   {per}{flag}")
+
+    lines.append("\n  Columns after 'worst' are per-opponent, in this order:")
+    lines.append("    " + " | ".join(f"{i+1}:{lab}" for i, lab in enumerate(field_labels)))
+    lines.append("\nNOTE: a 'universal cut' helps on average and doesn't badly hurt any single\n"
+                 "matchup. Confirm the top candidates with a larger --games run before\n"
+                 "committing, and remember cuts are tested one at a time (interactions\n"
+                 "between two cuts are not captured).")
+    return "\n".join(lines)

@@ -1,0 +1,57 @@
+
+==============================================================================
+DECK DIAGNOSTICS: Deck A over 300 games  (win rate 30%)
+==============================================================================
+
+PER-CARD CONTRIBUTION
+  play%/dead%/ink% are among games where the card was drawn.
+  delta = winrate(played) - winrate(never drawn); negative = underperforming.
+
+  card                                   cop  seen  play  dead  ink   wr+   wr0  delta
+  ------------------------------------------------------------------------------------
+  Cheshire Cat - Inexplicable              2   47%   63%    3%  56%   20%   36%   -16
+  Winnie The Pooh & Piglet - Hunny Mages   4   76%   91%    9%   0%   25%   41%   -15
+  Hades - Looking for a Deal               2   29%   67%    2%  46%   22%   32%   -10
+  Eeyore - Hunny Scholar                   4   75%   61%    0%  81%   28%   36%    -8
+  Come Out and Fight!                      2   46%   42%    1%  73%   21%   28%    -7
+  Isis Vanderchill - Ice Queen of St. Ca   1   34%   90%   10%   0%   26%   32%    -7
+  Demona - Scourge of the Wyvern Clan      2   34%   49%    4%  60%   26%   32%    -6
+  Distract                                 3   54%   59%    1%  76%   26%   32%    -6
+  Merlin - Envisioning the Future          3   72%   98%    2%   0%   29%   35%    -6
+  Owl - Hunny Ranger                       4   73%   79%    1%  59%   29%   35%    -5
+  Gopher - Hunny Cook                      2   48%   99%    1%   0%   29%   31%    -2
+  Kanga - Hunny Bard                       3   59%   75%    0%  61%   29%   31%    -2
+  Winnie The Pooh - Hunny Archmage         4   67%   93%    0%  41%   32%   31%    +1
+  Rabbit - Hunny Paladin                   4   73%   66%    1%  77%   32%   30%    +1
+  Junior Woodchuck Guidebook               4   74%   64%    1%  74%   27%   24%    +2
+  Roo - Hunny Rogue                        3   60%   99%    1%   0%   34%   26%    +7
+  Christopher Robin - Hunny Sage           2   36%   44%    8%  66%   38%   30%    +9
+  Piglet - Hunny Mage Apprentice           4   69%   92%    1%  47%   35%   22%   +13
+  Winnie the Pooh - Hunny Wizard           4   63%   56%    6%  64%   38%   25%   +13
+  Dumbo - Ninth Wonder of the Universe     2   47%   49%    4%  64%   41%   25%   +15
+  Tigger - Hunny Barbarian                 1   25%   53%    3%  44%   42%   27%   +15
+
+FLAGS (heuristic cut/keep signals)
+  - Cheshire Cat - Inexplicable: win-rate drag (-16)
+  - Winnie The Pooh & Piglet - Hunny Mages: win-rate drag (-15)
+  - Hades - Looking for a Deal: win-rate drag (-10)
+  - Eeyore - Hunny Scholar: mostly inked (81%) — may be a filler slot
+  - Distract: mostly inked (76%) — may be a filler slot
+  - Rabbit - Hunny Paladin: mostly inked (77%) — may be a filler slot
+
+TEMPO & CURVE
+  Avg ink after your turn:  T1:1.0  T2:2.0  T3:2.8  T4:3.7  T5:4.4  T6:5.1  T7:5.7  T8:6.4  T9:6.9  T10:7.5
+  Avg turn each cost first lands: 1-drop: turn 2.8  2-drop: turn 2.5  3-drop: turn 5.1  4-drop: turn 5.5  5-drop: turn 7.6  6-drop: turn 10.0
+  Opening-hand inkable count distribution: 3:3%  4:12%  5:29%  6:38%  7:18%
+
+LOSS PATTERNS
+  Losses: 209   avg length 27.3 half-turns (fast <=14: 0, grind >=24: 147)
+  Avg lore gap in losses: 8.2
+  Losses with 3+ locations stuck in hand (flood): 0  (0% of losses)
+  Losses after a low-ink opening (<=2 inkable): 0  (0% of losses)
+
+READ
+  Most losses are GRINDS — you run out of gas. Consider more card advantage / reach / a resilient late threat.
+
+NOTE: deltas are correlational, not causal. A high-delta card may just 
+ride along in good draws. Use `--suggest` to A/B test specific swaps.

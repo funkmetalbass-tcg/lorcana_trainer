@@ -1,0 +1,59 @@
+{
+ "_comment": "Hand-authored ability data (Phase 2). Keyed by full card name. Each entry: trigger + optional condition + effect. Entries here override abilities_auto.json (future). The 'source' field is documentation only.",
+ "Aurora - Holding Court": [
+  {
+   "trigger": "on_quest",
+   "effect": {
+    "type": "cost_reduce",
+    "amount": 1,
+    "filter": "princess_queen"
+   },
+   "source": "BY YOUR LEAVE: Whenever this character quests, you pay 1 Ink less for the next Princess or Queen character you play this turn."
+  }
+ ],
+ "Jessie - Lively Cowgirl": [
+  {
+   "trigger": "on_quest",
+   "condition": {
+    "type": "your_other_classification_count",
+    "classification": "Toy",
+    "min": 2
+   },
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "source": "PART OF A FAMILY: Whenever this character quests, if you have 2 or more other Toy characters in play, you may draw a card. (YODEL-AY-HEE-HOO! remains hand-coded in abilities.py.)"
+  }
+ ],
+ "Elsa - Concerned Sister": [
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "cost_reduce",
+    "amount": 2,
+    "filter": "location"
+   },
+   "source": "THIS WAY: When you play this character, you pay 2 Ink less for the next location you play this turn."
+  }
+ ],
+ "Pocahontas - Following the Wind": [
+  {
+   "trigger": "on_quest",
+   "effect": {
+    "type": "gain_lore_equal_to_exerted"
+   },
+   "source": "WHAT IS MY PATH?: Whenever this character quests, gain lore equal to another chosen exerted character's Lore. (Heuristic: your highest-Lore other exerted character.)"
+  }
+ ],
+ "Sudden Chill": [
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "opponent_discard",
+    "amount": 1
+   },
+   "source": "Sudden Chill: Each opponent chooses and discards a card. (Singable.)"
+  }
+ ]
+}

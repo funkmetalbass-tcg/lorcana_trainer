@@ -1,0 +1,322 @@
+Player 1's starting hand: Winifred - Exasperated Elephant, Winifred - Exasperated Elephant, Malicious, Mean, and Scary, Look What You've Done, Max Goof - Chart Topper, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger
+Player 2's starting hand: Merlin - Envisioning the Future, Develop Your Brain, Milo Thatch - Getting His Hands Dirty, Develop Your Brain, Milo Thatch - Getting His Hands Dirty, Merlin - Envisioning the Future, Education or Elimination
+Player 1 mulliganed 4 cards: Max Goof - Chart Topper, Goofy - Emerald Champion, Winifred - Exasperated Elephant, Winifred - Exasperated Elephant. Drew: Goofy - Emerald Champion, Dr. Bushroot - Evil Botanist, Dinky - Has the Brains, Maudie - Exasperated Nursemaid
+Player 2 mulliganed 7 cards: Milo Thatch - Getting His Hands Dirty, Milo Thatch - Getting His Hands Dirty, Education or Elimination, Merlin - Envisioning the Future, Merlin - Envisioning the Future, Develop Your Brain, Develop Your Brain. Drew: Gyro-Evac, Mickey Mouse - Bob Cratchit, Mushu - Stealthy Dragon, Dr. Bushroot - Evil Botanist, Mickey Mouse & Minnie Mouse - Adventuring Duo, Scrooge McDuck - Reformed Ebenezer, Mickey Mouse - Steamboat Pilot
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 ended Player 1's turn
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Merlin - Envisioning the Future
+Player 2 added Scrooge McDuck - Reformed Ebenezer to ink
+Player 2 ended Player 2's turn
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! had no effect (no valid targets)
+Player 1 ended Player 1's turn
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse - Detective
+Player 2 added Mickey Mouse - Steamboat Pilot to ink
+Player 2 played Mickey Mouse - Bob Cratchit (cost 2)
+Player 2 ended Player 2's turn
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 0 -> 2)
+Player 1 ended Player 1's turn
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse - Detective
+Player 2 added Mushu - Stealthy Dragon to ink
+Player 2 played Mickey Mouse - Detective (cost 3)
+Mickey Mouse - Detective's GET A CLUE puts top card into inkwell exerted
+A card was put into Player 2's inkwell
+Player 2 challenged Dinky - Has the Brains with Mickey Mouse - Bob Cratchit
+Player 2 challenged Dinky - Has the Brains with Mickey Mouse - Bob Cratchit | 3 [STRENGTH] dealt 3 dmg to Dinky - Has the Brains (3/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 challenged Mickey Mouse - Bob Cratchit with Maudie - Exasperated Nursemaid
+Player 1 challenged Mickey Mouse - Bob Cratchit with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Mickey Mouse - Bob Cratchit (3/2 [WILLPOWER] - banished!), took 2 dmg (3-1 Resist) (2/5 [WILLPOWER])
+Mickey Mouse - Bob Cratchit was banished
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Mickey Mouse - Detective
+Player 1 ended Player 1's turn
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse & Minnie Mouse - Adventuring Duo
+Player 2 played Merlin - Envisioning the Future (cost 4)
+Merlin - Envisioning the Future's MINOR TRICKERY chose "Yes"
+Merlin - Envisioning the Future's MINOR TRICKERY draws a card
+Player 2 drew Mushu - Stealthy Dragon
+Player 2 added Dr. Bushroot - Evil Botanist to ink
+Player 2 ended Player 2's turn
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Mickey Mouse - Detective
+1 damage counter put on Merlin - Envisioning the Future
+Mickey Mouse - Detective was banished
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse - Detective
+Player 2 added Mushu - Stealthy Dragon to ink
+Player 2 played Gyro-Evac (cost 3)
+Player 2 played Mickey Mouse - Detective (cost 3)
+Mickey Mouse - Detective's GET A CLUE puts top card into inkwell exerted
+A card was put into Player 2's inkwell
+Player 2 quested with Merlin - Envisioning the Future (+2 [LORE], 0 -> 2)
+Player 2 ended Player 2's turn
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 challenged Merlin - Envisioning the Future with Maudie - Exasperated Nursemaid
+Player 1 challenged Merlin - Envisioning the Future with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Merlin - Envisioning the Future (3/4 [WILLPOWER]), took 0 dmg (1-1 Resist) (2/5 [WILLPOWER])
+Player 1 ended Player 1's turn
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse & Minnie Mouse - Adventuring Duo
+Player 2 played Mickey Mouse - Detective (cost 3)
+Mickey Mouse - Detective's GET A CLUE puts top card into inkwell exerted
+A card was put into Player 2's inkwell
+Player 2 added Mickey Mouse & Minnie Mouse - Adventuring Duo to ink
+Player 2 ended Player 2's turn
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 sang Malicious, Mean, and Scary with Maudie - Exasperated Nursemaid
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Merlin - Envisioning the Future
+1 damage counter put on Mickey Mouse - Detective
+1 damage counter put on Mickey Mouse - Detective
+Merlin - Envisioning the Future was banished
+Merlin - Envisioning the Future's AGE OF INCONVENIENCE puts Merlin - Envisioning the Future on bottom of deck
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Mickey Mouse - Detective
+Mickey Mouse - Detective was banished
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 1 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Milo Thatch - Getting His Hands Dirty
+Player 2 played Mickey Mouse & Minnie Mouse - Adventuring Duo (cost 7)
+Player 2 ended Player 2's turn
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 3 -> 4)
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 4 -> 6)
+Player 1 ended Player 1's turn
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Minnie Mouse - Practical Traveler
+Player 2 played Milo Thatch - Getting His Hands Dirty (cost 7)
+Milo Thatch - Getting His Hands Dirty's SCHOLAR'S GAMBIT Discarded a card
+Milo Thatch - Getting His Hands Dirty's SCHOLAR'S GAMBIT returns Goofy - Emerald Champion to hand
+Player 2 discarded Minnie Mouse - Practical Traveler from hand
+Goofy - Emerald Champion returned to Player 1's hand
+Player 2 challenged Maudie - Exasperated Nursemaid with Mickey Mouse - Detective
+Player 2 challenged Maudie - Exasperated Nursemaid with Mickey Mouse - Detective | 1 [STRENGTH] dealt 0 dmg (1-1 Resist) to Maudie - Exasperated Nursemaid (2/5 [WILLPOWER]), took 2 dmg (3/3 [WILLPOWER] - banished!)
+Mickey Mouse - Detective was banished
+Player 2 quested with Mickey Mouse & Minnie Mouse - Adventuring Duo (+5 [LORE], 2 -> 7)
+Player 2 ended Player 2's turn
+Milo Thatch - Getting His Hands Dirty's PRACTICAL KNOWLEDGE draws a card
+Player 2 drew Pete - Ghost of Christmas Future
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 played Max Goof - Chart Topper (cost 6)
+Player 1 challenged Mickey Mouse & Minnie Mouse - Adventuring Duo with Maudie - Exasperated Nursemaid
+Player 1 challenged Mickey Mouse & Minnie Mouse - Adventuring Duo with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Mickey Mouse & Minnie Mouse - Adventuring Duo (2/5 [WILLPOWER]), took 4 dmg (5-1 Resist) (6/5 [WILLPOWER] - banished!)
+Maudie - Exasperated Nursemaid was banished
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 6 -> 8)
+Mickey Mouse & Minnie Mouse - Adventuring Duo's THINKING OF YOU puts them into the inkwell facedown and exerted instead of being banished
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Mickey Mouse & Minnie Mouse - Adventuring Duo
+Mickey Mouse & Minnie Mouse - Adventuring Duo was put into Player 2's inkwell from field
+Player 1 ended Player 1's turn
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mushu - Stealthy Dragon
+Player 2 played Mushu - Stealthy Dragon (cost 3)
+Player 2 played Mickey Mouse & Minnie Mouse - Adventuring Duo (cost 7)
+Player 2 quested with Milo Thatch - Getting His Hands Dirty (+3 [LORE], 7 -> 10)
+Player 2 ended Player 2's turn
+Milo Thatch - Getting His Hands Dirty's PRACTICAL KNOWLEDGE - Secondary condition not met at resolution time
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Max Goof - Chart Topper (+2 [LORE], 8 -> 10)
+Max Goof - Chart Topper's NUMBER ONE HIT Played Malicious, Mean, and Scary for free
+Player 1 played Malicious, Mean, and Scary (cost 3 → 0)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Milo Thatch - Getting His Hands Dirty
+1 damage counter put on Mushu - Stealthy Dragon
+1 damage counter put on Mickey Mouse & Minnie Mouse - Adventuring Duo
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 10 -> 12)
+Mickey Mouse & Minnie Mouse - Adventuring Duo's THINKING OF YOU puts them into the inkwell facedown and exerted instead of being banished
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Mickey Mouse & Minnie Mouse - Adventuring Duo
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Mickey Mouse & Minnie Mouse - Adventuring Duo was put into Player 2's inkwell from field
+1 damage counter put on Mushu - Stealthy Dragon
+Mushu - Stealthy Dragon was banished
+Player 1 ended Player 1's turn
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dr. Bushroot - Evil Botanist
+Player 2 played Dr. Bushroot - Evil Botanist (cost 5)
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 challenged Max Goof - Chart Topper with Milo Thatch - Getting His Hands Dirty
+Goofy - Emerald Champion's EVEN THE SCORE banishes Milo Thatch - Getting His Hands Dirty
+Player 2 challenged Max Goof - Chart Topper with Milo Thatch - Getting His Hands Dirty | 5 [STRENGTH] dealt 5 dmg to Max Goof - Chart Topper (5/5 [WILLPOWER] - banished!), took 4 dmg (5/5 [WILLPOWER] - banished!)
+Milo Thatch - Getting His Hands Dirty was banished
+Max Goof - Chart Topper was banished
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 ended Player 2's turn
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 discarded Cruella De Vil - Judgmental Traveler from hand
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 12 -> 14)
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+1 damage counter put on Pete - Ghost of Christmas Future
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 14 -> 16)
+Player 1 ended Player 1's turn
+
+--- Turn 22 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse - Bob Cratchit
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 10 -> 11)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 quested with Dr. Bushroot - Evil Botanist (+3 [LORE], 11 -> 14)
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 added Mickey Mouse - Bob Cratchit to ink
+Player 2 ended Player 2's turn
+
+--- Turn 23 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 16 -> 18)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Pete - Ghost of Christmas Future
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Pete - Ghost of Christmas Future was banished
+1 damage counter put on Pete - Ghost of Christmas Future
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 18 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!

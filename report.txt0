@@ -1,0 +1,65 @@
+
+==============================================================================
+DECK DIAGNOSTICS: Deck A over 1 games  (win rate 0%)
+==============================================================================
+
+PER-CARD CONTRIBUTION
+  play%/dead%/ink% are among games where the card was drawn.
+  delta = winrate(played) - winrate(never drawn); negative = underperforming.
+
+  card                                   cop  seen  play  dead  ink   wr+   wr0  delta
+  ------------------------------------------------------------------------------------
+  Be King Undisputed                       4  100%  100%    0%   0%    0%   - %     -
+  Bobby Zimuruski - Spray Cheese Kid       4    0%    0%    0%   0%   - %    0%     -
+  Dangerous Plan                           3    0%    0%    0%   0%   - %    0%     -
+  King Louie - King of Swing               3    0%    0%    0%   0%   - %    0%     -
+  Malicious, Mean, and Scary               4  100%  100%    0% 100%    0%   - %     -
+  Max Goof - Chart Topper                  4    0%    0%    0%   0%   - %    0%     -
+  Max Goof - Rebellious Teen               4  100%    0%    0% 100%   - %   - %     -
+  Max Goof - Rockin' Teen                  3    0%    0%    0%   0%   - %    0%     -
+  Meilin Lee - Popular Red Panda           2  100%  100%    0% 100%    0%   - %     -
+  Mother Knows Best                        4    0%    0%    0%   0%   - %    0%     -
+  Powerline - Musical Superstar            3    0%    0%    0%   0%   - %    0%     -
+  Powerline - Taking the Stage             4  100%  100%    0% 100%    0%   - %     -
+  Powerline - World's Greatest Rock Star   4    0%    0%    0%   0%   - %    0%     -
+  Put That Thing Back                      3    0%    0%    0%   0%   - %    0%     -
+  Rapunzel - Escaping the Tower            3  100%  100%    0%   0%    0%   - %     -
+  Strike A Good Match                      4    0%    0%    0%   0%   - %    0%     -
+  Sudden Chill                             2    0%    0%    0%   0%   - %    0%     -
+  To Wither A Flower                       4  100%  100%    0%   0%    0%   - %     -
+  Under the Sea                            2    0%    0%    0%   0%   - %    0%     -
+
+FLAGS (heuristic cut/keep signals)
+  - Bobby Zimuruski - Spray Cheese Kid: low utilization (played 0% when drawn)
+  - Dangerous Plan: low utilization (played 0% when drawn)
+  - King Louie - King of Swing: low utilization (played 0% when drawn)
+  - Malicious, Mean, and Scary: mostly inked (100%) — may be a filler slot
+  - Max Goof - Chart Topper: low utilization (played 0% when drawn)
+  - Max Goof - Rebellious Teen: mostly inked (100%) — may be a filler slot
+  - Max Goof - Rockin' Teen: low utilization (played 0% when drawn)
+  - Meilin Lee - Popular Red Panda: mostly inked (100%) — may be a filler slot
+  - Mother Knows Best: low utilization (played 0% when drawn)
+  - Powerline - Musical Superstar: low utilization (played 0% when drawn)
+  - Powerline - Taking the Stage: mostly inked (100%) — may be a filler slot
+  - Powerline - World's Greatest Rock Star: low utilization (played 0% when drawn)
+  - Put That Thing Back: low utilization (played 0% when drawn)
+  - Strike A Good Match: low utilization (played 0% when drawn)
+  - Sudden Chill: low utilization (played 0% when drawn)
+  - Under the Sea: low utilization (played 0% when drawn)
+
+TEMPO & CURVE
+  Avg ink after your turn:  T1:0.0  T2:1.0  T3:2.0  T4:3.0  T5:3.0  T6:4.0  T7:5.0  T8:5.0  T9:6.0  T10:7.0
+  Avg turn each cost first lands: 1-drop: turn 2.0  2-drop: turn 4.0  3-drop: turn 11.0  4-drop: turn 6.0  6-drop: turn 10.0
+  Opening-hand inkable count distribution: 4:100%
+
+LOSS PATTERNS
+  Losses: 1   avg length 34.0 half-turns (fast <=14: 0, grind >=24: 1)
+  Avg lore gap in losses: 1.0
+  Losses with 3+ locations stuck in hand (flood): 0  (0% of losses)
+  Losses after a low-ink opening (<=2 inkable): 0  (0% of losses)
+
+READ
+  Most losses are GRINDS — you run out of gas. Consider more card advantage / reach / a resilient late threat.
+
+NOTE: deltas are correlational, not causal. A high-delta card may just 
+ride along in good draws. Use `--suggest` to A/B test specific swaps.

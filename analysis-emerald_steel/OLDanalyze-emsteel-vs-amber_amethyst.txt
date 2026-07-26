@@ -1,0 +1,57 @@
+
+==============================================================================
+DECK DIAGNOSTICS: Deck A over 200 games  (win rate 79%)
+==============================================================================
+
+PER-CARD CONTRIBUTION
+  play%/dead%/ink% are among games where the card was drawn.
+  delta = winrate(played) - winrate(never drawn); negative = underperforming.
+
+  card                                   cop  seen  play  dead  ink   wr+   wr0  delta
+  ------------------------------------------------------------------------------------
+  Windstorm                                2   50%   27%    6%  71%   70%   80%   -10
+  Chomp!                                   2   52%   40%    4%  43%   76%   82%    -6
+  Ariel - Determined Mermaid               4   76%   69%    3%  64%   80%   82%    -2
+  Cruella De Vil - Judgmental Traveler     4   62%   52%    3%  77%   82%   83%    -1
+  Strike A Good Match                      3   52%   58%    0%  69%   77%   78%    -1
+  Merida - Defiant Daughter                4   66%   88%    2%  40%   81%   78%    +3
+  Dinky - Has the Brains                   3   58%   77%    3%  34%   82%   78%    +4
+  Shere Khan - Fearsome Tiger              3   58%   82%   18%   0%   86%   79%    +7
+  Winifred - Exasperated Elephant          4   59%   41%    8%  75%   85%   78%    +7
+  Malicious, Mean, and Scary               4   74%   50%    2%  76%   82%   75%    +7
+  Bobby Zimuruski - Spray Cheese Kid       3   62%   89%    1%  25%   82%   74%    +8
+  Strength of a Raging Fire                2   50%   23%    7%  74%   87%   78%    +9
+  Dr. Bushroot - Evil Botanist             4   52%   66%    4%  61%   86%   76%   +10
+  Maudie - Exasperated Nursemaid           4   74%   82%    1%  54%   82%   71%   +11
+  Goofy - Emerald Champion                 3   54%   84%   12%   0%   86%   74%   +12
+  Max Goof - Chart Topper                  3   42%   36%    2%  81%   93%   78%   +16
+  Tinker Bell - Giant Fairy                2   36%   35%    7%  71%   92%   75%   +17
+  Robin Hood - Daydreamer                  1   20%   46%    8%  46%   94%   76%   +18
+  Look What You've Done                    3   54%   74%    1%  40%   89%   68%   +20
+  Kaa - Secretive Snake                    2   40%   13%    6%  86%  100%   76%   +24
+
+FLAGS (heuristic cut/keep signals)
+  - Windstorm: win-rate drag (-10)
+  - Chomp!: low utilization (played 40% when drawn)
+  - Cruella De Vil - Judgmental Traveler: mostly inked (77%) — may be a filler slot
+  - Winifred - Exasperated Elephant: mostly inked (75%) — may be a filler slot
+  - Malicious, Mean, and Scary: mostly inked (76%) — may be a filler slot
+  - Max Goof - Chart Topper: mostly inked (81%) — may be a filler slot
+  - Kaa - Secretive Snake: mostly inked (86%) — may be a filler slot
+
+TEMPO & CURVE
+  Avg ink after your turn:  T1:1.0  T2:2.0  T3:2.9  T4:3.9  T5:4.8  T6:5.5  T7:6.2  T8:6.6  T9:7.0  T10:7.3
+  Avg turn each cost first lands: 1-drop: turn 3.5  2-drop: turn 2.6  3-drop: turn 4.0  4-drop: turn 8.2  5-drop: turn 7.1  6-drop: turn 7.3  7+-drop: turn 14.2
+  Opening-hand inkable count distribution: 5:4%  6:25%  7:71%
+
+LOSS PATTERNS
+  Losses: 42   avg length 17.4 half-turns (fast <=14: 9, grind >=24: 3)
+  Avg lore gap in losses: 12.1
+  Losses with 3+ locations stuck in hand (flood): 0  (0% of losses)
+  Losses after a low-ink opening (<=2 inkable): 0  (0% of losses)
+
+READ
+  Losses are mixed in length — no single tempo problem dominates; lean on the per-card deltas and flood/screw rates below.
+
+NOTE: deltas are correlational, not causal. A high-delta card may just 
+ride along in good draws. Use `--suggest` to A/B test specific swaps.

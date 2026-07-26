@@ -1,0 +1,58 @@
+
+==============================================================================
+DECK DIAGNOSTICS: Deck A over 200 games  (win rate 55%)
+==============================================================================
+
+PER-CARD CONTRIBUTION
+  play%/dead%/ink% are among games where the card was drawn.
+  delta = winrate(played) - winrate(never drawn); negative = underperforming.
+
+  card                                   cop  seen  play  dead  ink   wr+   wr0  delta
+  ------------------------------------------------------------------------------------
+  Roo - Hunny Rogue                        3   52%   96%    4%   0%   49%   62%   -12
+  Junior Woodchuck Guidebook               4   66%   44%    2%  82%   44%   55%   -11
+  Winnie The Pooh & Piglet - Hunny Mages   4   63%   76%   24%   0%   54%   61%    -7
+  Distract                                 3   49%   44%    1%  76%   51%   57%    -6
+  Gopher - Hunny Cook                      2   40%   98%    2%   0%   52%   56%    -4
+  Come Out and Fight!                      2   44%   26%    2%  82%   52%   53%    -1
+  Christopher Robin - Hunny Sage           2   28%   37%    9%  70%   57%   57%    -0
+  Rabbit - Hunny Paladin                   4   72%   56%    3%  73%   60%   60%    +0
+  Piglet - Hunny Mage Apprentice           4   60%   90%    3%  27%   55%   54%    +1
+  Eeyore - Hunny Scholar                   4   72%   64%    1%  70%   52%   50%    +2
+  Merlin - Envisioning the Future          3   64%   95%    5%   0%   56%   54%    +2
+  Dumbo - Ninth Wonder of the Universe     2   42%   20%    4%  82%   59%   56%    +3
+  Hades - Looking for a Deal               2   28%   56%   13%  51%   58%   54%    +4
+  Kanga - Hunny Bard                       3   56%   65%    4%  46%   57%   52%    +5
+  Winnie The Pooh - Hunny Archmage         4   62%   88%    2%  34%   58%   52%    +6
+  Owl - Hunny Ranger                       4   70%   77%    2%  54%   57%   51%    +7
+  Winnie the Pooh - Hunny Wizard           4   48%   42%    8%  72%   62%   53%   +10
+  Tigger - Hunny Barbarian                 1   22%   35%    7%  58%   67%   54%   +13
+  Isis Vanderchill - Ice Queen of St. Ca   1   28%   91%    9%   0%   66%   51%   +15
+  Demona - Scourge of the Wyvern Clan      2   26%   19%    6%  81%   70%   52%   +18
+  Cheshire Cat - Inexplicable              2   40%   62%    4%  46%   72%   44%   +28
+
+FLAGS (heuristic cut/keep signals)
+  - Roo - Hunny Rogue: win-rate drag (-12)
+  - Junior Woodchuck Guidebook: win-rate drag (-11); mostly inked (82%) — may be a filler slot
+  - Distract: mostly inked (76%) — may be a filler slot
+  - Come Out and Fight!: mostly inked (82%) — may be a filler slot
+  - Dumbo - Ninth Wonder of the Universe: mostly inked (82%) — may be a filler slot
+  - Tigger - Hunny Barbarian: low utilization (played 35% when drawn)
+  - Demona - Scourge of the Wyvern Clan: mostly inked (81%) — may be a filler slot
+
+TEMPO & CURVE
+  Avg ink after your turn:  T1:1.0  T2:2.0  T3:2.9  T4:3.8  T5:4.6  T6:5.3  T7:5.9  T8:6.5  T9:6.9  T10:7.3
+  Avg turn each cost first lands: 1-drop: turn 2.5  2-drop: turn 2.7  3-drop: turn 3.8  4-drop: turn 5.2  5-drop: turn 6.8  6-drop: turn 9.1
+  Opening-hand inkable count distribution: 3:2%  4:12%  5:26%  6:41%  7:19%
+
+LOSS PATTERNS
+  Losses: 90   avg length 19.1 half-turns (fast <=14: 6, grind >=24: 8)
+  Avg lore gap in losses: 7.9
+  Losses with 3+ locations stuck in hand (flood): 0  (0% of losses)
+  Losses after a low-ink opening (<=2 inkable): 0  (0% of losses)
+
+READ
+  Losses are mixed in length — no single tempo problem dominates; lean on the per-card deltas and flood/screw rates below.
+
+NOTE: deltas are correlational, not causal. A high-delta card may just 
+ride along in good draws. Use `--suggest` to A/B test specific swaps.

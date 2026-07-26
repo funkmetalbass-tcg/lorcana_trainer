@@ -866,6 +866,51 @@ def on_play(g, p, card, obj, params):
             g.emit(f"PERFORMANCE REVIEW exerts {tgt.card.base_name}, draws {ncards}")
         return
 
+    if name == "Can't Hold it Back Anymore":
+        tgt = _best_opp_char(g, p)
+        if tgt is None:
+            pool = [c for c in g.my_chars(opp) if not c.exerted]
+            tgt = max(pool, key=lambda c: g.eff_lore(c)) if pool else None
+        if tgt is not None:
+            tgt.exerted = True
+            moved = 0
+            for c in list(g.my_chars(p)) + list(g.my_chars(opp)):
+                if c.uid != tgt.uid and c.damage:
+                    moved += c.damage
+                    c.damage = 0
+            tgt.damage += moved
+            g.emit("CANT HOLD IT BACK ANYMORE moves " + str(moved) + " damage")
+            g.check_banish(tgt)
+        return
+
+    if name == "With A Few Good Friends":
+        inks = set()
+        for c in g.my_chars(p):
+            for i in str(c.card.ink_type).split(";"):
+                i = i.strip()
+                if i:
+                    inks.add(i)
+        ndraw = len(inks)
+        if ndraw:
+            g.draw(p, ndraw)
+            g.emit("WITH A FEW GOOD FRIENDS draws " + str(ndraw))
+        return
+
+    if name == "Sudden Chill":
+        oo = 1 - p
+        if g.players[oo].hand:
+            if "_worst_hand_card" in globals():
+                d = _worst_hand_card(g, oo)
+            else:
+                d = g.players[oo].hand[0]
+            g.players[oo].hand.remove(d)
+            if hasattr(g, "discard_card"):
+                g.discard_card(oo, d)
+            else:
+                g.players[oo].discard.append(d)
+            g.emit("SUDDEN CHILL: opponent discards " + d.name)
+        return
+
     if name == "Distract":
         tgt = _debuff_target(g, p)
         if tgt:
@@ -2628,6 +2673,12 @@ def start_of_turn(g, p):
 
 
 def end_of_turn(g, p):
+    for _c in g.my_chars(p):
+        if _c.card.name == "Piglet - Cocoa Maker":
+            for _t in g.my_chars(p):
+                _t.damage = max(0, _t.damage - 2)
+            g.emit("SPECIAL RECIPE heals your characters")
+            break
     # Cinderella - Dream Come True WHATEVER YOU WISH FOR: at end of your turn,
     # if you played a Princess character this turn, you may put a card from
     # hand into your inkwell facedown to draw a card. Heuristic: always, using
@@ -3014,6 +3065,8 @@ HAND_IMPLEMENTED = {
     "Let It Go",
     "Junior Woodchuck Guidebook",
     "Distract", "Come Out and Fight!", "Performance Review",
+    "Sudden Chill",
+    "Can't Hold it Back Anymore", "With A Few Good Friends", "Piglet - Cocoa Maker",
     "Big Book Of Hunny", "Magical Hunny Staff",
     "Hundred Acre Wood - Hunny Campsite",
     # --- Amber/Ruby boost deck ---

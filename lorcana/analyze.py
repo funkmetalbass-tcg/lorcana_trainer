@@ -123,6 +123,8 @@ def _run_tracked_game(deckU, deckO, polU, polO, seed, study_on_seat0):
     else:
         g = Game(deckO, deckU, seed=seed)
         seat = 1
+    from collections import Counter as _Counter
+    g.trig = _Counter()
     g.start(mulligan_fn=lambda game, p: default_mulligan(game, p))
     tracker = DeckTracker(g, seat, deckU)
     tracker.note_opening()
@@ -167,6 +169,8 @@ def analyze_deck(db, deckU, deckO, policyU, policyO, games, iters, seed,
     loss_gaps = []
     flood_losses = 0
     screw_losses = 0
+    trig_total = defaultdict(int)
+    trig_games = defaultdict(int)
     ink_curve_sum = defaultdict(float)
     ink_curve_cnt = defaultdict(int)
     first_play_sum = defaultdict(float)
@@ -188,6 +192,11 @@ def analyze_deck(db, deckU, deckO, policyU, policyO, games, iters, seed,
             copies = tr.copies
             unique = tr.unique
         total_wins += won
+
+        for (tp, label), n in getattr(g, "trig", {}).items():
+            if tp == seat:
+                trig_total[label] += n
+                trig_games[label] += 1
 
         for name in unique:
             seen = name in tr.seen
@@ -236,6 +245,7 @@ def analyze_deck(db, deckU, deckO, policyU, policyO, games, iters, seed,
         "ink_curve_sum": ink_curve_sum, "ink_curve_cnt": ink_curve_cnt,
         "first_play_sum": first_play_sum, "first_play_cnt": first_play_cnt,
         "opening_inkable_hist": opening_inkable_hist,
+        "trig_total": dict(trig_total), "trig_games": dict(trig_games),
         "label_u": label_u, "label_o": label_o,
     }
 
@@ -370,6 +380,14 @@ def format_report(R):
                      "(see opening distribution) or lower the curve.")
     else:
         L.append("  No losses recorded.")
+
+    if R.get("trig_total"):
+        L.append("\nABILITY TRIGGERS (studied deck; totals across all games)")
+        L.append(f"  {'trigger':<44} {'total':>6} {'avg/game':>9} {'games%':>7}")
+        for label in sorted(R["trig_total"], key=lambda k: -R["trig_total"][k]):
+            tot = R["trig_total"][label]
+            gp = 100.0 * R["trig_games"][label] / max(1, R["games"])
+            L.append(f"  {label:<44} {tot:>6} {tot/max(1,R['games']):>9.2f} {gp:>6.0f}%")
 
     L.append("\nNOTE: deltas are correlational, not causal. A high-delta card may just "
              "\nride along in good draws. Use `--suggest` to A/B test specific swaps.")

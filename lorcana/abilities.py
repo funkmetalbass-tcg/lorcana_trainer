@@ -835,6 +835,7 @@ def on_play(g, p, card, obj, params):
                     g.players[p].hand.remove(d)
                     g.players[p].discard.append(d)
                     g.emit(f"I WANT MORE discards {d.name}")
+                    g.count("Ariel: I WANT MORE", p)
             # Ariel INSPIRING VOICE: chosen character gains Evasive
             elif an == "Ariel - Adventurous Collector":
                 mine = [c for c in g.my_chars(p)]
@@ -864,51 +865,6 @@ def on_play(g, p, card, obj, params):
             tgt.exerted = True
             g.draw(p, ncards)
             g.emit(f"PERFORMANCE REVIEW exerts {tgt.card.base_name}, draws {ncards}")
-        return
-
-    if name == "Can't Hold it Back Anymore":
-        tgt = _best_opp_char(g, p)
-        if tgt is None:
-            pool = [c for c in g.my_chars(opp) if not c.exerted]
-            tgt = max(pool, key=lambda c: g.eff_lore(c)) if pool else None
-        if tgt is not None:
-            tgt.exerted = True
-            moved = 0
-            for c in list(g.my_chars(p)) + list(g.my_chars(opp)):
-                if c.uid != tgt.uid and c.damage:
-                    moved += c.damage
-                    c.damage = 0
-            tgt.damage += moved
-            g.emit("CANT HOLD IT BACK ANYMORE moves " + str(moved) + " damage")
-            g.check_banish(tgt)
-        return
-
-    if name == "With A Few Good Friends":
-        inks = set()
-        for c in g.my_chars(p):
-            for i in str(c.card.ink_type).split(";"):
-                i = i.strip()
-                if i:
-                    inks.add(i)
-        ndraw = len(inks)
-        if ndraw:
-            g.draw(p, ndraw)
-            g.emit("WITH A FEW GOOD FRIENDS draws " + str(ndraw))
-        return
-
-    if name == "Sudden Chill":
-        oo = 1 - p
-        if g.players[oo].hand:
-            if "_worst_hand_card" in globals():
-                d = _worst_hand_card(g, oo)
-            else:
-                d = g.players[oo].hand[0]
-            g.players[oo].hand.remove(d)
-            if hasattr(g, "discard_card"):
-                g.discard_card(oo, d)
-            else:
-                g.players[oo].discard.append(d)
-            g.emit("SUDDEN CHILL: opponent discards " + d.name)
         return
 
     if name == "Distract":
@@ -1048,6 +1004,7 @@ def on_play(g, p, card, obj, params):
             g.players[p].hand.remove(d)
             g.discard_card(p, d)
             g.emit(f"SO CHEESY discards {d.name}")
+            g.count("Bobby: SO CHEESY", p)
         return
 
     if name == "Dinky - Has the Brains":
@@ -1058,6 +1015,7 @@ def on_play(g, p, card, obj, params):
             # opponent picks the character that best survives 1 damage
             victim = max(pool, key=lambda c: g.eff_willpower(c) - c.damage)
             g.emit(f"GET HIM!: P{opp} damages {victim.card.base_name}")
+            g.count("Dinky: GET HIM!", p)
             g.deal_damage(victim, 1)
         return
 
@@ -1692,6 +1650,7 @@ def on_quest(g, ch, sh_banish=False, choice=None):
             g.players[g_p].hand.remove(d)
             g.discard_card(g_p, d)
             g.emit(f"CLEVER SWAP: draws then discards {d.name}")
+            g.count("R&F: CLEVER SWAP", g_p)
 
     if name == "Pocahontas & Meeko - Adventurous Friends":
         # WELCOME RETURN: you may return a cost-1 character of yours to hand;
@@ -1720,6 +1679,7 @@ def on_quest(g, ch, sh_banish=False, choice=None):
             tgt = _best_opp_char(g, g_p, cond=lambda g, c: c.damage > 0)
             if tgt:
                 g.emit(f"YOU'RE OUT OF FASHION banishes {tgt.card.base_name}")
+                g.count("Cruella: OUT OF FASHION banish", g_p)
                 g.banish_char(tgt)
         return
 
@@ -1747,6 +1707,7 @@ def on_quest(g, ch, sh_banish=False, choice=None):
             pl.discard.remove(pick)
             pl.hand.append(pick)          # _play_card pulls it from hand
             g.emit(f"NUMBER ONE HIT plays {pick.name} from the discard")
+            g.count("MaxGoof: NUMBER ONE HIT", g_p)
             g._play_card(g_p, pick, {}, free=True, sung=True)
             # instead of going to the discard, it goes to the bottom of the deck
             if pick in pl.discard:
@@ -2498,6 +2459,7 @@ def apply_activated(g, p, action):
         g.pay_ink(p, card.cost)
         g.turn_flags.discard(("fresh_start", p, cname))
         g.emit(f"FRESH START: {cname} is played from the discard")
+        g.count("R&F: FRESH START replay", p)
         on_discard_leave(g, p, 1)
         g._play_card(p, card, {}, free=True)
         return
@@ -2673,12 +2635,6 @@ def start_of_turn(g, p):
 
 
 def end_of_turn(g, p):
-    for _c in g.my_chars(p):
-        if _c.card.name == "Piglet - Cocoa Maker":
-            for _t in g.my_chars(p):
-                _t.damage = max(0, _t.damage - 2)
-            g.emit("SPECIAL RECIPE heals your characters")
-            break
     # Cinderella - Dream Come True WHATEVER YOU WISH FOR: at end of your turn,
     # if you played a Princess character this turn, you may put a card from
     # hand into your inkwell facedown to draw a card. Heuristic: always, using
@@ -2703,6 +2659,7 @@ def end_of_turn(g, p):
             if amt:
                 g.players[1 - p].lore -= amt
                 g.emit("DIRTY TRICKS: opponent loses 1 lore")
+                g.count("Lyle: DIRTY TRICKS", p)
     # Meeko - Skittish Scrounger BOTTOMLESS PIT: at end of your turn, if he is
     # exerted, choose and discard a card OR banish him. Heuristic: pitch the
     # worst hand card if one is available; otherwise banish Meeko.
@@ -3065,8 +3022,6 @@ HAND_IMPLEMENTED = {
     "Let It Go",
     "Junior Woodchuck Guidebook",
     "Distract", "Come Out and Fight!", "Performance Review",
-    "Sudden Chill",
-    "Can't Hold it Back Anymore", "With A Few Good Friends", "Piglet - Cocoa Maker",
     "Big Book Of Hunny", "Magical Hunny Staff",
     "Hundred Acre Wood - Hunny Campsite",
     # --- Amber/Ruby boost deck ---

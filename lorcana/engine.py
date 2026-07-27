@@ -129,6 +129,14 @@ class Game:
         if self.log is not None:
             self.log.append(f"  {msg}")
 
+    def count(self, label, p):
+        """Ability-trigger telemetry. Only the top-level analysis game carries
+        a .trig Counter (set by analyze.py); MCTS clones don't, so search
+        rollouts never pollute the counts."""
+        t = getattr(self, "trig", None)
+        if t is not None:
+            t[(p, label)] += 1
+
     def next_uid(self):
         self.uid_seq += 1
         return self.uid_seq

@@ -389,6 +389,14 @@ class Game:
                 if card.inkable and ("ink", card.name) not in seen_names:
                     acts.append(("ink", card.name))
                     seen_names.add(("ink", card.name))
+            # Moana - Curious Explorer ANCESTRAL LEGACY: you may ink inkable
+            # cards from your discard as well (still just one ink per turn).
+            if abilities.can_ink_from_discard(self, p):
+                disc_seen = set()
+                for card in pl.discard:
+                    if card.inkable and card.name not in disc_seen:
+                        acts.append(("ink", card.name, "discard"))
+                        disc_seen.add(card.name)
         # plays
         for card in pl.hand:
             key = ("play", card.name)
@@ -522,13 +530,20 @@ class Game:
             return
 
         if kind == "ink":
-            card = self._hand_card(p, action[1])
-            pl.hand.remove(card)
+            from_discard = len(action) > 2 and action[2] == "discard"
+            if from_discard:
+                # Moana ANCESTRAL LEGACY: pull the inked card from the discard.
+                card = next(c for c in pl.discard if c.name == action[1])
+                pl.discard.remove(card)
+            else:
+                card = self._hand_card(p, action[1])
+                pl.hand.remove(card)
             pl.ink_cards.append(card)
             pl.ink_total += 1
             pl.ink_ready += 1
             self.turn_flags.add("inked")
-            self.emit(f"P{p} inks {card.name} ({pl.ink_ready}/{pl.ink_total})")
+            self.emit(f"P{p} inks {card.name}" + (" (from discard)" if from_discard else "")
+                      + f" ({pl.ink_ready}/{pl.ink_total})")
             return
 
         if kind == "play":

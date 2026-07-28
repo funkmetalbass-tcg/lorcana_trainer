@@ -558,6 +558,13 @@ def _worst_hand_card(g, p):
     return min(hand, key=lambda c: c.cost)
 
 
+def can_ink_from_discard(g, p):
+    """Moana - Curious Explorer ANCESTRAL LEGACY: while you control her you may
+    ink cards from your discard (still one ink per turn, still only cards with
+    the inkwell symbol). Read by the engine's ink action generation."""
+    return any(c.card.name == "Moana - Curious Explorer" for c in g.my_chars(p))
+
+
 # =====================================================================
 # Trigger hooks called by the engine
 # =====================================================================
@@ -604,6 +611,22 @@ def on_play(g, p, card, obj, params):
         if tgt is not None:
             g.emit(f"WORLD'S GREATEST CRIMINAL MIND banishes {tgt.card.base_name}")
             g.banish_char(tgt, cause="ability")
+
+    # Hades - Infernal Schemer IS THERE A DOWNSIDE TO THIS?: when played, you
+    # may put chosen opposing character into their player's inkwell facedown.
+    # (Same mechanic as Let It Go; Ward-protected characters are unchoosable.
+    # Heuristic 'may': always remove the opponent's best character.)
+    if name == "Hades - Infernal Schemer":
+        tgt = _best_opp_char(g, p)
+        if tgt is not None:
+            owner = tgt.owner
+            del g.chars[tgt.uid]
+            g.players[owner].ink_cards.append(tgt.card)
+            g.players[owner].ink_total += 1   # enters facedown -> not ink_ready
+            for u in tgt.under + tgt.boosted:
+                g.players[owner].discard.append(u)
+            g.emit(f"IS THERE A DOWNSIDE TO THIS? inkwells {tgt.card.name}")
+            g.count("Hades IS THERE A DOWNSIDE", p)
 
     # Mike Wazowski - Heroic Climber FIND A FRIEND fires on play (and on quest,
     # handled in on_quest).
@@ -1868,6 +1891,20 @@ def on_banish(g, ch, cause="damage"):
     p = ch.owner
     name = ch.card.name
     g.turn_flags.add(("banished_this_turn",))
+    # Belle - Snowfield Strategist WINTER STOCKPILE: whenever one of your
+    # characters is banished, you may put that card from your discard into your
+    # inkwell facedown and exerted. Belle is deleted from play before this hook
+    # runs, so also count the banished card itself when it is a Belle (the
+    # ability self-triggers on her own banishment). Heuristic 'may': always
+    # stockpile -- this card exists to turn banished bodies into ramp.
+    if any(c.card.name == "Belle - Snowfield Strategist" for c in g.my_chars(p)) \
+            or name == "Belle - Snowfield Strategist":
+        if ch.card in g.players[p].discard:
+            g.players[p].discard.remove(ch.card)
+            g.players[p].ink_cards.append(ch.card)
+            g.players[p].ink_total += 1   # facedown & exerted -> not ink_ready
+            g.emit(f"WINTER STOCKPILE: {ch.card.name} -> inkwell")
+            g.count("Belle WINTER STOCKPILE", p)
     if name == "Will o' the Wisp - Forest Spirit" and \
             ("wisp_return", ch.uid) in g.turn_flags:
         if ch.card in g.players[p].discard:
@@ -2924,6 +2961,10 @@ def play_param_options(g, p, card):
 # covered by keywords/vanilla, or by schema entries, need not be listed.
 # =====================================================================
 HAND_IMPLEMENTED = {
+    # --- amber_sapphire_princess (control variant) ---
+    "Hades - Infernal Schemer",                    # IS THERE A DOWNSIDE inkwell removal
+    "Belle - Snowfield Strategist",                # WINTER STOCKPILE banish->ink ramp
+    "Moana - Curious Explorer",                    # ANCESTRAL LEGACY ink from discard
     # --- amber_sapphire_princess ---
     "Anna - Braving the Storm",                    # I WAS BORN READY
     "The Queen - Conceited Ruler",                 # ROYAL SUMMONS

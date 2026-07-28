@@ -102,6 +102,15 @@ def _cond_your_other_classification_count(g, p, ctx, cond):
     return n >= cond.get("min", 1)
 
 
+def _cond_your_other_character_count(g, p, ctx, cond):
+    """Count characters you control other than the acting one (any
+    classification). Powers OHANA-style 'if you have N or more other
+    characters in play' triggers."""
+    me = ctx.get("char")
+    n = sum(1 for c in g.my_chars(p) if me is None or c.uid != me.uid)
+    return n >= cond.get("min", 1)
+
+
 def _cond_you_have_named(g, p, ctx, cond):
     return any(c.card.base_name == cond["name"] for c in g.my_chars(p))
 
@@ -112,6 +121,7 @@ def _cond_opponent_ahead(g, p, ctx, cond):
 
 _CONDITIONS = {
     "your_other_classification_count": _cond_your_other_classification_count,
+    "your_other_character_count": _cond_your_other_character_count,
     "you_have_named": _cond_you_have_named,
     "opponent_ahead": _cond_opponent_ahead,
 }

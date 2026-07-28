@@ -64,15 +64,18 @@ def greedy_policy(game, rng, epsilon=0.10):
         if a[0] == "activate" and a[1] == "guidebook" and len(game.players[p].hand) <= 4:
             return a
 
-    # 2. ink once per turn: highest-cost inkable (prefer duplicates implicitly)
+    # 2. ink once per turn: highest-cost inkable (prefer duplicates implicitly).
+    #    An ("ink", name, "discard") action (Moana ANCESTRAL LEGACY) draws from
+    #    the discard; look the cost up there. Tie-break toward discard-sourced
+    #    inks, since spending a dead card is strictly better than a hand card.
     inks = act_of("ink")
     if inks:
-        name_cost = {}
-        for a in inks:
-            for c in game.players[p].hand:
-                if c.name == a[1]:
-                    name_cost[a] = c.cost
-        return max(inks, key=lambda a: name_cost[a])
+        def ink_key(a):
+            from_discard = len(a) > 2 and a[2] == "discard"
+            zone = game.players[p].discard if from_discard else game.players[p].hand
+            cost = next((c.cost for c in zone if c.name == a[1]), 0)
+            return (cost, 1 if from_discard else 0)
+        return max(inks, key=ink_key)
 
     # 3. favorable challenges: kill the defender and either survive or trade up
     from . import abilities

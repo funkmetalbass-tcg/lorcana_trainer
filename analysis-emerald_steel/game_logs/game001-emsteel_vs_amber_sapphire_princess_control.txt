@@ -1,0 +1,365 @@
+Player 1's starting hand: Tinker Bell - Giant Fairy, Strike a Good Match, Dr. Bushroot - Evil Botanist, Shere Khan - Fearsome Tiger, Winifred - Exasperated Elephant, Look What You've Done, Cruella De Vil - Judgmental Traveler
+Player 2's starting hand: Aurora - Holding Court, Cinderella - Dream Come True, Gaston - Superior Archer, Develop Your Brain, Hades - Infernal Schemer, Belle - Snowfield Strategist, Develop Your Brain
+Player 1 mulliganed 5 cards: Shere Khan - Fearsome Tiger, Tinker Bell - Giant Fairy, Winifred - Exasperated Elephant, Cruella De Vil - Judgmental Traveler, Dr. Bushroot - Evil Botanist. Drew: Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Look What You've Done, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid
+Player 2 mulliganed 7 cards: Hades - Infernal Schemer, Gaston - Superior Archer, Develop Your Brain, Develop Your Brain, Belle - Snowfield Strategist, Cinderella - Dream Come True, Aurora - Holding Court. Drew: Belle - Snowfield Strategist, Cinderella - Dream Come True, Besties, Assemble!, Cinderella - Dream Come True, Stitch - Carefree Surfer, Stitch - Carefree Surfer, Aurora - Holding Court
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Bobby Zimuruski - Spray Cheese Kid to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Merida - Defiant Daughter
+Player 1 discarded Strike a Good Match from hand
+Player 1 ended Player 1's turn
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Raging Storm
+Player 2 added Stitch - Carefree Surfer to ink
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 added Look What You've Done to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Gaston - Superior Archer
+Player 2 added Stitch - Carefree Surfer to ink
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Belle - Snowfield Strategist(BESTIES, ASSEMBLE!) - put into hand
+Player 2 ended Player 2's turn
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 sang Strike a Good Match with Merida - Defiant Daughter
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Winifred - Exasperated Elephant, Merida - Defiant Daughter
+Player 1 discarded Goofy - Emerald Champion from hand
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 1 -> 2)
+Player 1 ended Player 1's turn
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Raging Storm
+Player 2 added Belle - Snowfield Strategist to ink
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 0 -> 1)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Raging Storm was put into Player 2's inkwell from hand
+Player 2 drew Aurora - Holding Court
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Aurora - Holding Court
+1 damage counter put on Cinderella - Dream Come True
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 2 -> 3)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 3 -> 4)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 4 -> 5)
+Player 1 challenged Aurora - Holding Court with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Aurora - Holding Court with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Aurora - Holding Court (2/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Aurora - Holding Court was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 2 -> 3)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 3 -> 4)
+Player 1 ended Player 1's turn
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Stitch - Carefree Surfer
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 added Belle - Snowfield Strategist to ink
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Gaston - Superior Archer was put into Player 2's inkwell from hand
+Player 2 drew Belle - Snowfield Strategist
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Belle - Snowfield Strategist was put into Player 2's inkwell from hand
+Player 2 drew Gaston - Superior Archer
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Cinderella - Dream Come True
+Cinderella - Dream Come True was banished
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 4 -> 5)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 5 -> 6)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 6 -> 7)
+Player 1 ended Player 1's turn
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Gaston - Superior Archer
+Player 2 played Stitch - Carefree Surfer (cost 7)
+Stitch - Carefree Surfer's OHANA draws 2 cards
+Player 2 drew 2 cards: Cinderella - Dream Come True, Develop Your Brain
+Player 2 added Gaston - Superior Archer to ink
+Player 2 played Develop Your Brain (cost 1)
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Aurora - Holding Court
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Aurora - Holding Court | 1 [STRENGTH] dealt 1 dmg to Bobby Zimuruski - Spray Cheese Kid (2/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 quested with Cinderella - Dream Come True (+1 [LORE], 1 -> 2)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR - its condition wasn't met
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 challenged Aurora - Holding Court with Merida - Defiant Daughter
+Player 1 challenged Aurora - Holding Court with Merida - Defiant Daughter | 2 [STRENGTH] dealt 2 dmg to Aurora - Holding Court (3/2 [WILLPOWER] - banished!), took 1 dmg (1/3 [WILLPOWER])
+Aurora - Holding Court was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 7 -> 8)
+Player 1 ended Player 1's turn
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Besties, Assemble!
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Agustin Madrigal - Exceptionally Kind(BESTIES, ASSEMBLE!) - put into hand
+Player 2 added Agustin Madrigal - Exceptionally Kind to ink
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 challenged Merida - Defiant Daughter with Stitch - Carefree Surfer
+Player 2 challenged Merida - Defiant Daughter with Stitch - Carefree Surfer | 4 [STRENGTH] dealt 4 dmg to Merida - Defiant Daughter (4/3 [WILLPOWER] - banished!), took 2 dmg (2/8 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 challenged Merida - Defiant Daughter with Cinderella - Dream Come True
+Player 2 challenged Merida - Defiant Daughter with Cinderella - Dream Come True | 2 [STRENGTH] dealt 2 dmg to Merida - Defiant Daughter (3/3 [WILLPOWER] - banished!), took 2 dmg (2/3 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR - its condition wasn't met
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Cinderella - Dream Come True
+Cinderella - Dream Come True was banished
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Stitch - Carefree Surfer
+Player 1 quested with Ariel - Determined Mermaid (+1 [LORE], 8 -> 9)
+Player 1 ended Player 1's turn
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Belle - Snowfield Strategist
+Player 2 boosted Pete - Ghost of Christmas Future (2 cards under)
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 2 -> 3)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played Hades - Infernal Schemer (cost 7)
+Dinky - Has the Brains was put into Player 1's inkwell from field
+Player 2 challenged Ariel - Determined Mermaid with Stitch - Carefree Surfer
+Player 2 challenged Ariel - Determined Mermaid with Stitch - Carefree Surfer | 4 [STRENGTH] dealt 4 dmg to Ariel - Determined Mermaid (4/4 [WILLPOWER] - banished!), took 2 dmg (6/8 [WILLPOWER])
+Ariel - Determined Mermaid was banished
+Player 2 added Belle - Snowfield Strategist to ink
+Player 2 ended Player 2's turn
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Cruella De Vil - Judgmental Traveler (cost 6)
+Player 1 ended Player 1's turn
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cinderella - Dream Come True
+Player 2 boosted Pete - Ghost of Christmas Future (3 cards under)
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 3 -> 4)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played Gaston - Superior Archer (cost 5)
+Gaston - Superior Archer's WATCH THIS! banishes Pete - Ghost of Christmas Future
+Pete - Ghost of Christmas Future was banished
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 quested with Stitch - Carefree Surfer (+2 [LORE], 4 -> 6)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 6 -> 8)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Cinderella - Dream Come True was put into Player 2's inkwell from hand
+Player 2 drew Eilonwy - Princess of Llyr
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 played Max Goof - Chart Topper (cost 6)
+Player 1 quested with Cruella De Vil - Judgmental Traveler (+4 [LORE], 9 -> 13)
+Cruella De Vil - Judgmental Traveler's YOU'RE OUT OF FASHION banishes Stitch - Carefree Surfer
+Stitch - Carefree Surfer was banished
+Player 1 ended Player 1's turn
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Ohana Means Family
+Player 2 challenged Cruella De Vil - Judgmental Traveler with Hades - Infernal Schemer
+Player 2 challenged Cruella De Vil - Judgmental Traveler with Hades - Infernal Schemer | 3 [STRENGTH] dealt 3 dmg to Cruella De Vil - Judgmental Traveler (3/4 [WILLPOWER]), took 4 dmg (4/6 [WILLPOWER])
+Player 2 played Ohana Means Family (cost 3)
+Ohana Means Family's OHANA MEANS FAMILY removes 4 damage and draws 4 cards
+4 damage removed from Hades - Infernal Schemer
+Player 2 drew 4 cards: Hades - Infernal Schemer, World's Greatest Criminal Mind, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor
+Player 2 quested with Cinderella - Dream Come True (+1 [LORE], 8 -> 9)
+Player 2 quested with Gaston - Superior Archer (+1 [LORE], 9 -> 10)
+Raging Storm's RAGING STORM banishes a card
+Cruella De Vil - Judgmental Traveler was banished
+Max Goof - Chart Topper was banished
+Hades - Infernal Schemer was banished
+Gaston - Superior Archer was banished
+Cinderella - Dream Come True was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 added World's Greatest Criminal Mind to ink
+Player 2 played Eilonwy - Princess of Llyr (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Most Helpful
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 ended Player 1's turn
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 played Hades - Infernal Schemer (cost 7)
+Tinker Bell - Most Helpful was put into Player 1's inkwell from field
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 10 -> 11)
+Eilonwy - Princess of Llyr's Support gave +2 [STRENGTH] to Hades - Infernal Schemer
+Player 2 ended Player 2's turn
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 ended Player 1's turn
+
+--- Turn 22 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 11 -> 12)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 12 -> 14)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 14 -> 15)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 15 -> 16)
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 16 -> 17)
+Eilonwy - Princess of Llyr's Support gave +2 [STRENGTH] to Ariel - Determined Mermaid
+Player 2 ended Player 2's turn
+
+--- Turn 23 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Cruella De Vil - Judgmental Traveler (cost 6)
+Player 1 challenged Aurora - Holding Court with Ariel - Determined Mermaid
+Player 1 challenged Aurora - Holding Court with Ariel - Determined Mermaid | 2 [STRENGTH] dealt 2 dmg to Aurora - Holding Court (2/2 [WILLPOWER] - banished!), took 1 dmg (1/4 [WILLPOWER])
+Aurora - Holding Court was banished
+Player 1 ended Player 1's turn
+
+--- Turn 24 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Agustin Madrigal - Exceptionally Kind
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 17 -> 18)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 18 -> 20)
+Player 2 won with 20 [LORE]!
+Player 2 won with 20 [LORE]!

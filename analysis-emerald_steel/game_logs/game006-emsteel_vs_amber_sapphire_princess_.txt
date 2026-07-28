@@ -1,0 +1,201 @@
+Player 1's starting hand: Bobby Zimuruski - Spray Cheese Kid, Look What You've Done, Tinker Bell - Giant Fairy, Strength of a Raging Fire, Tinker Bell - Most Helpful, Tinker Bell - Most Helpful, Cruella De Vil - Judgmental Traveler
+Player 2's starting hand: Moana - Curious Explorer, Eilonwy - Princess of Llyr, Agustin Madrigal - Exceptionally Kind, Stitch - Carefree Surfer, World's Greatest Criminal Mind, Ohana Means Family, Besties, Assemble!
+Player 2 mulliganed 7 cards: Stitch - Carefree Surfer, World's Greatest Criminal Mind, Ohana Means Family, Moana - Curious Explorer, Agustin Madrigal - Exceptionally Kind, Besties, Assemble!, Eilonwy - Princess of Llyr. Drew: Hamm - Piggy Bank, Grandmother Willow - Ancient Advisor, Hades - Infernal Schemer, The Black Cauldron, Stitch - Carefree Surfer, Raging Storm, Raging Storm
+Player 1 mulliganed 4 cards: Cruella De Vil - Judgmental Traveler, Tinker Bell - Most Helpful, Tinker Bell - Giant Fairy, Strength of a Raging Fire. Drew: Malicious, Mean, and Scary, Cruella De Vil - Judgmental Traveler, Maudie - Exasperated Nursemaid, Tinker Bell - Giant Fairy
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Stitch - Carefree Surfer to ink
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Rapunzel & Flynn Rider - Unlikely Pair
+Player 1 discarded Look What You've Done from hand
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 added Hamm - Piggy Bank to ink
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 discarded Shere Khan - Fearsome Tiger from hand
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Eilonwy - Princess of Llyr
+Player 2 added Eilonwy - Princess of Llyr to ink
+Player 2 played The Black Cauldron (cost 3)
+Player 2 ended Player 2's turn
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 1 -> 2)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 added Pete - Ghost of Christmas Future to ink
+Player 2 activated THE CAULDRON CALLS on The Black Cauldron
+Player 2 ended Player 2's turn
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 added Strike a Good Match to ink
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 sang Malicious, Mean, and Scary with Maudie - Exasperated Nursemaid
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Grandmother Willow - Ancient Advisor
+1 damage counter put on Aurora - Holding Court
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 3 -> 4)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 4 -> 5)
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Cinderella - Dream Come True
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Raging Storm was put into Player 2's inkwell from hand
+Player 2 drew Develop Your Brain
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 shifted Tinker Bell - Giant Fairy onto Tinker Bell - Most Helpful (Shift 4)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Grandmother Willow - Ancient Advisor
+Tinker Bell - Giant Fairy dealt 1 damage to Aurora - Holding Court
+Tinker Bell - Giant Fairy dealt 1 damage to Cinderella - Dream Come True
+Grandmother Willow - Ancient Advisor was banished
+Aurora - Holding Court was banished
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 5 -> 6)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 6 -> 7)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 7 -> 8)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 8 -> 10)
+Player 1 ended Player 1's turn
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 added Aurora - Holding Court to ink
+Player 2 quested with Cinderella - Dream Come True (+1 [LORE], 0 -> 1)
+Player 2 activated THE CAULDRON CALLS on The Black Cauldron
+Aurora - Holding Court was put under The Black Cauldron
+Player 2 played Develop Your Brain (cost 1)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR - its condition wasn't met
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Rapunzel & Flynn Rider - Unlikely Pair (cost 5)
+Player 1 challenged Cinderella - Dream Come True with Maudie - Exasperated Nursemaid
+Player 1 challenged Cinderella - Dream Come True with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Cinderella - Dream Come True (3/3 [WILLPOWER] - banished!), took 1 dmg (2-1 Resist) (1/5 [WILLPOWER])
+Cinderella - Dream Come True was banished
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 10 -> 11)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 11 -> 12)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 12 -> 14)
+Player 1 ended Player 1's turn
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 added Moana - Curious Explorer to ink
+Player 2 activated THE CAULDRON CALLS on The Black Cauldron
+Cinderella - Dream Come True was put under The Black Cauldron
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 ended Player 2's turn
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 quested with Rapunzel & Flynn Rider - Unlikely Pair (+2 [LORE], 14 -> 16)
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP draws a card
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP Discarded a card
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 discarded Winifred - Exasperated Elephant from hand
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START chose "Play from discard"
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START plays Winifred - Exasperated Elephant from discard exerted
+Player 1 played Winifred - Exasperated Elephant (cost 6)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 16 -> 17)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 17 -> 18)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 18 -> 19)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 19 -> 21)
+Player 1 won with 21 [LORE]!
+Player 1 won with 21 [LORE]!

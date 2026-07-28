@@ -1,0 +1,373 @@
+Player 1's starting hand: Ariel - Determined Mermaid, Dr. Bushroot - Evil Botanist, Maudie - Exasperated Nursemaid, Look What You've Done, Winifred - Exasperated Elephant, Merida - Defiant Daughter, Merida - Defiant Daughter
+Player 2's starting hand: Ohana Means Family, Gaston - Superior Archer, Hamm - Piggy Bank, Gaston - Superior Archer, Grandmother Willow - Ancient Advisor, Besties, Assemble!, Cinderella - Dream Come True
+Player 2 mulliganed 7 cards: Ohana Means Family, Besties, Assemble!, Hamm - Piggy Bank, Gaston - Superior Archer, Gaston - Superior Archer, Grandmother Willow - Ancient Advisor, Cinderella - Dream Come True. Drew: Belle - Snowfield Strategist, Eilonwy - Princess of Llyr, Belle - Snowfield Strategist, Hamm - Piggy Bank, Hamm - Piggy Bank, Besties, Assemble!, Agustin Madrigal - Exceptionally Kind
+Player 1 mulliganed 1 card: Dr. Bushroot - Evil Botanist. Drew: Dr. Bushroot - Evil Botanist
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Hamm - Piggy Bank to ink
+Player 2 played Eilonwy - Princess of Llyr (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Moana - Curious Explorer
+Player 2 added Belle - Snowfield Strategist to ink
+Player 2 played Hamm - Piggy Bank (cost 2)
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 0 -> 1)
+Eilonwy - Princess of Llyr's Support gave +2 [STRENGTH] to Hamm - Piggy Bank
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Raging Storm
+Player 2 added Agustin Madrigal - Exceptionally Kind to ink
+Player 2 activated LOOSE CHANGE on Hamm - Piggy Bank
+Player 2 played Belle - Snowfield Strategist (cost 4)
+Player 2 ended Player 2's turn
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 0 -> 1)
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Stitch - Carefree Surfer
+Player 2 added Besties, Assemble! to ink
+Player 2 challenged Merida - Defiant Daughter with Belle - Snowfield Strategist
+Player 2 challenged Merida - Defiant Daughter with Belle - Snowfield Strategist | 2 [STRENGTH] dealt 2 dmg to Merida - Defiant Daughter (2/3 [WILLPOWER]), took 2 dmg (2/3 [WILLPOWER])
+Player 2 challenged Merida - Defiant Daughter with Hamm - Piggy Bank
+Player 2 challenged Merida - Defiant Daughter with Hamm - Piggy Bank | 2 [STRENGTH] dealt 2 dmg to Merida - Defiant Daughter (4/3 [WILLPOWER] - banished!), took 2 dmg (2/3 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 ended Player 2's turn
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Look What You've Done
+Player 1 discarded Look What You've Done from hand
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Play from discard"
+Look What You've Done's LOOK WHAT YOU'VE DONE plays Look What You've Done from discard exerted
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Belle - Snowfield Strategist
+Belle - Snowfield Strategist was banished
+Belle - Snowfield Strategist was put into Player 2's inkwell from discard
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 challenged Hamm - Piggy Bank with Maudie - Exasperated Nursemaid
+Player 1 challenged Hamm - Piggy Bank with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Hamm - Piggy Bank (4/3 [WILLPOWER] - banished!), took 1 dmg (2-1 Resist) (1/5 [WILLPOWER])
+Hamm - Piggy Bank was banished
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Moana - Curious Explorer
+Player 2 played Moana - Curious Explorer (cost 5)
+Player 2 ended Player 2's turn
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 1 -> 2)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 played Moana - Curious Explorer (cost 5)
+Player 2 added Pete - Ghost of Christmas Future to ink
+Player 2 ended Player 2's turn
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 3 -> 4)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 4 -> 5)
+Player 1 ended Player 1's turn
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 added Pete - Ghost of Christmas Future to ink
+Player 2 played Stitch - Carefree Surfer (cost 7)
+Stitch - Carefree Surfer's OHANA draws 2 cards
+Player 2 drew 2 cards: Grandmother Willow - Ancient Advisor, Raging Storm
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 1 -> 2)
+Eilonwy - Princess of Llyr's Support gave +2 [STRENGTH] to Moana - Curious Explorer
+Player 2 challenged Maudie - Exasperated Nursemaid with Moana - Curious Explorer
+Player 2 challenged Maudie - Exasperated Nursemaid with Moana - Curious Explorer | 6 [STRENGTH] dealt 5 dmg (6-1 Resist) to Maudie - Exasperated Nursemaid (6/5 [WILLPOWER] - banished!), took 2 dmg (2/4 [WILLPOWER])
+Maudie - Exasperated Nursemaid was banished
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Moana - Curious Explorer
+Goofy - Emerald Champion's EVEN THE SCORE banishes Moana - Curious Explorer
+Moana - Curious Explorer was banished
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Moana - Curious Explorer | 4 [STRENGTH] dealt 4 dmg to Bobby Zimuruski - Spray Cheese Kid (4/2 [WILLPOWER] - banished!), took 1 dmg (1/4 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 ended Player 2's turn
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 5 -> 7)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 7 -> 8)
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Eilonwy - Princess of Llyr
+Eilonwy - Princess of Llyr was banished
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Moana - Curious Explorer
+Moana - Curious Explorer was banished
+Player 1 ended Player 1's turn
+
+--- Turn 15 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew World's Greatest Criminal Mind
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 added World's Greatest Criminal Mind to ink
+Player 2 challenged Goofy - Emerald Champion with Stitch - Carefree Surfer
+Player 2 challenged Goofy - Emerald Champion with Stitch - Carefree Surfer | 4 [STRENGTH] dealt 4 dmg to Goofy - Emerald Champion (4/5 [WILLPOWER]), took 3 dmg (3/8 [WILLPOWER])
+Player 2 ended Player 2's turn
+
+--- Turn 16 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Stitch - Carefree Surfer
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 8 -> 10)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 10 -> 11)
+Player 1 ended Player 1's turn
+
+--- Turn 17 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 quested with Stitch - Carefree Surfer (+2 [LORE], 2 -> 4)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 4 -> 5)
+Raging Storm's RAGING STORM banishes a card
+Goofy - Emerald Champion was banished
+Merida - Defiant Daughter was banished
+Ariel - Determined Mermaid was banished
+Stitch - Carefree Surfer was banished
+Grandmother Willow - Ancient Advisor was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 ended Player 2's turn
+
+--- Turn 18 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+--- Turn 19 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew World's Greatest Criminal Mind
+Raging Storm's RAGING STORM banishes Shere Khan - Fearsome Tiger
+Shere Khan - Fearsome Tiger was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 ended Player 2's turn
+
+--- Turn 20 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! had no effect (no valid targets)
+Player 1 ended Player 1's turn
+
+--- Turn 21 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Develop Your Brain
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 played Develop Your Brain (cost 1)
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 ended Player 2's turn
+
+--- Turn 22 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 played Max Goof - Chart Topper (cost 6)
+Player 1 ended Player 1's turn
+
+--- Turn 23 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew World's Greatest Criminal Mind
+Player 2 boosted Pete - Ghost of Christmas Future (2 cards under)
+Player 2 played Hades - Infernal Schemer (cost 7)
+Max Goof - Chart Topper was put into Player 1's inkwell from field
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 5 -> 6)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 ended Player 2's turn
+
+--- Turn 24 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 11 -> 13)
+Player 1 ended Player 1's turn
+
+--- Turn 25 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew World's Greatest Criminal Mind
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 6 -> 7)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played Hades - Infernal Schemer (cost 7)
+Goofy - Emerald Champion was put into Player 1's inkwell from field
+Player 2 challenged Dinky - Has the Brains with Hades - Infernal Schemer
+Player 2 challenged Dinky - Has the Brains with Hades - Infernal Schemer | 3 [STRENGTH] dealt 3 dmg to Dinky - Has the Brains (3/2 [WILLPOWER] - banished!), took 1 dmg (1/6 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 played Eilonwy - Princess of Llyr (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 26 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 played Dr. Bushroot - Evil Botanist (cost 5)
+Player 1 ended Player 1's turn
+
+--- Turn 27 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Ohana Means Family
+Player 2 boosted Pete - Ghost of Christmas Future (3 cards under)
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 7 -> 8)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Gaston - Superior Archer(BESTIES, ASSEMBLE!) - put into hand
+Player 2 played Gaston - Superior Archer (cost 5)
+Gaston - Superior Archer's WATCH THIS! had no effect
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 8 -> 10)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 10 -> 12)
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 12 -> 13)
+Player 2 ended Player 2's turn
+
+--- Turn 28 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Cruella De Vil - Judgmental Traveler (cost 6)
+Player 1 quested with Dr. Bushroot - Evil Botanist (+3 [LORE], 13 -> 16)
+Player 1 ended Player 1's turn
+
+--- Turn 29 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Hades - Infernal Schemer
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 13 -> 14)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 14 -> 16)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 16 -> 18)
+Player 2 quested with Gaston - Superior Archer (+1 [LORE], 18 -> 19)
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 19 -> 20)
+Player 2 won with 20 [LORE]!
+Player 2 won with 20 [LORE]!

@@ -1,0 +1,365 @@
+Player 1's starting hand: Cruella De Vil - Judgmental Traveler, Maudie - Exasperated Nursemaid, Strike a Good Match, Winifred - Exasperated Elephant, Malicious, Mean, and Scary, Ariel - Determined Mermaid, Look What You've Done
+Player 2's starting hand: Rex - Protective Dinosaur, Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Woody - Jungle Guide, Elinor - Renowned Diplomat, Bullseye - Loyal Horse, Lenny - Toy Binoculars
+Player 1 mulliganed 3 cards: Winifred - Exasperated Elephant, Maudie - Exasperated Nursemaid, Cruella De Vil - Judgmental Traveler. Drew: Dr. Bushroot - Evil Botanist, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist
+Player 2 mulliganed 7 cards: Lenny - Toy Binoculars, Rex - Protective Dinosaur, Jessie - Lively Cowgirl, Woody - Jungle Guide, Elinor - Renowned Diplomat, Bullseye - Loyal Horse, Grandmother Willow - Ancient Advisor. Drew: Woody & Buzz Lightyear - Best Buddies, Woody - Helping a Friend, RC - Remote-Controlled Car, Jessie - Lively Cowgirl, Aurora - Holding Court, Jessie - Lively Cowgirl, You've Got a Friend in Me
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 ended Player 1's turn
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mike Wazowski - Heroic Climber
+Player 2 added Woody & Buzz Lightyear - Best Buddies to ink
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Alien - True Believer
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 0 -> 1)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 added RC - Remote-Controlled Car to ink
+Player 2 played Mike Wazowski - Heroic Climber (cost 2)
+Player 2 revealed Grandmother Willow - Ancient Advisor(FIND A FRIEND) - revealed
+Player 2 revealed Grandmother Willow - Ancient Advisor(FIND A FRIEND) - put into hand
+Player 1 revealed Shere Khan - Fearsome Tiger(FIND A FRIEND) - revealed
+Player 1 revealed Shere Khan - Fearsome Tiger(FIND A FRIEND) - put into hand
+Player 2 ended Player 2's turn
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 sang Strike a Good Match with Merida - Defiant Daughter
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Maudie - Exasperated Nursemaid, Chomp!
+Player 1 discarded Maudie - Exasperated Nursemaid from hand
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 discarded Bobby Zimuruski - Spray Cheese Kid from hand
+Player 1 ended Player 1's turn
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Elinor - Renowned Diplomat
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 played Alien - True Believer (cost 1)
+Player 2 added Jessie - Lively Cowgirl to ink
+Player 2 ended Player 2's turn
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 sang Malicious, Mean, and Scary with Ariel - Determined Mermaid
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Aurora - Holding Court
+1 damage counter put on Mike Wazowski - Heroic Climber
+1 damage counter put on Grandmother Willow - Ancient Advisor
+1 damage counter put on Alien - True Believer
+Alien - True Believer was banished
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Merida - Defiant Daughter
+Player 1 discarded Look What You've Done from hand
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Play from discard"
+Look What You've Done's LOOK WHAT YOU'VE DONE plays Look What You've Done from discard exerted
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 0 -> 1)
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Mike Wazowski - Heroic Climber
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 ended Player 1's turn
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mike Wazowski - Heroic Climber
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 1 -> 2)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 played Elinor - Renowned Diplomat (cost 4)
+Player 2 added Jessie - Lively Cowgirl to ink
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 challenged Aurora - Holding Court with Ariel - Determined Mermaid
+Player 1 challenged Aurora - Holding Court with Ariel - Determined Mermaid | 2 [STRENGTH] dealt 2 dmg to Aurora - Holding Court (3/2 [WILLPOWER] - banished!), took 1 dmg (1/4 [WILLPOWER])
+Aurora - Holding Court was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 1 -> 2)
+Player 1 ended Player 1's turn
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 played Woody - Helping a Friend (cost 4)
+Woody - Helping a Friend's HANG ON! Returned Alien - True Believer from discard to hand
+Player 2 added Aurora - Holding Court to ink
+Player 2 played Alien - True Believer (cost 1)
+Player 2 challenged Ariel - Determined Mermaid with Elinor - Renowned Diplomat
+Player 2 challenged Ariel - Determined Mermaid with Elinor - Renowned Diplomat | 3 [STRENGTH] dealt 3 dmg to Ariel - Determined Mermaid (4/4 [WILLPOWER] - banished!), took 2 dmg (2/4 [WILLPOWER])
+Ariel - Determined Mermaid was banished
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 2 -> 3)
+Player 2 revealed RC - Remote-Controlled Car(FIND A FRIEND) - revealed
+Player 2 revealed RC - Remote-Controlled Car(FIND A FRIEND) - put into hand
+Player 1 revealed Goofy - Emerald Champion(FIND A FRIEND) - revealed
+Player 1 revealed Goofy - Emerald Champion(FIND A FRIEND) - put into hand
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Max Goof - Chart Topper (cost 6)
+Player 1 challenged Elinor - Renowned Diplomat with Merida - Defiant Daughter
+Player 1 challenged Elinor - Renowned Diplomat with Merida - Defiant Daughter | 2 [STRENGTH] dealt 2 dmg to Elinor - Renowned Diplomat (4/4 [WILLPOWER] - banished!), took 3 dmg (3/3 [WILLPOWER] - banished!)
+Merida - Defiant Daughter was banished
+Elinor - Renowned Diplomat was banished
+Player 1 ended Player 1's turn
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lenny - Toy Binoculars
+Player 2 played Lenny - Toy Binoculars (cost 3)
+Lenny - Toy Binoculars's TAKE A GOOD LOOK looks at opponent's hand
+Player 2 played Mike Wazowski - Heroic Climber (cost 2)
+Player 2 revealed Woody & Buzz Lightyear - Best Buddies(FIND A FRIEND) - revealed
+Player 2 revealed Woody & Buzz Lightyear - Best Buddies(FIND A FRIEND) - put into hand
+Player 1 revealed Max Goof - Chart Topper(FIND A FRIEND) - revealed
+Player 1 revealed Max Goof - Chart Topper(FIND A FRIEND) - put into hand
+Player 2 sang You've Got a Friend in Me with Woody - Helping a Friend
+Player 2 revealed Rex - Protective Dinosaur(YOU'VE GOT A FRIEND IN ME) - put into hand
+Player 2 revealed Bullseye - Loyal Horse(YOU'VE GOT A FRIEND IN ME) - put into hand
+Lenny - Toy Binoculars's COMIN' UP FAST readies a character
+Player 2 added Bullseye - Loyal Horse to ink
+Player 2 played RC - Remote-Controlled Car (cost 1)
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 3 -> 4)
+Player 2 revealed Woody - Jungle Guide(FIND A FRIEND) - revealed
+Player 2 revealed Woody - Jungle Guide(FIND A FRIEND) - put into hand
+Player 1 revealed Ariel - Determined Mermaid(FIND A FRIEND) - revealed
+Player 1 revealed Ariel - Determined Mermaid(FIND A FRIEND) - put into hand
+Player 2 quested with Alien - True Believer (+1 [LORE], 4 -> 5)
+Player 2 ended Player 2's turn
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 quested with Max Goof - Chart Topper (+2 [LORE], 2 -> 4)
+Max Goof - Chart Topper's NUMBER ONE HIT Played Malicious, Mean, and Scary for free
+Player 1 played Malicious, Mean, and Scary (cost 3 → 0)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Mike Wazowski - Heroic Climber
+1 damage counter put on Woody - Helping a Friend
+1 damage counter put on Alien - True Believer
+1 damage counter put on Lenny - Toy Binoculars
+1 damage counter put on Mike Wazowski - Heroic Climber
+1 damage counter put on RC - Remote-Controlled Car
+Mike Wazowski - Heroic Climber was banished
+Alien - True Believer was banished
+Player 1 ended Player 1's turn
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Alien - True Believer
+Player 2 shifted Woody - Jungle Guide onto Woody - Helping a Friend (Shift 3)
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 5 -> 7)
+Woody - Jungle Guide's LET'S GET MOVIN' chose "Enter Exerted"
+Woody - Jungle Guide's LET'S GET MOVIN' Played Rex - Protective Dinosaur for free
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Alien - True Believer
+Player 2 played Rex - Protective Dinosaur (cost 2 → 0)
+Player 2 played Alien - True Believer (cost 1)
+Player 2 played Alien - True Believer (cost 1)
+Player 2 quested with Lenny - Toy Binoculars (+1 [LORE], 7 -> 8)
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 8 -> 9)
+Player 2 revealed Woody & Buzz Lightyear - Best Buddies(FIND A FRIEND) - revealed
+Player 2 revealed Woody & Buzz Lightyear - Best Buddies(FIND A FRIEND) - put into hand
+Player 1 revealed Dinky - Has the Brains(FIND A FRIEND) - revealed
+Player 1 revealed Dinky - Has the Brains(FIND A FRIEND) - put into hand
+Player 2 ended Player 2's turn
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 quested with Max Goof - Chart Topper (+2 [LORE], 4 -> 6)
+Max Goof - Chart Topper's NUMBER ONE HIT Played Strike a Good Match for free
+Player 1 played Strike a Good Match (cost 2 → 0)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary
+Player 1 discarded Winifred - Exasperated Elephant from hand
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 6 -> 8)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Woody - Jungle Guide
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Woody - Jungle Guide was banished
+1 damage counter put on Alien - True Believer
+Alien - True Believer was banished
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to RC - Remote-Controlled Car
+RC - Remote-Controlled Car was banished
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Lenny - Toy Binoculars
+1 damage counter put on Mike Wazowski - Heroic Climber
+1 damage counter put on RC - Remote-Controlled Car
+1 damage counter put on Rex - Protective Dinosaur
+1 damage counter put on Alien - True Believer
+Lenny - Toy Binoculars was banished
+RC - Remote-Controlled Car was banished
+Rex - Protective Dinosaur was banished
+Alien - True Believer was banished
+Rex - Protective Dinosaur's RUN AWAY! gains 1 [LORE] (9 -> 10)
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Mike Wazowski - Heroic Climber
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Goofy - Emerald Champion, Goofy - Emerald Champion
+Player 1 discarded Goofy - Emerald Champion from hand
+Player 1 ended Player 1's turn
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Bullseye - Loyal Horse
+Player 2 added Bullseye - Loyal Horse to ink
+Player 2 played Woody & Buzz Lightyear - Best Buddies (cost 7)
+Woody & Buzz Lightyear - Best Buddies's TO INFINITY... drew 4 cards to match opponent's hand size
+Player 2 drew 4 cards: Bullseye - Loyal Horse, Jessie - Lively Cowgirl, Rex - Protective Dinosaur, You've Got a Friend in Me
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 10 -> 11)
+Player 2 revealed Woody - Jungle Guide(FIND A FRIEND) - revealed
+Player 2 revealed Woody - Jungle Guide(FIND A FRIEND) - put into hand
+Player 1 revealed Kaa - Secretive Snake(FIND A FRIEND) - revealed
+Player 1 revealed Kaa - Secretive Snake(FIND A FRIEND) - put into hand
+Player 2 ended Player 2's turn
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 added Kaa - Secretive Snake to ink
+Player 1 played Rapunzel & Flynn Rider - Unlikely Pair (cost 5)
+Player 1 quested with Max Goof - Chart Topper (+2 [LORE], 8 -> 10)
+Max Goof - Chart Topper's NUMBER ONE HIT Played Malicious, Mean, and Scary for free
+Player 1 played Malicious, Mean, and Scary (cost 3 → 0)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Mike Wazowski - Heroic Climber
+1 damage counter put on Woody & Buzz Lightyear - Best Buddies
+Mike Wazowski - Heroic Climber was banished
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 10 -> 12)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Woody & Buzz Lightyear - Best Buddies
+Woody & Buzz Lightyear - Best Buddies was banished
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 12 -> 14)
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 ended Player 1's turn
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew RC - Remote-Controlled Car
+Player 2 ended Player 2's turn
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 quested with Rapunzel & Flynn Rider - Unlikely Pair (+2 [LORE], 14 -> 16)
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP draws a card
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP Discarded a card
+Player 1 drew Look What You've Done
+Player 1 discarded Goofy - Emerald Champion from hand
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START chose "Play from discard"
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START plays Goofy - Emerald Champion from discard exerted
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Kaa - Secretive Snake, Tinker Bell - Giant Fairy
+Player 1 discarded Kaa - Secretive Snake from hand
+Player 1 quested with Max Goof - Chart Topper (+2 [LORE], 16 -> 18)
+Max Goof - Chart Topper's NUMBER ONE HIT Played Strike a Good Match for free
+Player 1 played Strike a Good Match (cost 2 → 0)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Bobby Zimuruski - Spray Cheese Kid, Look What You've Done
+Player 1 discarded Look What You've Done from hand
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 18 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!

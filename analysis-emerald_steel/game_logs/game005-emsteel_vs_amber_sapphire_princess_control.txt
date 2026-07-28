@@ -1,0 +1,262 @@
+Player 1's starting hand: Maudie - Exasperated Nursemaid, Shere Khan - Fearsome Tiger, Dr. Bushroot - Evil Botanist, Malicious, Mean, and Scary, Rapunzel & Flynn Rider - Unlikely Pair, Chomp!, Strength of a Raging Fire
+Player 2's starting hand: Hamm - Piggy Bank, Grandmother Willow - Ancient Advisor, Moana - Curious Explorer, Eilonwy - Princess of Llyr, Pete - Ghost of Christmas Future, Moana - Curious Explorer, Besties, Assemble!
+Player 1 mulliganed 4 cards: Shere Khan - Fearsome Tiger, Dr. Bushroot - Evil Botanist, Rapunzel & Flynn Rider - Unlikely Pair, Strength of a Raging Fire. Drew: Merida - Defiant Daughter, Rapunzel & Flynn Rider - Unlikely Pair, Dr. Bushroot - Evil Botanist, Ariel - Determined Mermaid
+Player 2 mulliganed 5 cards: Pete - Ghost of Christmas Future, Besties, Assemble!, Hamm - Piggy Bank, Moana - Curious Explorer, Moana - Curious Explorer. Drew: Agustin Madrigal - Exceptionally Kind, Agustin Madrigal - Exceptionally Kind, Cinderella - Dream Come True, World's Greatest Criminal Mind, Grandmother Willow - Ancient Advisor
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 ended Player 1's turn
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Gaston - Superior Archer
+Player 2 added Agustin Madrigal - Exceptionally Kind to ink
+Player 2 played Eilonwy - Princess of Llyr (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Gaston - Superior Archer
+Player 2 added Gaston - Superior Archer to ink
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 ended Player 2's turn
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Develop Your Brain
+Player 2 added Develop Your Brain to ink
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Grandmother Willow - Ancient Advisor was put into Player 2's inkwell from hand
+Player 2 drew Aurora - Holding Court
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Eilonwy - Princess of Llyr
+1 damage counter put on Grandmother Willow - Ancient Advisor
+1 damage counter put on Cinderella - Dream Come True
+Eilonwy - Princess of Llyr was banished
+Player 1 added Look What You've Done to ink
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Cinderella - Dream Come True
+Cinderella - Dream Come True was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 1 -> 2)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 played Agustin Madrigal - Exceptionally Kind (cost 4)
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 added Malicious, Mean, and Scary to ink
+Player 1 played Rapunzel & Flynn Rider - Unlikely Pair (cost 5)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 3 -> 4)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 4 -> 5)
+Player 1 ended Player 1's turn
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 0 -> 1)
+Agustin Madrigal - Exceptionally Kind's Support gave +3 [STRENGTH] to Rapunzel & Flynn Rider - Unlikely Pair
+Player 2 played World's Greatest Criminal Mind (cost 3)
+World's Greatest Criminal Mind's WORLD'S GREATEST CRIMINAL MIND banishes Rapunzel & Flynn Rider - Unlikely Pair
+Rapunzel & Flynn Rider - Unlikely Pair was banished
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Aurora - Holding Court
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 5 -> 6)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 6 -> 7)
+Player 1 ended Player 1's turn
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Eilonwy - Princess of Llyr
+Player 2 played Gaston - Superior Archer (cost 5)
+Gaston - Superior Archer's WATCH THIS! had no effect
+Player 2 played Eilonwy - Princess of Llyr (cost 1)
+Player 2 challenged Merida - Defiant Daughter with Agustin Madrigal - Exceptionally Kind
+Player 2 challenged Merida - Defiant Daughter with Agustin Madrigal - Exceptionally Kind | 3 [STRENGTH] dealt 3 dmg to Merida - Defiant Daughter (3/3 [WILLPOWER] - banished!), took 2 dmg (2/6 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 ended Player 2's turn
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 added Chomp! to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 7 -> 8)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 8 -> 10)
+Player 1 ended Player 1's turn
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 1 -> 2)
+Agustin Madrigal - Exceptionally Kind's Support gave +3 [STRENGTH] to Aurora - Holding Court
+Player 2 challenged Dinky - Has the Brains with Aurora - Holding Court
+Player 2 challenged Dinky - Has the Brains with Aurora - Holding Court | 4 [STRENGTH] dealt 4 dmg to Dinky - Has the Brains (4/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 2 -> 3)
+Eilonwy - Princess of Llyr's Support gave +2 [STRENGTH] to Grandmother Willow - Ancient Advisor
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 3 -> 4)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 4 -> 5)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 5 -> 6)
+Player 2 quested with Gaston - Superior Archer (+1 [LORE], 6 -> 7)
+Player 2 ended Player 2's turn
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Cruella De Vil - Judgmental Traveler (cost 6)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 10 -> 12)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Agustin Madrigal - Exceptionally Kind
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Agustin Madrigal - Exceptionally Kind was banished
+1 damage counter put on Pete - Ghost of Christmas Future
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 12 -> 13)
+Player 1 ended Player 1's turn
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Belle - Snowfield Strategist
+Player 2 boosted Pete - Ghost of Christmas Future (2 cards under)
+Player 2 played Belle - Snowfield Strategist (cost 4)
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 7 -> 8)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 quested with Eilonwy - Princess of Llyr (+1 [LORE], 8 -> 9)
+Eilonwy - Princess of Llyr's Support gave +2 [STRENGTH] to Gaston - Superior Archer
+Player 2 challenged Maudie - Exasperated Nursemaid with Gaston - Superior Archer
+Player 2 challenged Maudie - Exasperated Nursemaid with Gaston - Superior Archer | 5 [STRENGTH] dealt 4 dmg (5-1 Resist) to Maudie - Exasperated Nursemaid (4/5 [WILLPOWER]), took 2 dmg (2/4 [WILLPOWER])
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 9 -> 10)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 10 -> 11)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 11 -> 12)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 12 -> 13)
+Player 2 ended Player 2's turn
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Rapunzel & Flynn Rider - Unlikely Pair
+Player 1 played Rapunzel & Flynn Rider - Unlikely Pair (cost 5)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 13 -> 15)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Gaston - Superior Archer
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Gaston - Superior Archer was banished
+1 damage counter put on Belle - Snowfield Strategist
+Gaston - Superior Archer was put into Player 2's inkwell from discard
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 13 -> 15)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Pete - Ghost of Christmas Future
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Pete - Ghost of Christmas Future was banished
+1 damage counter put on Eilonwy - Princess of Llyr
+Eilonwy - Princess of Llyr was banished
+Pete - Ghost of Christmas Future was put into Player 2's inkwell from discard
+Eilonwy - Princess of Llyr was put into Player 2's inkwell from discard
+Player 1 quested with Cruella De Vil - Judgmental Traveler (+4 [LORE], 15 -> 19)
+Cruella De Vil - Judgmental Traveler's YOU'RE OUT OF FASHION banishes Gaston - Superior Archer
+Gaston - Superior Archer was banished
+Gaston - Superior Archer was put into Player 2's inkwell from discard
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 19 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!

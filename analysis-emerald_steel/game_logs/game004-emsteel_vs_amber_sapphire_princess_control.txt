@@ -1,0 +1,364 @@
+Player 1's starting hand: Cruella De Vil - Judgmental Traveler, Rapunzel & Flynn Rider - Unlikely Pair, Chomp!, Dinky - Has the Brains, Shere Khan - Fearsome Tiger, Max Goof - Chart Topper, Malicious, Mean, and Scary
+Player 2's starting hand: Hades - Infernal Schemer, Stitch - Carefree Surfer, Besties, Assemble!, World's Greatest Criminal Mind, Hades - Infernal Schemer, Belle - Snowfield Strategist, Cinderella - Dream Come True
+Player 2 mulliganed 7 cards: Hades - Infernal Schemer, Hades - Infernal Schemer, Stitch - Carefree Surfer, World's Greatest Criminal Mind, Besties, Assemble!, Belle - Snowfield Strategist, Cinderella - Dream Come True. Drew: Develop Your Brain, Agustin Madrigal - Exceptionally Kind, Cinderella - Dream Come True, Hamm - Piggy Bank, Besties, Assemble!, Stitch - Carefree Surfer, Gaston - Superior Archer
+Player 1 mulliganed 4 cards: Shere Khan - Fearsome Tiger, Max Goof - Chart Topper, Rapunzel & Flynn Rider - Unlikely Pair, Cruella De Vil - Judgmental Traveler. Drew: Dr. Bushroot - Evil Botanist, Shere Khan - Fearsome Tiger, Maudie - Exasperated Nursemaid, Tinker Bell - Most Helpful
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Stitch - Carefree Surfer to ink
+Player 2 played Develop Your Brain (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Most Helpful
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Grandmother Willow - Ancient Advisor
+Player 2 added Hamm - Piggy Bank to ink
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 added Tinker Bell - Most Helpful to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Grandmother Willow - Ancient Advisor
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Agustin Madrigal - Exceptionally Kind
+Player 2 added Belle - Snowfield Strategist to ink
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Agustin Madrigal - Exceptionally Kind was put into Player 2's inkwell from hand
+Player 2 drew Besties, Assemble!
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 0 -> 2)
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Eilonwy - Princess of Llyr
+Player 2 added Eilonwy - Princess of Llyr to ink
+Player 2 played Agustin Madrigal - Exceptionally Kind (cost 4)
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Hades - Infernal Schemer(BESTIES, ASSEMBLE!) - put into hand
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Pete - Ghost of Christmas Future(BESTIES, ASSEMBLE!) - put into hand
+Player 2 challenged Dinky - Has the Brains with Cinderella - Dream Come True
+Player 2 challenged Dinky - Has the Brains with Cinderella - Dream Come True | 2 [STRENGTH] dealt 2 dmg to Dinky - Has the Brains (2/2 [WILLPOWER] - banished!), took 1 dmg (1/3 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR - its condition wasn't met
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 sang Strength of a Raging Fire with Maudie - Exasperated Nursemaid
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Cinderella - Dream Come True
+Cinderella - Dream Come True was banished
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Ohana Means Family
+Player 2 added Gaston - Superior Archer to ink
+Player 2 played Hades - Infernal Schemer (cost 7)
+Tinker Bell - Most Helpful was put into Player 1's inkwell from field
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 0 -> 1)
+Agustin Madrigal - Exceptionally Kind's Support gave +3 [STRENGTH] to Grandmother Willow - Ancient Advisor
+Player 2 ended Player 2's turn
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 added Chomp! to ink
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Grandmother Willow - Ancient Advisor
+Tinker Bell - Giant Fairy dealt 1 damage to Agustin Madrigal - Exceptionally Kind
+Tinker Bell - Giant Fairy dealt 1 damage to Hades - Infernal Schemer
+Grandmother Willow - Ancient Advisor was banished
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Develop Your Brain
+Player 2 played Ohana Means Family (cost 3)
+Ohana Means Family's OHANA MEANS FAMILY removes 1 damage and draws 1 card
+1 damage removed from Hades - Infernal Schemer
+Player 2 drew Hades - Infernal Schemer
+Player 2 played Develop Your Brain (cost 1)
+Player 2 added Belle - Snowfield Strategist to ink
+Player 2 ended Player 2's turn
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 3 -> 4)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 4 -> 6)
+Player 1 ended Player 1's turn
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 played Hades - Infernal Schemer (cost 7)
+Tinker Bell - Giant Fairy was put into Player 1's inkwell from field
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 1 -> 2)
+Agustin Madrigal - Exceptionally Kind's Support gave +3 [STRENGTH] to Hades - Infernal Schemer
+Player 2 challenged Maudie - Exasperated Nursemaid with Hades - Infernal Schemer
+Player 2 challenged Maudie - Exasperated Nursemaid with Hades - Infernal Schemer | 6 [STRENGTH] dealt 5 dmg (6-1 Resist) to Maudie - Exasperated Nursemaid (5/5 [WILLPOWER] - banished!), took 2 dmg (2/6 [WILLPOWER])
+Maudie - Exasperated Nursemaid was banished
+Player 2 ended Player 2's turn
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+--- Turn 15 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cinderella - Dream Come True
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 2 -> 4)
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 4 -> 5)
+Agustin Madrigal - Exceptionally Kind's Support gave +3 [STRENGTH] to Hades - Infernal Schemer
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 5 -> 7)
+Player 2 ended Player 2's turn
+
+--- Turn 16 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 6 -> 8)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Agustin Madrigal - Exceptionally Kind
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Agustin Madrigal - Exceptionally Kind was banished
+1 damage counter put on Pete - Ghost of Christmas Future
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Ariel - Determined Mermaid, Look What You've Done
+Player 1 discarded Look What You've Done from hand
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Play from discard"
+Look What You've Done's LOOK WHAT YOU'VE DONE plays Look What You've Done from discard exerted
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Hades - Infernal Schemer
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 ended Player 1's turn
+
+--- Turn 17 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew World's Greatest Criminal Mind
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 7 -> 8)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played World's Greatest Criminal Mind (cost 3)
+World's Greatest Criminal Mind's WORLD'S GREATEST CRIMINAL MIND banishes Shere Khan - Fearsome Tiger
+Shere Khan - Fearsome Tiger was banished
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 8 -> 10)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 10 -> 12)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+Pete - Ghost of Christmas Future was put into Player 2's inkwell from hand
+Player 2 drew Grandmother Willow - Ancient Advisor
+
+--- Turn 18 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 quested with Ariel - Determined Mermaid (+1 [LORE], 8 -> 9)
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Hades - Infernal Schemer
+1 damage counter put on Hades - Infernal Schemer
+1 damage counter put on Pete - Ghost of Christmas Future
+1 damage counter put on Cinderella - Dream Come True
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Malicious, Mean, and Scary
+Player 1 discarded Bobby Zimuruski - Spray Cheese Kid from hand
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Hades - Infernal Schemer
+1 damage counter put on Hades - Infernal Schemer
+1 damage counter put on Pete - Ghost of Christmas Future
+1 damage counter put on Cinderella - Dream Come True
+Hades - Infernal Schemer was banished
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Chomp!
+Player 1 discarded Winifred - Exasperated Elephant from hand
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Pete - Ghost of Christmas Future
+Pete - Ghost of Christmas Future was banished
+Player 1 ended Player 1's turn
+
+--- Turn 19 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Besties, Assemble!
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Pete - Ghost of Christmas Future(BESTIES, ASSEMBLE!) - put into hand
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 quested with Cinderella - Dream Come True (+1 [LORE], 12 -> 13)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 13 -> 15)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR - its condition wasn't met
+
+--- Turn 20 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 played Strength of a Raging Fire (cost 3)
+Player 1 cancelled Strength of a Raging Fire — free, no information revealed
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Hades - Infernal Schemer
+Tinker Bell - Giant Fairy dealt 1 damage to Cinderella - Dream Come True
+Tinker Bell - Giant Fairy dealt 1 damage to Grandmother Willow - Ancient Advisor
+Tinker Bell - Giant Fairy dealt 1 damage to Pete - Ghost of Christmas Future
+Cinderella - Dream Come True was banished
+Player 1 quested with Ariel - Determined Mermaid (+1 [LORE], 9 -> 10)
+Player 1 ended Player 1's turn
+
+--- Turn 21 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Cinderella - Dream Come True
+Player 2 boosted Pete - Ghost of Christmas Future (2 cards under)
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 15 -> 16)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played Stitch - Carefree Surfer (cost 7)
+Stitch - Carefree Surfer's OHANA draws 2 cards
+Player 2 drew 2 cards: Gaston - Superior Archer, Pete - Ghost of Christmas Future
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 16 -> 18)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 18 -> 19)
+Player 2 ended Player 2's turn
+
+--- Turn 22 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 challenged Hades - Infernal Schemer with Tinker Bell - Giant Fairy
+Player 1 challenged Hades - Infernal Schemer with Tinker Bell - Giant Fairy | 4 [STRENGTH] dealt 4 dmg to Hades - Infernal Schemer (7/6 [WILLPOWER] - banished!), took 3 dmg (3/5 [WILLPOWER])
+Hades - Infernal Schemer was banished
+Tinker Bell - Giant Fairy's PUNY PIRATE! deals 2 damage
+Tinker Bell - Giant Fairy dealt 2 damage to Pete - Ghost of Christmas Future
+Player 1 challenged Grandmother Willow - Ancient Advisor with Ariel - Determined Mermaid
+Player 1 challenged Grandmother Willow - Ancient Advisor with Ariel - Determined Mermaid | 2 [STRENGTH] dealt 2 dmg to Grandmother Willow - Ancient Advisor (3/2 [WILLPOWER] - banished!), took 1 dmg (1/4 [WILLPOWER])
+Grandmother Willow - Ancient Advisor was banished
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 3 damage
+Strength of a Raging Fire dealt 3 damage to Pete - Ghost of Christmas Future
+Pete - Ghost of Christmas Future was banished
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Dinky - Has the Brains
+Player 1 discarded Dinky - Has the Brains from hand
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Goofy - Emerald Champion
+Player 1 discarded Goofy - Emerald Champion from hand
+Player 1 ended Player 1's turn
+
+--- Turn 23 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Hades - Infernal Schemer
+Player 2 quested with Stitch - Carefree Surfer (+2 [LORE], 19 -> 21)
+Player 2 won with 21 [LORE]!
+Player 2 won with 21 [LORE]!

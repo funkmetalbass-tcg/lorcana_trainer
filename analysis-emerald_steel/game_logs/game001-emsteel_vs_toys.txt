@@ -1,0 +1,302 @@
+Player 1's starting hand: Shere Khan - Fearsome Tiger, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Dinky - Has the Brains, Max Goof - Chart Topper, Dr. Bushroot - Evil Botanist
+Player 2's starting hand: RC - Remote-Controlled Car, Lenny - Toy Binoculars, Elinor - Renowned Diplomat, You've Got a Friend in Me, Aurora - Holding Court, Jessie - Lively Cowgirl, You've Got a Friend in Me
+Player 1 mulliganed 2 cards: Shere Khan - Fearsome Tiger, Max Goof - Chart Topper. Drew: Max Goof - Chart Topper, Ariel - Determined Mermaid
+Player 2 mulliganed 7 cards: You've Got a Friend in Me, You've Got a Friend in Me, Lenny - Toy Binoculars, Jessie - Lively Cowgirl, RC - Remote-Controlled Car, Elinor - Renowned Diplomat, Aurora - Holding Court. Drew: Woody & Buzz Lightyear - Best Buddies, Grandmother Willow - Ancient Advisor, Woody - Helping a Friend, Jessie - Lively Cowgirl, Lenny - Toy Binoculars, Aurora - Holding Court, Woody - Jungle Guide
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 ended Player 1's turn
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew RC - Remote-Controlled Car
+Player 2 added Woody & Buzz Lightyear - Best Buddies to ink
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Aurora - Holding Court
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew RC - Remote-Controlled Car
+Player 2 added RC - Remote-Controlled Car to ink
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 played RC - Remote-Controlled Car (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor was banished
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 1 -> 2)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 2 -> 4)
+Player 1 ended Player 1's turn
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 added Aurora - Holding Court to ink
+Player 2 played Jessie - Lively Cowgirl (cost 3)
+Player 2 ended Player 2's turn
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 sang Strike a Good Match with Dinky - Has the Brains
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Shere Khan - Fearsome Tiger, Dinky - Has the Brains
+Player 1 discarded Shere Khan - Fearsome Tiger from hand
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to RC - Remote-Controlled Car
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to RC - Remote-Controlled Car
+RC - Remote-Controlled Car was banished
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 4 -> 5)
+Player 1 ended Player 1's turn
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mike Wazowski - Heroic Climber
+Player 2 added Lenny - Toy Binoculars to ink
+Player 2 played Woody - Helping a Friend (cost 4)
+Woody - Helping a Friend's HANG ON! Played RC - Remote-Controlled Car for free
+Woody - Helping a Friend's HANG ON! Returned RC - Remote-Controlled Car from discard to hand
+Player 2 played RC - Remote-Controlled Car (cost 1 → 0)
+Jessie - Lively Cowgirl's YODEL-AY-HEE-HOO! gives -1 [STRENGTH] to Dinky - Has the Brains
+Player 2 challenged Dinky - Has the Brains with Jessie - Lively Cowgirl
+Player 2 challenged Dinky - Has the Brains with Jessie - Lively Cowgirl | 3 [STRENGTH] dealt 3 dmg to Dinky - Has the Brains (3/2 [WILLPOWER] - banished!), took 0 dmg (0/3 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 5 -> 7)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 7 -> 8)
+Player 1 ended Player 1's turn
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mike Wazowski - Heroic Climber
+Player 2 quested with Jessie - Lively Cowgirl (+1 [LORE], 0 -> 1)
+Jessie - Lively Cowgirl's PART OF A FAMILY chose "Yes"
+Jessie - Lively Cowgirl's PART OF A FAMILY draws a card
+Player 2 drew Bullseye - Loyal Horse
+Player 2 played Mike Wazowski - Heroic Climber (cost 2)
+Jessie - Lively Cowgirl's YODEL-AY-HEE-HOO! gives -1 [STRENGTH] to Dinky - Has the Brains
+Player 2 revealed Alien - True Believer(FIND A FRIEND) - revealed
+Player 2 revealed Alien - True Believer(FIND A FRIEND) - put into hand
+Player 1 revealed Ariel - Determined Mermaid(FIND A FRIEND) - revealed
+Player 1 revealed Ariel - Determined Mermaid(FIND A FRIEND) - put into hand
+Player 2 played Mike Wazowski - Heroic Climber (cost 2)
+Jessie - Lively Cowgirl's YODEL-AY-HEE-HOO! gives -1 [STRENGTH] to Dinky - Has the Brains
+Player 2 revealed Rex - Protective Dinosaur(FIND A FRIEND) - revealed
+Player 2 revealed Rex - Protective Dinosaur(FIND A FRIEND) - put into hand
+Player 1 revealed Winifred - Exasperated Elephant(FIND A FRIEND) - revealed
+Player 1 revealed Winifred - Exasperated Elephant(FIND A FRIEND) - put into hand
+Player 2 added Bullseye - Loyal Horse to ink
+Player 2 played Alien - True Believer (cost 1)
+Jessie - Lively Cowgirl's YODEL-AY-HEE-HOO! gives -1 [STRENGTH] to Dinky - Has the Brains
+Player 2 challenged Dinky - Has the Brains with Woody - Helping a Friend
+Player 2 challenged Dinky - Has the Brains with Woody - Helping a Friend | 2 [STRENGTH] dealt 2 dmg to Dinky - Has the Brains (2/2 [WILLPOWER] - banished!), took 0 dmg (0/4 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 quested with Aurora - Holding Court (+1 [LORE], 1 -> 2)
+Aurora - Holding Court's ROYAL WELCOME You pay 1 less for the next character this turn this turn
+Player 2 ended Player 2's turn
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 challenged Jessie - Lively Cowgirl with Ariel - Determined Mermaid
+Player 1 challenged Jessie - Lively Cowgirl with Ariel - Determined Mermaid | 2 [STRENGTH] dealt 2 dmg to Jessie - Lively Cowgirl (2/3 [WILLPOWER]), took 3 dmg (3/4 [WILLPOWER])
+Player 1 challenged Jessie - Lively Cowgirl with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Jessie - Lively Cowgirl with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Jessie - Lively Cowgirl (3/3 [WILLPOWER] - banished!), took 3 dmg (3/2 [WILLPOWER] - banished!)
+Bobby Zimuruski - Spray Cheese Kid was banished
+Jessie - Lively Cowgirl was banished
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Aurora - Holding Court
+Aurora - Holding Court was banished
+Player 1 ended Player 1's turn
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew RC - Remote-Controlled Car
+Player 2 shifted Woody - Jungle Guide onto Woody - Helping a Friend (Shift 3)
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 2 -> 4)
+Woody - Jungle Guide's LET'S GET MOVIN' chose "Enter Exerted"
+Woody - Jungle Guide's LET'S GET MOVIN' Played Rex - Protective Dinosaur for free
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Mike Wazowski - Heroic Climber
+Player 2 played Rex - Protective Dinosaur (cost 2 → 0)
+Player 2 played Mike Wazowski - Heroic Climber (cost 2)
+Player 2 revealed Bullseye - Loyal Horse(FIND A FRIEND) - revealed
+Player 2 revealed Bullseye - Loyal Horse(FIND A FRIEND) - put into hand
+Player 1 revealed Maudie - Exasperated Nursemaid(FIND A FRIEND) - revealed
+Player 1 revealed Maudie - Exasperated Nursemaid(FIND A FRIEND) - put into hand
+Player 2 added Bullseye - Loyal Horse to ink
+Player 2 played RC - Remote-Controlled Car (cost 1)
+Player 2 challenged Ariel - Determined Mermaid with Alien - True Believer
+Alien - True Believer's HE HAS BEEN CHOSEN had no effect (no valid cards)
+Player 2 challenged Ariel - Determined Mermaid with Alien - True Believer | 5 [STRENGTH] dealt 5 dmg to Ariel - Determined Mermaid (8/4 [WILLPOWER] - banished!), took 2 dmg (2/2 [WILLPOWER] - banished!)
+Alien - True Believer was banished
+Ariel - Determined Mermaid was banished
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 4 -> 5)
+Player 2 revealed Woody - Waiting for a Friend(FIND A FRIEND) - revealed
+Player 2 revealed Woody - Waiting for a Friend(FIND A FRIEND) - put into hand
+Player 1 revealed Strike a Good Match(FIND A FRIEND) - put on bottom of deck
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 5 -> 6)
+Player 2 revealed Woody - Waiting for a Friend(FIND A FRIEND) - revealed
+Player 2 revealed Woody - Waiting for a Friend(FIND A FRIEND) - put into hand
+Player 1 revealed Goofy - Emerald Champion(FIND A FRIEND) - revealed
+Player 1 revealed Goofy - Emerald Champion(FIND A FRIEND) - put into hand
+Player 2 ended Player 2's turn
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Ariel - Determined Mermaid (+1 [LORE], 8 -> 9)
+Player 1 ended Player 1's turn
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew You've Got a Friend in Me
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 6 -> 8)
+Woody - Jungle Guide's LET'S GET MOVIN' Played Woody - Waiting for a Friend for free
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Woody & Buzz Lightyear - Best Buddies
+Player 2 played Woody - Waiting for a Friend (cost 1 → 0)
+Player 2 played Woody - Waiting for a Friend (cost 1)
+Player 2 shifted Woody & Buzz Lightyear - Best Buddies onto Woody - Waiting for a Friend (Shift 5)
+Woody & Buzz Lightyear - Best Buddies's TO INFINITY... drew 2 cards to match opponent's hand size
+Player 2 drew 2 cards: Aurora - Holding Court, Woody - Jungle Guide
+Player 2 added Aurora - Holding Court to ink
+Player 2 quested with RC - Remote-Controlled Car (+2 [LORE], 8 -> 10)
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 10 -> 11)
+Player 2 revealed Jessie - Lively Cowgirl(FIND A FRIEND) - revealed
+Player 2 revealed Jessie - Lively Cowgirl(FIND A FRIEND) - put into hand
+Player 1 revealed Malicious, Mean, and Scary(FIND A FRIEND) - put on bottom of deck
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 11 -> 12)
+Player 2 revealed RC - Remote-Controlled Car(FIND A FRIEND) - revealed
+Player 2 revealed RC - Remote-Controlled Car(FIND A FRIEND) - put into hand
+Player 1 revealed Tinker Bell - Giant Fairy(FIND A FRIEND) - revealed
+Player 1 revealed Tinker Bell - Giant Fairy(FIND A FRIEND) - put into hand
+Player 2 quested with Rex - Protective Dinosaur (+1 [LORE], 12 -> 13)
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 13 -> 14)
+Player 2 revealed Woody & Buzz Lightyear - Best Buddies(FIND A FRIEND) - revealed
+Player 2 revealed Woody & Buzz Lightyear - Best Buddies(FIND A FRIEND) - put into hand
+Player 1 revealed Dinky - Has the Brains(FIND A FRIEND) - revealed
+Player 1 revealed Dinky - Has the Brains(FIND A FRIEND) - put into hand
+Player 2 ended Player 2's turn
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Woody - Jungle Guide
+Tinker Bell - Giant Fairy dealt 1 damage to RC - Remote-Controlled Car
+Tinker Bell - Giant Fairy dealt 1 damage to Mike Wazowski - Heroic Climber
+Tinker Bell - Giant Fairy dealt 1 damage to Mike Wazowski - Heroic Climber
+Tinker Bell - Giant Fairy dealt 1 damage to Rex - Protective Dinosaur
+Tinker Bell - Giant Fairy dealt 1 damage to Mike Wazowski - Heroic Climber
+Tinker Bell - Giant Fairy dealt 1 damage to RC - Remote-Controlled Car
+Tinker Bell - Giant Fairy dealt 1 damage to Woody & Buzz Lightyear - Best Buddies
+Tinker Bell - Giant Fairy dealt 1 damage to Woody - Waiting for a Friend
+Player 1 sang Strength of a Raging Fire with Ariel - Determined Mermaid
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 3 damage
+Strength of a Raging Fire dealt 3 damage to Mike Wazowski - Heroic Climber
+Mike Wazowski - Heroic Climber was banished
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 discarded Cruella De Vil - Judgmental Traveler from hand
+Player 1 challenged Rex - Protective Dinosaur with Goofy - Emerald Champion
+Rex - Protective Dinosaur's RUN AWAY! gains 1 [LORE] (14 -> 15)
+Player 1 challenged Rex - Protective Dinosaur with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Rex - Protective Dinosaur (4/2 [WILLPOWER] - banished!), took 3 dmg (3/5 [WILLPOWER])
+Rex - Protective Dinosaur was banished
+Player 1 ended Player 1's turn
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew You've Got a Friend in Me
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 15 -> 17)
+Woody - Jungle Guide's LET'S GET MOVIN' Played RC - Remote-Controlled Car for free
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Bullseye - Loyal Horse
+Player 2 played RC - Remote-Controlled Car (cost 1 → 0)
+Player 2 quested with Woody & Buzz Lightyear - Best Buddies (+3 [LORE], 17 -> 20)
+Woody & Buzz Lightyear - Best Buddies's ... AND BEYOND! had no effect
+Player 2 won with 20 [LORE]!

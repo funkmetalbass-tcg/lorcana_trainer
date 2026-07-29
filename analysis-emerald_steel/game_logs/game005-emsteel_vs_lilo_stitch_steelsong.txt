@@ -1,0 +1,202 @@
+Player 1's starting hand: Shere Khan - Fearsome Tiger, Strike a Good Match, Winifred - Exasperated Elephant, Tinker Bell - Giant Fairy, Look What You've Done, Tinker Bell - Most Helpful, Goofy - Emerald Champion
+Player 2's starting hand: Stitch - Carefree Snowboarder, Meilin Lee - Losing Control, Strength of a Raging Fire, Grandmother Willow - Ancient Advisor, Chief Powhatan - Protective Leader, Stitch - Protector of Frogs, Lilo - Bundled Up
+Player 2 mulliganed 7 cards: Stitch - Carefree Snowboarder, Lilo - Bundled Up, Chief Powhatan - Protective Leader, Strength of a Raging Fire, Meilin Lee - Losing Control, Stitch - Protector of Frogs, Grandmother Willow - Ancient Advisor. Drew: He Hurled His Thunderbolt, Akood et Emuti, Lilo & Stitch - Fun-Loving Friends, Grandmother Willow - Ancient Advisor, Strength of a Raging Fire, Ursula - Vanessa, Stitch - Carefree Snowboarder
+Player 1 mulliganed 4 cards: Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Winifred - Exasperated Elephant, Tinker Bell - Giant Fairy. Drew: Strength of a Raging Fire, Dr. Bushroot - Evil Botanist, Maudie - Exasperated Nursemaid, Tinker Bell - Most Helpful
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Strength of a Raging Fire to ink
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Strength of a Raging Fire
+Player 2 added Strength of a Raging Fire to ink
+Player 2 played Ursula - Vanessa (cost 2)
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Tinker Bell - Giant Fairy, Max Goof - Chart Topper
+Player 1 discarded Max Goof - Chart Topper from hand
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Ursula - Vanessa
+Player 2 sang Akood et Emuti with Ursula - Vanessa
+Akood et Emuti's AKOOD ET EMUTI You pay 2 less for the next character this turn this turn
+Akood et Emuti's AKOOD ET EMUTI draws a card
+Player 2 drew Angel - Siren Singer
+Player 2 added Angel - Siren Singer to ink
+Player 2 played Stitch - Carefree Snowboarder (cost 5)
+Player 2 ended Player 2's turn
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lilo - Bundled Up
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 quested with Stitch - Carefree Snowboarder (+2 [LORE], 0 -> 2)
+Stitch - Carefree Snowboarder's BRING YOUR FRIENDS draws a card
+Player 2 drew Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 added Ursula - Vanessa to ink
+Player 2 played Lilo - Bundled Up (cost 2)
+Player 2 quested with Ursula - Vanessa (+1 [LORE], 2 -> 3)
+Player 2 ended Player 2's turn
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 added Tinker Bell - Most Helpful to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Ursula - Vanessa
+Player 1 sang Strength of a Raging Fire with Maudie - Exasperated Nursemaid
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Player 1 sang Strength of a Raging Fire with Maudie - Exasperated Nursemaid
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor was banished
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 sang Strength of a Raging Fire with Maudie - Exasperated Nursemaid
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor was banished
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Angel - Experiment 624
+Player 2 quested with Stitch - Carefree Snowboarder (+2 [LORE], 3 -> 5)
+Stitch - Carefree Snowboarder's BRING YOUR FRIENDS draws a card
+Player 2 drew Lilo - Snow Artist
+Player 2 sang He Hurled His Thunderbolt with Ursula - Vanessa
+He Hurled His Thunderbolt's HE HURLED HIS THUNDERBOLT deals 4 damage
+He Hurled His Thunderbolt's HE HURLED HIS THUNDERBOLT grants Challenger +2
+He Hurled His Thunderbolt dealt 4 damage to Tinker Bell - Most Helpful
+Tinker Bell - Most Helpful was banished
+Player 2 played Angel - Experiment 624 (cost 4)
+Player 2 played Lilo - Snow Artist (cost 1)
+Player 2 quested with Lilo - Bundled Up (+2 [LORE], 5 -> 7)
+Player 2 ended Player 2's turn
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Rapunzel & Flynn Rider - Unlikely Pair
+Player 1 added Tinker Bell - Giant Fairy to ink
+Player 1 played Rapunzel & Flynn Rider - Unlikely Pair (cost 5)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Stitch - Protector of Frogs
+Player 2 quested with Stitch - Carefree Snowboarder (+2 [LORE], 7 -> 9)
+Stitch - Carefree Snowboarder's BRING YOUR FRIENDS draws a card
+Player 2 drew Chief Powhatan - Protective Leader
+Player 2 shifted Lilo & Stitch - Fun-Loving Friends onto Lilo - Snow Artist (Shift 3 → 2)
+Player 2 added Stitch - Protector of Frogs to ink
+Player 2 activated GOOD AIM on Angel - Experiment 624
+Angel - Experiment 624 dealt 2 damage to Rapunzel & Flynn Rider - Unlikely Pair
+Player 2 quested with Lilo & Stitch - Fun-Loving Friends (+3 [LORE], 9 -> 12)
+Lilo & Stitch - Fun-Loving Friends's Support gave +3 [STRENGTH] to Angel - Experiment 624
+Player 2 challenged Maudie - Exasperated Nursemaid with Angel - Experiment 624
+Player 2 challenged Maudie - Exasperated Nursemaid with Angel - Experiment 624 | 6 [STRENGTH] dealt 5 dmg (6-1 Resist) to Maudie - Exasperated Nursemaid (5/5 [WILLPOWER] - banished!), took 0 dmg (2-2 Resist) (0/3 [WILLPOWER])
+Maudie - Exasperated Nursemaid was banished
+Player 2 quested with Lilo - Bundled Up (+2 [LORE], 12 -> 14)
+Player 2 quested with Ursula - Vanessa (+1 [LORE], 14 -> 15)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 15 -> 16)
+Player 2 ended Player 2's turn
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 added Bobby Zimuruski - Spray Cheese Kid to ink
+Player 1 quested with Rapunzel & Flynn Rider - Unlikely Pair (+2 [LORE], 1 -> 3)
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP draws a card
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP Discarded a card
+Player 1 drew Chomp!
+Player 1 discarded Tinker Bell - Giant Fairy from hand
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START chose "Play from discard"
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START plays Tinker Bell - Giant Fairy from discard exerted
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Ursula - Vanessa
+Tinker Bell - Giant Fairy dealt 1 damage to Stitch - Carefree Snowboarder
+Tinker Bell - Giant Fairy dealt 1 damage to Grandmother Willow - Ancient Advisor
+Player 1 ended Player 1's turn
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Lilo & Stitch - Fun-Loving Friends
+Player 2 quested with Stitch - Carefree Snowboarder (+2 [LORE], 16 -> 18)
+Stitch - Carefree Snowboarder's BRING YOUR FRIENDS draws a card
+Player 2 drew Akood et Emuti
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 18 -> 19)
+Player 2 quested with Ursula - Vanessa (+1 [LORE], 19 -> 20)
+Player 2 won with 20 [LORE]!
+Player 2 won with 20 [LORE]!

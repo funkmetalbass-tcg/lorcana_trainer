@@ -1,0 +1,65 @@
+
+==============================================================================
+DECK DIAGNOSTICS: Deck A over 150 games  (win rate 71%)
+==============================================================================
+
+PER-CARD CONTRIBUTION
+  play%/dead%/ink% are among games where the card was drawn.
+  delta = winrate(played) - winrate(never drawn); negative = underperforming.
+
+  card                                   cop  seen  play  dead  ink   wr+   wr0  delta
+  ------------------------------------------------------------------------------------
+  Strength of a Raging Fire                2   49%   39%    0%  72%   62%   74%   -12
+  Merida - Defiant Daughter                4   68%   78%    3%  47%   65%   75%   -10
+  Winifred - Exasperated Elephant          3   50%   57%    4%  64%   65%   73%    -8
+  Tinker Bell - Giant Fairy                2   39%   45%   12%  52%   62%   70%    -8
+  Goofy - Emerald Champion                 3   56%   89%    8%   0%   68%   76%    -8
+  Ariel - Determined Mermaid               4   75%   62%    1%  73%   67%   74%    -7
+  Max Goof - Chart Topper                  3   45%   42%    6%  73%   68%   72%    -4
+  Tinker Bell - Most Helpful               2   51%   57%    3%  56%   68%   71%    -3
+  Rapunzel & Flynn Rider - Unlikely Pair   3   47%   49%    3%  70%   71%   71%    -1
+  Shere Khan - Fearsome Tiger              3   59%   94%    4%   0%   70%   70%    -0
+  Cruella De Vil - Judgmental Traveler     4   61%   50%    2%  82%   67%   66%    +2
+  Strike A Good Match                      2   41%   53%    2%  42%   73%   70%    +2
+  Dr. Bushroot - Evil Botanist             4   49%   70%    3%  62%   75%   71%    +3
+  Malicious, Mean, and Scary               4   73%   46%    2%  73%   72%   66%    +6
+  Bobby Zimuruski - Spray Cheese Kid       3   61%   91%    0%  33%   72%   66%    +6
+  Chomp!                                   2   39%   25%    3%  59%   80%   70%   +10
+  Maudie - Exasperated Nursemaid           4   77%   82%    3%  54%   73%   62%   +11
+  Dinky - Has the Brains                   4   69%   86%    0%  35%   81%   54%   +27
+  Look What You've Done                    4   67%   79%    3%  54%   82%   52%   +30
+
+FLAGS (heuristic cut/keep signals)
+  - Strength of a Raging Fire: win-rate drag (-12)
+  - Merida - Defiant Daughter: win-rate drag (-10)
+  - Winifred - Exasperated Elephant: win-rate drag (-8)
+  - Tinker Bell - Giant Fairy: win-rate drag (-8); low utilization (played 45% when drawn)
+  - Cruella De Vil - Judgmental Traveler: mostly inked (82%) — may be a filler slot
+  - Chomp!: low utilization (played 25% when drawn)
+
+TEMPO & CURVE
+  Avg ink after your turn:  T1:1.0  T2:1.9  T3:2.8  T4:3.8  T5:4.7  T6:5.5  T7:6.1  T8:6.6  T9:7.0  T10:7.4
+  Avg turn each cost first lands: 1-drop: turn 4.6  2-drop: turn 3.0  3-drop: turn 4.6  4-drop: turn 7.6  5-drop: turn 7.1  6-drop: turn 7.7
+  Opening-hand inkable count distribution: 5:3%  6:23%  7:74%
+
+LOSS PATTERNS
+  Losses: 44   avg length 27.4 half-turns (fast <=14: 0, grind >=24: 28)
+  Avg lore gap in losses: 8.3
+  Losses with 3+ locations stuck in hand (flood): 0  (0% of losses)
+  Losses after a low-ink opening (<=2 inkable): 0  (0% of losses)
+
+READ
+  Most losses are GRINDS — you run out of gas. Consider more card advantage / reach / a resilient late threat.
+
+ABILITY TRIGGERS (studied deck; totals across all games)
+  trigger                                       total  avg/game  games%
+  Bobby: SO CHEESY                                136      0.91     72%
+  Dinky: GET HIM!                                 123      0.82     62%
+  R&F: CLEVER SWAP                                 66      0.44     27%
+  MaxGoof: NUMBER ONE HIT                          24      0.16     13%
+  R&F: FRESH START replay                          24      0.16     13%
+  Ariel: I WANT MORE                               22      0.15      9%
+  Cruella: OUT OF FASHION banish                   12      0.08      8%
+
+NOTE: deltas are correlational, not causal. A high-delta card may just 
+ride along in good draws. Use `--suggest` to A/B test specific swaps.

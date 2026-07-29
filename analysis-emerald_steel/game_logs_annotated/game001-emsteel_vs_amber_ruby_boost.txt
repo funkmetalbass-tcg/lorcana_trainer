@@ -1,0 +1,731 @@
+Player 1's starting hand: Strike a Good Match, Bobby Zimuruski - Spray Cheese Kid, Winifred - Exasperated Elephant, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Bobby Zimuruski - Spray Cheese Kid, Cruella De Vil - Judgmental Traveler
+Player 2's starting hand: The Horseman Strikes!, Scrooge McDuck - Ghostly Ebenezer, Medallion Weights, Raging Storm, Boo - Energetic Child, Maleficent - Monstrous Dragon, Aladdin - Barreling Through
+Player 1 mulliganed 4 cards: Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Winifred - Exasperated Elephant, Cruella De Vil - Judgmental Traveler. Drew: Max Goof - Chart Topper, Strength of a Raging Fire, Goofy - Emerald Champion, Look What You've Done
+Player 2 mulliganed 7 cards: Raging Storm, Maleficent - Monstrous Dragon, The Horseman Strikes!, Boo - Energetic Child, Medallion Weights, Aladdin - Barreling Through, Scrooge McDuck - Ghostly Ebenezer. Drew: Hercules - Spectral Demigod, Liquidator - Iced Over, Liquidator - Iced Over, Scrooge's Counting House - Ebenezer's Office, The Horseman Strikes!, Webby's Diary, Raging Storm
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 discarded Look What You've Done from hand
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Decline"
+Look What You've Done's LOOK WHAT YOU'VE DONE had no effect
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=5  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done
+  Player 2:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aladdin - Barreling Through
+Player 2 added The Horseman Strikes! to ink
+Player 2 played Liquidator - Iced Over (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=5  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Liquidator - Iced Over
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=4  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Liquidator - Iced Over
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Scrooge McDuck - Ghostly Ebenezer
+Player 2 added Hercules - Spectral Demigod to ink
+Player 2 played Scrooge McDuck - Ghostly Ebenezer (cost 2)
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Liquidator - Iced Over
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Liquidator - Iced Over | 4 [STRENGTH] dealt 4 dmg to Bobby Zimuruski - Spray Cheese Kid (4/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=4  discard=2
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Liquidator - Iced Over  [1 dmg]
+    - Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Winifred - Exasperated Elephant, Winifred - Exasperated Elephant
+Player 1 discarded Winifred - Exasperated Elephant from hand
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 1 -> 2)
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Liquidator - Iced Over
+Liquidator - Iced Over was banished
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=3  hand=3  discard=5
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!
+  Player 2:  lore=0  ink=2  hand=5  discard=1
+  cards in play:
+    - Scrooge McDuck - Ghostly Ebenezer
+  discard: Liquidator - Iced Over
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Liquidator - Iced Over
+Player 2 added Liquidator - Iced Over to ink
+Player 2 played Liquidator - Iced Over (cost 2)
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (1 card under)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=3  hand=3  discard=5
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!
+  Player 2:  lore=0  ink=3  hand=4  discard=1
+  cards in play:
+    - Liquidator - Iced Over
+    - Scrooge McDuck - Ghostly Ebenezer
+  discard: Liquidator - Iced Over
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Scrooge McDuck - Ghostly Ebenezer
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=4  hand=2  discard=6
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done
+  Player 2:  lore=0  ink=3  hand=4  discard=1
+  cards in play:
+    - Liquidator - Iced Over
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+  discard: Liquidator - Iced Over
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aladdin - Barreling Through
+Player 2 added Aladdin - Barreling Through to ink
+Player 2 played Webby's Diary (cost 3)
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (2 cards under)
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 0 -> 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=4  hand=2  discard=6
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done
+  Player 2:  lore=1  ink=4  hand=3  discard=1
+  cards in play:
+    - Liquidator - Iced Over
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=3  ink=5  hand=1  discard=6
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Goofy - Emerald Champion
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done
+  Player 2:  lore=1  ink=4  hand=3  discard=1
+  cards in play:
+    - Liquidator - Iced Over
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew The Horseman Strikes!
+Player 2 played Aladdin - Barreling Through (cost 3)
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Liquidator - Iced Over
+Goofy - Emerald Champion's EVEN THE SCORE banishes Liquidator - Iced Over
+Liquidator - Iced Over was banished
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Liquidator - Iced Over | 4 [STRENGTH] dealt 4 dmg to Bobby Zimuruski - Spray Cheese Kid (4/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 added Scrooge's Counting House - Ebenezer's Office to ink
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (3 cards under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Scrooge's Counting House - Ebenezer's Office
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=3  ink=5  hand=1  discard=7
+  cards in play:
+    - Goofy - Emerald Champion
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=1  ink=5  hand=3  discard=2
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 discarded Shere Khan - Fearsome Tiger from hand
+Player 1 took back only their card choice
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 discarded Strength of a Raging Fire from hand
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=3  ink=5  hand=1  discard=9
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Goofy - Emerald Champion
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire
+  Player 2:  lore=1  ink=5  hand=3  discard=2
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Red Alert
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (4 cards under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Hercules - Spectral Demigod
+Player 2 added The Horseman Strikes! to ink
+Player 2 boosted Aladdin - Barreling Through (1 card under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Boo - Energetic Child
+Player 2 activated ONLY THE BOLD (Granted) on Aladdin - Barreling Through
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 2 -> 3)
+Player 2 played Scrooge's Counting House - Ebenezer's Office (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=3  ink=5  hand=1  discard=9
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Goofy - Emerald Champion
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire
+  Player 2:  lore=3  ink=6  hand=4  discard=2
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+    - Scrooge's Counting House - Ebenezer's Office
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 challenged Scrooge's Counting House - Ebenezer's Office with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Scrooge's Counting House - Ebenezer's Office with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Scrooge's Counting House - Ebenezer's Office (1/4 [WILLPOWER]), took 0 dmg (0/2 [WILLPOWER])
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=3  ink=6  hand=0  discard=9
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire
+  Player 2:  lore=3  ink=6  hand=4  discard=2
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+    - Scrooge's Counting House - Ebenezer's Office  [1 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Set step: Scrooge's Counting House - Ebenezer's Office grants Player 2 +1 [LORE] (3 -> 4)
+Draw step
+Player 2 drew Sulley - The New Boss
+Player 2 played Boo - Energetic Child (cost 3)
+Player 2 activated ONLY THE BOLD (Granted) on Aladdin - Barreling Through
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Scrooge McDuck - Ghostly Ebenezer
+Goofy - Emerald Champion's EVEN THE SCORE banishes Scrooge McDuck - Ghostly Ebenezer
+Scrooge McDuck - Ghostly Ebenezer was banished
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Scrooge McDuck - Ghostly Ebenezer | 7 [STRENGTH] dealt 7 dmg to Bobby Zimuruski - Spray Cheese Kid (7/2 [WILLPOWER] - banished!), took 1 dmg (3/7 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 boosted Aladdin - Barreling Through (2 cards under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Besties, Assemble!
+Player 2 added Hercules - Spectral Demigod to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=3  ink=6  hand=0  discard=10
+  cards in play:
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=3  ink=7  hand=4  discard=3
+  cards in play:
+    - Aladdin - Barreling Through
+    - Boo - Energetic Child
+    - Scrooge's Counting House - Ebenezer's Office  [1 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 challenged Aladdin - Barreling Through with Goofy - Emerald Champion
+Player 1 challenged Aladdin - Barreling Through with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Aladdin - Barreling Through (3/4 [WILLPOWER]), took 4 dmg (4/5 [WILLPOWER])
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 3 -> 5)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Aladdin - Barreling Through
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Aladdin - Barreling Through was banished
+1 damage counter put on Boo - Energetic Child
+Boo - Energetic Child was banished
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=5  ink=6  hand=1  discard=10
+  cards in play:
+    - Goofy - Emerald Champion  [4 dmg]
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=3  ink=7  hand=4  discard=5
+  cards in play:
+    - Scrooge's Counting House - Ebenezer's Office  [1 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Set step: Scrooge's Counting House - Ebenezer's Office grants Player 2 +1 [LORE] (5 -> 6)
+Draw step
+Player 2 drew Besties, Assemble!
+Player 2 played Sulley - The New Boss (cost 5)
+Sulley - The New Boss's REHIRE Returned Maleficent - Monstrous Dragon from discard to hand
+Player 2 played Besties, Assemble! (cost 1)
+Besties, Assemble!'s BESTIES, ASSEMBLE! had no effect
+Player 2 added Red Alert to ink
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Maleficent - Monstrous Dragon(BESTIES, ASSEMBLE!) - put into hand
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=5  ink=6  hand=1  discard=10
+  cards in play:
+    - Goofy - Emerald Champion  [4 dmg]
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=3  ink=8  hand=2  discard=7
+  cards in play:
+    - Scrooge's Counting House - Ebenezer's Office  [1 dmg]
+    - Sulley - The New Boss
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 challenged Scrooge's Counting House - Ebenezer's Office with Shere Khan - Fearsome Tiger
+Player 1 challenged Scrooge's Counting House - Ebenezer's Office with Shere Khan - Fearsome Tiger | 5 [STRENGTH] dealt 5 dmg to Scrooge's Counting House - Ebenezer's Office (6/4 [WILLPOWER] - banished!), took 0 dmg (0/4 [WILLPOWER])
+Scrooge's Counting House - Ebenezer's Office was banished
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 5 -> 7)
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=7  ink=6  hand=1  discard=10
+  cards in play:
+    - Goofy - Emerald Champion  [4 dmg]
+    - Merida - Defiant Daughter
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=3  ink=8  hand=2  discard=8
+  cards in play:
+    - Sulley - The New Boss
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Raging Storm
+Raging Storm's RAGING STORM banishes a card
+Goofy - Emerald Champion was banished
+Shere Khan - Fearsome Tiger was banished
+Merida - Defiant Daughter was banished
+Sulley - The New Boss was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 added Maleficent - Monstrous Dragon to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=7  ink=6  hand=1  discard=13
+  cards in play:
+    (empty)
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter
+  Player 2:  lore=3  ink=9  hand=1  discard=10
+  cards in play:
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Cruella De Vil - Judgmental Traveler (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=7  ink=6  hand=1  discard=13
+  cards in play:
+    - Cruella De Vil - Judgmental Traveler
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter
+  Player 2:  lore=3  ink=9  hand=1  discard=10
+  cards in play:
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Sulley & Boo - Scare Buddies
+Player 2 played Maleficent - Monstrous Dragon (cost 9)
+Maleficent - Monstrous Dragon's DRAGON FIRE banishes Cruella De Vil - Judgmental Traveler
+Cruella De Vil - Judgmental Traveler was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=7  ink=6  hand=1  discard=14
+  cards in play:
+    (empty)
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler
+  Player 2:  lore=3  ink=9  hand=1  discard=10
+  cards in play:
+    - Maleficent - Monstrous Dragon
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=7  ink=6  hand=1  discard=14
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler
+  Player 2:  lore=3  ink=9  hand=1  discard=10
+  cards in play:
+    - Maleficent - Monstrous Dragon
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 22 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Maleficent - Monstrous Dragon
+Player 2 quested with Maleficent - Monstrous Dragon (+2 [LORE], 6 -> 8)
+Player 2 played Sulley & Boo - Scare Buddies (cost 6)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=7  ink=6  hand=1  discard=14
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler
+  Player 2:  lore=8  ink=9  hand=1  discard=10
+  cards in play:
+    - Maleficent - Monstrous Dragon
+    - Sulley & Boo - Scare Buddies
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 23 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 7 -> 8)
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Maleficent - Monstrous Dragon
+1 damage counter put on Sulley & Boo - Scare Buddies
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=8  ink=6  hand=0  discard=15
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler, Malicious, Mean, and Scary
+  Player 2:  lore=8  ink=9  hand=1  discard=10
+  cards in play:
+    - Maleficent - Monstrous Dragon  [1 dmg]
+    - Sulley & Boo - Scare Buddies  [1 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 24 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aladdin - Barreling Through
+Player 2 quested with Sulley & Boo - Scare Buddies (+2 [LORE], 8 -> 10)
+Player 2 played Aladdin - Barreling Through (cost 3)
+Player 2 boosted Aladdin - Barreling Through (1 card under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Webby's Diary
+Player 2 added Webby's Diary to ink
+Player 2 quested with Maleficent - Monstrous Dragon (+2 [LORE], 10 -> 12)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=8  ink=6  hand=0  discard=15
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler, Malicious, Mean, and Scary
+  Player 2:  lore=12  ink=10  hand=1  discard=10
+  cards in play:
+    - Aladdin - Barreling Through
+    - Maleficent - Monstrous Dragon  [1 dmg]
+    - Sulley & Boo - Scare Buddies  [1 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 25 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Kaa - Secretive Snake
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 8 -> 9)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 9 -> 10)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=6  hand=1  discard=15
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler, Malicious, Mean, and Scary
+  Player 2:  lore=12  ink=10  hand=1  discard=10
+  cards in play:
+    - Aladdin - Barreling Through
+    - Maleficent - Monstrous Dragon  [1 dmg]
+    - Sulley & Boo - Scare Buddies  [1 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 26 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Della's Moon Lullaby
+Player 2 boosted Aladdin - Barreling Through (2 cards under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Hercules - Spectral Demigod
+Player 2 quested with Maleficent - Monstrous Dragon (+2 [LORE], 12 -> 14)
+Player 2 added Hercules - Spectral Demigod to ink
+Player 2 played Maleficent - Monstrous Dragon (cost 9)
+Maleficent - Monstrous Dragon's DRAGON FIRE banishes Maudie - Exasperated Nursemaid
+Maudie - Exasperated Nursemaid was banished
+Player 2 quested with Sulley & Boo - Scare Buddies (+2 [LORE], 14 -> 16)
+Player 2 challenged Merida - Defiant Daughter with Aladdin - Barreling Through
+Player 2 challenged Merida - Defiant Daughter with Aladdin - Barreling Through | 4 [STRENGTH] dealt 4 dmg to Merida - Defiant Daughter (4/3 [WILLPOWER] - banished!), took 2 dmg (2/4 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=6  hand=1  discard=17
+  cards in play:
+    (empty)
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=16  ink=11  hand=1  discard=10
+  cards in play:
+    - Aladdin - Barreling Through  [2 dmg]
+    - Maleficent - Monstrous Dragon  [1 dmg]
+    - Maleficent - Monstrous Dragon  [1 dmg]
+    - Sulley & Boo - Scare Buddies  [1 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 27 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Maleficent - Monstrous Dragon
+1 damage counter put on Sulley & Boo - Scare Buddies
+1 damage counter put on Aladdin - Barreling Through
+1 damage counter put on Maleficent - Monstrous Dragon
+Player 1 added Kaa - Secretive Snake to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=0  discard=18
+  cards in play:
+    (empty)
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter, Malicious, Mean, and Scary
+  Player 2:  lore=16  ink=11  hand=1  discard=10
+  cards in play:
+    - Aladdin - Barreling Through  [3 dmg]
+    - Maleficent - Monstrous Dragon  [3 dmg]
+    - Maleficent - Monstrous Dragon  [3 dmg]
+    - Sulley & Boo - Scare Buddies  [2 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm
+
+--- Turn 28 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aladdin - Barreling Through
+Player 2 quested with Maleficent - Monstrous Dragon (+2 [LORE], 16 -> 18)
+Player 2 quested with Maleficent - Monstrous Dragon (+2 [LORE], 18 -> 20)
+Player 2 won with 20 [LORE]!
+Player 2 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=10  ink=7  hand=0  discard=18
+  cards in play:
+    (empty)
+  discard: Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Strike a Good Match, Winifred - Exasperated Elephant, Chomp!, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Shere Khan - Fearsome Tiger, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Goofy - Emerald Champion, Shere Khan - Fearsome Tiger, Merida - Defiant Daughter, Cruella De Vil - Judgmental Traveler, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter, Malicious, Mean, and Scary
+  Player 2:  lore=20  ink=11  hand=2  discard=10
+  cards in play:
+    - Aladdin - Barreling Through  [3 dmg]
+    - Maleficent - Monstrous Dragon  [3 dmg]
+    - Maleficent - Monstrous Dragon  [3 dmg]
+    - Sulley & Boo - Scare Buddies  [2 dmg]
+    - Webby's Diary
+  discard: Liquidator - Iced Over, Liquidator - Iced Over, Scrooge McDuck - Ghostly Ebenezer, Aladdin - Barreling Through, Boo - Energetic Child, Besties, Assemble!, Besties, Assemble!, Scrooge's Counting House - Ebenezer's Office, Sulley - The New Boss, Raging Storm

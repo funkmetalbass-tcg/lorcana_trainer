@@ -1,0 +1,490 @@
+Player 1's starting hand: Look What You've Done, Dr. Bushroot - Evil Botanist, Strength of a Raging Fire, Dinky - Has the Brains, Tinker Bell - Giant Fairy, Kaa - Secretive Snake, Goofy - Emerald Champion
+Player 2's starting hand: Mike Wazowski - Heroic Climber, Buzz Lightyear - Space Ranger, Woody - Jungle Guide, Aurora - Holding Court, Jessie - Lively Cowgirl, Aurora - Holding Court, Aurora - Holding Court
+Player 2 mulliganed 7 cards: Woody - Jungle Guide, Mike Wazowski - Heroic Climber, Buzz Lightyear - Space Ranger, Aurora - Holding Court, Aurora - Holding Court, Aurora - Holding Court, Jessie - Lively Cowgirl. Drew: Rex - Protective Dinosaur, Rex - Protective Dinosaur, You've Got a Friend in Me, Woody - Helping a Friend, Woody & Buzz Lightyear - Best Buddies, Rex - Protective Dinosaur, Rex - Protective Dinosaur
+Player 1 mulliganed 2 cards: Goofy - Emerald Champion, Kaa - Secretive Snake. Drew: Winifred - Exasperated Elephant, Winifred - Exasperated Elephant
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Rex - Protective Dinosaur to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=7  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Alien - True Believer
+Player 2 added Rex - Protective Dinosaur to ink
+Player 2 played Rex - Protective Dinosaur (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=7  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Rex - Protective Dinosaur
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Rex - Protective Dinosaur
+Rex - Protective Dinosaur was banished
+Rex - Protective Dinosaur's RUN AWAY! gains 1 [LORE] (0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=6  discard=0
+  cards in play:
+    - Dinky - Has the Brains
+  Player 2:  lore=0  ink=2  hand=5  discard=1
+  cards in play:
+    (empty)
+  discard: Rex - Protective Dinosaur
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Alien - True Believer
+Player 2 added Rex - Protective Dinosaur to ink
+Player 2 played Alien - True Believer (cost 1)
+Player 2 played Alien - True Believer (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=6  discard=0
+  cards in play:
+    - Dinky - Has the Brains
+  Player 2:  lore=0  ink=3  hand=3  discard=1
+  cards in play:
+    - Alien - True Believer
+    - Alien - True Believer
+  discard: Rex - Protective Dinosaur
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 sang Strike a Good Match with Dinky - Has the Brains
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Bobby Zimuruski - Spray Cheese Kid, Kaa - Secretive Snake
+Player 1 discarded Kaa - Secretive Snake from hand
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=3  hand=5  discard=2
+  cards in play:
+    - Dinky - Has the Brains
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Kaa - Secretive Snake
+  Player 2:  lore=0  ink=3  hand=3  discard=1
+  cards in play:
+    - Alien - True Believer
+    - Alien - True Believer
+  discard: Rex - Protective Dinosaur
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mike Wazowski - Heroic Climber
+Player 2 played Mike Wazowski - Heroic Climber (cost 2)
+Player 2 revealed Woody - Waiting for a Friend(FIND A FRIEND) - revealed
+Player 2 revealed Woody - Waiting for a Friend(FIND A FRIEND) - put into hand
+Player 1 revealed Dr. Bushroot - Evil Botanist(FIND A FRIEND) - revealed
+Player 1 revealed Dr. Bushroot - Evil Botanist(FIND A FRIEND) - put into hand
+Player 2 played Woody - Waiting for a Friend (cost 1)
+Player 2 challenged Dinky - Has the Brains with Alien - True Believer
+Alien - True Believer's HE HAS BEEN CHOSEN had no effect (no valid cards)
+Player 2 challenged Dinky - Has the Brains with Alien - True Believer | 3 [STRENGTH] dealt 3 dmg to Dinky - Has the Brains (3/2 [WILLPOWER] - banished!), took 1 dmg (1/1 [WILLPOWER] - banished!)
+Alien - True Believer was banished
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=3  hand=6  discard=3
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains
+  Player 2:  lore=0  ink=3  hand=3  discard=2
+  cards in play:
+    - Alien - True Believer
+    - Mike Wazowski - Heroic Climber
+    - Woody - Waiting for a Friend
+  discard: Rex - Protective Dinosaur, Alien - True Believer
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Ariel - Determined Mermaid
+Player 1 discarded Ariel - Determined Mermaid from hand
+Player 1 sang Strength of a Raging Fire with Maudie - Exasperated Nursemaid
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Mike Wazowski - Heroic Climber
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Mike Wazowski - Heroic Climber
+Mike Wazowski - Heroic Climber was banished
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=4  hand=3  discard=6
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done
+  Player 2:  lore=0  ink=3  hand=3  discard=3
+  cards in play:
+    - Alien - True Believer
+    - Woody - Waiting for a Friend
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Woody - Jungle Guide
+Player 2 shifted Woody - Jungle Guide onto Woody - Waiting for a Friend (Shift 3)
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 1 -> 3)
+Woody - Jungle Guide's LET'S GET MOVIN' Played Alien - True Believer for free
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Alien - True Believer
+Player 2 played Alien - True Believer (cost 1 → 0)
+Player 2 challenged Maudie - Exasperated Nursemaid with Alien - True Believer
+Player 2 challenged Maudie - Exasperated Nursemaid with Alien - True Believer | 3 [STRENGTH] dealt 2 dmg (3-1 Resist) to Maudie - Exasperated Nursemaid (2/5 [WILLPOWER]), took 2 dmg (2/2 [WILLPOWER] - banished!)
+Alien - True Believer was banished
+Alien - True Believer's HE HAS BEEN CHOSEN Returned Alien - True Believer from discard to hand
+Player 2 added You've Got a Friend in Me to ink
+Player 2 played Alien - True Believer (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=4  hand=3  discard=6
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done
+  Player 2:  lore=3  ink=4  hand=2  discard=4
+  cards in play:
+    - Alien - True Believer
+    - Woody - Jungle Guide
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Dr. Bushroot - Evil Botanist (cost 5)
+Player 1 challenged Woody - Jungle Guide with Maudie - Exasperated Nursemaid
+Player 1 challenged Woody - Jungle Guide with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Woody - Jungle Guide (2/5 [WILLPOWER]), took 0 dmg (1-1 Resist) (2/5 [WILLPOWER])
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=5  hand=2  discard=6
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dr. Bushroot - Evil Botanist
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done
+  Player 2:  lore=3  ink=4  hand=2  discard=4
+  cards in play:
+    - Alien - True Believer
+    - Woody - Jungle Guide
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew You've Got a Friend in Me
+Player 2 played Woody - Helping a Friend (cost 4)
+Woody - Helping a Friend's HANG ON! chose "Enter Exerted"
+Woody - Helping a Friend's HANG ON! Played Rex - Protective Dinosaur for free
+Woody - Helping a Friend's HANG ON! Returned Rex - Protective Dinosaur from discard to hand
+Player 2 played Rex - Protective Dinosaur (cost 2 → 0)
+Player 2 challenged Maudie - Exasperated Nursemaid with Alien - True Believer
+Player 2 challenged Maudie - Exasperated Nursemaid with Alien - True Believer | 5 [STRENGTH] dealt 4 dmg (5-1 Resist) to Maudie - Exasperated Nursemaid (6/5 [WILLPOWER] - banished!), took 2 dmg (2/2 [WILLPOWER] - banished!)
+Alien - True Believer was banished
+Maudie - Exasperated Nursemaid was banished
+Alien - True Believer's HE HAS BEEN CHOSEN Returned Alien - True Believer from discard to hand
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Alien - True Believer
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Alien - True Believer | 4 [STRENGTH] dealt 4 dmg to Bobby Zimuruski - Spray Cheese Kid (4/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 3 -> 5)
+Woody - Jungle Guide's LET'S GET MOVIN' Played Alien - True Believer for free
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Elinor - Renowned Diplomat
+Player 2 played Alien - True Believer (cost 1 → 0)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=5  hand=2  discard=8
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=5  ink=4  hand=3  discard=5
+  cards in play:
+    - Woody - Helping a Friend
+    - Woody - Jungle Guide
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer, Alien - True Believer
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 quested with Dr. Bushroot - Evil Botanist (+3 [LORE], 1 -> 4)
+Player 1 added Tinker Bell - Giant Fairy to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=6  hand=1  discard=8
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=5  ink=4  hand=3  discard=5
+  cards in play:
+    - Woody - Helping a Friend
+    - Woody - Jungle Guide
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer, Alien - True Believer
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 challenged Dr. Bushroot - Evil Botanist with Alien - True Believer
+Player 2 challenged Dr. Bushroot - Evil Botanist with Alien - True Believer
+Dr. Bushroot - Evil Botanist's FAIR IS FAIR Discarded a card
+Player 2 discarded Aurora - Holding Court from hand
+Alien - True Believer was banished
+Dr. Bushroot - Evil Botanist was banished
+Alien - True Believer's HE HAS BEEN CHOSEN Returned Alien - True Believer from discard to hand
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 5 -> 7)
+Woody - Jungle Guide's LET'S GET MOVIN' Played Grandmother Willow - Ancient Advisor for free
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Grandmother Willow - Ancient Advisor
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2 → 0)
+Player 2 played Elinor - Renowned Diplomat (cost 4)
+Player 2 played Alien - True Believer (cost 1)
+Player 2 sang You've Got a Friend in Me with Woody - Helping a Friend
+Player 2 revealed Woody - Waiting for a Friend(YOU'VE GOT A FRIEND IN ME) - put into hand
+Player 2 revealed Woody & Buzz Lightyear - Best Buddies(YOU'VE GOT A FRIEND IN ME) - put into hand
+Player 2 quested with Rex - Protective Dinosaur (+1 [LORE], 7 -> 8)
+Player 2 quested with Alien - True Believer (+1 [LORE], 8 -> 9)
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS deals 1 damage
+Elinor - Renowned Diplomat's COORDINATED EFFORTS gains 1 [LORE] (9 -> 10)
+Elinor - Renowned Diplomat's COORDINATED EFFORTS draws a card
+Elinor - Renowned Diplomat dealt 1 damage to Shere Khan - Fearsome Tiger
+Player 2 drew Mike Wazowski - Heroic Climber
+
+Board State---
+  Player 1:  lore=4  ink=6  hand=1  discard=9
+  cards in play:
+    - Shere Khan - Fearsome Tiger  [1 dmg]
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid, Bobby Zimuruski - Spray Cheese Kid, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=9  ink=4  hand=4  discard=7
+  cards in play:
+    - Alien - True Believer
+    - Elinor - Renowned Diplomat
+    - Woody - Helping a Friend
+    - Woody - Jungle Guide
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer, Alien - True Believer, Aurora - Holding Court, You've Got a Friend in Me
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 4 -> 6)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Woody - Jungle Guide
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Woody - Jungle Guide was banished
+1 damage counter put on Elinor - Renowned Diplomat
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=6  hand=1  discard=9
+  cards in play:
+    - Shere Khan - Fearsome Tiger  [1 dmg]
+    - Shere Khan - Fearsome Tiger  [1 dmg]
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid, Bobby Zimuruski - Spray Cheese Kid, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=9  ink=4  hand=4  discard=8
+  cards in play:
+    - Alien - True Believer
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Woody - Helping a Friend
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer, Alien - True Believer, Aurora - Holding Court, You've Got a Friend in Me, Woody - Jungle Guide
+
+--- Turn 15 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Woody - Jungle Guide
+Player 2 shifted Woody - Jungle Guide onto Woody - Helping a Friend (Shift 3 → 2)
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 10 -> 12)
+Woody - Jungle Guide's LET'S GET MOVIN' Played Woody - Waiting for a Friend for free
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Woody & Buzz Lightyear - Best Buddies
+Player 2 played Woody - Waiting for a Friend (cost 1 → 0)
+Player 2 played Mike Wazowski - Heroic Climber (cost 2)
+Player 2 revealed Elinor - Renowned Diplomat(FIND A FRIEND) - revealed
+Player 2 revealed Elinor - Renowned Diplomat(FIND A FRIEND) - put into hand
+Player 1 revealed Kaa - Secretive Snake(FIND A FRIEND) - revealed
+Player 1 revealed Kaa - Secretive Snake(FIND A FRIEND) - put into hand
+Player 2 added Woody & Buzz Lightyear - Best Buddies to ink
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 12 -> 13)
+Player 2 quested with Elinor - Renowned Diplomat (+1 [LORE], 13 -> 14)
+Player 2 quested with Rex - Protective Dinosaur (+1 [LORE], 14 -> 15)
+Player 2 quested with Alien - True Believer (+1 [LORE], 15 -> 16)
+Player 2 quested with Alien - True Believer (+1 [LORE], 16 -> 17)
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS deals 1 damage
+Elinor - Renowned Diplomat's COORDINATED EFFORTS gains 1 [LORE] (17 -> 18)
+Elinor - Renowned Diplomat's COORDINATED EFFORTS draws a card
+Elinor - Renowned Diplomat dealt 1 damage to Shere Khan - Fearsome Tiger
+Player 2 drew Jessie - Lively Cowgirl
+
+Board State---
+  Player 1:  lore=6  ink=6  hand=2  discard=9
+  cards in play:
+    - Shere Khan - Fearsome Tiger  [2 dmg]
+    - Shere Khan - Fearsome Tiger  [2 dmg]
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid, Bobby Zimuruski - Spray Cheese Kid, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=17  ink=5  hand=5  discard=8
+  cards in play:
+    - Alien - True Believer
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Mike Wazowski - Heroic Climber
+    - Woody - Jungle Guide
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer, Alien - True Believer, Aurora - Holding Court, You've Got a Friend in Me, Woody - Jungle Guide
+
+--- Turn 16 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 6 -> 8)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Elinor - Renowned Diplomat
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Elinor - Renowned Diplomat was banished
+1 damage counter put on Woody - Jungle Guide
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 8 -> 10)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Woody - Jungle Guide
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Woody - Jungle Guide was banished
+1 damage counter put on Alien - True Believer
+Alien - True Believer was banished
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Mike Wazowski - Heroic Climber
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=6  hand=1  discard=9
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+    - Shere Khan - Fearsome Tiger  [2 dmg]
+    - Shere Khan - Fearsome Tiger  [2 dmg]
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid, Bobby Zimuruski - Spray Cheese Kid, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=17  ink=5  hand=5  discard=11
+  cards in play:
+    - Mike Wazowski - Heroic Climber  [1 dmg]
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer, Alien - True Believer, Aurora - Holding Court, You've Got a Friend in Me, Woody - Jungle Guide, Elinor - Renowned Diplomat, Woody - Jungle Guide, Alien - True Believer
+
+--- Turn 17 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Grandmother Willow - Ancient Advisor
+Player 2 quested with Mike Wazowski - Heroic Climber (+1 [LORE], 18 -> 19)
+Player 2 revealed Alien - True Believer(FIND A FRIEND) - revealed
+Player 2 revealed Alien - True Believer(FIND A FRIEND) - put into hand
+Player 1 revealed Merida - Defiant Daughter(FIND A FRIEND) - revealed
+Player 1 revealed Merida - Defiant Daughter(FIND A FRIEND) - put into hand
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 19 -> 20)
+Player 2 won with 20 [LORE]!
+Player 2 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=10  ink=6  hand=2  discard=9
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+    - Shere Khan - Fearsome Tiger  [2 dmg]
+    - Shere Khan - Fearsome Tiger  [2 dmg]
+  discard: Strike a Good Match, Kaa - Secretive Snake, Dinky - Has the Brains, Ariel - Determined Mermaid, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid, Bobby Zimuruski - Spray Cheese Kid, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=20  ink=5  hand=7  discard=11
+  cards in play:
+    - Mike Wazowski - Heroic Climber  [1 dmg]
+  discard: Rex - Protective Dinosaur, Alien - True Believer, Mike Wazowski - Heroic Climber, Alien - True Believer, Alien - True Believer, Aurora - Holding Court, You've Got a Friend in Me, Woody - Jungle Guide, Elinor - Renowned Diplomat, Woody - Jungle Guide, Alien - True Believer

@@ -1,0 +1,680 @@
+Player 1's starting hand: Maudie - Exasperated Nursemaid, Rapunzel & Flynn Rider - Unlikely Pair, Max Goof - Chart Topper, Rapunzel & Flynn Rider - Unlikely Pair, Tinker Bell - Giant Fairy, Strike a Good Match, Strike a Good Match
+Player 2's starting hand: Aurora - Holding Court, Ohana Means Family, World's Greatest Criminal Mind, Moana - Curious Explorer, Cinderella - Dream Come True, Belle - Snowfield Strategist, Cinderella - Dream Come True
+Player 1 mulliganed 4 cards: Max Goof - Chart Topper, Rapunzel & Flynn Rider - Unlikely Pair, Tinker Bell - Giant Fairy, Strike a Good Match. Drew: Malicious, Mean, and Scary, Cruella De Vil - Judgmental Traveler, Ariel - Determined Mermaid, Merida - Defiant Daughter
+Player 2 mulliganed 7 cards: World's Greatest Criminal Mind, Ohana Means Family, Belle - Snowfield Strategist, Moana - Curious Explorer, Cinderella - Dream Come True, Cinderella - Dream Come True, Aurora - Holding Court. Drew: Eilonwy - Princess of Llyr, Besties, Assemble!, The Black Cauldron, Raging Storm, Besties, Assemble!, Develop Your Brain, Hamm - Piggy Bank
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cinderella - Dream Come True
+Player 2 added Eilonwy - Princess of Llyr to ink
+Player 2 played Develop Your Brain (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=6  discard=1
+  cards in play:
+    (empty)
+  discard: Develop Your Brain
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 added Bobby Zimuruski - Spray Cheese Kid to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=1  hand=6  discard=1
+  cards in play:
+    (empty)
+  discard: Develop Your Brain
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Hades - Infernal Schemer
+Player 2 added Hamm - Piggy Bank to ink
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=2  hand=5  discard=1
+  cards in play:
+    - Grandmother Willow - Ancient Advisor
+  discard: Develop Your Brain
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 sang Strike a Good Match with Merida - Defiant Daughter
+Player 1 cancelled Strike a Good Match — free, no information revealed
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=3  hand=3  discard=1
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match
+  Player 2:  lore=0  ink=2  hand=5  discard=1
+  cards in play:
+    - Grandmother Willow - Ancient Advisor
+  discard: Develop Your Brain
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Belle - Snowfield Strategist
+Player 2 added Besties, Assemble! to ink
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR draws a card
+The Black Cauldron was put into Player 2's inkwell from hand
+Player 2 drew Aurora - Holding Court
+
+Board State---
+  Player 1:  lore=1  ink=3  hand=3  discard=1
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match
+  Player 2:  lore=0  ink=3  hand=5  discard=1
+  cards in play:
+    - Cinderella - Dream Come True
+    - Grandmother Willow - Ancient Advisor
+  discard: Develop Your Brain
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 sang Malicious, Mean, and Scary with Maudie - Exasperated Nursemaid
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Grandmother Willow - Ancient Advisor
+1 damage counter put on Cinderella - Dream Come True
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Cinderella - Dream Come True
+Cinderella - Dream Come True was banished
+Player 1 sang Strike a Good Match with Merida - Defiant Daughter
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary
+Player 1 discarded Rapunzel & Flynn Rider - Unlikely Pair from hand
+Player 1 added Rapunzel & Flynn Rider - Unlikely Pair to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=4  hand=1  discard=5
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair
+  Player 2:  lore=0  ink=3  hand=5  discard=2
+  cards in play:
+    - Grandmother Willow - Ancient Advisor  [1 dmg]
+  discard: Develop Your Brain, Cinderella - Dream Come True
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 played Belle - Snowfield Strategist (cost 4)
+Player 2 added Aurora - Holding Court to ink
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Hamm - Piggy Bank(BESTIES, ASSEMBLE!) - put into hand
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=4  hand=1  discard=5
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair
+  Player 2:  lore=0  ink=4  hand=3  discard=3
+  cards in play:
+    - Belle - Snowfield Strategist
+    - Grandmother Willow - Ancient Advisor  [1 dmg]
+    - Grandmother Willow - Ancient Advisor  [1 dmg]
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Most Helpful
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 sang Malicious, Mean, and Scary with Maudie - Exasperated Nursemaid
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Grandmother Willow - Ancient Advisor
+1 damage counter put on Grandmother Willow - Ancient Advisor
+1 damage counter put on Belle - Snowfield Strategist
+Grandmother Willow - Ancient Advisor was banished
+Grandmother Willow - Ancient Advisor was put into Player 2's inkwell from discard
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 1 -> 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=4  hand=0  discard=6
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary
+  Player 2:  lore=0  ink=4  hand=3  discard=4
+  cards in play:
+    - Belle - Snowfield Strategist  [1 dmg]
+    - Grandmother Willow - Ancient Advisor
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew World's Greatest Criminal Mind
+Player 2 played Hades - Infernal Schemer (cost 7)
+Tinker Bell - Most Helpful was put into Player 1's inkwell from field
+Player 2 added Hamm - Piggy Bank to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=4  hand=0  discard=6
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary
+  Player 2:  lore=0  ink=5  hand=2  discard=4
+  cards in play:
+    - Belle - Snowfield Strategist  [1 dmg]
+    - Grandmother Willow - Ancient Advisor
+    - Hades - Infernal Schemer
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Max Goof - Chart Topper (cost 6)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 2 -> 3)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 3 -> 4)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=5  hand=-1  discard=6
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Max Goof - Chart Topper
+    - Merida - Defiant Daughter
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary
+  Player 2:  lore=0  ink=5  hand=2  discard=4
+  cards in play:
+    - Belle - Snowfield Strategist  [1 dmg]
+    - Grandmother Willow - Ancient Advisor
+    - Hades - Infernal Schemer
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Raging Storm
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 0 -> 1)
+Player 2 quested with Belle - Snowfield Strategist (+2 [LORE], 1 -> 3)
+Player 2 quested with Hades - Infernal Schemer (+2 [LORE], 3 -> 5)
+Player 2 added World's Greatest Criminal Mind to ink
+Raging Storm's RAGING STORM banishes a card
+Merida - Defiant Daughter was banished
+Maudie - Exasperated Nursemaid was banished
+Max Goof - Chart Topper was banished
+Grandmother Willow - Ancient Advisor was banished
+Belle - Snowfield Strategist was banished
+Hades - Infernal Schemer was banished
+Player 2 played Raging Storm (cost 8)
+Grandmother Willow - Ancient Advisor was put into Player 2's inkwell from discard
+Belle - Snowfield Strategist was put into Player 2's inkwell from discard
+Hades - Infernal Schemer was put into Player 2's inkwell from discard
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=4  ink=5  hand=-1  discard=9
+  cards in play:
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper
+  Player 2:  lore=5  ink=6  hand=1  discard=8
+  cards in play:
+    (empty)
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=5  hand=-1  discard=9
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper
+  Player 2:  lore=5  ink=6  hand=1  discard=8
+  cards in play:
+    (empty)
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Agustin Madrigal - Exceptionally Kind
+Raging Storm's RAGING STORM banishes Shere Khan - Fearsome Tiger
+Shere Khan - Fearsome Tiger was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=4  ink=5  hand=-1  discard=10
+  cards in play:
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger
+  Player 2:  lore=5  ink=6  hand=1  discard=9
+  cards in play:
+    (empty)
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Cruella De Vil - Judgmental Traveler (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=5  hand=-1  discard=10
+  cards in play:
+    - Cruella De Vil - Judgmental Traveler
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger
+  Player 2:  lore=5  ink=6  hand=1  discard=9
+  cards in play:
+    (empty)
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 played Agustin Madrigal - Exceptionally Kind (cost 4)
+Player 2 played Aurora - Holding Court (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=4  ink=5  hand=-1  discard=10
+  cards in play:
+    - Cruella De Vil - Judgmental Traveler
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger
+  Player 2:  lore=5  ink=6  hand=0  discard=9
+  cards in play:
+    - Agustin Madrigal - Exceptionally Kind
+    - Aurora - Holding Court
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Cruella De Vil - Judgmental Traveler (+4 [LORE], 4 -> 8)
+Cruella De Vil - Judgmental Traveler's YOU'RE OUT OF FASHION had no effect (no valid targets)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=-1  discard=10
+  cards in play:
+    - Cruella De Vil - Judgmental Traveler
+    - Goofy - Emerald Champion
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger
+  Player 2:  lore=5  ink=6  hand=0  discard=9
+  cards in play:
+    - Agustin Madrigal - Exceptionally Kind
+    - Aurora - Holding Court
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Agustin Madrigal - Exceptionally Kind
+Player 2 played Agustin Madrigal - Exceptionally Kind (cost 4)
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 5 -> 6)
+Agustin Madrigal - Exceptionally Kind's Support gave +3 [STRENGTH] to Aurora - Holding Court
+Player 2 challenged Cruella De Vil - Judgmental Traveler with Aurora - Holding Court
+Goofy - Emerald Champion's EVEN THE SCORE banishes Aurora - Holding Court
+Player 2 challenged Cruella De Vil - Judgmental Traveler with Aurora - Holding Court | 4 [STRENGTH] dealt 4 dmg to Cruella De Vil - Judgmental Traveler (4/4 [WILLPOWER] - banished!), took 4 dmg (4/2 [WILLPOWER] - banished!)
+Aurora - Holding Court was banished
+Cruella De Vil - Judgmental Traveler was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=-1  discard=11
+  cards in play:
+    - Goofy - Emerald Champion
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler
+  Player 2:  lore=6  ink=6  hand=0  discard=10
+  cards in play:
+    - Agustin Madrigal - Exceptionally Kind
+    - Agustin Madrigal - Exceptionally Kind
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=-1  discard=11
+  cards in play:
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler
+  Player 2:  lore=6  ink=6  hand=0  discard=10
+  cards in play:
+    - Agustin Madrigal - Exceptionally Kind
+    - Agustin Madrigal - Exceptionally Kind
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Hamm - Piggy Bank
+Player 2 played Hamm - Piggy Bank (cost 2)
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 6 -> 7)
+Agustin Madrigal - Exceptionally Kind's Support gave +3 [STRENGTH] to Agustin Madrigal - Exceptionally Kind
+Player 2 quested with Agustin Madrigal - Exceptionally Kind (+1 [LORE], 7 -> 8)
+Agustin Madrigal - Exceptionally Kind's Support gave +6 [STRENGTH] to Agustin Madrigal - Exceptionally Kind
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=-1  discard=11
+  cards in play:
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler
+  Player 2:  lore=8  ink=6  hand=0  discard=10
+  cards in play:
+    - Agustin Madrigal - Exceptionally Kind
+    - Agustin Madrigal - Exceptionally Kind
+    - Hamm - Piggy Bank
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 challenged Agustin Madrigal - Exceptionally Kind with Goofy - Emerald Champion
+Player 1 challenged Agustin Madrigal - Exceptionally Kind with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Agustin Madrigal - Exceptionally Kind (3/6 [WILLPOWER]), took 3 dmg (3/5 [WILLPOWER])
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 8 -> 10)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Agustin Madrigal - Exceptionally Kind
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Agustin Madrigal - Exceptionally Kind was banished
+1 damage counter put on Agustin Madrigal - Exceptionally Kind
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=-1  discard=11
+  cards in play:
+    - Goofy - Emerald Champion  [3 dmg]
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler
+  Player 2:  lore=8  ink=6  hand=0  discard=11
+  cards in play:
+    - Agustin Madrigal - Exceptionally Kind  [1 dmg]
+    - Hamm - Piggy Bank
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court, Agustin Madrigal - Exceptionally Kind
+
+--- Turn 22 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew World's Greatest Criminal Mind
+World's Greatest Criminal Mind's WORLD'S GREATEST CRIMINAL MIND banishes Goofy - Emerald Champion
+Goofy - Emerald Champion was banished
+Player 2 activated LOOSE CHANGE on Hamm - Piggy Bank
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=-1  discard=12
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler, Goofy - Emerald Champion
+  Player 2:  lore=8  ink=6  hand=1  discard=11
+  cards in play:
+    - Agustin Madrigal - Exceptionally Kind  [1 dmg]
+    - Hamm - Piggy Bank
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court, Agustin Madrigal - Exceptionally Kind
+
+--- Turn 23 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Hamm - Piggy Bank
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 10 -> 12)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Agustin Madrigal - Exceptionally Kind
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Agustin Madrigal - Exceptionally Kind was banished
+1 damage counter put on Hamm - Piggy Bank
+Hamm - Piggy Bank was banished
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 12 -> 13)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=13  ink=5  hand=-1  discard=13
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler, Goofy - Emerald Champion, Strength of a Raging Fire
+  Player 2:  lore=8  ink=6  hand=1  discard=13
+  cards in play:
+    (empty)
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court, Agustin Madrigal - Exceptionally Kind, Agustin Madrigal - Exceptionally Kind, Hamm - Piggy Bank
+
+--- Turn 24 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cinderella - Dream Come True
+Player 2 played Cinderella - Dream Come True (cost 4)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR had no effect
+
+Board State---
+  Player 1:  lore=13  ink=5  hand=-1  discard=13
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler, Goofy - Emerald Champion, Strength of a Raging Fire
+  Player 2:  lore=8  ink=6  hand=1  discard=13
+  cards in play:
+    - Cinderella - Dream Come True
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court, Agustin Madrigal - Exceptionally Kind, Agustin Madrigal - Exceptionally Kind, Hamm - Piggy Bank
+
+--- Turn 25 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 13 -> 15)
+Shere Khan - Fearsome Tiger's ON THE HUNT had no effect (no valid targets)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 15 -> 16)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=16  ink=5  hand=-1  discard=13
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler, Goofy - Emerald Champion, Strength of a Raging Fire
+  Player 2:  lore=8  ink=6  hand=1  discard=13
+  cards in play:
+    - Cinderella - Dream Come True
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court, Agustin Madrigal - Exceptionally Kind, Agustin Madrigal - Exceptionally Kind, Hamm - Piggy Bank
+
+--- Turn 26 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Belle - Snowfield Strategist
+Player 2 played Belle - Snowfield Strategist (cost 4)
+Player 2 quested with Cinderella - Dream Come True (+1 [LORE], 9 -> 10)
+Player 2 ended Player 2's turn
+Cinderella - Dream Come True's WHATEVER YOU WISH FOR had no effect
+
+Board State---
+  Player 1:  lore=16  ink=5  hand=-1  discard=13
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler, Goofy - Emerald Champion, Strength of a Raging Fire
+  Player 2:  lore=10  ink=6  hand=1  discard=13
+  cards in play:
+    - Belle - Snowfield Strategist
+    - Cinderella - Dream Come True
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court, Agustin Madrigal - Exceptionally Kind, Agustin Madrigal - Exceptionally Kind, Hamm - Piggy Bank
+
+--- Turn 27 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Belle - Snowfield Strategist
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 16 -> 18)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Belle - Snowfield Strategist
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Belle - Snowfield Strategist was banished
+1 damage counter put on Cinderella - Dream Come True
+Belle - Snowfield Strategist was put into Player 2's inkwell from discard
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 18 -> 19)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 19 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=20  ink=5  hand=-1  discard=13
+  cards in play:
+    - Dinky - Has the Brains
+    - Maudie - Exasperated Nursemaid
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Most Helpful
+  discard: Strike a Good Match, Malicious, Mean, and Scary, Look What You've Done, Strike a Good Match, Rapunzel & Flynn Rider - Unlikely Pair, Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Max Goof - Chart Topper, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler, Goofy - Emerald Champion, Strength of a Raging Fire
+  Player 2:  lore=10  ink=6  hand=1  discard=14
+  cards in play:
+    - Cinderella - Dream Come True  [1 dmg]
+  discard: Develop Your Brain, Cinderella - Dream Come True, Besties, Assemble!, Grandmother Willow - Ancient Advisor, Grandmother Willow - Ancient Advisor, Belle - Snowfield Strategist, Hades - Infernal Schemer, Raging Storm, Raging Storm, Aurora - Holding Court, Agustin Madrigal - Exceptionally Kind, Agustin Madrigal - Exceptionally Kind, Hamm - Piggy Bank, Belle - Snowfield Strategist

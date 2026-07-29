@@ -1,0 +1,342 @@
+Player 1's starting hand: Strike a Good Match, Maudie - Exasperated Nursemaid, Cruella De Vil - Judgmental Traveler, Tinker Bell - Giant Fairy, Look What You've Done, Merida - Defiant Daughter, Tinker Bell - Most Helpful
+Player 2's starting hand: Stitch - Protector of Frogs, He Hurled His Thunderbolt, Lilo - Snow Artist, Ursula - Vanessa, Chief Powhatan - Protective Leader, Angel - Experiment 624, Angel - Experiment 624
+Player 2 mulliganed 7 cards: Chief Powhatan - Protective Leader, Angel - Experiment 624, Angel - Experiment 624, Stitch - Protector of Frogs, He Hurled His Thunderbolt, Ursula - Vanessa, Lilo - Snow Artist. Drew: Akood et Emuti, Ariel - Ethereal Voice, Stitch - Protector of Frogs, Angel - Experiment 624, Strength of a Raging Fire, Look at This Family, He Hurled His Thunderbolt
+Player 1 mulliganed 2 cards: Tinker Bell - Giant Fairy, Cruella De Vil - Judgmental Traveler. Drew: Dr. Bushroot - Evil Botanist, Strength of a Raging Fire
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Look at This Family to ink
+Player 2 played Stitch - Protector of Frogs (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Stitch - Protector of Frogs
+Player 2 added Strength of a Raging Fire to ink
+Player 2 played Stitch - Protector of Frogs (cost 1)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 0 -> 1)
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Rapunzel & Flynn Rider - Unlikely Pair
+Player 1 added Strike a Good Match to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Angel - Experiment 624
+Player 2 added Angel - Experiment 624 to ink
+Player 2 played Akood et Emuti (cost 3)
+Akood et Emuti's AKOOD ET EMUTI You pay 2 less for the next character this turn this turn
+Akood et Emuti's AKOOD ET EMUTI draws a card
+Player 2 drew Ariel - Ethereal Voice
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 1 -> 2)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 2 -> 3)
+Player 2 ended Player 2's turn
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 added Rapunzel & Flynn Rider - Unlikely Pair to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Angel - Siren Singer
+Player 2 added Angel - Siren Singer to ink
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 ended Player 2's turn
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 added Look What You've Done to ink
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 1 -> 2)
+Player 1 sang Strength of a Raging Fire with Maudie - Exasperated Nursemaid
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 3 damage
+Strength of a Raging Fire dealt 3 damage to Ariel - Ethereal Voice
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Ariel - Ethereal Voice
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 sang He Hurled His Thunderbolt with Ariel - Ethereal Voice
+He Hurled His Thunderbolt's HE HURLED HIS THUNDERBOLT deals 4 damage
+He Hurled His Thunderbolt's HE HURLED HIS THUNDERBOLT grants Challenger +2
+He Hurled His Thunderbolt dealt 4 damage to Tinker Bell - Most Helpful
+Tinker Bell - Most Helpful was banished
+Ariel - Ethereal Voice's COMMAND PERFORMANCE - its condition wasn't met
+Ariel - Ethereal Voice's COMMAND PERFORMANCE - its condition wasn't met
+Player 2 added Angel - Experiment 624 to ink
+Player 2 boosted Ariel - Ethereal Voice (1 card under)
+Player 2 ended Player 2's turn
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 challenged Ariel - Ethereal Voice with Maudie - Exasperated Nursemaid
+Player 1 challenged Ariel - Ethereal Voice with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Ariel - Ethereal Voice (5/4 [WILLPOWER] - banished!), took 2 dmg (3-1 Resist) (2/5 [WILLPOWER])
+Ariel - Ethereal Voice was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Stitch - Carefree Snowboarder
+Player 2 played Stitch - Carefree Snowboarder (cost 5)
+Player 2 ended Player 2's turn
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 3 -> 4)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 4 -> 5)
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 5 -> 7)
+Player 1 ended Player 1's turn
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Ariel - Ethereal Voice
+Player 2 quested with Stitch - Carefree Snowboarder (+2 [LORE], 3 -> 5)
+Stitch - Carefree Snowboarder's BRING YOUR FRIENDS draws a card
+Player 2 drew Akood et Emuti
+Player 2 sang Akood et Emuti with Ariel - Ethereal Voice
+Akood et Emuti's AKOOD ET EMUTI You pay 2 less for the next character this turn this turn
+Akood et Emuti's AKOOD ET EMUTI draws a card
+Player 2 drew Grandmother Willow - Ancient Advisor
+Ariel - Ethereal Voice's COMMAND PERFORMANCE chose "Yes"
+Ariel - Ethereal Voice's COMMAND PERFORMANCE draws a card
+Player 2 drew Lilo - Snow Artist
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 played Lilo - Snow Artist (cost 1)
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 5 -> 6)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 6 -> 7)
+Player 2 ended Player 2's turn
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 challenged Ariel - Ethereal Voice with Goofy - Emerald Champion
+Player 1 challenged Ariel - Ethereal Voice with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Ariel - Ethereal Voice (4/4 [WILLPOWER] - banished!), took 3 dmg (3/5 [WILLPOWER])
+Ariel - Ethereal Voice was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 7 -> 8)
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 8 -> 10)
+Player 1 ended Player 1's turn
+
+--- Turn 15 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Chief Powhatan - Protective Leader
+Player 2 quested with Stitch - Carefree Snowboarder (+2 [LORE], 7 -> 9)
+Stitch - Carefree Snowboarder's BRING YOUR FRIENDS draws a card
+Player 2 drew Akood et Emuti
+Player 2 sang Akood et Emuti with Ariel - Ethereal Voice
+Akood et Emuti's AKOOD ET EMUTI You pay 2 less for the next character this turn this turn
+Akood et Emuti's AKOOD ET EMUTI draws a card
+Player 2 drew Chief Powhatan - Protective Leader
+Ariel - Ethereal Voice's COMMAND PERFORMANCE - its condition wasn't met
+Player 2 played Chief Powhatan - Protective Leader (cost 4)
+Player 2 played Chief Powhatan - Protective Leader (cost 4)
+Player 2 quested with Lilo - Snow Artist (+2 [LORE], 9 -> 11)
+Player 2 quested with Grandmother Willow - Ancient Advisor (+1 [LORE], 11 -> 12)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 12 -> 13)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 13 -> 14)
+Player 2 ended Player 2's turn
+
+--- Turn 16 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 added Strength of a Raging Fire to ink
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Stitch - Protector of Frogs
+Tinker Bell - Giant Fairy dealt 1 damage to Stitch - Protector of Frogs
+Tinker Bell - Giant Fairy dealt 1 damage to Stitch - Carefree Snowboarder
+Tinker Bell - Giant Fairy dealt 1 damage to Grandmother Willow - Ancient Advisor
+Tinker Bell - Giant Fairy dealt 1 damage to Lilo - Snow Artist
+Tinker Bell - Giant Fairy dealt 1 damage to Ariel - Ethereal Voice
+Tinker Bell - Giant Fairy dealt 1 damage to Chief Powhatan - Protective Leader
+Tinker Bell - Giant Fairy dealt 1 damage to Chief Powhatan - Protective Leader
+Grandmother Willow - Ancient Advisor was banished
+Lilo - Snow Artist was banished
+Player 1 challenged Chief Powhatan - Protective Leader with Maudie - Exasperated Nursemaid
+Player 1 challenged Chief Powhatan - Protective Leader with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Chief Powhatan - Protective Leader (3/5 [WILLPOWER]), took 4 dmg (5-1 Resist) (6/5 [WILLPOWER] - banished!)
+Maudie - Exasperated Nursemaid was banished
+Player 1 challenged Chief Powhatan - Protective Leader with Merida - Defiant Daughter
+Player 1 challenged Chief Powhatan - Protective Leader with Merida - Defiant Daughter | 2 [STRENGTH] dealt 2 dmg to Chief Powhatan - Protective Leader (5/5 [WILLPOWER] - banished!), took 5 dmg (5/3 [WILLPOWER] - banished!)
+Merida - Defiant Daughter was banished
+Chief Powhatan - Protective Leader was banished
+Player 1 challenged Chief Powhatan - Protective Leader with Goofy - Emerald Champion
+Player 1 challenged Chief Powhatan - Protective Leader with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Chief Powhatan - Protective Leader (4/5 [WILLPOWER]), took 5 dmg (5/5 [WILLPOWER] - banished!)
+Goofy - Emerald Champion was banished
+Player 1 challenged Chief Powhatan - Protective Leader with Goofy - Emerald Champion
+Player 1 challenged Chief Powhatan - Protective Leader with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Chief Powhatan - Protective Leader (7/5 [WILLPOWER] - banished!), took 5 dmg (5/5 [WILLPOWER] - banished!)
+Goofy - Emerald Champion was banished
+Chief Powhatan - Protective Leader was banished
+Player 1 challenged Chief Powhatan - Protective Leader with Goofy - Emerald Champion
+Player 1 challenged Chief Powhatan - Protective Leader with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Chief Powhatan - Protective Leader (7/5 [WILLPOWER] - banished!), took 5 dmg (8/5 [WILLPOWER] - banished!)
+Goofy - Emerald Champion was banished
+Chief Powhatan - Protective Leader was banished
+Player 1 challenged Stitch - Carefree Snowboarder with Goofy - Emerald Champion
+Player 1 challenged Stitch - Carefree Snowboarder with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Stitch - Carefree Snowboarder (5/5 [WILLPOWER] - banished!), took 4 dmg (4/5 [WILLPOWER])
+Stitch - Carefree Snowboarder was banished
+Player 1 challenged Stitch - Carefree Snowboarder with Goofy - Emerald Champion
+Player 1 challenged Stitch - Carefree Snowboarder with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Stitch - Carefree Snowboarder (5/5 [WILLPOWER] - banished!), took 4 dmg (4/5 [WILLPOWER])
+Stitch - Carefree Snowboarder was banished
+Player 1 ended Player 1's turn
+
+--- Turn 17 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Angel - Siren Singer
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 boosted Ariel - Ethereal Voice (1 card under)
+Player 2 added Angel - Siren Singer to ink
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 14 -> 16)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 16 -> 17)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 17 -> 18)
+Player 2 ended Player 2's turn
+
+--- Turn 18 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 challenged Stitch - Protector of Frogs with Tinker Bell - Giant Fairy
+Player 1 challenged Stitch - Protector of Frogs with Tinker Bell - Giant Fairy | 4 [STRENGTH] dealt 4 dmg to Stitch - Protector of Frogs (6/3 [WILLPOWER] - banished!), took 1 dmg (1/5 [WILLPOWER])
+Stitch - Protector of Frogs was banished
+Tinker Bell - Giant Fairy's PUNY PIRATE! deals 2 damage
+Tinker Bell - Giant Fairy dealt 2 damage to Ariel - Ethereal Voice
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Ariel - Ethereal Voice
+Ariel - Ethereal Voice was banished
+Player 1 challenged Ariel - Ethereal Voice with Goofy - Emerald Champion
+Player 1 challenged Ariel - Ethereal Voice with Goofy - Emerald Champion | 3 [STRENGTH] dealt 3 dmg to Ariel - Ethereal Voice (5/4 [WILLPOWER] - banished!), took 3 dmg (7/5 [WILLPOWER] - banished!)
+Goofy - Emerald Champion was banished
+Ariel - Ethereal Voice was banished
+Player 1 ended Player 1's turn
+
+--- Turn 19 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Angel - Siren Singer
+Player 2 played Angel - Siren Singer (cost 2)
+Player 2 quested with Stitch - Protector of Frogs (+1 [LORE], 18 -> 19)
+Player 2 ended Player 2's turn
+
+--- Turn 20 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 challenged Stitch - Protector of Frogs with Tinker Bell - Giant Fairy
+Player 1 challenged Stitch - Protector of Frogs with Tinker Bell - Giant Fairy | 4 [STRENGTH] dealt 4 dmg to Stitch - Protector of Frogs (6/3 [WILLPOWER] - banished!), took 1 dmg (2/5 [WILLPOWER])
+Stitch - Protector of Frogs was banished
+Tinker Bell - Giant Fairy's PUNY PIRATE! deals 2 damage
+Tinker Bell - Giant Fairy dealt 2 damage to Angel - Siren Singer
+Angel - Siren Singer was banished
+Player 1 ended Player 1's turn
+
+--- Turn 21 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lilo - Bundled Up
+Player 2 played Lilo - Bundled Up (cost 2)
+Player 2 ended Player 2's turn
+
+--- Turn 22 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 played Max Goof - Chart Topper (cost 6)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 10 -> 12)
+Player 1 quested with Ariel - Determined Mermaid (+1 [LORE], 12 -> 13)
+Player 1 ended Player 1's turn
+
+--- Turn 23 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Angel - Experiment 624
+Player 2 quested with Lilo - Bundled Up (+2 [LORE], 19 -> 21)
+Player 2 won with 21 [LORE]!
+Player 2 won with 21 [LORE]!

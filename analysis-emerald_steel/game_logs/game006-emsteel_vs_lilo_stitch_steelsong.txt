@@ -1,0 +1,230 @@
+Player 1's starting hand: Cruella De Vil - Judgmental Traveler, Ariel - Determined Mermaid, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist, Merida - Defiant Daughter, Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid
+Player 2's starting hand: Angel - Experiment 624, Meilin Lee - Losing Control, Lilo - Bundled Up, Look at This Family, Akood et Emuti, Angel - Siren Singer, Lilo & Stitch - Fun-Loving Friends
+Player 2 mulliganed 7 cards: Look at This Family, Angel - Siren Singer, Lilo & Stitch - Fun-Loving Friends, Lilo - Bundled Up, Meilin Lee - Losing Control, Angel - Experiment 624, Akood et Emuti. Drew: Angel - Siren Singer, Stitch - Protector of Frogs, Lilo - Snow Artist, Ariel - Ethereal Voice, Ariel - Ethereal Voice, Ursula - Vanessa, Meilin Lee - Losing Control
+Player 1 mulliganed 3 cards: Cruella De Vil - Judgmental Traveler, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist. Drew: Winifred - Exasperated Elephant, Cruella De Vil - Judgmental Traveler, Max Goof - Chart Topper
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Angel - Siren Singer to ink
+Player 2 played Lilo - Snow Artist (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Meilin Lee - Losing Control
+Player 2 added Stitch - Protector of Frogs to ink
+Player 2 played Ursula - Vanessa (cost 2)
+Player 2 quested with Lilo - Snow Artist (+1 [LORE], 0 -> 1)
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Ursula - Vanessa
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lilo - Bundled Up
+Player 2 added Meilin Lee - Losing Control to ink
+Player 2 played Meilin Lee - Losing Control (cost 3)
+Player 2 revealed Meilin Lee - Losing Control(RED PANDA POWER) - put into hand
+Player 2 quested with Lilo - Snow Artist (+1 [LORE], 1 -> 2)
+Player 2 quested with Ursula - Vanessa (+1 [LORE], 2 -> 3)
+Player 2 ended Player 2's turn
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Most Helpful
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 0 -> 2)
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Ariel - Ethereal Voice
+Player 2 added Meilin Lee - Losing Control to ink
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 challenged Dinky - Has the Brains with Meilin Lee - Losing Control
+Player 2 challenged Dinky - Has the Brains with Meilin Lee - Losing Control | 2 [STRENGTH] dealt 2 dmg to Dinky - Has the Brains (2/2 [WILLPOWER] - banished!), took 1 dmg (1/3 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 quested with Ursula - Vanessa (+1 [LORE], 3 -> 4)
+Player 2 quested with Lilo - Snow Artist (+1 [LORE], 4 -> 5)
+Player 2 ended Player 2's turn
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Stitch - Protector of Frogs
+Player 2 added Stitch - Protector of Frogs to ink
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 boosted Ariel - Ethereal Voice (1 card under)
+Player 2 quested with Lilo - Snow Artist (+1 [LORE], 5 -> 6)
+Player 2 quested with Ursula - Vanessa (+1 [LORE], 6 -> 7)
+Player 2 quested with Meilin Lee - Losing Control (+1 [LORE], 7 -> 8)
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 8 -> 10)
+Player 2 ended Player 2's turn
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Goofy - Emerald Champion, Shere Khan - Fearsome Tiger
+Player 1 discarded Goofy - Emerald Champion from hand
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Lilo - Snow Artist
+1 damage counter put on Ursula - Vanessa
+1 damage counter put on Meilin Lee - Losing Control
+1 damage counter put on Ariel - Ethereal Voice
+1 damage counter put on Ariel - Ethereal Voice
+Player 1 challenged Ariel - Ethereal Voice with Merida - Defiant Daughter
+Player 1 challenged Ariel - Ethereal Voice with Merida - Defiant Daughter | 2 [STRENGTH] dealt 2 dmg to Ariel - Ethereal Voice (3/4 [WILLPOWER]), took 3 dmg (3/3 [WILLPOWER] - banished!)
+Merida - Defiant Daughter was banished
+Player 1 challenged Ariel - Ethereal Voice with Maudie - Exasperated Nursemaid
+Player 1 challenged Ariel - Ethereal Voice with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Ariel - Ethereal Voice (5/4 [WILLPOWER] - banished!), took 2 dmg (3-1 Resist) (2/5 [WILLPOWER])
+Ariel - Ethereal Voice was banished
+Player 1 ended Player 1's turn
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Akood et Emuti
+Player 2 sang Akood et Emuti with Ursula - Vanessa
+Akood et Emuti's AKOOD ET EMUTI You pay 2 less for the next character this turn this turn
+Akood et Emuti's AKOOD ET EMUTI draws a card
+Player 2 drew Stitch - Protector of Frogs
+Ariel - Ethereal Voice's COMMAND PERFORMANCE chose "Yes"
+Ariel - Ethereal Voice's COMMAND PERFORMANCE draws a card
+Player 2 drew He Hurled His Thunderbolt
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 boosted Ariel - Ethereal Voice (1 card under)
+Player 2 played Lilo - Bundled Up (cost 2)
+Player 2 quested with Lilo - Snow Artist (+1 [LORE], 10 -> 11)
+Player 2 quested with Meilin Lee - Losing Control (+1 [LORE], 11 -> 12)
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 12 -> 14)
+Player 2 ended Player 2's turn
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Shere Khan - Fearsome Tiger, Malicious, Mean, and Scary
+Player 1 discarded Shere Khan - Fearsome Tiger from hand
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 sang Malicious, Mean, and Scary with Maudie - Exasperated Nursemaid
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Lilo - Snow Artist
+1 damage counter put on Ursula - Vanessa
+1 damage counter put on Meilin Lee - Losing Control
+1 damage counter put on Ariel - Ethereal Voice
+1 damage counter put on Ariel - Ethereal Voice
+Lilo - Snow Artist was banished
+Meilin Lee - Losing Control was banished
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Lilo - Snow Artist
+1 damage counter put on Ursula - Vanessa
+1 damage counter put on Meilin Lee - Losing Control
+1 damage counter put on Ariel - Ethereal Voice
+1 damage counter put on Ariel - Ethereal Voice
+Lilo - Snow Artist was banished
+Meilin Lee - Losing Control was banished
+Player 1 challenged Ariel - Ethereal Voice with Maudie - Exasperated Nursemaid
+Player 1 challenged Ariel - Ethereal Voice with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Ariel - Ethereal Voice (4/4 [WILLPOWER] - banished!), took 2 dmg (3-1 Resist) (4/5 [WILLPOWER])
+Ariel - Ethereal Voice was banished
+Player 1 ended Player 1's turn
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Angel - Siren Singer
+Player 2 played Stitch - Protector of Frogs (cost 1)
+Player 2 played Angel - Siren Singer (cost 2)
+Player 2 quested with Ursula - Vanessa (+1 [LORE], 14 -> 15)
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 15 -> 17)
+Player 2 quested with Lilo - Bundled Up (+2 [LORE], 17 -> 19)
+Player 2 ended Player 2's turn
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 challenged Ursula - Vanessa with Maudie - Exasperated Nursemaid
+Player 1 challenged Ursula - Vanessa with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Ursula - Vanessa (5/4 [WILLPOWER] - banished!), took 0 dmg (1-1 Resist) (4/5 [WILLPOWER])
+Ursula - Vanessa was banished
+Player 1 ended Player 1's turn
+
+--- Turn 15 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Strength of a Raging Fire
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 19 -> 21)
+Player 2 won with 21 [LORE]!
+Player 2 won with 21 [LORE]!

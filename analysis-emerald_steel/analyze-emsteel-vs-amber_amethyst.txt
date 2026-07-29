@@ -1,6 +1,6 @@
 
 ==============================================================================
-DECK DIAGNOSTICS: Deck A over 300 games  (win rate 84%)
+DECK DIAGNOSTICS: Deck A over 150 games  (win rate 75%)
 ==============================================================================
 
 PER-CARD CONTRIBUTION
@@ -9,46 +9,56 @@ PER-CARD CONTRIBUTION
 
   card                                   cop  seen  play  dead  ink   wr+   wr0  delta
   ------------------------------------------------------------------------------------
-  Merida - Defiant Daughter                4   69%   79%    2%  43%   83%   84%    -1
-  Cruella De Vil - Judgmental Traveler     4   59%   51%    6%  67%   89%   88%    +1
-  Bobby Zimuruski - Spray Cheese Kid       3   60%   93%    0%  22%   85%   82%    +2
-  Goofy - Emerald Champion                 3   56%   80%   19%   0%   87%   85%    +3
-  Robin Hood - Daydreamer                  1   21%   25%   13%  60%   88%   85%    +3
-  Strength of a Raging Fire                2   47%   28%    4%  74%   85%   82%    +3
-  Ariel - Determined Mermaid               4   76%   65%    2%  66%   86%   82%    +4
-  Maudie - Exasperated Nursemaid           4   70%   73%    2%  59%   87%   83%    +4
-  Malicious, Mean, and Scary               4   72%   50%    0%  82%   83%   79%    +4
-  Strike A Good Match                      3   47%   49%    0%  65%   88%   83%    +5
-  Dinky - Has the Brains                   4   69%   84%    0%  38%   87%   80%    +6
-  Dr. Bushroot - Evil Botanist             4   57%   58%    7%  65%   89%   81%    +8
-  Max Goof - Chart Topper                  3   46%   32%    7%  77%   95%   86%   +10
-  Tinker Bell - Giant Fairy                2   35%   34%   10%  63%   92%   82%   +10
-  Winifred - Exasperated Elephant          4   57%   41%    5%  82%   91%   80%   +12
-  Chomp!                                   2   47%   34%    2%  58%   92%   80%   +12
-  Kaa - Secretive Snake                    2   36%   16%    7%  83%   94%   82%   +12
-  Shere Khan - Fearsome Tiger              3   57%   77%   23%   0%   92%   79%   +14
-  Look What You've Done                    4   67%   77%    2%  51%   90%   65%   +25
+  Strength of a Raging Fire                2   52%   26%    6%  69%   65%   75%   -10
+  Merida - Defiant Daughter                4   75%   73%    4%  44%   72%   76%    -4
+  Malicious, Mean, and Scary               4   65%   50%    0%  80%   73%   75%    -2
+  Goofy - Emerald Champion                 3   54%   80%   15%   0%   77%   78%    -1
+  Tinker Bell - Most Helpful               2   48%   57%    3%  56%   80%   78%    +2
+  Strike A Good Match                      2   41%   41%    0%  64%   80%   78%    +2
+  Winifred - Exasperated Elephant          3   46%   36%    9%  77%   84%   78%    +6
+  Bobby Zimuruski - Spray Cheese Kid       3   60%   90%    1%  22%   78%   70%    +8
+  Dinky - Has the Brains                   4   64%   82%    1%  38%   81%   72%    +9
+  Rapunzel & Flynn Rider - Unlikely Pair   3   47%   51%    4%  70%   83%   74%   +10
+  Ariel - Determined Mermaid               4   73%   70%    0%  63%   82%   71%   +11
+  Shere Khan - Fearsome Tiger              3   55%   71%   24%   0%   85%   73%   +12
+  Maudie - Exasperated Nursemaid           4   75%   69%    2%  64%   81%   65%   +16
+  Look What You've Done                    4   65%   85%    2%  54%   80%   62%   +18
+  Chomp!                                   2   41%   28%    3%  57%   88%   70%   +19
+  Max Goof - Chart Topper                  3   43%   28%    3%  72%   94%   75%   +19
+  Cruella De Vil - Judgmental Traveler     4   62%   51%    3%  81%   87%   67%   +21
+  Dr. Bushroot - Evil Botanist             4   47%   60%    3%  66%   90%   69%   +22
+  Tinker Bell - Giant Fairy                2   33%   44%   10%  66%  100%   74%   +26
 
 FLAGS (heuristic cut/keep signals)
-  - Malicious, Mean, and Scary: mostly inked (82%) — may be a filler slot
-  - Max Goof - Chart Topper: mostly inked (77%) — may be a filler slot
-  - Winifred - Exasperated Elephant: mostly inked (82%) — may be a filler slot
-  - Chomp!: low utilization (played 34% when drawn)
-  - Kaa - Secretive Snake: mostly inked (83%) — may be a filler slot
+  - Strength of a Raging Fire: win-rate drag (-10)
+  - Malicious, Mean, and Scary: mostly inked (80%) — may be a filler slot
+  - Winifred - Exasperated Elephant: mostly inked (77%) — may be a filler slot
+  - Chomp!: low utilization (played 28% when drawn)
+  - Cruella De Vil - Judgmental Traveler: mostly inked (81%) — may be a filler slot
 
 TEMPO & CURVE
-  Avg ink after your turn:  T1:1.0  T2:2.0  T3:3.0  T4:3.9  T5:4.8  T6:5.5  T7:6.2  T8:6.6  T9:7.0  T10:7.4
-  Avg turn each cost first lands: 1-drop: turn 3.7  2-drop: turn 2.4  3-drop: turn 4.1  5-drop: turn 6.9  6-drop: turn 7.5  7+-drop: turn 10.9
-  Opening-hand inkable count distribution: 4:0%  5:3%  6:25%  7:71%
+  Avg ink after your turn:  T1:1.0  T2:2.0  T3:3.0  T4:3.9  T5:4.8  T6:5.5  T7:6.1  T8:6.6  T9:6.9  T10:7.2
+  Avg turn each cost first lands: 1-drop: turn 4.0  2-drop: turn 2.6  3-drop: turn 4.1  4-drop: turn 7.2  5-drop: turn 6.7  6-drop: turn 7.7
+  Opening-hand inkable count distribution: 5:3%  6:23%  7:74%
 
 LOSS PATTERNS
-  Losses: 49   avg length 18.7 half-turns (fast <=14: 9, grind >=24: 5)
-  Avg lore gap in losses: 11.3
+  Losses: 37   avg length 17.5 half-turns (fast <=14: 2, grind >=24: 1)
+  Avg lore gap in losses: 12.6
   Losses with 3+ locations stuck in hand (flood): 0  (0% of losses)
   Losses after a low-ink opening (<=2 inkable): 0  (0% of losses)
 
 READ
   Losses are mixed in length — no single tempo problem dominates; lean on the per-card deltas and flood/screw rates below.
+
+ABILITY TRIGGERS (studied deck; totals across all games)
+  trigger                                       total  avg/game  games%
+  Bobby: SO CHEESY                                131      0.87     67%
+  Dinky: GET HIM!                                 131      0.87     65%
+  R&F: CLEVER SWAP                                 81      0.54     23%
+  Ariel: I WANT MORE                               32      0.21     16%
+  R&F: FRESH START replay                          18      0.12     10%
+  Cruella: OUT OF FASHION banish                   15      0.10      8%
+  MaxGoof: NUMBER ONE HIT                           6      0.04      3%
 
 NOTE: deltas are correlational, not causal. A high-delta card may just 
 ride along in good draws. Use `--suggest` to A/B test specific swaps.

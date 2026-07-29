@@ -1,0 +1,646 @@
+Player 1's starting hand: Max Goof - Chart Topper, Winifred - Exasperated Elephant, Goofy - Emerald Champion, Dr. Bushroot - Evil Botanist, Shere Khan - Fearsome Tiger, Dr. Bushroot - Evil Botanist, Malicious, Mean, and Scary
+Player 2's starting hand: Mushu - Stealthy Dragon, Merlin - Envisioning the Future, Minnie Mouse - Spinning Skater, Gyro-Evac, Minnie Mouse - Curious Adventurer, Dr. Bushroot - Evil Botanist, Mushu - Stealthy Dragon
+Player 2 mulliganed 7 cards: Gyro-Evac, Merlin - Envisioning the Future, Dr. Bushroot - Evil Botanist, Mushu - Stealthy Dragon, Mushu - Stealthy Dragon, Minnie Mouse - Curious Adventurer, Minnie Mouse - Spinning Skater. Drew: Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future, Hades - Meticulous Schemer, Mickey Mouse - Bob Cratchit, Develop Your Brain, Pete - Ghost of Christmas Future, Mickey Mouse - Bob Cratchit
+Player 1 mulliganed 6 cards: Goofy - Emerald Champion, Winifred - Exasperated Elephant, Max Goof - Chart Topper, Dr. Bushroot - Evil Botanist, Shere Khan - Fearsome Tiger, Dr. Bushroot - Evil Botanist. Drew: Shere Khan - Fearsome Tiger, Look What You've Done, Bobby Zimuruski - Spray Cheese Kid, Winifred - Exasperated Elephant, Dinky - Has the Brains, Strength of a Raging Fire
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Mickey Mouse - Bob Cratchit to ink
+Player 2 played Develop Your Brain (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=5  discard=1
+  cards in play:
+    (empty)
+  discard: Develop Your Brain
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=1  hand=5  discard=1
+  cards in play:
+    (empty)
+  discard: Develop Your Brain
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse & Minnie Mouse - Adventuring Duo
+Player 2 added Minnie Mouse - Spinning Skater to ink
+Player 2 played Mickey Mouse - Bob Cratchit (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=2  hand=4  discard=1
+  cards in play:
+    - Mickey Mouse - Bob Cratchit
+  discard: Develop Your Brain
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Mickey Mouse - Bob Cratchit
+Mickey Mouse - Bob Cratchit was banished
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=5  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done
+  Player 2:  lore=0  ink=2  hand=4  discard=2
+  cards in play:
+    (empty)
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Minnie Mouse - Spinning Skater
+Player 2 played Minnie Mouse - Spinning Skater (cost 2)
+Player 2 added Hades - Meticulous Schemer to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=5  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done
+  Player 2:  lore=0  ink=3  hand=3  discard=2
+  cards in play:
+    - Minnie Mouse - Spinning Skater
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Minnie Mouse - Spinning Skater
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 1 -> 2)
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=3  hand=4  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  discard: Look What You've Done
+  Player 2:  lore=0  ink=3  hand=3  discard=2
+  cards in play:
+    - Minnie Mouse - Spinning Skater  [1 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Scrooge McDuck - Reformed Ebenezer
+Player 2 added Scrooge McDuck - Reformed Ebenezer to ink
+Player 2 played Minnie Mouse - Spinning Skater (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=3  hand=4  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  discard: Look What You've Done
+  Player 2:  lore=0  ink=4  hand=2  discard=2
+  cards in play:
+    - Minnie Mouse - Spinning Skater  [1 dmg]
+    - Minnie Mouse - Spinning Skater  [1 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Chomp!
+Player 1 discarded Look What You've Done from hand
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Play from discard"
+Look What You've Done's LOOK WHAT YOU'VE DONE plays Look What You've Done from discard exerted
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Minnie Mouse - Spinning Skater
+Minnie Mouse - Spinning Skater was banished
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 2 -> 3)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 3 -> 5)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=5  ink=3  hand=3  discard=3
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  discard: Look What You've Done, Look What You've Done, Look What You've Done
+  Player 2:  lore=0  ink=4  hand=2  discard=3
+  cards in play:
+    - Minnie Mouse - Spinning Skater
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Minnie Mouse - Curious Adventurer
+Player 2 added Minnie Mouse - Curious Adventurer to ink
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 challenged Dinky - Has the Brains with Minnie Mouse - Spinning Skater
+Player 2 challenged Dinky - Has the Brains with Minnie Mouse - Spinning Skater | 3 [STRENGTH] dealt 3 dmg to Dinky - Has the Brains (3/2 [WILLPOWER] - banished!), took 1 dmg (1/3 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=5  ink=3  hand=3  discard=4
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains
+  Player 2:  lore=0  ink=5  hand=1  discard=3
+  cards in play:
+    - Minnie Mouse - Spinning Skater  [1 dmg]
+    - Pete - Ghost of Christmas Future
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Minnie Mouse - Spinning Skater
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Minnie Mouse - Spinning Skater
+Minnie Mouse - Spinning Skater was banished
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 5 -> 6)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 6 -> 7)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=7  ink=3  hand=2  discard=5
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!
+  Player 2:  lore=0  ink=5  hand=1  discard=4
+  cards in play:
+    - Pete - Ghost of Christmas Future
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse & Minnie Mouse - Adventuring Duo
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 0 -> 1)
+Pete - Ghost of Christmas Future's FOREBODING GLANCE had no effect
+Player 2 added Mickey Mouse & Minnie Mouse - Adventuring Duo to ink
+Player 2 played Merlin - Envisioning the Future (cost 4)
+Merlin - Envisioning the Future's MINOR TRICKERY chose "Yes"
+Merlin - Envisioning the Future's MINOR TRICKERY draws a card
+Player 2 drew Pete - Ghost of Christmas Future
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=7  ink=3  hand=2  discard=5
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!
+  Player 2:  lore=1  ink=6  hand=1  discard=4
+  cards in play:
+    - Merlin - Envisioning the Future
+    - Pete - Ghost of Christmas Future
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 3 damage
+Strength of a Raging Fire dealt 3 damage to Merlin - Envisioning the Future
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 7 -> 8)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 8 -> 9)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 9 -> 11)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=11  ink=4  hand=1  discard=6
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire
+  Player 2:  lore=1  ink=6  hand=1  discard=4
+  cards in play:
+    - Merlin - Envisioning the Future  [3 dmg]
+    - Pete - Ghost of Christmas Future
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse - Detective
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Pete - Ghost of Christmas Future
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Pete - Ghost of Christmas Future | 5 [STRENGTH] dealt 5 dmg to Bobby Zimuruski - Spray Cheese Kid (5/2 [WILLPOWER] - banished!), took 1 dmg (1/5 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 challenged Dinky - Has the Brains with Merlin - Envisioning the Future
+Merlin - Envisioning the Future's AGE OF INCONVENIENCE puts Merlin - Envisioning the Future on bottom of deck
+Player 2 challenged Dinky - Has the Brains with Merlin - Envisioning the Future | 1 [STRENGTH] dealt 1 dmg to Dinky - Has the Brains (1/2 [WILLPOWER]), took 1 dmg (4/4 [WILLPOWER] - banished!)
+Merlin - Envisioning the Future was banished
+Player 2 played Mickey Mouse - Detective (cost 3)
+Mickey Mouse - Detective's GET A CLUE puts top card into inkwell exerted
+A card was put into Player 2's inkwell
+Player 2 added Mickey Mouse & Minnie Mouse - Adventuring Duo to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=11  ink=4  hand=1  discard=7
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains  [1 dmg]
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=1  ink=7  hand=0  discard=5
+  cards in play:
+    - Mickey Mouse - Detective
+    - Pete - Ghost of Christmas Future  [1 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Pete - Ghost of Christmas Future
+1 damage counter put on Mickey Mouse - Detective
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 11 -> 12)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 12 -> 14)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=14  ink=4  hand=1  discard=8
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains  [1 dmg]
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary
+  Player 2:  lore=1  ink=7  hand=0  discard=5
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Pete - Ghost of Christmas Future  [2 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future
+
+--- Turn 15 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mushu - Stealthy Dragon
+Player 2 boosted Pete - Ghost of Christmas Future (2 cards under)
+Player 2 played Mushu - Stealthy Dragon (cost 3)
+Player 2 challenged Dinky - Has the Brains with Pete - Ghost of Christmas Future
+Player 2 challenged Dinky - Has the Brains with Pete - Ghost of Christmas Future | 5 [STRENGTH] dealt 5 dmg to Dinky - Has the Brains (6/2 [WILLPOWER] - banished!), took 1 dmg (3/5 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=14  ink=4  hand=1  discard=9
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains
+  Player 2:  lore=1  ink=7  hand=0  discard=5
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mushu - Stealthy Dragon
+    - Pete - Ghost of Christmas Future  [3 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future
+
+--- Turn 16 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 played Strike a Good Match (cost 2)
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Kaa - Secretive Snake, Merida - Defiant Daughter
+Player 1 discarded Kaa - Secretive Snake from hand
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 14 -> 15)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=15  ink=5  hand=1  discard=11
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake
+  Player 2:  lore=1  ink=7  hand=0  discard=5
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mushu - Stealthy Dragon
+    - Pete - Ghost of Christmas Future  [3 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future
+
+--- Turn 17 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse & Minnie Mouse - Adventuring Duo
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Mushu - Stealthy Dragon
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Mushu - Stealthy Dragon | 3 [STRENGTH] dealt 3 dmg to Bobby Zimuruski - Spray Cheese Kid (3/2 [WILLPOWER] - banished!), took 1 dmg (1/2 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 1 -> 2)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 quested with Mickey Mouse - Detective (+1 [LORE], 2 -> 3)
+Player 2 added Scrooge McDuck - Reformed Ebenezer to ink
+Player 2 boosted Pete - Ghost of Christmas Future (3 cards under)
+Player 2 played Pete - Ghost of Christmas Future (cost 5)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=15  ink=5  hand=1  discard=12
+  cards in play:
+    (empty)
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=3  ink=8  hand=-1  discard=5
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mushu - Stealthy Dragon  [1 dmg]
+    - Pete - Ghost of Christmas Future  [3 dmg]
+    - Pete - Ghost of Christmas Future  [3 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future
+
+--- Turn 18 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=15  ink=6  hand=0  discard=12
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=3  ink=8  hand=-1  discard=5
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mushu - Stealthy Dragon  [1 dmg]
+    - Pete - Ghost of Christmas Future  [3 dmg]
+    - Pete - Ghost of Christmas Future  [3 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future
+
+--- Turn 19 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse - Detective
+Player 2 boosted Pete - Ghost of Christmas Future (1 card under)
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 3 -> 4)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 added Mickey Mouse & Minnie Mouse - Adventuring Duo to ink
+Player 2 played Mickey Mouse - Detective (cost 3)
+Mickey Mouse - Detective's GET A CLUE puts top card into inkwell exerted
+A card was put into Player 2's inkwell
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 4 -> 5)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 quested with Mickey Mouse - Detective (+1 [LORE], 5 -> 6)
+Player 2 quested with Mushu - Stealthy Dragon (+1 [LORE], 6 -> 7)
+Mushu - Stealthy Dragon's TIP THE SCALES - Secondary condition not met at resolution time
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=15  ink=6  hand=0  discard=12
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=7  ink=9  hand=-2  discard=5
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mushu - Stealthy Dragon  [1 dmg]
+    - Pete - Ghost of Christmas Future  [3 dmg]
+    - Pete - Ghost of Christmas Future  [3 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future
+
+--- Turn 20 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 15 -> 17)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Pete - Ghost of Christmas Future
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Pete - Ghost of Christmas Future was banished
+1 damage counter put on Mushu - Stealthy Dragon
+Mushu - Stealthy Dragon was banished
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=17  ink=6  hand=0  discard=12
+  cards in play:
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=7  ink=9  hand=-2  discard=7
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mickey Mouse - Detective  [1 dmg]
+    - Pete - Ghost of Christmas Future
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future, Pete - Ghost of Christmas Future, Mushu - Stealthy Dragon
+
+--- Turn 21 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dr. Bushroot - Evil Botanist
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 7 -> 8)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played Milo Thatch - Getting His Hands Dirty (cost 7)
+Milo Thatch - Getting His Hands Dirty's SCHOLAR'S GAMBIT Discarded a card
+Milo Thatch - Getting His Hands Dirty's SCHOLAR'S GAMBIT returns Goofy - Emerald Champion to hand
+Player 2 discarded Dr. Bushroot - Evil Botanist from hand
+Goofy - Emerald Champion returned to Player 1's hand
+Player 2 played Education or Elimination (cost 4)
+Education or Elimination's EDUCATION OR ELIMINATION draws a card
+Education or Elimination's EDUCATION OR ELIMINATION gives +1 [LORE] to Pete - Ghost of Christmas Future
+Education or Elimination's EDUCATION OR ELIMINATION grants Evasive
+Player 2 drew Dr. Bushroot - Evil Botanist
+Player 2 quested with Mickey Mouse - Detective (+1 [LORE], 8 -> 9)
+Player 2 quested with Mickey Mouse - Detective (+1 [LORE], 9 -> 10)
+Player 2 ended Player 2's turn
+Milo Thatch - Getting His Hands Dirty's PRACTICAL KNOWLEDGE draws a card
+Player 2 drew Mushu - Stealthy Dragon
+
+Board State---
+  Player 1:  lore=17  ink=6  hand=0  discard=12
+  cards in play:
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=10  ink=9  hand=-2  discard=9
+  cards in play:
+    - Mickey Mouse - Detective  [1 dmg]
+    - Mickey Mouse - Detective  [1 dmg]
+    - Milo Thatch - Getting His Hands Dirty
+    - Pete - Ghost of Christmas Future
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future, Pete - Ghost of Christmas Future, Mushu - Stealthy Dragon, Dr. Bushroot - Evil Botanist, Education or Elimination
+
+--- Turn 22 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 17 -> 19)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Mickey Mouse - Detective
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Mickey Mouse - Detective was banished
+1 damage counter put on Pete - Ghost of Christmas Future
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=19  ink=6  hand=0  discard=12
+  cards in play:
+    - Goofy - Emerald Champion
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=10  ink=9  hand=-2  discard=10
+  cards in play:
+    - Mickey Mouse - Detective
+    - Milo Thatch - Getting His Hands Dirty
+    - Pete - Ghost of Christmas Future  [1 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future, Pete - Ghost of Christmas Future, Mushu - Stealthy Dragon, Dr. Bushroot - Evil Botanist, Education or Elimination, Mickey Mouse - Detective
+
+--- Turn 23 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mickey Mouse - Detective
+Player 2 played Dr. Bushroot - Evil Botanist (cost 5)
+Player 2 added Mushu - Stealthy Dragon to ink
+Player 2 quested with Pete - Ghost of Christmas Future (+1 [LORE], 10 -> 11)
+Player 2 put a card into hand(FOREBODING GLANCE)
+Player 2 played Milo Thatch - Getting His Hands Dirty (cost 7)
+Milo Thatch - Getting His Hands Dirty's SCHOLAR'S GAMBIT Discarded a card
+Milo Thatch - Getting His Hands Dirty's SCHOLAR'S GAMBIT returns Goofy - Emerald Champion to hand
+Player 2 discarded Mickey Mouse - Detective from hand
+Goofy - Emerald Champion returned to Player 1's hand
+Player 2 quested with Mickey Mouse - Detective (+1 [LORE], 11 -> 12)
+Player 2 quested with Milo Thatch - Getting His Hands Dirty (+3 [LORE], 12 -> 15)
+Player 2 ended Player 2's turn
+Milo Thatch - Getting His Hands Dirty's PRACTICAL KNOWLEDGE - Secondary condition not met at resolution time
+Milo Thatch - Getting His Hands Dirty's PRACTICAL KNOWLEDGE - Secondary condition not met at resolution time
+
+Board State---
+  Player 1:  lore=19  ink=6  hand=0  discard=12
+  cards in play:
+    - Goofy - Emerald Champion
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=15  ink=10  hand=-5  discard=11
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Mickey Mouse - Detective
+    - Milo Thatch - Getting His Hands Dirty
+    - Milo Thatch - Getting His Hands Dirty
+    - Pete - Ghost of Christmas Future  [1 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future, Pete - Ghost of Christmas Future, Mushu - Stealthy Dragon, Dr. Bushroot - Evil Botanist, Education or Elimination, Mickey Mouse - Detective, Mickey Mouse - Detective
+
+--- Turn 24 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 19 -> 21)
+Player 1 won with 21 [LORE]!
+Player 1 won with 21 [LORE]!
+Board State---
+  Player 1:  lore=21  ink=6  hand=1  discard=12
+  cards in play:
+    - Goofy - Emerald Champion
+    - Goofy - Emerald Champion
+    - Shere Khan - Fearsome Tiger
+  discard: Look What You've Done, Look What You've Done, Look What You've Done, Dinky - Has the Brains, Chomp!, Strength of a Raging Fire, Bobby Zimuruski - Spray Cheese Kid, Malicious, Mean, and Scary, Dinky - Has the Brains, Strike a Good Match, Kaa - Secretive Snake, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=15  ink=10  hand=-5  discard=11
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Mickey Mouse - Detective
+    - Milo Thatch - Getting His Hands Dirty
+    - Milo Thatch - Getting His Hands Dirty
+    - Pete - Ghost of Christmas Future  [1 dmg]
+  discard: Develop Your Brain, Mickey Mouse - Bob Cratchit, Minnie Mouse - Spinning Skater, Minnie Mouse - Spinning Skater, Merlin - Envisioning the Future, Pete - Ghost of Christmas Future, Mushu - Stealthy Dragon, Dr. Bushroot - Evil Botanist, Education or Elimination, Mickey Mouse - Detective, Mickey Mouse - Detective

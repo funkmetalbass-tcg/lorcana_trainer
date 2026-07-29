@@ -1,0 +1,334 @@
+Player 1's starting hand: Dinky - Has the Brains, Dr. Bushroot - Evil Botanist, Goofy - Emerald Champion, Dr. Bushroot - Evil Botanist, Dinky - Has the Brains, Dinky - Has the Brains, Merida - Defiant Daughter
+Player 2's starting hand: Rex - Protective Dinosaur, Grandmother Willow - Ancient Advisor, You've Got a Friend in Me, Jessie - Lively Cowgirl, You've Got a Friend in Me, Buzz Lightyear - Space Ranger, Elinor - Renowned Diplomat
+Player 1 mulliganed 1 card: Goofy - Emerald Champion. Drew: Cruella De Vil - Judgmental Traveler
+Player 2 mulliganed 7 cards: Rex - Protective Dinosaur, You've Got a Friend in Me, You've Got a Friend in Me, Jessie - Lively Cowgirl, Buzz Lightyear - Space Ranger, Elinor - Renowned Diplomat, Grandmother Willow - Ancient Advisor. Drew: You've Got a Friend in Me, Woody & Buzz Lightyear - Best Buddies, Woody - Waiting for a Friend, Woody - Jungle Guide, You've Got a Friend in Me, Bullseye - Loyal Horse, Alien - True Believer
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Woody & Buzz Lightyear - Best Buddies
+Player 2 added Alien - True Believer to ink
+Player 2 played Woody - Waiting for a Friend (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Woody - Waiting for a Friend
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Woody - Waiting for a Friend
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Dinky - Has the Brains
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Woody - Waiting for a Friend  [1 dmg]
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Buzz Lightyear - Space Ranger
+Player 2 added Buzz Lightyear - Space Ranger to ink
+Player 2 played Bullseye - Loyal Horse (cost 3)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Dinky - Has the Brains
+  Player 2:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Bullseye - Loyal Horse
+    - Woody - Waiting for a Friend  [1 dmg]
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Bullseye - Loyal Horse
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Woody - Waiting for a Friend
+Woody - Waiting for a Friend was banished
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 0 -> 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=3  hand=3  discard=1
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+  discard: Chomp!
+  Player 2:  lore=0  ink=2  hand=5  discard=1
+  cards in play:
+    - Bullseye - Loyal Horse  [1 dmg]
+  discard: Woody - Waiting for a Friend
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Buzz Lightyear - Space Ranger
+Player 2 sang You've Got a Friend in Me with Bullseye - Loyal Horse
+You've Got a Friend in Me's YOU'VE GOT A FRIEND IN ME had no effect
+Player 2 added Buzz Lightyear - Space Ranger to ink
+Player 2 played You've Got a Friend in Me (cost 3)
+Player 2 revealed Woody - Waiting for a Friend(YOU'VE GOT A FRIEND IN ME) - put into hand
+Player 2 revealed Lenny - Toy Binoculars(YOU'VE GOT A FRIEND IN ME) - put into hand
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=3  hand=3  discard=1
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+  discard: Chomp!
+  Player 2:  lore=0  ink=3  hand=5  discard=3
+  cards in play:
+    - Bullseye - Loyal Horse  [1 dmg]
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Bullseye - Loyal Horse
+Player 1 played Chomp! (cost 1)
+Chomp!'s CHOMP! deals 2 damage
+Chomp! dealt 2 damage to Bullseye - Loyal Horse
+Bullseye - Loyal Horse was banished
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 2 -> 4)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 4 -> 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=3  hand=2  discard=2
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+  discard: Chomp!, Chomp!
+  Player 2:  lore=0  ink=3  hand=5  discard=4
+  cards in play:
+    (empty)
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me, Bullseye - Loyal Horse
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew RC - Remote-Controlled Car
+Player 2 added RC - Remote-Controlled Car to ink
+Player 2 played Woody - Waiting for a Friend (cost 1)
+Player 2 played Lenny - Toy Binoculars (cost 3)
+Lenny - Toy Binoculars's TAKE A GOOD LOOK looks at opponent's hand
+Lenny - Toy Binoculars's TAKE A GOOD LOOK Discarded a card
+Player 1 discarded Look What You've Done from hand
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=6  ink=3  hand=1  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+  discard: Chomp!, Chomp!, Look What You've Done
+  Player 2:  lore=0  ink=4  hand=3  discard=4
+  cards in play:
+    - Lenny - Toy Binoculars
+    - Woody - Waiting for a Friend
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me, Bullseye - Loyal Horse
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 6 -> 8)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 8 -> 10)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 10 -> 12)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=12  ink=4  hand=1  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+  discard: Chomp!, Chomp!, Look What You've Done
+  Player 2:  lore=0  ink=4  hand=3  discard=4
+  cards in play:
+    - Lenny - Toy Binoculars
+    - Woody - Waiting for a Friend
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me, Bullseye - Loyal Horse
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Bullseye - Loyal Horse
+Player 2 shifted Woody - Jungle Guide onto Woody - Waiting for a Friend (Shift 3)
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 0 -> 2)
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Bullseye - Loyal Horse
+Player 2 added Woody & Buzz Lightyear - Best Buddies to ink
+Player 2 played Bullseye - Loyal Horse (cost 3)
+Player 2 quested with Lenny - Toy Binoculars (+1 [LORE], 2 -> 3)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=12  ink=4  hand=1  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+  discard: Chomp!, Chomp!, Look What You've Done
+  Player 2:  lore=3  ink=5  hand=2  discard=4
+  cards in play:
+    - Bullseye - Loyal Horse
+    - Lenny - Toy Binoculars
+    - Woody - Jungle Guide
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me, Bullseye - Loyal Horse
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 added Look What You've Done to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 12 -> 14)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 14 -> 16)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 16 -> 18)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=18  ink=5  hand=0  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Goofy - Emerald Champion
+  discard: Chomp!, Chomp!, Look What You've Done
+  Player 2:  lore=3  ink=5  hand=2  discard=4
+  cards in play:
+    - Bullseye - Loyal Horse
+    - Lenny - Toy Binoculars
+    - Woody - Jungle Guide
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me, Bullseye - Loyal Horse
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Jessie - Lively Cowgirl
+Player 2 quested with Woody - Jungle Guide (+2 [LORE], 3 -> 5)
+Woody - Jungle Guide's LET'S GET MOVIN' draws a card
+Player 2 drew Elinor - Renowned Diplomat
+Player 2 played Elinor - Renowned Diplomat (cost 4)
+Player 2 added Woody & Buzz Lightyear - Best Buddies to ink
+Player 2 played Bullseye - Loyal Horse (cost 3)
+Player 2 challenged Dinky - Has the Brains with Bullseye - Loyal Horse
+Goofy - Emerald Champion's EVEN THE SCORE banishes Bullseye - Loyal Horse
+Bullseye - Loyal Horse was banished
+Player 2 challenged Dinky - Has the Brains with Bullseye - Loyal Horse | 4 [STRENGTH] dealt 4 dmg to Dinky - Has the Brains (4/2 [WILLPOWER] - banished!), took 1 dmg (1/4 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 quested with Lenny - Toy Binoculars (+1 [LORE], 5 -> 6)
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+
+Board State---
+  Player 1:  lore=18  ink=5  hand=0  discard=4
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Goofy - Emerald Champion
+  discard: Chomp!, Chomp!, Look What You've Done, Dinky - Has the Brains
+  Player 2:  lore=6  ink=6  hand=1  discard=5
+  cards in play:
+    - Bullseye - Loyal Horse  [1 dmg]
+    - Elinor - Renowned Diplomat
+    - Lenny - Toy Binoculars
+    - Woody - Jungle Guide
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me, Bullseye - Loyal Horse, Bullseye - Loyal Horse
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Woody - Jungle Guide
+1 damage counter put on Lenny - Toy Binoculars
+1 damage counter put on Elinor - Renowned Diplomat
+1 damage counter put on Bullseye - Loyal Horse
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 18 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=20  ink=5  hand=0  discard=5
+  cards in play:
+    - Dinky - Has the Brains
+    - Dinky - Has the Brains
+    - Goofy - Emerald Champion
+  discard: Chomp!, Chomp!, Look What You've Done, Dinky - Has the Brains, Malicious, Mean, and Scary
+  Player 2:  lore=6  ink=6  hand=1  discard=5
+  cards in play:
+    - Bullseye - Loyal Horse  [2 dmg]
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Lenny - Toy Binoculars  [1 dmg]
+    - Woody - Jungle Guide  [1 dmg]
+  discard: Woody - Waiting for a Friend, You've Got a Friend in Me, You've Got a Friend in Me, Bullseye - Loyal Horse, Bullseye - Loyal Horse

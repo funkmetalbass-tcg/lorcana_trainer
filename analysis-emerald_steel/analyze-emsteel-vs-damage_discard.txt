@@ -1,6 +1,6 @@
 
 ==============================================================================
-DECK DIAGNOSTICS: Deck A over 300 games  (win rate 74%)
+DECK DIAGNOSTICS: Deck A over 150 games  (win rate 80%)
 ==============================================================================
 
 PER-CARD CONTRIBUTION
@@ -9,45 +9,57 @@ PER-CARD CONTRIBUTION
 
   card                                   cop  seen  play  dead  ink   wr+   wr0  delta
   ------------------------------------------------------------------------------------
-  Strength of a Raging Fire                2   46%   20%    4%  67%   63%   76%   -13
-  Cruella De Vil - Judgmental Traveler     4   60%   36%    5%  77%   72%   80%    -8
-  Ariel - Determined Mermaid               4   75%   56%    1%  73%   73%   78%    -5
-  Bobby Zimuruski - Spray Cheese Kid       3   60%   85%    1%  28%   73%   75%    -3
-  Maudie - Exasperated Nursemaid           4   69%   67%    1%  62%   74%   74%    -0
-  Merida - Defiant Daughter                4   67%   83%    1%  32%   74%   73%    +2
-  Strike A Good Match                      3   48%   57%    0%  48%   77%   73%    +4
-  Shere Khan - Fearsome Tiger              3   55%   68%   20%   0%   74%   70%    +4
-  Goofy - Emerald Champion                 3   56%   78%   13%   0%   78%   71%    +7
-  Max Goof - Chart Topper                  3   47%   37%    6%  73%   79%   72%    +8
-  Robin Hood - Daydreamer                  1   24%   26%    6%  60%   84%   75%   +10
-  Winifred - Exasperated Elephant          4   57%   61%    3%  62%   81%   71%   +10
-  Chomp!                                   2   48%   31%    1%  54%   80%   70%   +10
-  Kaa - Secretive Snake                    2   44%   23%   12%  69%   83%   72%   +12
-  Malicious, Mean, and Scary               4   76%   53%    2%  69%   76%   63%   +13
-  Dr. Bushroot - Evil Botanist             4   56%   65%    4%  50%   81%   67%   +13
-  Tinker Bell - Giant Fairy                2   37%   30%    5%  68%   88%   71%   +16
-  Dinky - Has the Brains                   4   72%   75%    0%  53%   81%   59%   +22
-  Look What You've Done                    4   68%   74%    2%  50%   82%   54%   +29
+  Tinker Bell - Most Helpful               2   47%   32%    6%  69%   70%   84%   -14
+  Merida - Defiant Daughter                4   71%   82%    0%  34%   76%   86%   -11
+  Max Goof - Chart Topper                  3   43%   23%    6%  77%   73%   79%    -5
+  Winifred - Exasperated Elephant          3   49%   57%    5%  55%   76%   82%    -5
+  Bobby Zimuruski - Spray Cheese Kid       3   59%   86%    1%  25%   79%   81%    -2
+  Tinker Bell - Giant Fairy                2   36%   26%    9%  70%   79%   80%    -2
+  Chomp!                                   2   43%   31%    3%  55%   80%   81%    -1
+  Strength of a Raging Fire                2   51%   28%    1%  67%   76%   77%    -1
+  Shere Khan - Fearsome Tiger              3   61%   67%   23%   0%   79%   79%    -0
+  Strike A Good Match                      2   36%   48%    0%  46%   81%   80%    +1
+  Goofy - Emerald Champion                 3   51%   75%    9%   0%   83%   81%    +2
+  Maudie - Exasperated Nursemaid           4   75%   67%    1%  55%   83%   79%    +4
+  Ariel - Determined Mermaid               4   71%   54%    2%  66%   84%   79%    +5
+  Malicious, Mean, and Scary               4   67%   50%    3%  73%   80%   73%    +7
+  Rapunzel & Flynn Rider - Unlikely Pair   3   45%   38%    4%  76%   88%   78%   +10
+  Cruella De Vil - Judgmental Traveler     4   61%   36%    5%  80%   94%   78%   +16
+  Dinky - Has the Brains                   4   71%   64%    3%  43%   88%   70%   +19
+  Look What You've Done                    4   67%   69%    1%  43%   84%   65%   +19
+  Dr. Bushroot - Evil Botanist             4   47%   70%    4%  47%   92%   72%   +19
 
 FLAGS (heuristic cut/keep signals)
-  - Strength of a Raging Fire: win-rate drag (-13)
-  - Cruella De Vil - Judgmental Traveler: mostly inked (77%) — may be a filler slot
-  - Robin Hood - Daydreamer: low utilization (played 26% when drawn)
+  - Tinker Bell - Most Helpful: win-rate drag (-14)
+  - Merida - Defiant Daughter: win-rate drag (-11)
+  - Max Goof - Chart Topper: mostly inked (77%) — may be a filler slot
   - Chomp!: low utilization (played 31% when drawn)
+  - Rapunzel & Flynn Rider - Unlikely Pair: mostly inked (76%) — may be a filler slot
+  - Cruella De Vil - Judgmental Traveler: mostly inked (80%) — may be a filler slot
 
 TEMPO & CURVE
-  Avg ink after your turn:  T1:1.0  T2:1.9  T3:2.9  T4:3.8  T5:4.6  T6:5.3  T7:5.9  T8:6.4  T9:6.8  T10:7.0
-  Avg turn each cost first lands: 1-drop: turn 4.2  2-drop: turn 2.5  3-drop: turn 4.9  5-drop: turn 7.2  6-drop: turn 8.3  7+-drop: turn 12.0
-  Opening-hand inkable count distribution: 4:0%  5:3%  6:25%  7:71%
+  Avg ink after your turn:  T1:1.0  T2:1.9  T3:2.9  T4:3.8  T5:4.6  T6:5.3  T7:5.8  T8:6.2  T9:6.6  T10:6.9
+  Avg turn each cost first lands: 1-drop: turn 4.4  2-drop: turn 2.7  3-drop: turn 4.8  4-drop: turn 8.0  5-drop: turn 7.0  6-drop: turn 7.9
+  Opening-hand inkable count distribution: 5:3%  6:23%  7:74%
 
 LOSS PATTERNS
-  Losses: 79   avg length 23.4 half-turns (fast <=14: 5, grind >=24: 34)
-  Avg lore gap in losses: 10.6
+  Losses: 30   avg length 21.6 half-turns (fast <=14: 1, grind >=24: 10)
+  Avg lore gap in losses: 10.9
   Losses with 3+ locations stuck in hand (flood): 0  (0% of losses)
   Losses after a low-ink opening (<=2 inkable): 0  (0% of losses)
 
 READ
   Losses are mixed in length — no single tempo problem dominates; lean on the per-card deltas and flood/screw rates below.
+
+ABILITY TRIGGERS (studied deck; totals across all games)
+  trigger                                       total  avg/game  games%
+  Bobby: SO CHEESY                                138      0.92     69%
+  Dinky: GET HIM!                                  80      0.53     42%
+  R&F: CLEVER SWAP                                 55      0.37     16%
+  Ariel: I WANT MORE                               15      0.10      8%
+  R&F: FRESH START replay                          11      0.07      7%
+  MaxGoof: NUMBER ONE HIT                           8      0.05      5%
+  Cruella: OUT OF FASHION banish                    7      0.05      5%
 
 NOTE: deltas are correlational, not causal. A high-delta card may just 
 ride along in good draws. Use `--suggest` to A/B test specific swaps.

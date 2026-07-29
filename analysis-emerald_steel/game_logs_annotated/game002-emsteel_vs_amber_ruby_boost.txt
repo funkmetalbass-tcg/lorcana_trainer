@@ -1,0 +1,1009 @@
+Player 1's starting hand: Malicious, Mean, and Scary, Merida - Defiant Daughter, Maudie - Exasperated Nursemaid, Cruella De Vil - Judgmental Traveler, Goofy - Emerald Champion, Goofy - Emerald Champion, Cruella De Vil - Judgmental Traveler
+Player 2's starting hand: Boo - Energetic Child, Besties, Assemble!, Boo - Energetic Child, Scrooge McDuck - Ghostly Ebenezer, Raging Storm, Gaston - Superior Archer, Medallion Weights
+Player 1 mulliganed 4 cards: Goofy - Emerald Champion, Goofy - Emerald Champion, Cruella De Vil - Judgmental Traveler, Cruella De Vil - Judgmental Traveler. Drew: Look What You've Done, Strength of a Raging Fire, Strike a Good Match, Cruella De Vil - Judgmental Traveler
+Player 2 mulliganed 7 cards: Raging Storm, Medallion Weights, Gaston - Superior Archer, Boo - Energetic Child, Besties, Assemble!, Boo - Energetic Child, Scrooge McDuck - Ghostly Ebenezer. Drew: Red Alert, Scrooge McDuck - Ghostly Ebenezer, Hercules - Spectral Demigod, Maleficent - Monstrous Dragon, Sulley & Boo - Scare Buddies, Maleficent - Monstrous Dragon, Della's Moon Lullaby
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Webby's Diary
+Player 2 added Maleficent - Monstrous Dragon to ink
+Player 2 played Hercules - Spectral Demigod (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Hercules - Spectral Demigod
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Hercules - Spectral Demigod
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Liquidator - Iced Over
+Player 2 added Maleficent - Monstrous Dragon to ink
+Player 2 played Scrooge McDuck - Ghostly Ebenezer (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Hercules - Spectral Demigod
+    - Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 sang Strike a Good Match with Merida - Defiant Daughter
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Strike a Good Match, Winifred - Exasperated Elephant
+Player 1 discarded Look What You've Done from hand
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Play from discard"
+Look What You've Done's LOOK WHAT YOU'VE DONE plays Look What You've Done from discard exerted
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Scrooge McDuck - Ghostly Ebenezer
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=3  hand=4  discard=3
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done
+  Player 2:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Hercules - Spectral Demigod
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Besties, Assemble!
+Player 2 added Sulley & Boo - Scare Buddies to ink
+Player 2 boosted Hercules - Spectral Demigod (1 card under)
+Player 2 challenged Merida - Defiant Daughter with Hercules - Spectral Demigod
+Player 2 challenged Merida - Defiant Daughter with Hercules - Spectral Demigod | 3 [STRENGTH] dealt 3 dmg to Merida - Defiant Daughter (3/3 [WILLPOWER] - banished!), took 2 dmg (2/3 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Sulley & Boo - Scare Buddies(BESTIES, ASSEMBLE!) - put into hand
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 0 -> 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=3  hand=4  discard=4
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter
+  Player 2:  lore=1  ink=3  hand=5  discard=1
+  cards in play:
+    - Hercules - Spectral Demigod  [2 dmg]
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+  discard: Besties, Assemble!
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Hercules - Spectral Demigod
+1 damage counter put on Scrooge McDuck - Ghostly Ebenezer
+Hercules - Spectral Demigod was banished
+Scrooge McDuck - Ghostly Ebenezer was banished
+Player 1 added Strike a Good Match to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=4  hand=3  discard=5
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary
+  Player 2:  lore=1  ink=3  hand=5  discard=3
+  cards in play:
+    (empty)
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Sulley & Boo - Scare Buddies
+Player 2 played Webby's Diary (cost 3)
+Player 2 added Liquidator - Iced Over to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=4  hand=3  discard=5
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary
+  Player 2:  lore=1  ink=4  hand=4  discard=3
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 added Strength of a Raging Fire to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=5  hand=2  discard=5
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary
+  Player 2:  lore=1  ink=4  hand=4  discard=3
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Raging Storm
+Player 2 added Della's Moon Lullaby to ink
+Player 2 played Red Alert (cost 4)
+Red Alert's RED ALERT banishes Maudie - Exasperated Nursemaid
+Maudie - Exasperated Nursemaid was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=5  hand=2  discard=6
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid
+  Player 2:  lore=1  ink=5  hand=3  discard=4
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 added Chomp! to ink
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=6  hand=1  discard=6
+  cards in play:
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid
+  Player 2:  lore=1  ink=5  hand=3  discard=4
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Boo - Energetic Child
+Player 2 played Boo - Energetic Child (cost 3)
+Player 2 added Sulley & Boo - Scare Buddies to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=6  hand=1  discard=6
+  cards in play:
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid
+  Player 2:  lore=1  ink=6  hand=2  discard=4
+  cards in play:
+    - Boo - Energetic Child
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Boo - Energetic Child
+Boo - Energetic Child was banished
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 0 -> 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=6  hand=1  discard=7
+  cards in play:
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done
+  Player 2:  lore=1  ink=6  hand=2  discard=5
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew The Horseman Strikes!
+Player 2 added The Horseman Strikes! to ink
+Player 2 played Sulley & Boo - Scare Buddies (cost 6)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=6  hand=1  discard=7
+  cards in play:
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done
+  Player 2:  lore=1  ink=7  hand=1  discard=5
+  cards in play:
+    - Sulley & Boo - Scare Buddies
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=6  hand=1  discard=7
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done
+  Player 2:  lore=1  ink=7  hand=1  discard=5
+  cards in play:
+    - Sulley & Boo - Scare Buddies
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Besties, Assemble!
+Player 2 added Besties, Assemble! to ink
+Player 2 quested with Sulley & Boo - Scare Buddies (+2 [LORE], 1 -> 3)
+Raging Storm's RAGING STORM banishes a card
+Tinker Bell - Giant Fairy was banished
+Shere Khan - Fearsome Tiger was banished
+Sulley & Boo - Scare Buddies was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=6  hand=1  discard=9
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger
+  Player 2:  lore=3  ink=8  hand=0  discard=7
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Kaa - Secretive Snake
+Player 1 added Kaa - Secretive Snake to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=7  hand=0  discard=9
+  cards in play:
+    - Goofy - Emerald Champion
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger
+  Player 2:  lore=3  ink=8  hand=0  discard=7
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Raging Storm
+Raging Storm's RAGING STORM banishes Goofy - Emerald Champion
+Goofy - Emerald Champion was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=7  hand=0  discard=10
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion
+  Player 2:  lore=3  ink=8  hand=0  discard=8
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=7  hand=0  discard=10
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion
+  Player 2:  lore=3  ink=8  hand=0  discard=8
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Sulley - The New Boss
+Player 2 played Sulley - The New Boss (cost 5)
+Sulley - The New Boss's REHIRE Returned Sulley & Boo - Scare Buddies from discard to hand
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=7  hand=0  discard=10
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion
+  Player 2:  lore=3  ink=8  hand=0  discard=8
+  cards in play:
+    - Sulley - The New Boss
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Sulley - The New Boss
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=3  ink=7  hand=0  discard=10
+  cards in play:
+    - Merida - Defiant Daughter
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion
+  Player 2:  lore=3  ink=8  hand=0  discard=8
+  cards in play:
+    - Sulley - The New Boss  [1 dmg]
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm
+
+--- Turn 22 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Hercules - Spectral Demigod
+Player 2 shifted Sulley & Boo - Scare Buddies onto Sulley - The New Boss (Shift 4)
+Player 2 added Hercules - Spectral Demigod to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=3  ink=7  hand=0  discard=10
+  cards in play:
+    - Merida - Defiant Daughter
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion
+  Player 2:  lore=3  ink=9  hand=-1  discard=8
+  cards in play:
+    - Sulley & Boo - Scare Buddies
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm
+
+--- Turn 23 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Sulley & Boo - Scare Buddies
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Sulley & Boo - Scare Buddies
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 3 -> 4)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=7  hand=-1  discard=12
+  cards in play:
+    - Merida - Defiant Daughter
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary
+  Player 2:  lore=3  ink=9  hand=-1  discard=8
+  cards in play:
+    - Sulley & Boo - Scare Buddies  [2 dmg]
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm
+
+--- Turn 24 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aladdin - Barreling Through
+Player 2 played Aladdin - Barreling Through (cost 3)
+Player 2 boosted Aladdin - Barreling Through (1 card under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Liquidator - Iced Over
+Player 2 added Liquidator - Iced Over to ink
+Player 2 challenged Merida - Defiant Daughter with Sulley & Boo - Scare Buddies
+Player 2 challenged Merida - Defiant Daughter with Sulley & Boo - Scare Buddies | 6 [STRENGTH] dealt 6 dmg to Merida - Defiant Daughter (6/3 [WILLPOWER] - banished!), took 2 dmg (5/5 [WILLPOWER] - banished!)
+Sulley & Boo - Scare Buddies was banished
+Merida - Defiant Daughter was banished
+Sulley & Boo - Scare Buddies's THE POWER OF FRIENDSHIP chose "Enter Exerted"
+Sulley & Boo - Scare Buddies's THE POWER OF FRIENDSHIP plays Sulley - The New Boss from discard exerted
+Player 2 played Sulley - The New Boss (cost 5 → 0)
+Sulley - The New Boss's REHIRE Returned Sulley & Boo - Scare Buddies from discard to hand
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=4  ink=7  hand=-1  discard=13
+  cards in play:
+    - Tinker Bell - Giant Fairy
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter
+  Player 2:  lore=3  ink=10  hand=-1  discard=9
+  cards in play:
+    - Aladdin - Barreling Through
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies
+
+--- Turn 25 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 challenged Sulley - The New Boss with Tinker Bell - Giant Fairy
+Player 1 challenged Sulley - The New Boss with Tinker Bell - Giant Fairy | 4 [STRENGTH] dealt 4 dmg to Sulley - The New Boss (4/4 [WILLPOWER] - banished!), took 4 dmg (4/5 [WILLPOWER])
+Sulley - The New Boss was banished
+Tinker Bell - Giant Fairy's PUNY PIRATE! deals 2 damage
+Tinker Bell - Giant Fairy dealt 2 damage to Aladdin - Barreling Through
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=7  hand=-1  discard=13
+  cards in play:
+    - Merida - Defiant Daughter
+    - Tinker Bell - Giant Fairy  [4 dmg]
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter
+  Player 2:  lore=3  ink=10  hand=-1  discard=9
+  cards in play:
+    - Aladdin - Barreling Through  [2 dmg]
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies
+
+--- Turn 26 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Ariel - Ethereal Voice
+Player 2 played Ariel - Ethereal Voice (cost 4)
+Player 2 boosted Ariel - Ethereal Voice (1 card under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Maleficent - Monstrous Dragon
+Player 2 challenged Tinker Bell - Giant Fairy with Aladdin - Barreling Through
+Player 2 challenged Tinker Bell - Giant Fairy with Aladdin - Barreling Through | 4 [STRENGTH] dealt 4 dmg to Tinker Bell - Giant Fairy (8/5 [WILLPOWER] - banished!), took 4 dmg (6/4 [WILLPOWER] - banished!)
+Aladdin - Barreling Through was banished
+Tinker Bell - Giant Fairy was banished
+Player 2 added Maleficent - Monstrous Dragon to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=4  ink=7  hand=-1  discard=14
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy
+  Player 2:  lore=3  ink=11  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 27 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 4 -> 5)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=5  ink=7  hand=-1  discard=14
+  cards in play:
+    - Merida - Defiant Daughter
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy
+  Player 2:  lore=3  ink=11  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 28 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Maleficent - Monstrous Dragon
+Player 2 boosted Ariel - Ethereal Voice (2 cards under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Gaston - Superior Archer
+Player 2 played Gaston - Superior Archer (cost 5)
+Gaston - Superior Archer's WATCH THIS! had no effect
+Player 2 added Sulley & Boo - Scare Buddies to ink
+Player 2 challenged Merida - Defiant Daughter with Ariel - Ethereal Voice
+Player 2 challenged Merida - Defiant Daughter with Ariel - Ethereal Voice | 3 [STRENGTH] dealt 3 dmg to Merida - Defiant Daughter (3/3 [WILLPOWER] - banished!), took 2 dmg (2/4 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=5  ink=7  hand=-1  discard=15
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter
+  Player 2:  lore=3  ink=12  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice  [2 dmg]
+    - Gaston - Superior Archer
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 29 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Gaston - Superior Archer
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 5 -> 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=7  hand=-1  discard=15
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter
+  Player 2:  lore=3  ink=12  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice  [2 dmg]
+    - Gaston - Superior Archer  [1 dmg]
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 30 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Raging Storm
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 3 -> 5)
+Player 2 quested with Gaston - Superior Archer (+1 [LORE], 5 -> 6)
+Player 2 played Maleficent - Monstrous Dragon (cost 9)
+Maleficent - Monstrous Dragon's DRAGON FIRE banishes Dinky - Has the Brains
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=6  ink=7  hand=-1  discard=16
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains
+  Player 2:  lore=6  ink=12  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice  [2 dmg]
+    - Gaston - Superior Archer  [1 dmg]
+    - Maleficent - Monstrous Dragon
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 31 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 played Dr. Bushroot - Evil Botanist (cost 5)
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 6 -> 7)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=7  ink=7  hand=-1  discard=16
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains
+  Player 2:  lore=6  ink=12  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice  [2 dmg]
+    - Gaston - Superior Archer  [1 dmg]
+    - Maleficent - Monstrous Dragon
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 32 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Boo - Energetic Child
+Player 2 challenged Merida - Defiant Daughter with Gaston - Superior Archer
+Player 2 challenged Merida - Defiant Daughter with Gaston - Superior Archer | 3 [STRENGTH] dealt 3 dmg to Merida - Defiant Daughter (3/3 [WILLPOWER] - banished!), took 2 dmg (3/4 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 played Boo - Energetic Child (cost 3)
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 6 -> 8)
+Player 2 quested with Maleficent - Monstrous Dragon (+2 [LORE], 8 -> 10)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=7  ink=7  hand=-1  discard=17
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter
+  Player 2:  lore=10  ink=12  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice  [2 dmg]
+    - Boo - Energetic Child
+    - Gaston - Superior Archer  [3 dmg]
+    - Maleficent - Monstrous Dragon
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 33 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 played Dr. Bushroot - Evil Botanist (cost 5)
+Player 1 quested with Dr. Bushroot - Evil Botanist (+3 [LORE], 7 -> 10)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=17
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Dr. Bushroot - Evil Botanist
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter
+  Player 2:  lore=10  ink=12  hand=-1  discard=10
+  cards in play:
+    - Ariel - Ethereal Voice  [2 dmg]
+    - Boo - Energetic Child
+    - Gaston - Superior Archer  [3 dmg]
+    - Maleficent - Monstrous Dragon
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through
+
+--- Turn 34 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Sulley - The New Boss
+Player 2 quested with Ariel - Ethereal Voice (+2 [LORE], 10 -> 12)
+Player 2 quested with Gaston - Superior Archer (+1 [LORE], 12 -> 13)
+Player 2 quested with Maleficent - Monstrous Dragon (+2 [LORE], 13 -> 15)
+Player 2 quested with Boo - Energetic Child (+1 [LORE], 15 -> 16)
+Player 2 boosted Ariel - Ethereal Voice (3 cards under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Aladdin - Barreling Through
+Raging Storm's RAGING STORM banishes a card
+Dr. Bushroot - Evil Botanist was banished
+Dr. Bushroot - Evil Botanist was banished
+Ariel - Ethereal Voice was banished
+Gaston - Superior Archer was banished
+Maleficent - Monstrous Dragon was banished
+Boo - Energetic Child was banished
+Player 2 played Raging Storm (cost 8)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=19
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=16  ink=12  hand=0  discard=15
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm
+
+--- Turn 35 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=0  discard=19
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=16  ink=12  hand=0  discard=15
+  cards in play:
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm
+
+--- Turn 36 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Besties, Assemble!
+Player 2 played Aladdin - Barreling Through (cost 3)
+Player 2 played Besties, Assemble! (cost 1)
+Player 2 revealed Scrooge McDuck - Ghostly Ebenezer(BESTIES, ASSEMBLE!) - put into hand
+Player 2 played Scrooge McDuck - Ghostly Ebenezer (cost 2)
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (1 card under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew The Horseman Strikes!
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=0  discard=19
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist
+  Player 2:  lore=16  ink=12  hand=0  discard=16
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm, Besties, Assemble!
+
+--- Turn 37 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 1 damage
+Strength of a Raging Fire dealt 1 damage to Scrooge McDuck - Ghostly Ebenezer
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=20
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist, Strength of a Raging Fire
+  Player 2:  lore=16  ink=12  hand=0  discard=16
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm, Besties, Assemble!
+
+--- Turn 38 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Scrooge's Counting House - Ebenezer's Office
+Player 2 played Scrooge's Counting House - Ebenezer's Office (cost 2)
+Player 2 played Sulley - The New Boss (cost 5)
+Sulley - The New Boss's REHIRE Returned Maleficent - Monstrous Dragon from discard to hand
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 16 -> 17)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=20
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist, Strength of a Raging Fire
+  Player 2:  lore=17  ink=12  hand=-1  discard=16
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge's Counting House - Ebenezer's Office
+    - Sulley - The New Boss
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm, Besties, Assemble!
+
+--- Turn 39 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Sulley - The New Boss
+Player 1 challenged Sulley - The New Boss with Maudie - Exasperated Nursemaid
+Player 1 challenged Sulley - The New Boss with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Sulley - The New Boss (4/4 [WILLPOWER] - banished!), took 3 dmg (4-1 Resist) (3/5 [WILLPOWER])
+Sulley - The New Boss was banished
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=21
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist, Strength of a Raging Fire, Look What You've Done
+  Player 2:  lore=17  ink=12  hand=-1  discard=17
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge's Counting House - Ebenezer's Office
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm, Besties, Assemble!, Sulley - The New Boss
+
+--- Turn 40 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Set step: Scrooge's Counting House - Ebenezer's Office grants Player 2 +1 [LORE] (17 -> 18)
+Draw step
+Player 2 drew Webby's Diary
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (2 cards under)
+Webby's Diary's LATEST ENTRY chose "Pay 1 & Draw"
+Webby's Diary's LATEST ENTRY draws a card
+Player 2 drew Red Alert
+Player 2 challenged Maudie - Exasperated Nursemaid with Scrooge McDuck - Ghostly Ebenezer
+Player 2 challenged Maudie - Exasperated Nursemaid with Scrooge McDuck - Ghostly Ebenezer | 5 [STRENGTH] dealt 4 dmg (5-1 Resist) to Maudie - Exasperated Nursemaid (7/5 [WILLPOWER] - banished!), took 2 dmg (3/5 [WILLPOWER])
+Maudie - Exasperated Nursemaid was banished
+Red Alert's RED ALERT had no effect (no valid targets)
+Player 2 played Red Alert (cost 4)
+Player 2 played Webby's Diary (cost 3)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=22
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid
+  Player 2:  lore=17  ink=12  hand=-1  discard=18
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge's Counting House - Ebenezer's Office
+    - Webby's Diary
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm, Besties, Assemble!, Sulley - The New Boss, Red Alert
+
+--- Turn 41 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=22
+  cards in play:
+    - Goofy - Emerald Champion
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid
+  Player 2:  lore=17  ink=12  hand=-1  discard=18
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge's Counting House - Ebenezer's Office
+    - Webby's Diary
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm, Besties, Assemble!, Sulley - The New Boss, Red Alert
+
+--- Turn 42 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Set step: Scrooge's Counting House - Ebenezer's Office grants Player 2 +1 [LORE] (18 -> 19)
+Draw step
+Player 2 drew Webby's Diary
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 19 -> 20)
+Player 2 won with 20 [LORE]!
+Player 2 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=10  ink=7  hand=-1  discard=22
+  cards in play:
+    - Goofy - Emerald Champion
+  discard: Strike a Good Match, Look What You've Done, Look What You've Done, Merida - Defiant Daughter, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid, Look What You've Done, Tinker Bell - Giant Fairy, Shere Khan - Fearsome Tiger, Goofy - Emerald Champion, Malicious, Mean, and Scary, Malicious, Mean, and Scary, Merida - Defiant Daughter, Tinker Bell - Giant Fairy, Merida - Defiant Daughter, Dinky - Has the Brains, Merida - Defiant Daughter, Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist, Strength of a Raging Fire, Look What You've Done, Maudie - Exasperated Nursemaid
+  Player 2:  lore=20  ink=12  hand=0  discard=18
+  cards in play:
+    - Aladdin - Barreling Through
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge's Counting House - Ebenezer's Office
+    - Webby's Diary
+    - Webby's Diary
+  discard: Besties, Assemble!, Hercules - Spectral Demigod, Scrooge McDuck - Ghostly Ebenezer, Red Alert, Boo - Energetic Child, Sulley & Boo - Scare Buddies, Raging Storm, Raging Storm, Sulley & Boo - Scare Buddies, Aladdin - Barreling Through, Ariel - Ethereal Voice, Gaston - Superior Archer, Maleficent - Monstrous Dragon, Boo - Energetic Child, Raging Storm, Besties, Assemble!, Sulley - The New Boss, Red Alert

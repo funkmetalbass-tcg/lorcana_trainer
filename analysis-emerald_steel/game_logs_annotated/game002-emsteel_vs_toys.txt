@@ -1,0 +1,509 @@
+Player 1's starting hand: Merida - Defiant Daughter, Merida - Defiant Daughter, Merida - Defiant Daughter, Dinky - Has the Brains, Shere Khan - Fearsome Tiger, Cruella De Vil - Judgmental Traveler, Malicious, Mean, and Scary
+Player 2's starting hand: Rex - Protective Dinosaur, Bullseye - Loyal Horse, You've Got a Friend in Me, Jessie - Lively Cowgirl, Woody - Helping a Friend, Alien - True Believer, Jessie - Lively Cowgirl
+Player 1 mulliganed 2 cards: Cruella De Vil - Judgmental Traveler, Merida - Defiant Daughter. Drew: Max Goof - Chart Topper, Shere Khan - Fearsome Tiger
+Player 2 mulliganed 7 cards: Woody - Helping a Friend, Jessie - Lively Cowgirl, Jessie - Lively Cowgirl, Rex - Protective Dinosaur, Bullseye - Loyal Horse, You've Got a Friend in Me, Alien - True Believer. Drew: Woody - Jungle Guide, Woody - Jungle Guide, Jessie - Lively Cowgirl, Elinor - Renowned Diplomat, Woody - Jungle Guide, Lenny - Toy Binoculars, Grandmother Willow - Ancient Advisor
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Bullseye - Loyal Horse
+Player 2 added Lenny - Toy Binoculars to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=1  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Bullseye - Loyal Horse
+Player 2 added Bullseye - Loyal Horse to ink
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=2  hand=6  discard=0
+  cards in play:
+    - Grandmother Willow - Ancient Advisor
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Grandmother Willow - Ancient Advisor
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=3  hand=4  discard=0
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=2  hand=6  discard=0
+  cards in play:
+    - Grandmother Willow - Ancient Advisor  [1 dmg]
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Rex - Protective Dinosaur
+Player 2 added Rex - Protective Dinosaur to ink
+Player 2 played Jessie - Lively Cowgirl (cost 3)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=3  hand=4  discard=0
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=3  hand=5  discard=0
+  cards in play:
+    - Grandmother Willow - Ancient Advisor  [1 dmg]
+    - Jessie - Lively Cowgirl
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 sang Strike a Good Match with Merida - Defiant Daughter
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Look What You've Done, Goofy - Emerald Champion
+Player 1 discarded Goofy - Emerald Champion from hand
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Grandmother Willow - Ancient Advisor
+1 damage counter put on Jessie - Lively Cowgirl
+Grandmother Willow - Ancient Advisor was banished
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 1 -> 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=3  ink=3  hand=4  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary
+  Player 2:  lore=0  ink=3  hand=5  discard=1
+  cards in play:
+    - Jessie - Lively Cowgirl  [1 dmg]
+  discard: Grandmother Willow - Ancient Advisor
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Alien - True Believer
+Player 2 played Bullseye - Loyal Horse (cost 3)
+Jessie - Lively Cowgirl's YODEL-AY-HEE-HOO! gives -1 [STRENGTH] to Dinky - Has the Brains
+Player 2 played Alien - True Believer (cost 1)
+Jessie - Lively Cowgirl's YODEL-AY-HEE-HOO! gives -1 [STRENGTH] to Dinky - Has the Brains
+Player 2 quested with Jessie - Lively Cowgirl (+1 [LORE], 0 -> 1)
+Jessie - Lively Cowgirl's PART OF A FAMILY chose "Yes"
+Jessie - Lively Cowgirl's PART OF A FAMILY draws a card
+Player 2 drew Grandmother Willow - Ancient Advisor
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=3  ink=3  hand=4  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary
+  Player 2:  lore=1  ink=3  hand=5  discard=1
+  cards in play:
+    - Alien - True Believer
+    - Bullseye - Loyal Horse
+    - Jessie - Lively Cowgirl  [1 dmg]
+  discard: Grandmother Willow - Ancient Advisor
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Jessie - Lively Cowgirl
+Jessie - Lively Cowgirl was banished
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 3 -> 4)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 4 -> 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=4  hand=3  discard=4
+  cards in play:
+    - Dinky - Has the Brains
+    - Merida - Defiant Daughter
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done
+  Player 2:  lore=1  ink=3  hand=5  discard=2
+  cards in play:
+    - Alien - True Believer
+    - Bullseye - Loyal Horse
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Jessie - Lively Cowgirl
+Player 2 added Jessie - Lively Cowgirl to ink
+Player 2 played Elinor - Renowned Diplomat (cost 4)
+Player 2 challenged Merida - Defiant Daughter with Bullseye - Loyal Horse
+Player 2 challenged Merida - Defiant Daughter with Bullseye - Loyal Horse | 4 [STRENGTH] dealt 4 dmg to Merida - Defiant Daughter (4/3 [WILLPOWER] - banished!), took 2 dmg (2/3 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 challenged Dinky - Has the Brains with Alien - True Believer
+Alien - True Believer's HE HAS BEEN CHOSEN had no effect (no valid cards)
+Player 2 challenged Dinky - Has the Brains with Alien - True Believer | 2 [STRENGTH] dealt 2 dmg to Dinky - Has the Brains (2/2 [WILLPOWER] - banished!), took 1 dmg (1/1 [WILLPOWER] - banished!)
+Alien - True Believer was banished
+Dinky - Has the Brains was banished
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+
+Board State---
+  Player 1:  lore=6  ink=4  hand=3  discard=6
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains
+  Player 2:  lore=1  ink=4  hand=4  discard=3
+  cards in play:
+    - Bullseye - Loyal Horse  [2 dmg]
+    - Elinor - Renowned Diplomat
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Bullseye - Loyal Horse
+1 damage counter put on Elinor - Renowned Diplomat
+Bullseye - Loyal Horse was banished
+Player 1 added Look What You've Done to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=5  hand=2  discard=7
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary
+  Player 2:  lore=1  ink=4  hand=4  discard=4
+  cards in play:
+    - Elinor - Renowned Diplomat  [1 dmg]
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Elinor - Renowned Diplomat
+Player 2 played Elinor - Renowned Diplomat (cost 4)
+Player 2 quested with Elinor - Renowned Diplomat (+1 [LORE], 1 -> 2)
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+
+Board State---
+  Player 1:  lore=6  ink=5  hand=2  discard=7
+  cards in play:
+    (empty)
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary
+  Player 2:  lore=2  ink=4  hand=4  discard=4
+  cards in play:
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Elinor - Renowned Diplomat  [1 dmg]
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 added Winifred - Exasperated Elephant to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=6  hand=1  discard=7
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary
+  Player 2:  lore=2  ink=4  hand=4  discard=4
+  cards in play:
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Elinor - Renowned Diplomat  [1 dmg]
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Aurora - Holding Court
+Player 2 added Aurora - Holding Court to ink
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Player 2 played Grandmother Willow - Ancient Advisor (cost 2)
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+
+Board State---
+  Player 1:  lore=6  ink=6  hand=1  discard=7
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary
+  Player 2:  lore=2  ink=5  hand=3  discard=4
+  cards in play:
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Grandmother Willow - Ancient Advisor
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 6 -> 8)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Elinor - Renowned Diplomat
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Elinor - Renowned Diplomat was banished
+1 damage counter put on Elinor - Renowned Diplomat
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=8  ink=6  hand=1  discard=7
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary
+  Player 2:  lore=2  ink=5  hand=3  discard=5
+  cards in play:
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Grandmother Willow - Ancient Advisor
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse, Elinor - Renowned Diplomat
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Grandmother Willow - Ancient Advisor's SMOOTH THE WAY You pay 1 less for the next character this turn this turn
+Draw step
+Player 2 drew Woody & Buzz Lightyear - Best Buddies
+Player 2 played Woody - Jungle Guide (cost 5)
+Player 2 ended Player 2's turn
+Elinor - Renowned Diplomat's COORDINATED EFFORTS - its condition wasn't met
+
+Board State---
+  Player 1:  lore=8  ink=6  hand=1  discard=7
+  cards in play:
+    - Shere Khan - Fearsome Tiger
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary
+  Player 2:  lore=2  ink=5  hand=3  discard=5
+  cards in play:
+    - Elinor - Renowned Diplomat  [1 dmg]
+    - Grandmother Willow - Ancient Advisor
+    - Woody - Jungle Guide
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse, Elinor - Renowned Diplomat
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 8 -> 10)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Elinor - Renowned Diplomat
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Elinor - Renowned Diplomat was banished
+1 damage counter put on Woody - Jungle Guide
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 10 -> 12)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Woody - Jungle Guide
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Woody - Jungle Guide was banished
+1 damage counter put on Grandmother Willow - Ancient Advisor
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Grandmother Willow - Ancient Advisor
+Grandmother Willow - Ancient Advisor was banished
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=12  ink=6  hand=0  discard=8
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary, Look What You've Done
+  Player 2:  lore=2  ink=5  hand=3  discard=8
+  cards in play:
+    (empty)
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse, Elinor - Renowned Diplomat, Elinor - Renowned Diplomat, Woody - Jungle Guide, Grandmother Willow - Ancient Advisor
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mike Wazowski - Heroic Climber
+Player 2 added Woody & Buzz Lightyear - Best Buddies to ink
+Player 2 played Woody - Jungle Guide (cost 5)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=12  ink=6  hand=0  discard=8
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary, Look What You've Done
+  Player 2:  lore=2  ink=6  hand=2  discard=8
+  cards in play:
+    - Woody - Jungle Guide
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse, Elinor - Renowned Diplomat, Elinor - Renowned Diplomat, Woody - Jungle Guide, Grandmother Willow - Ancient Advisor
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 played Dr. Bushroot - Evil Botanist (cost 5)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 12 -> 14)
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+1 damage counter put on Woody - Jungle Guide
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 14 -> 16)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Woody - Jungle Guide
+Woody - Jungle Guide was banished
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 16 -> 17)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=17  ink=6  hand=0  discard=8
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary, Look What You've Done
+  Player 2:  lore=2  ink=6  hand=2  discard=9
+  cards in play:
+    (empty)
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse, Elinor - Renowned Diplomat, Elinor - Renowned Diplomat, Woody - Jungle Guide, Grandmother Willow - Ancient Advisor, Woody - Jungle Guide
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew You've Got a Friend in Me
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=17  ink=6  hand=0  discard=8
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Maudie - Exasperated Nursemaid
+    - Shere Khan - Fearsome Tiger
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary, Look What You've Done
+  Player 2:  lore=2  ink=6  hand=3  discard=9
+  cards in play:
+    (empty)
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse, Elinor - Renowned Diplomat, Elinor - Renowned Diplomat, Woody - Jungle Guide, Grandmother Willow - Ancient Advisor, Woody - Jungle Guide
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Rapunzel & Flynn Rider - Unlikely Pair
+Player 1 played Rapunzel & Flynn Rider - Unlikely Pair (cost 5)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 17 -> 19)
+Shere Khan - Fearsome Tiger's ON THE HUNT had no effect (no valid targets)
+Player 1 quested with Maudie - Exasperated Nursemaid (+1 [LORE], 19 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=20  ink=6  hand=0  discard=8
+  cards in play:
+    - Dr. Bushroot - Evil Botanist
+    - Maudie - Exasperated Nursemaid
+    - Rapunzel & Flynn Rider - Unlikely Pair
+    - Shere Khan - Fearsome Tiger
+    - Shere Khan - Fearsome Tiger
+  discard: Strike a Good Match, Goofy - Emerald Champion, Malicious, Mean, and Scary, Look What You've Done, Merida - Defiant Daughter, Dinky - Has the Brains, Malicious, Mean, and Scary, Look What You've Done
+  Player 2:  lore=2  ink=6  hand=3  discard=9
+  cards in play:
+    (empty)
+  discard: Grandmother Willow - Ancient Advisor, Jessie - Lively Cowgirl, Alien - True Believer, Bullseye - Loyal Horse, Elinor - Renowned Diplomat, Elinor - Renowned Diplomat, Woody - Jungle Guide, Grandmother Willow - Ancient Advisor, Woody - Jungle Guide

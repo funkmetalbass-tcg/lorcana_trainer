@@ -1,0 +1,696 @@
+Player 1's starting hand: Chomp!, Goofy - Emerald Champion, Rapunzel & Flynn Rider - Unlikely Pair, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Dinky - Has the Brains, Malicious, Mean, and Scary
+Player 2's starting hand: Olaf - Helping Hand, Cheshire Cat - Inexplicable, Red Moon Ritual, Peter Pan & Tinker Bell - Fast Friends, Peter Pan & Tinker Bell - Fast Friends, Cheshire Cat - Inexplicable, Dash Parr - Dodgeball Dynamo
+Player 1 mulliganed 2 cards: Goofy - Emerald Champion, Chomp!. Drew: Max Goof - Chart Topper, Malicious, Mean, and Scary
+Player 2 mulliganed 7 cards: Red Moon Ritual, Peter Pan & Tinker Bell - Fast Friends, Peter Pan & Tinker Bell - Fast Friends, Cheshire Cat - Inexplicable, Cheshire Cat - Inexplicable, Dash Parr - Dodgeball Dynamo, Olaf - Helping Hand. Drew: Medallion Weights, Morph - Little Imitator, Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Elisa Maza - Transformed Gargoyle, Junior Woodchuck Guidebook, Queen of Hearts - Sensing Weakness
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 declined Bobby Zimuruski - Spray Cheese Kid's SO CHEESY
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=5  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dumbo - Ninth Wonder of the Universe
+Player 2 added Queen of Hearts - Sensing Weakness to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=5  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=1  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 added Chomp! to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! had no effect (no valid targets)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=4  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  Player 2:  lore=0  ink=1  hand=7  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Tinker Bell - Fancy Footwork
+Player 2 added Dumbo - Ninth Wonder of the Universe to ink
+Player 2 played Scrooge McDuck - Ghostly Ebenezer (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=4  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+  Player 2:  lore=0  ink=2  hand=6  discard=0
+  cards in play:
+    - Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Scrooge McDuck - Ghostly Ebenezer
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 1 -> 2)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 2 -> 4)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=3  hand=3  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+  Player 2:  lore=0  ink=2  hand=6  discard=0
+  cards in play:
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dumbo - Ninth Wonder of the Universe
+Player 2 challenged Dinky - Has the Brains with Scrooge McDuck - Ghostly Ebenezer
+Player 2 challenged Dinky - Has the Brains with Scrooge McDuck - Ghostly Ebenezer | 3 [STRENGTH] dealt 3 dmg to Dinky - Has the Brains (3/2 [WILLPOWER] - banished!), took 1 dmg (2/3 [WILLPOWER])
+Dinky - Has the Brains was banished
+Player 2 added Tinker Bell - Fancy Footwork to ink
+Player 2 played Elisa Maza - Transformed Gargoyle (cost 3)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=4  ink=3  hand=3  discard=1
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains
+  Player 2:  lore=0  ink=3  hand=5  discard=0
+  cards in play:
+    - Elisa Maza - Transformed Gargoyle
+    - Scrooge McDuck - Ghostly Ebenezer  [2 dmg]
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strength of a Raging Fire
+Player 1 added Strength of a Raging Fire to ink
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 challenged Scrooge McDuck - Ghostly Ebenezer with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Scrooge McDuck - Ghostly Ebenezer with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Scrooge McDuck - Ghostly Ebenezer (3/3 [WILLPOWER] - banished!), took 3 dmg (3/2 [WILLPOWER] - banished!)
+Bobby Zimuruski - Spray Cheese Kid was banished
+Scrooge McDuck - Ghostly Ebenezer was banished
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=4  ink=4  hand=2  discard=2
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Most Helpful
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=3  hand=5  discard=1
+  cards in play:
+    - Elisa Maza - Transformed Gargoyle
+  discard: Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Scrooge McDuck - Ghostly Ebenezer
+Player 2 added Morph - Little Imitator to ink
+Player 2 played Scrooge McDuck - Ghostly Ebenezer (cost 2)
+Player 2 played Medallion Weights (cost 2)
+Player 2 quested with Elisa Maza - Transformed Gargoyle (+1 [LORE], 0 -> 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=4  ink=4  hand=2  discard=2
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Most Helpful
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=1  ink=4  hand=3  discard=1
+  cards in play:
+    - Elisa Maza - Transformed Gargoyle
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer
+  discard: Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 added Rapunzel & Flynn Rider - Unlikely Pair to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Tinker Bell - Most Helpful (+2 [LORE], 4 -> 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=5  hand=1  discard=2
+  cards in play:
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Most Helpful
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=1  ink=4  hand=3  discard=1
+  cards in play:
+    - Elisa Maza - Transformed Gargoyle
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer
+  discard: Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Morph - Little Imitator
+Player 2 added Morph - Little Imitator to ink
+Player 2 played Dumbo - Ninth Wonder of the Universe (cost 4)
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (1 card under)
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 1 -> 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=6  ink=5  hand=1  discard=2
+  cards in play:
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Most Helpful
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=2  ink=5  hand=2  discard=1
+  cards in play:
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer
+  discard: Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 quested with Tinker Bell - Most Helpful (+2 [LORE], 6 -> 8)
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Elisa Maza - Transformed Gargoyle
+1 damage counter put on Scrooge McDuck - Ghostly Ebenezer
+1 damage counter put on Dumbo - Ninth Wonder of the Universe
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=1  discard=2
+  cards in play:
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Most Helpful
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=2  ink=5  hand=2  discard=1
+  cards in play:
+    - Dumbo - Ninth Wonder of the Universe  [1 dmg]
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cheshire Cat - Inexplicable
+Player 2 played Cheshire Cat - Inexplicable (cost 3)
+Player 2 boosted Cheshire Cat - Inexplicable (1 card under)
+Cheshire Cat - Inexplicable's IT'S LOADS OF FUN moves 1 damage from Scrooge McDuck - Ghostly Ebenezer to Goofy - Emerald Champion (destination was not banished)
+Moved 1 damage counter from Scrooge McDuck - Ghostly Ebenezer to Goofy - Emerald Champion
+Player 2 added Junior Woodchuck Guidebook to ink
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (2 cards under)
+Player 2 challenged Tinker Bell - Most Helpful with Dumbo - Ninth Wonder of the Universe
+Goofy - Emerald Champion's EVEN THE SCORE banishes Dumbo - Ninth Wonder of the Universe
+Player 2 challenged Tinker Bell - Most Helpful with Dumbo - Ninth Wonder of the Universe | 3 [STRENGTH] dealt 3 dmg to Tinker Bell - Most Helpful (3/3 [WILLPOWER] - banished!), took 2 dmg (3/3 [WILLPOWER] - banished!)
+Dumbo - Ninth Wonder of the Universe was banished
+Tinker Bell - Most Helpful was banished
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 2 -> 3)
+Player 2 quested with Elisa Maza - Transformed Gargoyle (+1 [LORE], 3 -> 4)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=1  discard=3
+  cards in play:
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful
+  Player 2:  lore=4  ink=6  hand=1  discard=2
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=1  discard=3
+  cards in play:
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+    - Merida - Defiant Daughter
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful
+  Player 2:  lore=4  ink=6  hand=1  discard=2
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cheshire Cat - Inexplicable
+Player 2 played Dumbo - Ninth Wonder of the Universe (cost 4)
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (3 cards under)
+Player 2 added Cheshire Cat - Inexplicable to ink
+Player 2 boosted Cheshire Cat - Inexplicable (2 cards under)
+Cheshire Cat - Inexplicable's IT'S LOADS OF FUN moves 1 damage from Elisa Maza - Transformed Gargoyle to Goofy - Emerald Champion (destination was not banished)
+Moved 1 damage counter from Elisa Maza - Transformed Gargoyle to Goofy - Emerald Champion
+Player 2 quested with Scrooge McDuck - Ghostly Ebenezer (+1 [LORE], 4 -> 5)
+Player 2 quested with Elisa Maza - Transformed Gargoyle (+1 [LORE], 5 -> 6)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=8  ink=5  hand=1  discard=3
+  cards in play:
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+    - Merida - Defiant Daughter
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful
+  Player 2:  lore=6  ink=7  hand=0  discard=2
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 8 -> 9)
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=9  ink=5  hand=1  discard=3
+  cards in play:
+    - Ariel - Determined Mermaid
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+    - Merida - Defiant Daughter
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful
+  Player 2:  lore=6  ink=7  hand=0  discard=2
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Elisa Maza - Transformed Gargoyle
+Player 2 played Elisa Maza - Transformed Gargoyle (cost 3)
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (4 cards under)
+Player 2 challenged Merida - Defiant Daughter with Scrooge McDuck - Ghostly Ebenezer
+Goofy - Emerald Champion's EVEN THE SCORE banishes Scrooge McDuck - Ghostly Ebenezer
+Scrooge McDuck - Ghostly Ebenezer was banished
+Player 2 challenged Merida - Defiant Daughter with Scrooge McDuck - Ghostly Ebenezer | 7 [STRENGTH] dealt 7 dmg to Merida - Defiant Daughter (7/3 [WILLPOWER] - banished!), took 2 dmg (2/7 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Dumbo - Ninth Wonder of the Universe
+Player 2 activated BREAKING RECORDS on Dumbo - Ninth Wonder of the Universe
+Dumbo - Ninth Wonder of the Universe's BREAKING RECORDS draws a card
+Dumbo - Ninth Wonder of the Universe's BREAKING RECORDS gains 1 [LORE] (6 -> 7)
+Player 2 drew Olaf - Helping Hand
+Player 2 added Olaf - Helping Hand to ink
+Player 2 quested with Elisa Maza - Transformed Gargoyle (+1 [LORE], 7 -> 8)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=9  ink=5  hand=1  discard=4
+  cards in play:
+    - Ariel - Determined Mermaid
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter
+  Player 2:  lore=8  ink=8  hand=0  discard=3
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 quested with Ariel - Determined Mermaid (+1 [LORE], 9 -> 10)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=1  discard=4
+  cards in play:
+    - Ariel - Determined Mermaid
+    - Ariel - Determined Mermaid
+    - Goofy - Emerald Champion
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter
+  Player 2:  lore=8  ink=8  hand=0  discard=3
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dash Parr - Dodgeball Dynamo
+Player 2 played Dash Parr - Dodgeball Dynamo (cost 1)
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Elisa Maza - Transformed Gargoyle
+Player 2 challenged Ariel - Determined Mermaid with Elisa Maza - Transformed Gargoyle
+Player 2 challenged Ariel - Determined Mermaid with Elisa Maza - Transformed Gargoyle
+Elisa Maza - Transformed Gargoyle's DISCIPLINE AND STRENGTH (Draw) draws a card
+Ariel - Determined Mermaid was banished
+Player 2 boosted Cheshire Cat - Inexplicable (3 cards under)
+Cheshire Cat - Inexplicable's IT'S LOADS OF FUN moves 2 damage from Elisa Maza - Transformed Gargoyle to Goofy - Emerald Champion (destination was not banished)
+Moved 2 damage counters from Elisa Maza - Transformed Gargoyle to Goofy - Emerald Champion
+Player 2 sang Red Moon Ritual with Dumbo - Ninth Wonder of the Universe, Elisa Maza - Transformed Gargoyle
+Red Moon Ritual's RED MOON RITUAL banishes Goofy - Emerald Champion
+Goofy - Emerald Champion was banished
+Player 2 quested with Cheshire Cat - Inexplicable (+1 [LORE], 8 -> 9)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=1  discard=6
+  cards in play:
+    - Ariel - Determined Mermaid
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter, Ariel - Determined Mermaid, Goofy - Emerald Champion
+  Player 2:  lore=9  ink=8  hand=-1  discard=4
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dash Parr - Dodgeball Dynamo
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Red Moon Ritual
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=1  discard=6
+  cards in play:
+    - Ariel - Determined Mermaid
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+    - Maudie - Exasperated Nursemaid
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter, Ariel - Determined Mermaid, Goofy - Emerald Champion
+  Player 2:  lore=9  ink=8  hand=-1  discard=4
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dash Parr - Dodgeball Dynamo
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Elisa Maza - Transformed Gargoyle  [1 dmg]
+    - Medallion Weights
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Red Moon Ritual
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Demona - Scourge of the Wyvern Clan
+Player 2 played Demona - Scourge of the Wyvern Clan (cost 6)
+Demona - Scourge of the Wyvern Clan's AD SAXUM COMMUTATE exerts a character
+Demona - Scourge of the Wyvern Clan's AD SAXUM COMMUTATE each player with fewer than 3 cards draws until they have 3
+Player 2 drew 3 cards: Mrs. Incredible - Super Stretchy, Violet Parr - Learning New Powers, Dumbo - Ninth Wonder of the Universe
+Player 1 drew 2 cards: Dr. Bushroot - Evil Botanist, Dr. Bushroot - Evil Botanist
+Player 2 challenged Ariel - Determined Mermaid with Elisa Maza - Transformed Gargoyle
+Player 2 challenged Ariel - Determined Mermaid with Elisa Maza - Transformed Gargoyle | 4 [STRENGTH] dealt 4 dmg to Ariel - Determined Mermaid (4/4 [WILLPOWER] - banished!), took 2 dmg (2/4 [WILLPOWER])
+Ariel - Determined Mermaid was banished
+Player 2 challenged Maudie - Exasperated Nursemaid with Elisa Maza - Transformed Gargoyle
+Player 2 challenged Maudie - Exasperated Nursemaid with Elisa Maza - Transformed Gargoyle | 4 [STRENGTH] dealt 3 dmg (4-1 Resist) to Maudie - Exasperated Nursemaid (3/5 [WILLPOWER]), took 2 dmg (2/4 [WILLPOWER])
+Player 2 boosted Cheshire Cat - Inexplicable (4 cards under)
+Cheshire Cat - Inexplicable's IT'S LOADS OF FUN moves 2 damage from Elisa Maza - Transformed Gargoyle to Maudie - Exasperated Nursemaid (destination was banished)
+Moved 2 damage counters from Elisa Maza - Transformed Gargoyle to Maudie - Exasperated Nursemaid
+Maudie - Exasperated Nursemaid was banished
+Player 2 added Violet Parr - Learning New Powers to ink
+Player 2 activated MAKING HISTORY (Granted) on Dash Parr - Dodgeball Dynamo
+Dash Parr - Dodgeball Dynamo's MAKING HISTORY (Granted) draws a card
+Dash Parr - Dodgeball Dynamo's MAKING HISTORY (Granted) gains 1 [LORE] (9 -> 10)
+Player 2 quested with Dumbo - Ninth Wonder of the Universe (+1 [LORE], 10 -> 11)
+Player 2 quested with Cheshire Cat - Inexplicable (+1 [LORE], 11 -> 12)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=3  discard=8
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter, Ariel - Determined Mermaid, Goofy - Emerald Champion, Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=12  ink=9  hand=1  discard=4
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dash Parr - Dodgeball Dynamo
+    - Demona - Scourge of the Wyvern Clan
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [2 dmg]
+    - Elisa Maza - Transformed Gargoyle  [2 dmg]
+    - Medallion Weights
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Red Moon Ritual
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=4  discard=8
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter, Ariel - Determined Mermaid, Goofy - Emerald Champion, Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=12  ink=9  hand=1  discard=4
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dash Parr - Dodgeball Dynamo
+    - Demona - Scourge of the Wyvern Clan
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [2 dmg]
+    - Elisa Maza - Transformed Gargoyle  [2 dmg]
+    - Medallion Weights
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Red Moon Ritual
+
+--- Turn 22 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dash Parr - Dodgeball Dynamo
+Player 2 played Mrs. Incredible - Super Stretchy (cost 5)
+Player 2 activated MAKING HISTORY (Granted) on Dash Parr - Dodgeball Dynamo
+Dash Parr - Dodgeball Dynamo's MAKING HISTORY (Granted) draws a card
+Dash Parr - Dodgeball Dynamo's MAKING HISTORY (Granted) gains 1 [LORE] (12 -> 13)
+Player 2 activated BREAKING RECORDS on Dumbo - Ninth Wonder of the Universe
+Dumbo - Ninth Wonder of the Universe's BREAKING RECORDS draws a card
+Dumbo - Ninth Wonder of the Universe's BREAKING RECORDS gains 1 [LORE] (13 -> 14)
+Player 2 drew Grandma Wu - Fierce Red Panda
+Player 2 quested with Cheshire Cat - Inexplicable (+1 [LORE], 14 -> 15)
+Player 2 quested with Demona - Scourge of the Wyvern Clan (+2 [LORE], 15 -> 17)
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Mrs. Incredible - Super Stretchy
+Player 2 added Dash Parr - Dodgeball Dynamo to ink
+Player 2 played Dash Parr - Dodgeball Dynamo (cost 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=10  ink=5  hand=4  discard=8
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter, Ariel - Determined Mermaid, Goofy - Emerald Champion, Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=17  ink=10  hand=0  discard=4
+  cards in play:
+    - Cheshire Cat - Inexplicable
+    - Dash Parr - Dodgeball Dynamo
+    - Dash Parr - Dodgeball Dynamo
+    - Demona - Scourge of the Wyvern Clan
+    - Dumbo - Ninth Wonder of the Universe
+    - Elisa Maza - Transformed Gargoyle  [2 dmg]
+    - Elisa Maza - Transformed Gargoyle  [2 dmg]
+    - Medallion Weights
+    - Mrs. Incredible - Super Stretchy
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Red Moon Ritual
+
+--- Turn 23 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Most Helpful
+Player 1 added Tinker Bell - Most Helpful to ink
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Elisa Maza - Transformed Gargoyle
+Tinker Bell - Giant Fairy dealt 1 damage to Cheshire Cat - Inexplicable
+Tinker Bell - Giant Fairy dealt 1 damage to Dumbo - Ninth Wonder of the Universe
+Tinker Bell - Giant Fairy dealt 1 damage to Elisa Maza - Transformed Gargoyle
+Tinker Bell - Giant Fairy dealt 1 damage to Dash Parr - Dodgeball Dynamo
+Tinker Bell - Giant Fairy dealt 1 damage to Demona - Scourge of the Wyvern Clan
+Tinker Bell - Giant Fairy dealt 1 damage to Mrs. Incredible - Super Stretchy
+Tinker Bell - Giant Fairy dealt 1 damage to Dash Parr - Dodgeball Dynamo
+Dash Parr - Dodgeball Dynamo was banished
+Dash Parr - Dodgeball Dynamo was banished
+Player 1 quested with Dr. Bushroot - Evil Botanist (+3 [LORE], 10 -> 13)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=13  ink=6  hand=3  discard=8
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Giant Fairy
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter, Ariel - Determined Mermaid, Goofy - Emerald Champion, Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=17  ink=10  hand=0  discard=6
+  cards in play:
+    - Cheshire Cat - Inexplicable  [1 dmg]
+    - Demona - Scourge of the Wyvern Clan  [1 dmg]
+    - Dumbo - Ninth Wonder of the Universe  [1 dmg]
+    - Elisa Maza - Transformed Gargoyle  [4 dmg]
+    - Elisa Maza - Transformed Gargoyle  [4 dmg]
+    - Medallion Weights
+    - Mrs. Incredible - Super Stretchy  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Red Moon Ritual, Dash Parr - Dodgeball Dynamo, Dash Parr - Dodgeball Dynamo
+
+--- Turn 24 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Mrs. Incredible - Super Stretchy's FLEXIBLE THINKING gives +1 [LORE]
+Draw step
+Player 2 drew Peter Pan & Tinker Bell - Fast Friends
+Player 2 quested with Mrs. Incredible - Super Stretchy (+2 [LORE], 17 -> 19)
+Player 2 quested with Dumbo - Ninth Wonder of the Universe (+1 [LORE], 19 -> 20)
+Player 2 won with 20 [LORE]!
+Player 2 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=13  ink=6  hand=3  discard=8
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Giant Fairy
+  discard: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Merida - Defiant Daughter, Ariel - Determined Mermaid, Goofy - Emerald Champion, Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=20  ink=10  hand=1  discard=6
+  cards in play:
+    - Cheshire Cat - Inexplicable  [1 dmg]
+    - Demona - Scourge of the Wyvern Clan  [1 dmg]
+    - Dumbo - Ninth Wonder of the Universe  [1 dmg]
+    - Elisa Maza - Transformed Gargoyle  [4 dmg]
+    - Elisa Maza - Transformed Gargoyle  [4 dmg]
+    - Medallion Weights
+    - Mrs. Incredible - Super Stretchy  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Red Moon Ritual, Dash Parr - Dodgeball Dynamo, Dash Parr - Dodgeball Dynamo

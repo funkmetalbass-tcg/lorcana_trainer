@@ -1,0 +1,159 @@
+Player 1's starting hand: Dinky - Has the Brains, Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Most Helpful, Shere Khan - Fearsome Tiger, Max Goof - Chart Topper, Ariel - Determined Mermaid, Rapunzel & Flynn Rider - Unlikely Pair
+Player 2's starting hand: Daisy Duck - Donald's Date, Webby Vanderquack - Mystery Enthusiast, Lady - Family Dog, Ursula - Deceiver, Mowgli - Man Cub, Emerald Chromicon, Daisy Duck - Donald's Date
+Player 2 mulliganed 2 cards: Mowgli - Man Cub, Emerald Chromicon. Drew: Ursula - Deceiver, Mowgli - Man Cub
+Player 1 mulliganed 3 cards: Shere Khan - Fearsome Tiger, Max Goof - Chart Topper, Rapunzel & Flynn Rider - Unlikely Pair. Drew: Strength of a Raging Fire, Malicious, Mean, and Scary, Maudie - Exasperated Nursemaid
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Webby Vanderquack - Mystery Enthusiast to ink
+Player 2 played Daisy Duck - Donald's Date (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 declined Bobby Zimuruski - Spray Cheese Kid's SO CHEESY
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lady - Decisive Dog
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 0 -> 2)
+Player 1 revealed Cruella De Vil - Judgmental Traveler(BIG PRIZE) - revealed
+Player 1 revealed Cruella De Vil - Judgmental Traveler(BIG PRIZE) - put into hand
+Player 2 added Mowgli - Man Cub to ink
+Player 2 played Daisy Duck - Donald's Date (cost 1)
+Player 2 played Lady - Decisive Dog (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Daisy Duck - Donald's Date
+Player 1 challenged Daisy Duck - Donald's Date with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Daisy Duck - Donald's Date with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Daisy Duck - Donald's Date (1/4 [WILLPOWER]), took 1 dmg (1/2 [WILLPOWER])
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Webby Vanderquack - Junior Prospector
+Player 2 added Webby Vanderquack - Junior Prospector to ink
+Player 2 played Lady - Family Dog (cost 3)
+Lady - Decisive Dog's PACK OF HER OWN gives +1 [STRENGTH]
+Lady - Family Dog's SOMEONE TO CARE FOR Played Ursula - Deceiver for free
+Player 2 played Ursula - Deceiver (cost 2 → 0)
+Lady - Decisive Dog's PACK OF HER OWN gives +1 [STRENGTH]
+Player 1 discarded Strength of a Raging Fire
+Ursula - Deceiver's YOU'LL NEVER EVEN MISS IT looks at opponent's hand
+Ursula - Deceiver's YOU'LL NEVER EVEN MISS IT Discarded a card
+Player 1 discarded Strength of a Raging Fire
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 2 -> 4)
+Player 1 revealed Malicious, Mean, and Scary(BIG PRIZE) - put on bottom of deck
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 4 -> 6)
+Player 1 revealed Maudie - Exasperated Nursemaid(BIG PRIZE) - revealed
+Player 1 revealed Maudie - Exasperated Nursemaid(BIG PRIZE) - put into hand
+Player 2 quested with Lady - Decisive Dog (+1 [LORE], 6 -> 7)
+Player 2 ended Player 2's turn
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Rapunzel & Flynn Rider - Unlikely Pair
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 0 -> 2)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 2 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Tramp - Street-Smart Dog
+Player 2 played Tramp - Street-Smart Dog (cost 7 → 2, NOW IT'S A PARTY)
+Lady - Decisive Dog's PACK OF HER OWN gives +1 [STRENGTH]
+Player 2 discarded Lady - Elegant Spaniel
+Player 2 discarded Lady - Elegant Spaniel
+Player 2 discarded Go Go Tomago - Darting Dynamo
+Player 2 discarded Ursula - Deceiver
+Player 2 discarded Della's Moon Lullaby
+Tramp - Street-Smart Dog's HOW'S PICKINGS? draws 5 cards
+Tramp - Street-Smart Dog's HOW'S PICKINGS? Discarded 5 cards
+Player 2 drew 5 cards: Emerald Chromicon, Lady - Elegant Spaniel, Lady - Elegant Spaniel, Della's Moon Lullaby, Go Go Tomago - Darting Dynamo
+Player 2 discarded Lady - Elegant Spaniel
+Player 2 discarded Lady - Elegant Spaniel
+Player 2 discarded Go Go Tomago - Darting Dynamo
+Player 2 discarded Ursula - Deceiver
+Player 2 discarded Della's Moon Lullaby
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 7 -> 9)
+Player 1 revealed Ariel - Determined Mermaid(BIG PRIZE) - revealed
+Player 1 revealed Ariel - Determined Mermaid(BIG PRIZE) - put into hand
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 9 -> 11)
+Player 1 revealed Merida - Defiant Daughter(BIG PRIZE) - revealed
+Player 1 revealed Merida - Defiant Daughter(BIG PRIZE) - put into hand
+Player 2 quested with Lady - Family Dog (+2 [LORE], 11 -> 13)
+Player 2 quested with Ursula - Deceiver (+1 [LORE], 13 -> 14)
+Player 2 quested with Lady - Decisive Dog (+1 [LORE], 14 -> 15)
+Player 2 ended Player 2's turn
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Daisy Duck - Donald's Date
+1 damage counter put on Daisy Duck - Donald's Date
+1 damage counter put on Lady - Decisive Dog
+1 damage counter put on Lady - Family Dog
+1 damage counter put on Ursula - Deceiver
+1 damage counter put on Tramp - Street-Smart Dog
+Player 1 challenged Lady - Family Dog with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Lady - Family Dog with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Lady - Family Dog (2/2 [WILLPOWER] - banished!), took 2 dmg (3/2 [WILLPOWER] - banished!)
+Bobby Zimuruski - Spray Cheese Kid was banished
+Lady - Family Dog was banished
+Player 1 challenged Daisy Duck - Donald's Date with Maudie - Exasperated Nursemaid
+Player 1 challenged Daisy Duck - Donald's Date with Maudie - Exasperated Nursemaid | 2 [STRENGTH] dealt 2 dmg to Daisy Duck - Donald's Date (4/4 [WILLPOWER] - banished!), took 0 dmg (1-1 Resist) (0/5 [WILLPOWER])
+Daisy Duck - Donald's Date was banished
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 3 -> 5)
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mowgli - Man Cub
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 15 -> 17)
+Player 1 revealed Chomp!(BIG PRIZE) - put on bottom of deck
+Player 2 quested with Ursula - Deceiver (+1 [LORE], 17 -> 18)
+Player 2 quested with Lady - Decisive Dog (+1 [LORE], 18 -> 19)
+Player 2 quested with Tramp - Street-Smart Dog (+2 [LORE], 19 -> 21)
+Player 2 won with 21 [LORE]!
+Player 2 won with 21 [LORE]!

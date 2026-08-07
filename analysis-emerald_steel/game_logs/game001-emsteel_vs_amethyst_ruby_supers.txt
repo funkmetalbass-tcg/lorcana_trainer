@@ -1,0 +1,427 @@
+Player 1's starting hand: Malicious, Mean, and Scary, Merida - Defiant Daughter, Strength of a Raging Fire, Dr. Bushroot - Evil Botanist, Rapunzel & Flynn Rider - Unlikely Pair, Tinker Bell - Most Helpful, Strike a Good Match
+Player 2's starting hand: Violet Parr - Learning New Powers, Tinker Bell - Fancy Footwork, Dumbo - Ninth Wonder of the Universe, Olaf - Helping Hand, Junior Woodchuck Guidebook, Violet Parr - Learning New Powers, Dumbo - Ninth Wonder of the Universe
+Player 1 mulliganed 2 cards: Rapunzel & Flynn Rider - Unlikely Pair, Dr. Bushroot - Evil Botanist. Drew: Cruella De Vil - Judgmental Traveler, Look What You've Done
+Player 2 mulliganed 7 cards: Dumbo - Ninth Wonder of the Universe, Dumbo - Ninth Wonder of the Universe, Junior Woodchuck Guidebook, Olaf - Helping Hand, Violet Parr - Learning New Powers, Violet Parr - Learning New Powers, Tinker Bell - Fancy Footwork. Drew: Cheshire Cat - Inexplicable, Elisa Maza - Transformed Gargoyle, Peter Pan & Tinker Bell - Fast Friends, Demona - Scourge of the Wyvern Clan, Dash Parr - Dodgeball Dynamo, Peter Pan & Tinker Bell - Fast Friends, Demona - Scourge of the Wyvern Clan
+Game started!
+
+--- Turn 1 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 ended Player 1's turn
+
+--- Turn 2 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Mrs. Incredible - Super Stretchy
+Player 2 added Demona - Scourge of the Wyvern Clan to ink
+Player 2 played Dash Parr - Dodgeball Dynamo (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 3 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 ended Player 1's turn
+
+--- Turn 4 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cheshire Cat - Inexplicable
+Player 2 added Peter Pan & Tinker Bell - Fast Friends to ink
+Player 2 quested with Dash Parr - Dodgeball Dynamo (+1 [LORE], 0 -> 1)
+Player 2 ended Player 2's turn
+
+--- Turn 5 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 sang Strike a Good Match with Merida - Defiant Daughter
+Strike a Good Match's STRIKE A GOOD MATCH draws 2 cards
+Strike a Good Match's STRIKE A GOOD MATCH Discarded a card
+Player 1 drew 2 cards: Winifred - Exasperated Elephant, Ariel - Determined Mermaid
+Player 1 discarded Look What You've Done from hand
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Play from discard"
+Look What You've Done's LOOK WHAT YOU'VE DONE plays Look What You've Done from discard exerted
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Dash Parr - Dodgeball Dynamo
+Dash Parr - Dodgeball Dynamo was banished
+Player 1 added Ariel - Determined Mermaid to ink
+Player 1 ended Player 1's turn
+
+--- Turn 6 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Cheshire Cat - Inexplicable
+Player 2 added Cheshire Cat - Inexplicable to ink
+Player 2 played Elisa Maza - Transformed Gargoyle (cost 3)
+Player 2 ended Player 2's turn
+
+--- Turn 7 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Ariel - Determined Mermaid
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+--- Turn 8 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Peter Pan & Tinker Bell - Fast Friends
+Player 2 added Cheshire Cat - Inexplicable to ink
+Player 2 played Cheshire Cat - Inexplicable (cost 3)
+Player 2 challenged Merida - Defiant Daughter with Elisa Maza - Transformed Gargoyle
+Player 2 challenged Merida - Defiant Daughter with Elisa Maza - Transformed Gargoyle | 4 [STRENGTH] dealt 4 dmg to Merida - Defiant Daughter (4/3 [WILLPOWER] - banished!), took 2 dmg (2/4 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 ended Player 2's turn
+
+--- Turn 9 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Cruella De Vil - Judgmental Traveler
+Player 1 played Ariel - Determined Mermaid (cost 3)
+Player 1 sang Strength of a Raging Fire with Tinker Bell - Most Helpful
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 2 damage
+Strength of a Raging Fire dealt 2 damage to Elisa Maza - Transformed Gargoyle
+Elisa Maza - Transformed Gargoyle was banished
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Goofy - Emerald Champion
+Player 1 discarded Winifred - Exasperated Elephant from hand
+Player 1 ended Player 1's turn
+
+--- Turn 10 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Red Moon Ritual
+Player 2 added Peter Pan & Tinker Bell - Fast Friends to ink
+Player 2 played Mrs. Incredible - Super Stretchy (cost 5)
+Player 2 ended Player 2's turn
+
+--- Turn 11 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 quested with Tinker Bell - Most Helpful (+2 [LORE], 1 -> 3)
+Player 1 ended Player 1's turn
+
+--- Turn 12 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Mrs. Incredible - Super Stretchy's FLEXIBLE THINKING grants Evasive
+Draw step
+Player 2 drew Junior Woodchuck Guidebook
+Player 2 added Peter Pan & Tinker Bell - Fast Friends to ink
+Player 2 sang Red Moon Ritual with Mrs. Incredible - Super Stretchy, Cheshire Cat - Inexplicable
+Red Moon Ritual's RED MOON RITUAL banishes Goofy - Emerald Champion
+Goofy - Emerald Champion was banished
+Player 2 played Demona - Scourge of the Wyvern Clan (cost 6)
+Demona - Scourge of the Wyvern Clan's AD SAXUM COMMUTATE exerts a character
+Demona - Scourge of the Wyvern Clan's AD SAXUM COMMUTATE each player with fewer than 3 cards draws until they have 3
+Player 2 drew 2 cards: Morph - Little Imitator, Isis Vanderchill - Ice Queen of St. Canard
+Player 1 drew Rapunzel & Flynn Rider - Unlikely Pair
+Player 2 ended Player 2's turn
+
+--- Turn 13 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Demona - Scourge of the Wyvern Clan
+Player 1 added Dinky - Has the Brains to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 quested with Tinker Bell - Most Helpful (+2 [LORE], 3 -> 5)
+Player 1 ended Player 1's turn
+
+--- Turn 14 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Mrs. Incredible - Super Stretchy's FLEXIBLE THINKING grants Evasive
+Draw step
+Player 2 drew Tinker Bell - Fancy Footwork
+Player 2 played Tinker Bell - Fancy Footwork (cost 1)
+Player 2 played Isis Vanderchill - Ice Queen of St. Canard (cost 4)
+Isis Vanderchill - Ice Queen of St. Canard's CHILL OUT exerts a character
+Player 2 challenged Shere Khan - Fearsome Tiger with Mrs. Incredible - Super Stretchy
+Player 2 challenged Shere Khan - Fearsome Tiger with Mrs. Incredible - Super Stretchy | 5 [STRENGTH] dealt 5 dmg to Shere Khan - Fearsome Tiger (5/4 [WILLPOWER] - banished!), took 5 dmg (5/6 [WILLPOWER])
+Shere Khan - Fearsome Tiger was banished
+Player 2 added Morph - Little Imitator to ink
+Player 2 boosted Cheshire Cat - Inexplicable (1 card under)
+Cheshire Cat - Inexplicable's IT'S LOADS OF FUN moves 2 damage from Mrs. Incredible - Super Stretchy to Tinker Bell - Most Helpful (destination was not banished)
+Moved 2 damage counters from Mrs. Incredible - Super Stretchy to Tinker Bell - Most Helpful
+Player 2 quested with Demona - Scourge of the Wyvern Clan (+2 [LORE], 1 -> 3)
+Player 2 ended Player 2's turn
+
+--- Turn 15 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 played Rapunzel & Flynn Rider - Unlikely Pair (cost 5)
+Player 1 sang Malicious, Mean, and Scary with Ariel - Determined Mermaid
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Cheshire Cat - Inexplicable
+1 damage counter put on Mrs. Incredible - Super Stretchy
+1 damage counter put on Demona - Scourge of the Wyvern Clan
+1 damage counter put on Tinker Bell - Fancy Footwork
+1 damage counter put on Isis Vanderchill - Ice Queen of St. Canard
+Tinker Bell - Fancy Footwork was banished
+Ariel - Determined Mermaid's I WANT MORE draws a card
+Ariel - Determined Mermaid's I WANT MORE Discarded a card
+Player 1 drew Max Goof - Chart Topper
+Player 1 discarded Dr. Bushroot - Evil Botanist from hand
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START chose "Play from discard"
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START had no effect
+Player 1 quested with Tinker Bell - Most Helpful (+2 [LORE], 5 -> 7)
+Player 1 ended Player 1's turn
+
+--- Turn 16 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Mrs. Incredible - Super Stretchy's FLEXIBLE THINKING grants Evasive
+Draw step
+Player 2 drew Peter Pan & Tinker Bell - Fast Friends
+Player 2 played Peter Pan & Tinker Bell - Fast Friends (cost 6)
+Player 2 challenged Tinker Bell - Most Helpful with Isis Vanderchill - Ice Queen of St. Canard
+Player 2 challenged Tinker Bell - Most Helpful with Isis Vanderchill - Ice Queen of St. Canard | 4 [STRENGTH] dealt 4 dmg to Tinker Bell - Most Helpful (6/3 [WILLPOWER] - banished!), took 2 dmg (3/4 [WILLPOWER])
+Tinker Bell - Most Helpful was banished
+Player 2 challenged Ariel - Determined Mermaid with Mrs. Incredible - Super Stretchy
+Player 2 challenged Ariel - Determined Mermaid with Mrs. Incredible - Super Stretchy | 5 [STRENGTH] dealt 5 dmg to Ariel - Determined Mermaid (5/4 [WILLPOWER] - banished!), took 2 dmg (6/6 [WILLPOWER] - banished!)
+Mrs. Incredible - Super Stretchy was banished
+Ariel - Determined Mermaid was banished
+Player 2 quested with Demona - Scourge of the Wyvern Clan (+2 [LORE], 3 -> 5)
+Player 2 ended Player 2's turn
+
+--- Turn 17 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Mushu - Stealthy Dragon
+Player 1 quested with Rapunzel & Flynn Rider - Unlikely Pair (+2 [LORE], 7 -> 9)
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP draws a card
+Rapunzel & Flynn Rider - Unlikely Pair's CLEVER SWAP Discarded a card
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 discarded Shere Khan - Fearsome Tiger from hand
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START chose "Play from discard"
+Rapunzel & Flynn Rider - Unlikely Pair's FRESH START plays Shere Khan - Fearsome Tiger from discard exerted
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+--- Turn 18 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Grandma Wu - Fierce Red Panda
+Player 2 boosted Cheshire Cat - Inexplicable (2 cards under)
+Cheshire Cat - Inexplicable's IT'S LOADS OF FUN moves 2 damage from Isis Vanderchill - Ice Queen of St. Canard to Rapunzel & Flynn Rider - Unlikely Pair (destination was not banished)
+Moved 2 damage counters from Isis Vanderchill - Ice Queen of St. Canard to Rapunzel & Flynn Rider - Unlikely Pair
+Player 2 challenged Rapunzel & Flynn Rider - Unlikely Pair with Demona - Scourge of the Wyvern Clan
+Player 2 challenged Rapunzel & Flynn Rider - Unlikely Pair with Demona - Scourge of the Wyvern Clan | 5 [STRENGTH] dealt 5 dmg to Rapunzel & Flynn Rider - Unlikely Pair (7/4 [WILLPOWER] - banished!), took 4 dmg (5/6 [WILLPOWER])
+Rapunzel & Flynn Rider - Unlikely Pair was banished
+Player 2 added Grandma Wu - Fierce Red Panda to ink
+Player 2 played Junior Woodchuck Guidebook (cost 2)
+Player 2 quested with Isis Vanderchill - Ice Queen of St. Canard (+1 [LORE], 5 -> 6)
+Player 2 quested with Peter Pan & Tinker Bell - Fast Friends (+2 [LORE], 6 -> 8)
+Player 2 quested with Cheshire Cat - Inexplicable (+1 [LORE], 8 -> 9)
+Player 2 activated THE BOOK KNOWS EVERYTHING on Junior Woodchuck Guidebook
+Junior Woodchuck Guidebook's THE BOOK KNOWS EVERYTHING draws 2 cards
+Player 2 drew 2 cards: Red Moon Ritual, Mrs. Incredible - Super Stretchy
+Player 2 ended Player 2's turn
+
+--- Turn 19 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Bobby Zimuruski - Spray Cheese Kid
+Player 1 played Max Goof - Chart Topper (cost 6)
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 9 -> 11)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Cheshire Cat - Inexplicable
+Shere Khan - Fearsome Tiger's ON THE HUNT puts 1 damage counter on itself
+Cheshire Cat - Inexplicable was banished
+1 damage counter put on Demona - Scourge of the Wyvern Clan
+Demona - Scourge of the Wyvern Clan was banished
+Player 1 ended Player 1's turn
+
+--- Turn 20 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Medallion Weights
+Player 2 challenged Shere Khan - Fearsome Tiger with Isis Vanderchill - Ice Queen of St. Canard
+Player 2 challenged Shere Khan - Fearsome Tiger with Isis Vanderchill - Ice Queen of St. Canard | 4 [STRENGTH] dealt 4 dmg to Shere Khan - Fearsome Tiger (4/4 [WILLPOWER] - banished!), took 5 dmg (6/4 [WILLPOWER] - banished!)
+Isis Vanderchill - Ice Queen of St. Canard was banished
+Shere Khan - Fearsome Tiger was banished
+Player 2 played Mrs. Incredible - Super Stretchy (cost 5)
+Player 2 played Medallion Weights (cost 2)
+Player 2 quested with Peter Pan & Tinker Bell - Fast Friends (+2 [LORE], 9 -> 11)
+Player 2 ended Player 2's turn
+
+--- Turn 21 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Goofy - Emerald Champion
+Player 1 played Goofy - Emerald Champion (cost 5)
+Player 1 added Bobby Zimuruski - Spray Cheese Kid to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 declined Bobby Zimuruski - Spray Cheese Kid's SO CHEESY
+Player 1 quested with Max Goof - Chart Topper (+2 [LORE], 11 -> 13)
+Max Goof - Chart Topper's NUMBER ONE HIT Played Strength of a Raging Fire for free
+Player 1 played Strength of a Raging Fire (cost 3 → 0)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 3 damage
+Strength of a Raging Fire dealt 3 damage to Mrs. Incredible - Super Stretchy
+Player 1 ended Player 1's turn
+
+--- Turn 22 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Mrs. Incredible - Super Stretchy's FLEXIBLE THINKING grants Evasive
+Draw step
+Player 2 drew Dash Parr - Super Fast
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Mrs. Incredible - Super Stretchy
+Player 2 challenged Max Goof - Chart Topper with Mrs. Incredible - Super Stretchy
+Player 2 challenged Max Goof - Chart Topper with Mrs. Incredible - Super Stretchy
+Mrs. Incredible - Super Stretchy's DISCIPLINE AND STRENGTH (Draw) draws a card
+Mrs. Incredible - Super Stretchy was banished
+Max Goof - Chart Topper was banished
+Goofy - Emerald Champion's EVEN THE SCORE banishes Mrs. Incredible - Super Stretchy
+Player 2 played Dash Parr - Super Fast (cost 5)
+Player 2 quested with Peter Pan & Tinker Bell - Fast Friends (+2 [LORE], 11 -> 13)
+Player 2 ended Player 2's turn
+
+--- Turn 23 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Merida - Defiant Daughter
+Player 1 played Mushu - Stealthy Dragon (cost 3)
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 13 -> 14)
+Player 1 ended Player 1's turn
+
+--- Turn 24 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Violet Parr - Learning New Powers
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Dash Parr - Super Fast
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Dash Parr - Super Fast
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Dash Parr - Super Fast
+Dash Parr - Super Fast's DISCIPLINE AND STRENGTH (Draw) draws a card
+Bobby Zimuruski - Spray Cheese Kid was banished
+Goofy - Emerald Champion's EVEN THE SCORE banishes Dash Parr - Super Fast
+Dash Parr - Super Fast was banished
+Player 2 played Junior Woodchuck Guidebook (cost 2)
+Player 2 played Violet Parr - Learning New Powers (cost 3)
+Player 2 declined Violet Parr - Learning New Powers's DEFLECT
+Player 2 played Olaf - Helping Hand (cost 1)
+Player 2 quested with Peter Pan & Tinker Bell - Fast Friends (+2 [LORE], 13 -> 15)
+Player 2 ended Player 2's turn
+
+--- Turn 25 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Giant Fairy
+Player 1 played Tinker Bell - Giant Fairy (cost 6)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Peter Pan & Tinker Bell - Fast Friends
+Tinker Bell - Giant Fairy dealt 1 damage to Violet Parr - Learning New Powers
+Tinker Bell - Giant Fairy dealt 1 damage to Olaf - Helping Hand
+Olaf - Helping Hand was banished
+Player 2 declined Olaf - Helping Hand's SECOND CHANCE
+Player 1 quested with Mushu - Stealthy Dragon (+1 [LORE], 14 -> 15)
+Mushu - Stealthy Dragon's TIP THE SCALES chose "Yes"
+Mushu - Stealthy Dragon's TIP THE SCALES draws a card
+Player 1 drew Strength of a Raging Fire
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 15 -> 16)
+Player 1 ended Player 1's turn
+
+--- Turn 26 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dash Parr - Super Fast
+Player 2 challenged Mushu - Stealthy Dragon with Peter Pan & Tinker Bell - Fast Friends
+Goofy - Emerald Champion's EVEN THE SCORE banishes Peter Pan & Tinker Bell - Fast Friends
+Player 2 challenged Mushu - Stealthy Dragon with Peter Pan & Tinker Bell - Fast Friends | 5 [STRENGTH] dealt 5 dmg to Mushu - Stealthy Dragon (5/2 [WILLPOWER] - banished!), took 3 dmg (4/4 [WILLPOWER] - banished!)
+Peter Pan & Tinker Bell - Fast Friends was banished
+Mushu - Stealthy Dragon was banished
+Player 2 activated THE BOOK KNOWS EVERYTHING on Junior Woodchuck Guidebook
+Junior Woodchuck Guidebook's THE BOOK KNOWS EVERYTHING draws 2 cards
+Player 2 drew 2 cards: Medallion Weights, Dash Parr - Dodgeball Dynamo
+Player 2 played Dash Parr - Super Fast (cost 5)
+Player 2 added Medallion Weights to ink
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Violet Parr - Learning New Powers
+Player 2 played Dash Parr - Dodgeball Dynamo (cost 1)
+Player 2 challenged Merida - Defiant Daughter with Violet Parr - Learning New Powers
+Player 2 challenged Merida - Defiant Daughter with Violet Parr - Learning New Powers
+Violet Parr - Learning New Powers's DISCIPLINE AND STRENGTH (Draw) draws a card
+Violet Parr - Learning New Powers was banished
+Merida - Defiant Daughter was banished
+Goofy - Emerald Champion's EVEN THE SCORE banishes Violet Parr - Learning New Powers
+Player 2 ended Player 2's turn
+
+--- Turn 27 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 played Strength of a Raging Fire (cost 3)
+Strength of a Raging Fire's STRENGTH OF A RAGING FIRE deals 3 damage
+Strength of a Raging Fire dealt 3 damage to Dash Parr - Super Fast
+Player 1 quested with Goofy - Emerald Champion (+2 [LORE], 16 -> 18)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 18 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!

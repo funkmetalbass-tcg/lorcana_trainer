@@ -1,0 +1,37 @@
+
+==============================================================================
+GAUNTLET: candidate cuts vs. a field of opponent decks
+*** PARTIAL RESULTS -- 6600/6600 games (100%) complete ***
+*** Numbers will shift as remaining games finish. ***
+==============================================================================
+
+Baseline Deck A win rate per opponent:
+    vs deck-set_13_amber_amethyst    76%   (n=200)
+    vs deck-set_13_amber_ruby_boost    78%   (n=200)
+    vs deck-set_13_amber_sapphire_princess-aggro    88%   (n=200)
+    vs deck-set_13_amber_sapphire_princess-control    74%   (n=200)
+    vs deck-set_13_amethyst_emerald_stun    76%   (n=200)
+    vs deck-set_13_amethyst_ruby_tink_pan    74%   (n=200)
+    vs deck-set_13_damage_discard    69%   (n=200)
+    vs deck-set_13_emerald_sapphire_mickie_minnie    56%   (n=200)
+    vs deck-set_13_lilo_stitch_amber_steelsong    70%   (n=200)
+    vs deck-set_13_super_detectives    72%   (n=200)
+    vs deck-set_13_toys            58%   (n=200)
+    FIELD MEAN                     72%
+
+CANDIDATE CUTS (delta = win rate WITHOUT the card minus baseline)
+  Positive mean = cutting helps on average. worst = weakest matchup.
+  n = games completed for that candidate (per opponent).
+
+  cut this card                        mean  worst   per-opponent deltas
+  --------------------------------------------------------------------------
+  Chomp!                                +1%    -8%     +2   -6   -8   +4   +4   -4   +6   -2   +1   +2   +8  n=200/200/200/200/200/200/200/200/200/200/200
+  Max Goof - Chart Topper               +0%    -4%     +6   -4   -2   +7   -1   +1   +5   -1   +0   -3   -3  n=200/200/200/200/200/200/200/200/200/200/200
+
+  Columns after 'worst' are per-opponent, in this order:
+    1:deck-set_13_amber_amethyst | 2:deck-set_13_amber_ruby_boost | 3:deck-set_13_amber_sapphire_princess-aggro | 4:deck-set_13_amber_sapphire_princess-control | 5:deck-set_13_amethyst_emerald_stun | 6:deck-set_13_amethyst_ruby_tink_pan | 7:deck-set_13_damage_discard | 8:deck-set_13_emerald_sapphire_mickie_minnie | 9:deck-set_13_lilo_stitch_amber_steelsong | 10:deck-set_13_super_detectives | 11:deck-set_13_toys
+
+NOTE: a 'universal cut' helps on average and doesn't badly hurt any single
+matchup. Confirm the top candidates with a larger --games run before
+committing, and remember cuts are tested one at a time (interactions
+between two cuts are not captured).

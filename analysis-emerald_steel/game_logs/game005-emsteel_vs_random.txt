@@ -1,0 +1,207 @@
+Player 1's starting hand: Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid, Maudie - Exasperated Nursemaid, Dinky - Has the Brains, Merida - Defiant Daughter, Max Goof - Chart Topper, Ariel - Determined Mermaid
+Player 2's starting hand: Go Go Tomago - Darting Dynamo, Lady - Family Dog, Lady - Elegant Spaniel, Lady - Decisive Dog, Lady - Decisive Dog, Della's Moon Lullaby, Mowgli - Man Cub
+Player 2 mulliganed 7 cards: Go Go Tomago - Darting Dynamo, Della's Moon Lullaby, Lady - Elegant Spaniel, Mowgli - Man Cub, Lady - Decisive Dog, Lady - Decisive Dog, Lady - Family Dog. Drew: Webby Vanderquack - Mystery Enthusiast, Go Go Tomago - Darting Dynamo, Lady - Family Dog, Daisy Duck - Donald's Date, Ursula - Deceiver, Lilo - Escape Artist, Tramp - Street-Smart Dog
+Player 1 mulliganed 5 cards: Maudie - Exasperated Nursemaid, Ariel - Determined Mermaid, Maudie - Exasperated Nursemaid, Ariel - Determined Mermaid, Max Goof - Chart Topper. Drew: Merida - Defiant Daughter, Dinky - Has the Brains, Max Goof - Chart Topper, Look What You've Done, Max Goof - Chart Topper
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Go Go Tomago - Darting Dynamo to ink
+Player 2 played Daisy Duck - Donald's Date (cost 1)
+Player 2 ended Player 2's turn
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 ended Player 1's turn
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Under the Sea
+Player 2 added Webby Vanderquack - Mystery Enthusiast to ink
+Player 2 played Lilo - Escape Artist (cost 2)
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 0 -> 2)
+Player 1 revealed Bobby Zimuruski - Spray Cheese Kid(BIG PRIZE) - revealed
+Player 1 revealed Bobby Zimuruski - Spray Cheese Kid(BIG PRIZE) - put into hand
+Player 2 ended Player 2's turn
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Max Goof - Chart Topper
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Daisy Duck - Donald's Date
+Player 1 ended Player 1's turn
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Bobby Zimuruski - Spray Cheese Kid
+Player 2 added Bobby Zimuruski - Spray Cheese Kid to ink
+Player 2 played Lady - Family Dog (cost 3)
+Lady - Family Dog's SOMEONE TO CARE FOR Played Ursula - Deceiver for free
+Player 2 played Ursula - Deceiver (cost 2 → 0)
+Ursula - Deceiver's YOU'LL NEVER EVEN MISS IT looks at opponent's hand
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 2 -> 4)
+Player 1 revealed Tinker Bell - Giant Fairy(BIG PRIZE) - revealed
+Player 1 revealed Tinker Bell - Giant Fairy(BIG PRIZE) - put into hand
+Player 2 quested with Lilo - Escape Artist (+2 [LORE], 4 -> 6)
+Player 2 ended Player 2's turn
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 added Max Goof - Chart Topper to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 discarded Look What You've Done
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY draws a card
+Bobby Zimuruski - Spray Cheese Kid's SO CHEESY Discarded a card
+Player 1 drew Dr. Bushroot - Evil Botanist
+Player 1 discarded Look What You've Done
+Look What You've Done's LOOK WHAT YOU'VE DONE chose "Play from discard"
+Look What You've Done's LOOK WHAT YOU'VE DONE plays Look What You've Done from discard exerted
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Lady - Family Dog
+Lady - Family Dog was banished
+Player 1 challenged Daisy Duck - Donald's Date with Dinky - Has the Brains
+Player 1 challenged Daisy Duck - Donald's Date with Dinky - Has the Brains | 1 [STRENGTH] dealt 1 dmg to Daisy Duck - Donald's Date (2/4 [WILLPOWER]), took 1 dmg (1/2 [WILLPOWER])
+Player 1 ended Player 1's turn
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lady - Miss Park Avenue
+Player 2 added Tramp - Street-Smart Dog to ink
+Player 2 quested with Daisy Duck - Donald's Date (+2 [LORE], 6 -> 8)
+Player 1 revealed Chomp!(BIG PRIZE) - put on bottom of deck
+Player 2 quested with Lilo - Escape Artist (+2 [LORE], 8 -> 10)
+Player 2 quested with Ursula - Deceiver (+1 [LORE], 10 -> 11)
+Player 2 ended Player 2's turn
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 added Dr. Bushroot - Evil Botanist to ink
+Player 1 played Look What You've Done (cost 2)
+Look What You've Done's LOOK WHAT YOU'VE DONE deals 2 damage
+Look What You've Done dealt 2 damage to Daisy Duck - Donald's Date
+Daisy Duck - Donald's Date was banished
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Ursula - Deceiver
+Player 1 challenged Lilo - Escape Artist with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Lilo - Escape Artist with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Lilo - Escape Artist (1/2 [WILLPOWER]), took 1 dmg (1/2 [WILLPOWER])
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 0 -> 2)
+Player 1 ended Player 1's turn
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lady - Miss Park Avenue
+Player 2 quested with Lilo - Escape Artist (+2 [LORE], 11 -> 13)
+Player 2 quested with Ursula - Deceiver (+1 [LORE], 13 -> 14)
+Player 2 ended Player 2's turn
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Most Helpful
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 challenged Ursula - Deceiver with Bobby Zimuruski - Spray Cheese Kid
+Player 1 challenged Ursula - Deceiver with Bobby Zimuruski - Spray Cheese Kid | 1 [STRENGTH] dealt 1 dmg to Ursula - Deceiver (2/3 [WILLPOWER]), took 1 dmg (2/2 [WILLPOWER] - banished!)
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 2 -> 4)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 4 -> 6)
+Player 1 ended Player 1's turn
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Lady - Decisive Dog
+Player 2 added Lady - Decisive Dog to ink
+Player 2 played Lady - Miss Park Avenue (cost 5)
+Lady - Miss Park Avenue's SOMETHING WONDERFUL Returned Daisy Duck - Donald's Date from discard to hand
+Player 2 quested with Lilo - Escape Artist (+2 [LORE], 14 -> 16)
+Player 2 quested with Ursula - Deceiver (+1 [LORE], 16 -> 17)
+Player 2 ended Player 2's turn
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 shifted Tinker Bell - Giant Fairy onto Tinker Bell - Most Helpful (Shift 4)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Lilo - Escape Artist
+Tinker Bell - Giant Fairy dealt 1 damage to Ursula - Deceiver
+Tinker Bell - Giant Fairy dealt 1 damage to Lady - Miss Park Avenue
+Lilo - Escape Artist was banished
+Ursula - Deceiver was banished
+Player 1 added Merida - Defiant Daughter to ink
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Lady - Miss Park Avenue
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 6 -> 8)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 8 -> 10)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 10 -> 12)
+Player 1 ended Player 1's turn
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 declined Lilo - Escape Artist's NO PLACE I'D RATHER BE
+Draw step
+Player 2 drew Ursula - Deceiver
+Player 2 played Lady - Miss Park Avenue (cost 5)
+Lady - Miss Park Avenue's SOMETHING WONDERFUL Returned Lilo - Escape Artist, Ursula - Deceiver from discard to hand
+Player 2 added Ursula - Deceiver to ink
+Player 2 played Daisy Duck - Donald's Date (cost 1)
+Player 2 quested with Lady - Miss Park Avenue (+2 [LORE], 17 -> 19)
+Player 2 ended Player 2's turn
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 12 -> 14)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 14 -> 16)
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 16 -> 18)
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 18 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!

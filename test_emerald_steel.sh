@@ -5,8 +5,8 @@ set -euo pipefail
 MY_DECK="./my_decks/deck-A_emerald_steel_ping.txt"
 OPP_DIR="./opponent_decks"
 OUT_DIR="./analysis-emerald_steel"
-GAMES=2
-ITERS=10
+GAMES=200
+ITERS=150
 
 mkdir -p "$OUT_DIR"
 

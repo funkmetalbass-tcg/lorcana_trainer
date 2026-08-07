@@ -1,0 +1,601 @@
+Player 1's starting hand: Bobby Zimuruski - Spray Cheese Kid, Tinker Bell - Giant Fairy, Strength of a Raging Fire, Maudie - Exasperated Nursemaid, Strength of a Raging Fire, Merida - Defiant Daughter, Tinker Bell - Most Helpful
+Player 2's starting hand: Cheshire Cat - Inexplicable, You've Got Some Punch, Dash Parr - Dodgeball Dynamo, Grandma Wu - Fierce Red Panda, Dumbo - Ninth Wonder of the Universe, Scrooge McDuck - Ghostly Ebenezer, Source of the Vine
+Player 2 mulliganed 6 cards: Grandma Wu - Fierce Red Panda, Source of the Vine, You've Got Some Punch, Dumbo - Ninth Wonder of the Universe, Cheshire Cat - Inexplicable, Dash Parr - Dodgeball Dynamo. Drew: Mrs. Incredible - Super Stretchy, Scrooge McDuck - Ghostly Ebenezer, Cheshire Cat - Inexplicable, Junior Woodchuck Guidebook, Isis Vanderchill - Ice Queen of St. Canard, Junior Woodchuck Guidebook
+Player 1 mulliganed 1 card: Strength of a Raging Fire. Drew: Cruella De Vil - Judgmental Traveler
+Game started!
+
+--- Turn 1 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Player 2 added Junior Woodchuck Guidebook to ink
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=0  hand=7  discard=0
+  cards in play:
+    (empty)
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 2 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Shere Khan - Fearsome Tiger
+Player 1 added Cruella De Vil - Judgmental Traveler to ink
+Player 1 played Bobby Zimuruski - Spray Cheese Kid (cost 1)
+Player 1 declined Bobby Zimuruski - Spray Cheese Kid's SO CHEESY
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    (empty)
+
+--- Turn 3 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Junior Woodchuck Guidebook
+Player 2 added Junior Woodchuck Guidebook to ink
+Player 2 played Scrooge McDuck - Ghostly Ebenezer (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=0  ink=1  hand=6  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 4 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Maudie - Exasperated Nursemaid
+Player 1 added Maudie - Exasperated Nursemaid to ink
+Player 1 played Merida - Defiant Daughter (cost 2)
+Player 1 quested with Bobby Zimuruski - Spray Cheese Kid (+1 [LORE], 0 -> 1)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=5  discard=0
+  cards in play:
+    - Bobby Zimuruski - Spray Cheese Kid
+    - Merida - Defiant Daughter
+  Player 2:  lore=0  ink=2  hand=5  discard=0
+  cards in play:
+    - Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 5 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Demona - Scourge of the Wyvern Clan
+Player 2 added Mrs. Incredible - Super Stretchy to ink
+Player 2 played Scrooge McDuck - Ghostly Ebenezer (cost 2)
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Scrooge McDuck - Ghostly Ebenezer
+Player 2 challenged Bobby Zimuruski - Spray Cheese Kid with Scrooge McDuck - Ghostly Ebenezer | 3 [STRENGTH] dealt 3 dmg to Bobby Zimuruski - Spray Cheese Kid (3/2 [WILLPOWER] - banished!), took 1 dmg (1/3 [WILLPOWER])
+Bobby Zimuruski - Spray Cheese Kid was banished
+Player 2 boosted Scrooge McDuck - Ghostly Ebenezer (1 card under)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=2  hand=5  discard=1
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=3  hand=4  discard=0
+  cards in play:
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+
+--- Turn 6 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Tinker Bell - Most Helpful
+Player 1 added Tinker Bell - Most Helpful to ink
+Player 1 played Maudie - Exasperated Nursemaid (cost 3)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=3  hand=4  discard=1
+  cards in play:
+    - Maudie - Exasperated Nursemaid
+    - Merida - Defiant Daughter
+  discard: Bobby Zimuruski - Spray Cheese Kid
+  Player 2:  lore=0  ink=3  hand=4  discard=0
+  cards in play:
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+
+--- Turn 7 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Peter Pan & Tinker Bell - Fast Friends
+Player 2 added Peter Pan & Tinker Bell - Fast Friends to ink
+Player 2 played Isis Vanderchill - Ice Queen of St. Canard (cost 4)
+Isis Vanderchill - Ice Queen of St. Canard's CHILL OUT exerts a character
+Player 2 challenged Maudie - Exasperated Nursemaid with Scrooge McDuck - Ghostly Ebenezer
+Player 2 challenged Maudie - Exasperated Nursemaid with Scrooge McDuck - Ghostly Ebenezer | 3 [STRENGTH] dealt 2 dmg (3-1 Resist) to Maudie - Exasperated Nursemaid (2/5 [WILLPOWER]), took 2 dmg (2/3 [WILLPOWER])
+Player 2 challenged Maudie - Exasperated Nursemaid with Scrooge McDuck - Ghostly Ebenezer
+Player 2 challenged Maudie - Exasperated Nursemaid with Scrooge McDuck - Ghostly Ebenezer | 4 [STRENGTH] dealt 3 dmg (4-1 Resist) to Maudie - Exasperated Nursemaid (5/5 [WILLPOWER] - banished!), took 2 dmg (3/4 [WILLPOWER])
+Maudie - Exasperated Nursemaid was banished
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=3  hand=4  discard=2
+  cards in play:
+    - Merida - Defiant Daughter
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=0  ink=4  hand=3  discard=0
+  cards in play:
+    - Isis Vanderchill - Ice Queen of St. Canard
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+    - Scrooge McDuck - Ghostly Ebenezer  [1 dmg]
+
+--- Turn 8 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 played Malicious, Mean, and Scary (cost 3)
+Malicious, Mean, and Scary's MALICIOUS, MEAN, AND SCARY puts 1 damage counter on itself
+1 damage counter put on Scrooge McDuck - Ghostly Ebenezer
+1 damage counter put on Scrooge McDuck - Ghostly Ebenezer
+1 damage counter put on Isis Vanderchill - Ice Queen of St. Canard
+Scrooge McDuck - Ghostly Ebenezer was banished
+Scrooge McDuck - Ghostly Ebenezer was banished
+Player 1 added Strength of a Raging Fire to ink
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=1  ink=4  hand=3  discard=2
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Merida - Defiant Daughter
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=0  ink=4  hand=3  discard=2
+  cards in play:
+    - Isis Vanderchill - Ice Queen of St. Canard  [1 dmg]
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 9 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Source of the Vine
+Player 2 played Junior Woodchuck Guidebook (cost 2)
+Player 2 added Cheshire Cat - Inexplicable to ink
+Player 2 activated THE BOOK KNOWS EVERYTHING on Junior Woodchuck Guidebook
+Junior Woodchuck Guidebook's THE BOOK KNOWS EVERYTHING draws 2 cards
+Player 2 drew 2 cards: Morph - Little Imitator, Elisa Maza - Transformed Gargoyle
+Player 2 played Morph - Little Imitator (cost 2)
+Player 2 quested with Isis Vanderchill - Ice Queen of St. Canard (+1 [LORE], 0 -> 1)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=1  ink=4  hand=3  discard=2
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Merida - Defiant Daughter
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=1  ink=5  hand=3  discard=2
+  cards in play:
+    - Isis Vanderchill - Ice Queen of St. Canard  [1 dmg]
+    - Junior Woodchuck Guidebook
+    - Morph - Little Imitator
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 10 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Chomp!
+Player 1 added Chomp! to ink
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 played Tinker Bell - Most Helpful (cost 4)
+Tinker Bell - Most Helpful's PIXIE DUST grants Evasive
+Player 1 quested with Merida - Defiant Daughter (+1 [LORE], 1 -> 2)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=5  hand=1  discard=2
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Merida - Defiant Daughter
+    - Tinker Bell - Most Helpful
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid
+  Player 2:  lore=1  ink=5  hand=3  discard=2
+  cards in play:
+    - Isis Vanderchill - Ice Queen of St. Canard  [1 dmg]
+    - Junior Woodchuck Guidebook
+    - Morph - Little Imitator
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 11 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Dumbo - Ninth Wonder of the Universe
+Player 2 played Source of the Vine (cost 4)
+Player 2 challenged Merida - Defiant Daughter with Isis Vanderchill - Ice Queen of St. Canard
+Player 2 challenged Merida - Defiant Daughter with Isis Vanderchill - Ice Queen of St. Canard | 4 [STRENGTH] dealt 4 dmg to Merida - Defiant Daughter (4/3 [WILLPOWER] - banished!), took 2 dmg (3/4 [WILLPOWER])
+Merida - Defiant Daughter was banished
+Player 2 quested with Morph - Little Imitator (+1 [LORE], 1 -> 2)
+Player 2 added Dumbo - Ninth Wonder of the Universe to ink
+Player 2 activated RADIANT BLOOM on Source of the Vine
+Source of the Vine's RADIANT BLOOM gains 1 [LORE] (2 -> 3)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=5  hand=1  discard=3
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Most Helpful
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=2  discard=2
+  cards in play:
+    - Isis Vanderchill - Ice Queen of St. Canard  [3 dmg]
+    - Junior Woodchuck Guidebook
+    - Morph - Little Imitator
+    - Source of the Vine
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer
+
+--- Turn 12 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 shifted Tinker Bell - Giant Fairy onto Tinker Bell - Most Helpful (Shift 4)
+Tinker Bell - Giant Fairy's ROCK THE BOAT deals 1 damage
+Tinker Bell - Giant Fairy dealt 1 damage to Isis Vanderchill - Ice Queen of St. Canard
+Tinker Bell - Giant Fairy dealt 1 damage to Morph - Little Imitator
+Isis Vanderchill - Ice Queen of St. Canard was banished
+Player 1 challenged Morph - Little Imitator with Tinker Bell - Giant Fairy
+Player 1 challenged Morph - Little Imitator with Tinker Bell - Giant Fairy | 4 [STRENGTH] dealt 4 dmg to Morph - Little Imitator (5/2 [WILLPOWER] - banished!), took 1 dmg (1/5 [WILLPOWER])
+Morph - Little Imitator was banished
+Tinker Bell - Giant Fairy's PUNY PIRATE! had no effect (no valid targets)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=5  hand=1  discard=3
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=2  discard=4
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Source of the Vine
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator
+
+--- Turn 13 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew You've Got Some Punch
+Player 2 played You've Got Some Punch (cost 2)
+You've Got Some Punch's YOU'VE GOT SOME PUNCH grants Rush
+You've Got Some Punch's YOU'VE GOT SOME PUNCH grants Challenger +2
+Player 2 played Elisa Maza - Transformed Gargoyle (cost 3)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=5  hand=1  discard=3
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=1  discard=4
+  cards in play:
+    - Elisa Maza - Transformed Gargoyle
+    - Junior Woodchuck Guidebook
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator
+
+--- Turn 14 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Malicious, Mean, and Scary
+Player 1 added Dinky - Has the Brains to ink
+Player 1 played Shere Khan - Fearsome Tiger (cost 6)
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=2  ink=6  hand=0  discard=3
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=1  discard=4
+  cards in play:
+    - Elisa Maza - Transformed Gargoyle
+    - Junior Woodchuck Guidebook
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator
+
+--- Turn 15 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Medallion Weights
+Player 2 activated RADIANT BLOOM on Source of the Vine
+Source of the Vine's RADIANT BLOOM gains 1 [LORE] (3 -> 4)
+Player 2 played Medallion Weights (cost 2)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=2  ink=6  hand=0  discard=3
+  cards in play:
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=1  discard=4
+  cards in play:
+    - Elisa Maza - Transformed Gargoyle
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator
+
+--- Turn 16 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Dinky - Has the Brains
+Player 1 played Dinky - Has the Brains (cost 2)
+Dinky - Has the Brains's GET HIM! deals 1 damage
+Dinky - Has the Brains dealt 1 damage to Elisa Maza - Transformed Gargoyle
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 2 -> 4)
+Shere Khan - Fearsome Tiger's ON THE HUNT banishes Elisa Maza - Transformed Gargoyle
+Elisa Maza - Transformed Gargoyle was banished
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 4 -> 6)
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=6  ink=6  hand=0  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=1  discard=5
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator, Elisa Maza - Transformed Gargoyle
+
+--- Turn 17 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Medallion Weights
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Shere Khan - Fearsome Tiger
+Player 2 played Medallion Weights (cost 2)
+Player 2 activated RADIANT BLOOM on Source of the Vine
+Source of the Vine's RADIANT BLOOM gains 1 [LORE] (4 -> 5)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=6  ink=6  hand=0  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=1  discard=5
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator, Elisa Maza - Transformed Gargoyle
+
+--- Turn 18 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Look What You've Done
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 6 -> 8)
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 8 -> 10)
+Shere Khan - Fearsome Tiger's ON THE HUNT had no effect (no valid targets)
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 10 -> 12)
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=12  ink=6  hand=1  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=1  discard=5
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator, Elisa Maza - Transformed Gargoyle
+
+--- Turn 19 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Red Moon Ritual
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Shere Khan - Fearsome Tiger
+Player 2 activated DISCIPLINE AND STRENGTH on Medallion Weights
+Medallion Weights's DISCIPLINE AND STRENGTH gives +2 [STRENGTH] to Shere Khan - Fearsome Tiger
+Player 2 activated RADIANT BLOOM on Source of the Vine
+Source of the Vine's RADIANT BLOOM gains 1 [LORE] (5 -> 6)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=12  ink=6  hand=1  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=2  discard=5
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator, Elisa Maza - Transformed Gargoyle
+
+--- Turn 20 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Strike a Good Match
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 12 -> 14)
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 quested with Shere Khan - Fearsome Tiger (+2 [LORE], 14 -> 16)
+Shere Khan - Fearsome Tiger's ON THE HUNT had no effect (no valid targets)
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 quested with Dinky - Has the Brains (+2 [LORE], 16 -> 18)
+Source of the Vine's SIPHON chose "Pay 1 ink"
+Source of the Vine's SIPHON had no effect
+Player 1 ended Player 1's turn
+
+Board State---
+  Player 1:  lore=18  ink=6  hand=2  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=2  discard=5
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator, Elisa Maza - Transformed Gargoyle
+
+--- Turn 21 ---
+Player 2's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 2 drew Queen of Hearts - Sensing Weakness
+Player 2 activated RADIANT BLOOM on Source of the Vine
+Source of the Vine's RADIANT BLOOM gains 1 [LORE] (6 -> 7)
+Player 2 ended Player 2's turn
+
+Board State---
+  Player 1:  lore=18  ink=6  hand=2  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=3  discard=5
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator, Elisa Maza - Transformed Gargoyle
+
+--- Turn 22 ---
+Player 1's turn begins
+Ready step: cards readied
+Set step
+Draw step
+Player 1 drew Winifred - Exasperated Elephant
+Player 1 quested with Tinker Bell - Giant Fairy (+2 [LORE], 18 -> 20)
+Player 1 won with 20 [LORE]!
+Player 1 won with 20 [LORE]!
+Board State---
+  Player 1:  lore=20  ink=6  hand=3  discard=3
+  cards in play:
+    - Dinky - Has the Brains
+    - Malicious, Mean, and Scary
+    - Shere Khan - Fearsome Tiger
+    - Tinker Bell - Giant Fairy  [1 dmg]
+    - Tinker Bell - Most Helpful
+  discard: Bobby Zimuruski - Spray Cheese Kid, Maudie - Exasperated Nursemaid, Merida - Defiant Daughter
+  Player 2:  lore=2  ink=6  hand=3  discard=5
+  cards in play:
+    - Junior Woodchuck Guidebook
+    - Medallion Weights
+    - Medallion Weights
+    - Source of the Vine
+    - You've Got Some Punch
+  discard: Scrooge McDuck - Ghostly Ebenezer, Scrooge McDuck - Ghostly Ebenezer, Isis Vanderchill - Ice Queen of St. Canard, Morph - Little Imitator, Elisa Maza - Transformed Gargoyle

@@ -1,0 +1,54 @@
+
+==============================================================================
+GAUNTLET: candidate cuts vs. a field of opponent decks
+*** PARTIAL RESULTS -- 37697/44000 games (86%) complete ***
+*** Numbers will shift as remaining games finish. ***
+==============================================================================
+
+Baseline Deck A win rate per opponent:
+    vs deck-set_13_amber_amethyst    76%   (n=200)
+    vs deck-set_13_amber_ruby_boost    77%   (n=200)
+    vs deck-set_13_amber_sapphire_princess-aggro    87%   (n=200)
+    vs deck-set_13_amber_sapphire_princess-control    76%   (n=200)
+    vs deck-set_13_amethyst_emerald_stun    75%   (n=200)
+    vs deck-set_13_amethyst_ruby_tink_pan    73%   (n=200)
+    vs deck-set_13_damage_discard    70%   (n=200)
+    vs deck-set_13_emerald_sapphire_mickie_minnie    55%   (n=200)
+    vs deck-set_13_lilo_stitch_amber_steelsong    71%   (n=200)
+    vs deck-set_13_super_detectives    72%   (n=200)
+    vs deck-set_13_toys            62%   (n=200)
+    FIELD MEAN                     72%
+
+CANDIDATE CUTS (delta = win rate WITHOUT the card minus baseline)
+  Positive mean = cutting helps on average. worst = weakest matchup.
+  n = games completed for that candidate (per opponent).
+
+  cut this card                        mean  worst   per-opponent deltas
+  --------------------------------------------------------------------------
+  Ariel - Determined Mermaid            +3%    -1%     +4   +3   +4   +8   +3   -1   +4   +4   +5   +3   +1  n=200/200/200/200/200/200/200/200/200/200/200  <- universal cut
+  Dr. Bushroot - Evil Botanist          +2%    -4%     +7   -2   +1   -1   +8   +0   +5   -4   +4   +3   +2  n=200/200/200/200/200/200/200/200/200/200/200  <- universal cut
+  Mushu - Stealthy Dragon               +1%    -4%     +5   -2   -4   +3   +3   -2   +5   +1   +4   -4   +2  n=200/200/200/200/200/200/200/200/200/200/200
+  Chomp!                                +1%    -6%     +4   +1   -6   +5   +3   -2   +8   -1   +3   -3   -2  n=200/200/200/200/200/200/200/200/200/200/200
+  Shere Khan - Fearsome Tiger           +1%    -4%    +10   -2   -2   +1   +7   -2   +3   +2   -4   -1   -3  n=200/200/200/200/200/200/200/200/200/200/200
+  Goofy - Emerald Champion              +1%    -5%     +1   -3   +5   -1   +7   +0   +2   +1   -2   -5   +5  n=200/200/200/200/200/200/200/200/200/200/200
+  Tinker Bell - Most Helpful            +0%    -6%     +9   -5   +2   +5   +3   -6   -2   +1   +2   -3   -2  n=200/200/200/200/200/200/200/200/200/200/200
+  Maudie - Exasperated Nursemaid        +0%    -3%     +3   -3   +3   +1   +2   -1   +2   +2   +0   -1   -3  n=200/200/200/200/200/200/200/200/200/200/200
+  Max Goof - Chart Topper               +0%    -5%     +6   -4   -2   +4   +1   +4   +4   +1   -1   -4   -5  n=200/200/200/200/200/200/200/200/200/200/200
+  Tinker Bell - Giant Fairy             +0%    -4%     +4   -2   +1   +5   +3   -2   +0   -1   -2   -4   -2  n=200/200/200/200/200/200/200/200/200/200/200
+  Cruella De Vil - Judgmental Travel    -1%    -6%     +4   -5   -6   -1   +3   +1   +3   -4   -2   -1   +2  n=200/200/200/200/200/200/200/200/200/200/200
+  Bobby Zimuruski - Spray Cheese Kid    -1%    -7%     +4   -7   -2   -2   +3   -1   -1   -5   +4   -4   +2  n=200/200/200/200/200/200/200/200/200/200/200
+  Rapunzel & Flynn Rider - Unlikely     -1%    -8%     +6   -6   -2   +1   +5   -5   +3   -2   +2   -3   -8  n=200/200/200/200/200/200/200/200/200/200/200
+  Dinky - Has the Brains                -1%    -8%     +1   -8   -1   -4   +2   -1   +6   +2   +1   -4   -5  n=200/200/200/200/200/200/200/200/200/200/200
+  Merida - Defiant Daughter             -1%    -4%     +2   -4   -4   -3   +3   -3   -2   +3   -3   -2   -3  n=200/200/200/200/200/200/200/200/200/200/200
+  Look What You've Done                 -4%    -8%     +1   -8   -8   -6   -2   -2   -2   -4   -6   -5   -6  n=200/200/200/200/200/200/200/200/200/200/200
+  Strike A Good Match                  -58%   -87%     +4   +1  -87  -76  -75  -73  -70  -55  -71  -72  -62  n=200/97/0/0/0/0/0/0/0/0/0
+  Malicious, Mean, and Scary           -72%   -87%    -76  -77  -87  -76  -75  -73  -70  -55  -71  -72  -62  n=0/0/0/0/0/0/0/0/0/0/0
+  Strength of a Raging Fire            -72%   -87%    -76  -77  -87  -76  -75  -73  -70  -55  -71  -72  -62  n=0/0/0/0/0/0/0/0/0/0/0
+
+  Columns after 'worst' are per-opponent, in this order:
+    1:deck-set_13_amber_amethyst | 2:deck-set_13_amber_ruby_boost | 3:deck-set_13_amber_sapphire_princess-aggro | 4:deck-set_13_amber_sapphire_princess-control | 5:deck-set_13_amethyst_emerald_stun | 6:deck-set_13_amethyst_ruby_tink_pan | 7:deck-set_13_damage_discard | 8:deck-set_13_emerald_sapphire_mickie_minnie | 9:deck-set_13_lilo_stitch_amber_steelsong | 10:deck-set_13_super_detectives | 11:deck-set_13_toys
+
+NOTE: a 'universal cut' helps on average and doesn't badly hurt any single
+matchup. Confirm the top candidates with a larger --games run before
+committing, and remember cuts are tested one at a time (interactions
+between two cuts are not captured).

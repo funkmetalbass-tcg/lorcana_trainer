@@ -3,13 +3,30 @@
 Each iteration: clone the real state, shuffle everything the deciding player
 cannot see (opponent hand+deck as one pool, own deck), then run UCT selection
 over a tree whose edges are actions. Rollouts use the greedy policy.
+
+Discounting (see DISCOUNT below)
+-------------------------------
+Values are decayed toward neutral (0.5) as game time passes, so a faster win
+outranks a slower one. The unit of decay is ELAPSED HALF-TURNS (`game.turn`),
+never the number of tree edges descended: a single Lorcana turn is commonly
+5-10 actions, so discounting per-edge would penalize an in-tree terminal ~10x
+harder than a rollout terminal reached at the same point in game time. That
+inconsistency systematically undervalued multi-turn lines (shift setups, song
+enablers, boost payoffs), which are exactly the lines the tree has to search
+deep to find. Both backup paths now call `_discount(raw, plies)` with plies
+measured the same way.
 """
 import math, random
 from .policies import greedy_policy
 
 ROLLOUT_TURN_CAP = 50   # half-turns beyond current before heuristic eval
 UCB_C = 0.9
-DISCOUNT = 0.97         # per-ply value decay toward neutral (rewards faster wins)
+DISCOUNT = 0.97         # per HALF-TURN value decay toward neutral
+
+# Exploration noise in the rollout policy. Kept at the historical 0.15 so this
+# change stays isolated and measurable; lower it once greedy is combo-aware
+# (see combos.py) if you want rollouts to demonstrate combo lines more often.
+ROLLOUT_EPSILON = 0.15
 
 
 class Node:
@@ -51,21 +68,27 @@ def evaluate(game, perspective):
     return 1.0 / (1.0 + math.exp(-score / 12.0))
 
 
+def _discount(raw, plies):
+    """Pull a value toward neutral by `plies` HALF-TURNS of elapsed game time.
+
+    `plies` must be a difference of `game.turn` values, not a count of tree
+    edges. A win in 0 plies keeps its full value; each half-turn bleeds a
+    little certainty away.
+    """
+    return 0.5 + (raw - 0.5) * (DISCOUNT ** plies)
+
+
 def rollout(game, perspective, rng):
-    """Play out with the greedy policy; discount the result slightly per turn
-    elapsed so that faster wins (and slower losses) are preferred. This lets the
-    search distinguish a lethal line from one that merely wins eventually."""
+    """Play out with the greedy policy; discount the result by elapsed
+    half-turns so that faster wins (and slower losses) are preferred. This lets
+    the search distinguish a lethal line from one that merely wins eventually."""
     start_turn = game.turn
     cap_turn = game.turn + ROLLOUT_TURN_CAP
     while game.winner is None and game.turn < cap_turn:
-        a = greedy_policy(game, rng, epsilon=0.15)
+        a = greedy_policy(game, rng, epsilon=ROLLOUT_EPSILON)
         game.apply(a)
     v = evaluate(game, perspective)
-    plies = game.turn - start_turn
-    # pull value toward 0.5 (neutral) as the game drags on: a win in 0 plies
-    # keeps its full value; each ply bleeds a little certainty away.
-    discount = DISCOUNT ** plies
-    return 0.5 + (v - 0.5) * discount
+    return _discount(v, game.turn - start_turn)
 
 
 def search(game, iterations=400, rng=None, perspective=None):
@@ -73,6 +96,7 @@ def search(game, iterations=400, rng=None, perspective=None):
     rng = rng or random.Random()
     viewer = perspective if perspective is not None else game.active
     root = Node(game.active)
+    root_turn = game.turn
 
     for _ in range(iterations):
         g = determinize(game, viewer, rng)
@@ -113,13 +137,13 @@ def search(game, iterations=400, rng=None, perspective=None):
                 break
             node = nxt
         # rollout + backprop (values stored from viewer's perspective).
-        # If selection reached a terminal state, discount by the plies descended
-        # so an immediate win outranks a deferred one, consistent with rollout.
+        # If selection reached a terminal state, discount it by ELAPSED
+        # HALF-TURNS -- the same unit rollout() uses -- so an immediate win
+        # outranks a deferred one without over-penalizing deep lines.
         if g.winner is None:
             val = rollout(g, viewer, rng)
         else:
-            raw = evaluate(g, viewer)
-            val = 0.5 + (raw - 0.5) * (DISCOUNT ** len(path))
+            val = _discount(evaluate(g, viewer), g.turn - root_turn)
         for node_, a_ in path:
             e = node_.children[a_]
             e[0] += 1

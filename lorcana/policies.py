@@ -4,8 +4,18 @@ import random
 
 
 def default_mulligan(game, p):
-    """Bottom cards costing 5+."""
-    return [c for c in game.players[p].hand if c.cost >= 5]
+    """Bottom cards costing 5+, except live combo pieces.
+
+    The flat cost rule is a reasonable proxy for 'too slow to keep', but it is
+    exactly wrong for a hand that already holds a shift card AND the base it
+    wants: bottoming either half turns a discounted two-turn tempo play into a
+    dead card. Nothing is in play at mulligan time, so hand-internal pairs are
+    the only inference available -- and the only one this rule needs.
+    """
+    from . import combos
+    hand = game.players[p].hand
+    keeps = combos.combo_mulligan_keeps(hand)
+    return [c for c in hand if c.cost >= 5 and c.name not in keeps]
 
 
 def random_policy(game, rng):
@@ -70,15 +80,52 @@ def greedy_policy(game, rng, epsilon=0.10):
     #    inks, since spending a dead card is strictly better than a hand card.
     inks = act_of("ink")
     if inks:
+        from . import combos
+        protected = combos.combo_protected_names(game, p)
+
         def ink_key(a):
             from_discard = len(a) > 2 and a[2] == "discard"
             zone = game.players[p].discard if from_discard else game.players[p].hand
             cost = next((c.cost for c in zone if c.name == a[1]), 0)
-            return (cost, 1 if from_discard else 0)
+            # Combo pieces sort BEFORE cost: inking the base a held shift card
+            # wants strands that card as an overcosted body, which costs far
+            # more than the one point of curve given up here. This is the
+            # concrete fix for the bias deckbuild.py's docstring already admits
+            # to ("will ink away payoffs it can't plan around"). Discard-sourced
+            # ink is never a combo piece -- that card is already dead.
+            safe = 0 if (not from_discard and a[1] in protected) else 1
+            return (safe, cost, 1 if from_discard else 0)
         return max(inks, key=ink_key)
 
+    # 2b. take an available Shift. greedy has no lookahead, so this is the one
+    #     moment a multi-turn payoff is visible as a legal action: the base is
+    #     down, the ink is up, and the shifted body keeps its dry state (so it
+    #     can act this turn). Deferring risks losing the base to removal before
+    #     the window reopens. Placed after ink and before challenges because a
+    #     shifted character is often the best attacker on the board -- and
+    #     because section 4 below ranks plays by PRINTED cost, which prices a
+    #     shift at its undiscounted cost and so ranks it against the wrong
+    #     alternatives.
+    #     ASSUMPTION: shifting is never worse than holding. Wrong for a minority
+    #     of cards -- shifting off a buffed or Bodyguard body, or a Duo Shift
+    #     that eats two useful characters to make one. Revisit if the policy
+    #     tests regress on Duo-heavy shells.
+    #     NB: test for `is not None`, not truthiness -- uid 0 is a valid target
+    #     and silently disabled this whole tier when the base happened to be the
+    #     first character created in the game.
+    shifts = [a for a in acts
+              if a[0] == "play" and len(a) > 2 and a[2]
+              and dict(a[2]).get("shift") is not None]
+    if shifts:
+        def shift_key(a):
+            card = next((c for c in game.players[p].hand if c.name == a[1]), None)
+            return (card.lore, card.cost) if card else (0, 0)
+        return max(shifts, key=shift_key)
+
     # 3. favorable challenges: kill the defender and either survive or trade up
-    from . import abilities
+    from . import abilities, combos
+    shift_bases = combos.live_shift_bases(game, p)
+    COMBO_BASE_PENALTY = 6
     best_chal, best_score = None, 0
     for a in act_of("challenge"):
         att = game.chars[a[1]]
@@ -99,6 +146,12 @@ def greedy_policy(game, rng, epsilon=0.10):
                 score = 3
             else:
                 score = 0
+            # Don't feed a character a held shift card is waiting on into a
+            # trade. Calibrated as a discount, not a veto: a clean kill (10+)
+            # survives the penalty and is still taken, while a mutual trade (3)
+            # drops below the threshold and is declined.
+            if score and att.uid in shift_bases:
+                score -= COMBO_BASE_PENALTY
             if score > best_score:
                 best_chal, best_score = a, score
         else:

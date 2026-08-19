@@ -2226,6 +2226,16 @@ def activated_actions(g, p):
                 and g.my_chars(1 - p):
             acts.append(("activate", "good_aim", c.uid))
             break
+    # Rapunzel THE CALL OF ADVENTURE: once during your turn, you may discard a
+    # card to give this character +1 Strength and Evasive until the start of
+    # your next turn. No exert and no ink cost, so an undried (just-played)
+    # Rapunzel may use it, and an exerted one may too.
+    if g.active == p:
+        for c in g.my_chars(p):
+            if c.card.name == "Rapunzel - Escaping the Tower" \
+                    and g.players[p].hand \
+                    and ("call_of_adventure", c.uid) not in g.turn_flags:
+                acts.append(("activate", "call_of_adventure", c.uid))
     # Hamm LOOSE CHANGE: [Exert] -- pay 1 less for the next character
     for c in g.my_chars(p):
         if c.card.name == "Hamm - Piggy Bank" and not c.exerted and g.is_dry(c):
@@ -2530,6 +2540,24 @@ def apply_activated(g, p, action):
             if tgt:
                 g.emit(f"GOOD AIM discards {d.name}, deals 2")
                 g.deal_damage(tgt, 2)
+        return
+    if what == "call_of_adventure":
+        ch = g.chars.get(uid)
+        if ch is None or not g.players[p].hand \
+                or ("call_of_adventure", ch.uid) in g.turn_flags:
+            return
+        d = _worst_hand_card(g, p)
+        g.players[p].hand.remove(d)
+        g.discard_card(p, d)
+        g.turn_flags.add(("call_of_adventure", ch.uid))
+        # Both halves last until the start of your next turn, so they survive
+        # the opponent's turn -- the point of the ability.
+        g.effects.append({"kind": "str", "target": ch.uid,
+                          "amount": 1, "until": p})
+        g.effects.append({"kind": "evasive", "target": ch.uid,
+                          "amount": 0, "until": p})
+        g.emit(f"THE CALL OF ADVENTURE discards {d.name}: "
+               f"{ch.card.base_name} +1 str & Evasive")
         return
     if what == "gyro_evasive":
         it = next((x for x in g.items[p] if x.uid == uid), None)
@@ -3117,6 +3145,8 @@ HAND_IMPLEMENTED = {
     "Sleepy Hollow - The Bridge",
     "Zootopia - Police Headquarters",
     "Beast - Snowfield Troublemaker",     # DYNAMIC MANEUVER (Rush is keyword)
+    # --- emerald_steel_ping v3 ---
+    "Rapunzel - Escaping the Tower",      # THE CALL OF ADVENTURE (activated)
 }
 
 
@@ -3169,6 +3199,16 @@ ASSUMPTIONS = [
  "times per turn, but never to the location they're already at.",
  "Inkwell card identities are tracked but treated as public for simplicity "
  "(they never re-enter play in these decks, so the information leak is negligible).",
+ "Rapunzel - Escaping the Tower (THE CALL OF ADVENTURE) is a real AI decision, exposed as an "
+ "activated action. It costs no ink and no exert, so a just-played (undried) or already-exerted "
+ "Rapunzel may still use it. The default policy fires it only with 4+ cards in hand and only "
+ "while she lacks Evasive; MCTS may choose otherwise. Both halves (+1 Strength, Evasive) expire "
+ "at the start of your next turn, so they cover the opponent's turn. The discarded card is "
+ "_worst_hand_card and goes through discard_card, so Look What You've Done and FRESH START see it.",
+ "Tod - Clever Fox (PROBLEM SOLVING) and Tinker Bell - Most Helpful (PIXIE DUST) are schema "
+ "entries, not Python. PROBLEM SOLVING's discard is mandatory and picks the worst card in hand. "
+ "PIXIE DUST's 'chosen character' resolves to your highest-Lore character (possibly Tink "
+ "herself), matching the Gyro-Evac TAKE HER UP heuristic; it is not exposed as a choice.",
  "Mulligan (both AI and default): cards costing 5+ are bottomed and redrawn.",
  "Under the Sea bottom-decks in an arbitrary fixed order rather than a chosen order.",
  "No printed Evasive/Ward/Support/Singer exists in either deck; only the granted "

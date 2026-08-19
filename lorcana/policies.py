@@ -70,6 +70,16 @@ def greedy_policy(game, rng, epsilon=0.10):
     for a in acts:
         if a[0] == "activate" and a[1] == "good_aim" and len(game.players[p].hand) >= 4:
             return a
+    # Rapunzel THE CALL OF ADVENTURE: discarding a card for +1 Strength and
+    # Evasive is card disadvantage, so it is only taken with a surplus hand
+    # (same bar as GOOD AIM) and only while she is still unprotected -- once
+    # Evasive is up, a second activation this turn is impossible anyway.
+    for a in acts:
+        if a[0] == "activate" and a[1] == "call_of_adventure" \
+                and len(game.players[p].hand) >= 4:
+            ch = game.chars.get(a[2])
+            if ch is not None and not game.has_evasive(ch):
+                return a
     for a in acts:
         if a[0] == "activate" and a[1] == "guidebook" and len(game.players[p].hand) <= 4:
             return a

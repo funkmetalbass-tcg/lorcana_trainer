@@ -15,7 +15,8 @@ dispatch_* at each trigger point; unknown cards simply have no entries.
 Currently implemented (deliberately small -- grow as templates demand):
   triggers:   on_play, on_quest
   conditions: your_other_classification_count, you_have_named, opponent_ahead
-  effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage
+  effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage,
+              draw_then_discard, grant_keyword
 
 Escape hatch: an entry {"impl": "python"} documents that the card's logic
 lives in abilities.py (used by the coverage report; no dispatch happens).
@@ -181,6 +182,14 @@ def _resolve_target(g, p, ctx, spec):
         if not mine:
             return None
         return max(mine, key=lambda c: (not c.exerted, g.eff_strength(c)))
+    if spec == "best_quester":
+        # your highest-Lore character (heuristic for evasion/protection grants,
+        # which protect a quester rather than pump an attacker). Mirrors the
+        # Gyro-Evac TAKE HER UP choice in abilities.py.
+        mine = [c for c in g.my_chars(p)]
+        if not mine:
+            return None
+        return max(mine, key=lambda c: (g.eff_lore(c), g.eff_strength(c)))
     return ctx.get("char")
 
 
@@ -211,6 +220,39 @@ def _eff_opponent_lose_lore(g, p, ctx, eff):
         g.emit(f"schema: opponent loses {amt} lore")
 
 
+def _eff_draw_then_discard(g, p, ctx, eff):
+    """'Draw N cards, then choose and discard M cards.' The discard is
+    mandatory and part of the same effect, so it must not be skipped even
+    when the draw whiffs on an empty deck. Heuristic choice: _worst_hand_card,
+    the same picker Strike A Good Match and EYE FOR VALUE use."""
+    from . import abilities
+    g.draw(p, eff.get("draw", 2))
+    for _ in range(eff.get("discard", 1)):
+        if not g.players[p].hand:
+            break
+        d = abilities._worst_hand_card(g, p)
+        g.players[p].hand.remove(d)
+        g.discard_card(p, d)
+        g.emit(f"{ctx.get('card').base_name} (schema) discards {d.name}")
+
+
+def _eff_grant_keyword(g, p, ctx, eff):
+    """Grant a keyword to a target for a duration. Prose-granted keywords are
+    deliberately not parsed as printed (see ASSUMPTIONS), so they are modeled
+    as timed entries in g.effects, which has_evasive() and friends consult.
+
+    duration: eot | until_your_next (start of your next turn).
+    """
+    target = _resolve_target(g, p, ctx, eff.get("target", "self"))
+    if target is None:
+        return
+    kw = eff.get("keyword", "evasive")
+    until = "eot" if eff.get("duration", "eot") == "eot" else p
+    g.effects.append({"kind": kw, "target": target.uid,
+                      "amount": 0, "until": until})
+    g.emit(f"schema: {target.card.base_name} gains {kw}")
+
+
 def _eff_opponent_discard(g, p, ctx, eff):
     from . import abilities
     opp = 1 - p
@@ -229,6 +271,8 @@ _EFFECTS = {
     "cost_reduce": _eff_cost_reduce,
     "stat_mod": _eff_stat_mod,
     "deal_damage": _eff_deal_damage,
+    "draw_then_discard": _eff_draw_then_discard,
+    "grant_keyword": _eff_grant_keyword,
     "opponent_lose_lore": _eff_opponent_lose_lore,
     "opponent_discard": _eff_opponent_discard,
 }

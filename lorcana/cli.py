@@ -21,6 +21,12 @@ def load(db_path, a_path, b_path):
         print("ERROR:", e); sys.exit(1)
     for w in warnA + warnB:
         print("WARNING:", w)
+    used = {c.name for c in deckA + deckB}
+    for kept, dups in sorted(db.name_collisions.items()):
+        if kept in used:
+            print(f"WARNING: {db_path} contains duplicate entries differing only "
+                  f"by case: '{kept}' and {dups}. Using '{kept}'; remove the "
+                  f"duplicate from the JSON.")
     return db, deckA, deckB
 
 

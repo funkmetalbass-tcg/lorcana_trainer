@@ -90,13 +90,23 @@ class CardDB:
         raw.update(PLACEHOLDER_CARDS)
         self.cards = {}
         self._lower = {}
+        # Names that differ only by case are the SAME card as far as decklists
+        # are concerned, but ability code keys off the exact string. Letting a
+        # later duplicate overwrite _lower silently rebinds the card to a name
+        # no ability matches, and the card reads as unimplemented. Keep the
+        # first spelling and record the collision so it can be reported.
+        self.name_collisions = {}
         for name, data in raw.items():
             try:
                 c = Card(name, data)
             except (KeyError, ValueError):
                 continue  # skip malformed entries
             self.cards[name] = c
-            self._lower[name.lower()] = name
+            key = name.lower()
+            if key in self._lower:
+                self.name_collisions.setdefault(self._lower[key], []).append(name)
+                continue
+            self._lower[key] = name
 
     def get(self, name):
         key = self._lower.get(name.strip().lower())

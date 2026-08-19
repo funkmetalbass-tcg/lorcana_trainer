@@ -60,6 +60,29 @@
    "source": "OHANA: When you play this character, if you have 2 or more other characters in play, you may draw 2 cards. (Heuristic: always draw.)"
   }
  ],
+ "Tod - Clever Fox": [
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw_then_discard",
+    "draw": 2,
+    "discard": 1
+   },
+   "source": "PROBLEM SOLVING: When you play this character, draw 2 cards, then choose and discard a card. (Not optional; the discard picks the worst card in hand.)"
+  }
+ ],
+ "Tinker Bell - Most Helpful": [
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "evasive",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "source": "PIXIE DUST: When you play this character, chosen character gains Evasive this turn. (Printed Evasive on Tink herself is a parsed keyword. Heuristic target: your highest-Lore character, which may be Tink.)"
+  }
+ ],
  "Sudden Chill": [
   {
    "trigger": "on_play",

@@ -285,7 +285,7 @@ def cmd_analyze(args):
     print(f"\n(analysis took {time.time()-t0:.0f}s)")
 
 
-COVERAGE_MAX_UNIMPL_PCT = 5.0   # gate: refuse to simulate above this
+COVERAGE_MAX_UNIMPL_PCT = 0.0   # gate: refuse to simulate above this
 
 
 def card_sources(card):

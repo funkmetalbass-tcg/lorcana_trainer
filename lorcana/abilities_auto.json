@@ -38,12 +38,6 @@
    "text": "[NO SECRETS] When you play this character, look at chosen opponent's hand."
   }
  ],
- "Hamm - Piggy Bank": [
-  {
-   "impl": "unimplemented",
-   "text": "LOOSE CHANGE [Exert] — You pay 1 Ink less for the next character you play this turn."
-  }
- ],
  "Monterey Jack - Hypnotized by Cheese": [
   {
    "impl": "unimplemented",
@@ -84,12 +78,6 @@
   {
    "impl": "unimplemented",
    "text": "[LET'S GO HOME] When you play this character, look at the top 4 cards of your deck. You may reveal a Toy character card or a location card named Andy's Room and put it into your hand. Put the rest on the bottom of your deck in any order."
-  }
- ],
- "Dale - Ready for His Shot": [
-  {
-   "impl": "unimplemented",
-   "text": "[SPIKE SUIT] During challenges, your characters deal damage with their Willpower instead of their Strength."
   }
  ],
  "Julieta Madrigal - Caring Baker": [
@@ -194,24 +182,6 @@
   {
    "impl": "unimplemented",
    "text": "[FIND A WAY] Whenever this character quests, move up to 1 damage from chosen character of yours to chosen opposing character."
-  }
- ],
- "Will o' the Wisp - Forest Spirit": [
-  {
-   "impl": "unimplemented",
-   "text": "[COME ON OUT] When this character is banished in a challenge, you may return this card to your hand."
-  }
- ],
- "Violet Parr - Learning New Powers": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[DEFLECT] When you play this character, you may move 1 damage from chosen character to chosen opposing character."
-  }
- ],
- "Mrs. Incredible - Super Stretchy": [
-  {
-   "impl": "unimplemented",
-   "text": "[FLEXIBLE THINKING] At the start of your turn, you may choose one:\n• This character gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)\n• This character gets +1 Lore this turn."
   }
  ],
  "Hamish, Hubert & Harris - Making Mischief": [
@@ -334,12 +304,6 @@
    "text": "[UNEQUALED CRUELTY] While an opposing damaged character is in play, this character gets +2 Strength."
   }
  ],
- "RC - Remote-Controlled Car": [
-  {
-   "impl": "unimplemented",
-   "text": "[LOW BATTERIES] This character can't quest or challenge unless you pay 1 Ink. (You pay this cost each time.)"
-  }
- ],
  "Lord MacGuffin - Clever Swordsman": [
   {
    "impl": "unimplemented",
@@ -352,34 +316,10 @@
    "text": "Evasive (Only characters with Evasive can challenge this character.)[UNEARTH] Whenever this character quests, you may draw 2 cards, then choose and discard 2 cards."
   }
  ],
- "Milo Thatch - Getting His Hands Dirty": [
-  {
-   "impl": "unimplemented",
-   "text": "Ward[SCHOLAR'S GAMBIT] When you play this character, you may choose and discard a card to return chosen character to their player's hand.[PRACTICAL KNOWLEDGE] At the end of your turn, if 2 or more cards were put into your discard this turn, draw a card."
-  }
- ],
  "Donald Duck - Distracted Traveler": [
   {
    "impl": "unimplemented",
    "text": "[BURNING CURIOSITY] Whenever this character quests, if you played another character this turn, each opponent chooses and discards a card."
-  }
- ],
- "Buzz Lightyear - On the Way": [
-  {
-   "impl": "unimplemented",
-   "text": "[SECRET MISSION] Whenever you pay 2 Ink or less to play a non-character, draw a card, then choose and discard a card.[WORLD'S GREATEST TOY] Whenever you pay 2 Ink or less to play a character, deal 1 damage to chosen opposing damaged character."
-  }
- ],
- "Lyle Tiberius Rourke - Adventurer for Hire": [
-  {
-   "impl": "unimplemented",
-   "text": "[EYE FOR VALUE] When you play this character, you may draw a card, then choose and discard a card.[DIRTY TRICKS] At the end of your turn, if 2 or more cards were put into your discard this turn, each opponent loses 1 lore."
-  }
- ],
- "Joshua Sweet - Field Surgeon": [
-  {
-   "impl": "unimplemented",
-   "text": "[NO PATIENCE] Whenever this character is challenged, chosen opponent chooses and discards a card."
   }
  ],
  "Merida - Gifted Archer": [
@@ -392,12 +332,6 @@
   {
    "impl": "unimplemented",
    "text": "Shift 5 Ink[TAKE CHARGE] When you play this character, you may return an action card with cost 7 or less from your discard to your hand.[ADVANCED TRAINING] Whenever you play an action, chosen character gets +1 Lore this turn."
-  }
- ],
- "Cruella De Vil - Judgmental Traveler": [
-  {
-   "impl": "unimplemented",
-   "text": "[YOU'RE OUT OF FASHION] Whenever this character quests, if you played another character this turn, you may banish chosen damaged character."
   }
  ],
  "Helga Sinclair - Prepared for Anything": [
@@ -434,12 +368,6 @@
   {
    "impl": "unimplemented",
    "text": "THE CLAW CHOOSES [Exert], 2 Ink, Banish one of your characters — Return chosen opposing character to their player's hand."
-  }
- ],
- "Gyro-Evac": [
-  {
-   "impl": "unimplemented",
-   "text": "TAKE HER UP [Exert], 1 Ink — Chosen character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)\nCRASH LANDING [Exert], Banish this item — Each player loses 2 lore."
   }
  ],
  "Merida's Bow": [
@@ -550,12 +478,6 @@
    "text": "[PLAYTIME'S OVER] When you play this character, you may banish another chosen character of yours. If you do, each opponent chooses and banishes one of their characters.[DOUBLE PRIZES!] During your turn, whenever a Toy character is banished, gain 2 lore."
   }
  ],
- "Mr. Incredible - Super Strong": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink[ALWAYS UNITED] This character gets +2 Strength for each other character you have in play.[LET'S DO THIS!] Whenever one of your Super characters challenges another character, draw a card."
-  }
- ],
  "Pterodactyl Janie Doll - Sid's Toy": [
   {
    "impl": "unimplemented",
@@ -564,20 +486,31 @@
  ],
  "Inner Strength": [
   {
-   "impl": "unimplemented",
-   "text": "Chosen character gets +1 Strength this turn. Draw a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 1,
+    "target": "chosen_character",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "Chosen character gets +1 Strength this turn. Draw a card."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Chosen character gets +1 Strength this turn. Draw a card."
   }
  ],
  "Firefly Swarm": [
   {
    "impl": "unimplemented",
    "text": "Choose one:\n• Banish chosen character with 2 Strength or less.\n• If 2 or more other cards were put into your discard this turn, banish chosen character."
-  }
- ],
- "Like A Bird In the Sky": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.) \nChosen character gets +1 Lore and gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
   }
  ],
  "Hero Work": [
@@ -714,12 +647,6 @@
    "text": "[STRENGTH IN MEMORY] At the end of your turn, if 2 or more cards were put into your discard this turn, you may put the top card of your deck into your inkwell facedown."
   }
  ],
- "Minnie Mouse - Practical Traveler": [
-  {
-   "impl": "unimplemented",
-   "text": "[DISCERNING EYE] Whenever this character quests, if you played another character this turn, gain 1 lore."
-  }
- ],
  "Kida - Crystal Scion": [
   {
    "impl": "unimplemented",
@@ -760,12 +687,6 @@
   {
    "impl": "unimplemented",
    "text": "[FLAVORFUL CURE] At the start of your turn, if you have a Madrigal character in play, remove up to 2 damage from chosen character.\nTHAT DID THE TRICK [Exert] — If you removed damage from a character this turn, gain 1 lore."
-  }
- ],
- "Ranger Plane": [
-  {
-   "impl": "unimplemented",
-   "text": "[AIR SUPPORT] Your characters gain Support. (Whenever they quest, you may add their Strength to another chosen character's Strength this turn.)\nBIG LIFT [Exert] — Chosen character with 10 Strength or more gets +3 Lore this turn."
   }
  ],
  "Gadget's Goggles": [
@@ -881,12 +802,6 @@
    "text": "[JUST THE SPOT] During your turn, whenever this character becomes exerted, you may play a location from your hand or discard with cost 4 or less for free.[HOLD FAST] While this character is at a location, whenever a location is challenged and banished, you may deal 4 damage to chosen character."
   }
  ],
- "Mrs. Incredible - Determined Rescuer": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink [PULL BACK] Your characters gain Resist +1.[REGROUP] During your turn, whenever another character is banished in a challenge, you may ready chosen Super character. If you do, they can't quest for the rest of this turn."
-  }
- ],
  "Diablo - Stone Servant": [
   {
    "impl": "unimplemented",
@@ -923,21 +838,6 @@
    "text": "[WELCOME BACK, SIR] If you have a character named Fat Cat in play, you may play this card for free.[COOL CATS ONLY] Your locations can't be challenged by characters with cost 2 or less."
   }
  ],
- "Lilo - Snow Artist": [
-  {
-   "trigger": "static",
-   "condition": {
-    "type": "you_have_named",
-    "name": "Stitch"
-   },
-   "effect": {
-    "type": "static_self_lore",
-    "amount": 1
-   },
-   "confidence": "high",
-   "source": "[CREATIVE INSPIRATION] While you have a character named Stitch in play, this character gets +1 Lore."
-  }
- ],
  "Pudge - Controls the Weather": [
   {
    "impl": "unimplemented",
@@ -953,12 +853,6 @@
    },
    "confidence": "high",
    "source": "[SHAKE THINGS UP] When you play this character, each opponent chooses and discards a card."
-  }
- ],
- "Stitch - Carefree Snowboarder": [
-  {
-   "impl": "unimplemented",
-   "text": "[BRING YOUR FRIENDS] Whenever this character quests, if you have 2 or more other characters in play, you may draw a card."
   }
  ],
  "Pocahontas - Finding the Way": [
@@ -979,12 +873,6 @@
   {
    "impl": "unimplemented",
    "text": "[REQUEST REINFORCEMENTS] When you play this character, you may return a Detective character card from your discard to your hand."
-  }
- ],
- "Chief Powhatan - Protective Leader": [
-  {
-   "impl": "unimplemented",
-   "text": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[STANDS HIS GROUND] This character can’t challenge."
   }
  ],
  "Sarabi - Protecting the Pride": [
@@ -1041,12 +929,6 @@
    "text": "LUNCH SPECIAL [Exert] — Remove up to 2 damage from chosen character of yours. For each 1 damage removed this way, you pay 1 Ink less for the next character you play this turn."
   }
  ],
- "Pocahontas - Peacekeeper": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink[CALMING WORDS] When you play this character, if you used Shift to play her and none of your characters challenged this turn, characters can’t challenge until the start of your next turn."
-  }
- ],
  "Simba - Playful Pouncer": [
   {
    "trigger": "on_play",
@@ -1067,12 +949,6 @@
    "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[COME SEE!] During your turn, whenever this character exerts, reveal a number of cards from the top of your deck equal to the number of cards under him. Put all revealed character cards into your hand. Put the rest on the bottom of your deck in any order."
   }
  ],
- "Angel - Siren Singer": [
-  {
-   "impl": "unimplemented",
-   "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nSinger 3 (This character counts as cost 3 to sing songs.)"
-  }
- ],
  "Widow Tweed - Kindly Soul": [
   {
    "impl": "unimplemented",
@@ -1085,18 +961,6 @@
    "text": "[ICE BATH] This character can't challenge."
   }
  ],
- "Raging Storm": [
-  {
-   "impl": "unimplemented",
-   "text": "Banish all characters."
-  }
- ],
- "Akood et Emuti": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nYou pay 2 Ink less for the next character you play this turn. Draw a card."
-  }
- ],
  "Mother Will Protect You": [
   {
    "impl": "unimplemented",
@@ -1107,12 +971,6 @@
   {
    "impl": "unimplemented",
    "text": "For the rest of this turn, whenever one of your characters quests, you may draw a card."
-  }
- ],
- "Ohana Means Family": [
-  {
-   "impl": "unimplemented",
-   "text": "Remove all damage from chosen character of yours. Draw a card for each 1 damage removed this way."
   }
  ],
  "John Smith's Compass": [
@@ -1133,28 +991,10 @@
    "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[MYSTICAL INSIGHT] Whenever this character quests, put all cards from under her into your hand."
   }
  ],
- "Tigger - Bouncing All the Way": [
-  {
-   "impl": "unimplemented",
-   "text": "[SPLENDERIFFIC BOUNCE] When you play this character, you may return chosen character, item, or location with cost 2 or less to their player's hand."
-  }
- ],
- "Isis Vanderchill - Ice Queen of St. Canard": [
-  {
-   "impl": "unimplemented",
-   "text": "[CHILL OUT] When you play this character, exert chosen opposing character."
-  }
- ],
  "Flit - Reflective Hummingbird": [
   {
    "impl": "unimplemented",
    "text": "[LOOK OUT!] When you play this character, move up to 1 damage from chosen character to chosen opposing character."
-  }
- ],
- "Pocahontas - Following the Wind": [
-  {
-   "impl": "unimplemented",
-   "text": "WHAT IS MY PATH? Whenever this character quests, gain lore equal to another chosen exerted character's Lore."
   }
  ],
  "Taran - Magically Armed": [
@@ -1167,12 +1007,6 @@
   {
    "impl": "unimplemented",
    "text": "[THANKS FOR NOTICIN' ME] For each exerted character in play, you pay 1 Ink less to play this character.[SORRY ABOUT THAT] When you play this character, for each opposing player, you may choose a character of theirs. They can't ready at the start of their next turn."
-  }
- ],
- "Meeko - Skittish Scrounger": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[BOTTOMLESS PIT] At the end of your turn, if this character is exerted, choose and discard a card or banish him."
   }
  ],
  "Morgana Macawber - Reformed Spellcaster": [
@@ -1197,12 +1031,6 @@
   {
    "impl": "unimplemented",
    "text": "[UNUSUAL TRANSFORMATION] If a card left a player's discard this turn, this character gains Shift 0 Ink. WARM HEART Whenever this character quests, you may gain lore equal to the Lore of a character card in your discard. If you do, put that card on the bottom of your deck."
-  }
- ],
- "Kristoff - Icy Explorer": [
-  {
-   "impl": "unimplemented",
-   "text": "[HIDDEN DEPTHS] When you play this character, if you have a character named Anna in play, you may put a card from chosen player's discard on the bottom of their deck.[STROKE OF LUCK] Once during your turn, whenever a card leaves your discard, draw a card."
   }
  ],
  "Anna - Little Sister": [
@@ -1239,12 +1067,6 @@
   {
    "impl": "unimplemented",
    "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nChosen opponent chooses YES! or NO!:\n* YES! You gain 3 lore.\n* NO! They choose a character of theirs and put that card on the bottom of their deck."
-  }
- ],
- "Come Out and Fight!": [
-  {
-   "impl": "unimplemented",
-   "text": "Put all cards from under chosen character, item, or location on the bottom of their player's deck in a random order. Draw a card."
   }
  ],
  "Swordplay": [
@@ -1311,18 +1133,6 @@
   {
    "impl": "unimplemented",
    "text": "[SPOTTED HIM!] When you play this character, you may exert chosen damaged character."
-  }
- ],
- "Chernabog - Unnatural Force": [
-  {
-   "impl": "unimplemented",
-   "text": "[DARK DANCE] When you play this character, you may shuffle chosen opposing character into their player's deck. If you do, that player may play a character from their discard for free."
-  }
- ],
- "Dinky - Has the Brains": [
-  {
-   "impl": "unimplemented",
-   "text": "[GET HIM!] When you play this character, each opponent chooses one of their characters and deals 1 damage to them."
   }
  ],
  "Stegmutt - Clumsy Dinosaur": [
@@ -1409,34 +1219,10 @@
    "text": "[SPIRIT OF GIVING] Whenever you use the Boost ability of a character, you may put the top card of your deck under them facedown.[WELL WISHES] During opponents’ turns, whenever one of your other characters is banished, you may draw a card for each card that was under them."
   }
  ],
- "Strike A Good Match": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nDraw 2 cards, then choose and discard a card."
-  }
- ],
- "Snowball Fight": [
-  {
-   "impl": "unimplemented",
-   "text": "Each opponent chooses and discards a card. If you have a character with Evasive in play, gain 1 lore."
-  }
- ],
  "Freeze the Vine": [
   {
    "impl": "unimplemented",
    "text": "Banish all locations. Draw 2 cards, then choose and discard a card."
-  }
- ],
- "Education or Elimination": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nChoose one:\n* Draw a card. Chosen character of yours gets +1 Lore and gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)\n* Banish chosen damaged character."
-  }
- ],
- "Snow Fort": [
-  {
-   "impl": "unimplemented",
-   "text": "[THE HIGH GROUND] Your characters get +1 Strength.[BARRICADE] During opponents' turns, your characters gain Resist +1. (Damage dealt to them is reduced by 1.)"
   }
  ],
  "Rafiki's Bakora Staff": [
@@ -1469,12 +1255,6 @@
    "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[POWERED UP] This character gets +1 Strength for each card under him.\nWHO'S COMIN' WITH ME? When this character is banished, banish all characters with Strength equal to or less than the Strength he had in play."
   }
  ],
- "Scrooge McDuck - Ghostly Ebenezer": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[COUNTING COINS] This character gets +1 Strength and +1 Willpower for each card under him."
-  }
- ],
  "Mulan - Ready for Battle": [
   {
    "impl": "unimplemented",
@@ -1485,12 +1265,6 @@
   {
    "impl": "unimplemented",
    "text": "[BATTLE WOUND] This character enters play with 2 damage."
-  }
- ],
- "Liquidator - Iced Over": [
-  {
-   "impl": "unimplemented",
-   "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nReckless (This character can't quest and must challenge each turn if able.)"
   }
  ],
  "Elisa Maza - Transformed Gargoyle": [
@@ -1509,12 +1283,6 @@
   {
    "impl": "unimplemented",
    "text": "Shift 3 Ink[STICKY FINGERS] Whenever this character challenges another character, each opponent loses 1 lore and you gain 1 lore."
-  }
- ],
- "Hercules - Spectral Demigod": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[SUPERHUMAN STRENGTH] While there’s a card under this character, he gets +3 Strength."
   }
  ],
  "Goofy - Marley's Clumsy Spirit": [
@@ -1555,20 +1323,16 @@
  ],
  "Force of a Great Typhoon": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nChosen character gets +5 Strength this turn."
-  }
- ],
- "Marching Off to Battle": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nIf a character was banished this turn, draw 2 cards."
-  }
- ],
- "Grab Your Bow": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 5 or more can [Exert] to sing this song for free.)\nBanish up to 2 chosen characters with 2 Strength or less."
+   "trigger": "on_play",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 5,
+    "target": "chosen_character",
+    "duration": "eot"
+   },
+   "confidence": "high",
+   "source": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nChosen character gets +5 Strength this turn."
   }
  ],
  "Lonely Grave": [
@@ -1581,12 +1345,6 @@
   {
    "impl": "unimplemented",
    "text": "MOMENT OF INSPIRATION [Exert], 2 Ink — Reveal the top card of your deck. You may play it as if it were in your hand. Otherwise, put it in your discard."
-  }
- ],
- "Scrooge's Counting House - Ebenezer's Office": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this location.)\nGood Business This location gets +1 Willpower and +1 Lore for each card under it."
   }
  ],
  "Graveyard of Christmas Future - Lonely Resting Place": [
@@ -1655,28 +1413,10 @@
    "text": "[LOOKING FOR A MORSEL] When you play this character, you may return an item card from your discard to your hand."
   }
  ],
- "Scrooge McDuck - Reformed Ebenezer": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink[SPREADING JOY] When you play this character, you may put a card from the top of your deck facedown under each of your other characters. If you do, those characters gain Ward until the start of your next turn."
-  }
- ],
  "Splatter Phoenix - Rejected Artist": [
   {
    "impl": "unimplemented",
    "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nWard (Opponents can't choose this character except to challenge.)"
-  }
- ],
- "Pete - Ghost of Christmas Future": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[FOREBODING GLANCE] Whenever this character quests, look at a number of cards from the top of your deck equal to the number of cards under him. Put one into your hand and put the rest on the bottom of your deck in any order."
-  }
- ],
- "Moana - Curious Explorer": [
-  {
-   "impl": "unimplemented",
-   "text": "[ANCESTRAL LEGACY] You can ink cards from your discard."
   }
  ],
  "Tamatoa - Seeker of Shine": [
@@ -1689,18 +1429,6 @@
   {
    "impl": "unimplemented",
    "text": "[HOLIDAY SPIRIT] Once during your turn, whenever you put a card under one of your other characters, put the top card of your deck facedown under this character.[HOLIDAY CHEER] This character gets +1 Lore for each card under him."
-  }
- ],
- "Belle - Snowfield Strategist": [
-  {
-   "impl": "unimplemented",
-   "text": "[WINTER STOCKPILE] Whenever one of your characters is banished, you may put that card from your discard into your inkwell facedown and exerted."
-  }
- ],
- "Mickey Mouse - Bob Cratchit": [
-  {
-   "impl": "unimplemented",
-   "text": "[HARD WORK] Whenever this character quests, put the top card of your deck facedown under him.[A GIVING HEART] When this character is banished in a challenge, you may put all cards that were under him under another chosen character or location of yours."
   }
  ],
  "Scrooge McDuck - Miserly Ebenezer": [
@@ -1721,18 +1449,6 @@
    "text": "Put any number of cards from under your characters and locations into your inkwell facedown and exerted."
   }
  ],
- "Let It Go": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 5 or more can [Exert] to sing this song for free.)\nPut chosen character into their player’s inkwell facedown and exerted."
-  }
- ],
- "Distract": [
-  {
-   "impl": "unimplemented",
-   "text": "Chosen character gets -2 Strength this turn. Draw a card."
-  }
- ],
  "Wipe Out!": [
   {
    "impl": "unimplemented",
@@ -1749,12 +1465,6 @@
   {
    "impl": "unimplemented",
    "text": "AT YOUR SIDE [Exert] — Chosen character gains Support this turn. (Whenever they quest, you may add their Strength to another chosen character's Strength this turn.)"
-  }
- ],
- "Darkwing's Chair Set": [
-  {
-   "impl": "unimplemented",
-   "text": "[SECRET ENTRANCE] When you play this item, you may put the top card of your deck into your inkwell facedown and exerted.\nSUDDEN SPIN [Exert], Banish this item — Remove up to 2 damage from chosen character. If a character named Darkwing Duck is chosen, remove up to 4 damage instead."
   }
  ],
  "Darkwing's Gas Device": [
@@ -1835,18 +1545,6 @@
    "text": "Alert (This character can challenge as if they had Evasive.)[SO PRETTY] While this character has no damage, she gets +2 Strength."
   }
  ],
- "Angel - Experiment 624": [
-  {
-   "impl": "unimplemented",
-   "text": "[UNTOUCHABLE] While you have no cards in your hand, this character gains Resist +2.[GOOD AIM] Once during your turn, you may choose and discard a card to deal 2 damage to chosen character."
-  }
- ],
- "Darkwing Duck - Cool Under Pressure": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink[TAKE THAT!] During your turn, whenever an item is banished, you may pay 1 Ink to deal 2 damage to chosen character.[EVILDOERS BEWARE!] This character can challenge ready Villain characters."
-  }
- ],
  "John Smith - Undaunted Protector": [
   {
    "impl": "unimplemented",
@@ -1859,22 +1557,10 @@
    "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nResist +1 (Damage dealt to this character is reduced by 1.)"
   }
  ],
- "Lilo - Bundled Up": [
-  {
-   "impl": "unimplemented",
-   "text": "[EXTRA LAYERS] During each opponent's turn, the first time this character would take damage, she takes no damage instead."
-  }
- ],
  "Keep the Ancient Ways": [
   {
    "impl": "unimplemented",
    "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nOpponents can't play actions or items until the start of your next turn."
-  }
- ],
- "The Terror That Flaps in the Night": [
-  {
-   "impl": "unimplemented",
-   "text": "Deal 2 damage to chosen opposing character. If you have a character named Darkwing Duck in play, deal 3 damage instead."
   }
  ],
  "Let's Get Dangerous": [
@@ -1895,12 +1581,6 @@
    "text": "[DETECTING EVIDENCE] When you play this item, draw a card, then choose and discard a card.[FOLLOW THE CLUES] Banish this item – Chosen character gains Alert this turn. (They can challenge as if they had Evasive.)"
   }
  ],
- "The Thunderquack": [
-  {
-   "impl": "unimplemented",
-   "text": "[VIGILANTE JUSTICE] All opposing characters gain the Villain classification.\nLAY OF THE LAND [Exert] — If a character was banished in a challenge this turn, gain 1 lore."
-  }
- ],
  "Containment Unit": [
   {
    "impl": "unimplemented",
@@ -1917,12 +1597,6 @@
   {
    "impl": "unimplemented",
    "text": "[BIGGEST FAN] If you have a character named Meilin Lee in play, you pay 1 Ink less to play this character.\n[FOLLOW THE MUSIC] If you played a song this turn, you pay 1 Ink less to play this character."
-  }
- ],
- "Rabbit - Hunny Paladin": [
-  {
-   "impl": "unimplemented",
-   "text": "Bodyguard (This character may enter play exerted.\nAn opposing character who challenges one of your characters must choose one with Bodyguard if able.)[HUNNY AURA] When you play this character,\nchosen Hunny character gets +1 {} this turn."
   }
  ],
  "Celia Mae - Friendly Receptionist": [
@@ -1949,12 +1623,6 @@
    "text": "I GOT ’EM! When you play this character, each player draws a card."
   }
  ],
- "Pocahontas - Guiding the Tribe": [
-  {
-   "impl": "unimplemented",
-   "text": "[STAY CLOSE] When you play this character, you may play a character with cost 1 for free."
-  }
- ],
  "Woody - Town Sheriff": [
   {
    "impl": "unimplemented",
@@ -1967,28 +1635,10 @@
    "text": "[ROCK THE MIC] Once during your turn, whenever you play a song, you may ready this character. If you do, she can't quest or challenge for the rest of this turn."
   }
  ],
- "Gaston - Superior Archer": [
-  {
-   "impl": "unimplemented",
-   "text": "[WATCH THIS!] When you play this character, you may banish chosen character with 5 {} or more."
-  }
- ],
- "Meilin Lee - Losing Control": [
-  {
-   "impl": "unimplemented",
-   "text": "[RED PANDA POWER] When you play this character, look at the top 4 cards of your deck. You may reveal a Red Panda character card or a song card and put it into your hand. Put the rest on the bottom of your deck in any order."
-  }
- ],
  "4*Town - Hottest Band of the Year": [
   {
    "impl": "unimplemented",
    "text": "Singer 5 (This character counts as cost 5 to sing songs.)\n[STAR PERFORMANCE] Whenever this character sings a song with Sing Together, draw a card."
-  }
- ],
- "Mike Wazowski - Heroic Climber": [
-  {
-   "impl": "unimplemented",
-   "text": "[FIND A FRIEND] When you play this character and whenever he quests, each player reveals the top card of their deck. If it’s a character card, they may put it into their hand. Otherwise, put it on the bottom of their deck."
   }
  ],
  "Boo - In Disguise": [
@@ -2015,12 +1665,6 @@
    "text": "[CAULDRON'S POWER] While this character is exerted, you may play characters from your discard. If you do, they enter play exerted. (You pay all costs.)"
   }
  ],
- "Sulley - The New Boss": [
-  {
-   "impl": "unimplemented",
-   "text": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)\n[REHIRE] When you play this character, you may return a character card from your discard to your hand."
-  }
- ],
  "Mirabel Madrigal - Family Guardian": [
   {
    "impl": "unimplemented",
@@ -2031,18 +1675,6 @@
   {
    "impl": "unimplemented",
    "text": "[ENERGY SAP] Whenever one of your Floodborn characters quests, chosen opposing character gets -1 {} until the start of your next turn."
-  }
- ],
- "Pocahontas & Meeko - Adventurous Friends": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 2 Ink\nEvasive[WELCOME RETURN] Whenever this character quests, you may return chosen character of yours with cost 1 to your hand. If you do, you may play a character with cost 1 for free."
-  }
- ],
- "Sulley & Boo - Scare Buddies": [
-  {
-   "impl": "unimplemented",
-   "text": "Combo Shift 4 Ink[THE POWER OF FRIENDSHIP] When this character is banished, if any of the cards that were under them are character cards, you may play those characters from your discard for free."
   }
  ],
  "The Madrigal Family - Every Generation": [
@@ -2061,12 +1693,6 @@
   {
    "impl": "unimplemented",
    "text": "Sing Together 5 (Any number of your or your teammates’ characters with total cost 5 or more may {} to sing this song for free.)\n\nRemove up to 4 damage total from any number of your characters. You gain 1 lore for each 1 damage removed this way."
-  }
- ],
- "Besties, Assemble!": [
-  {
-   "impl": "unimplemented",
-   "text": "Look at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order."
   }
  ],
  "Nobody Like U": [
@@ -2091,12 +1717,6 @@
   {
    "impl": "unimplemented",
    "text": "[CHASING ADVENTURE] When you play this character, if a character of yours quested this turn, draw a card."
-  }
- ],
- "Winnie The Pooh - Hunny Archmage": [
-  {
-   "impl": "unimplemented",
-   "text": "[STICK TOGETHER] While you have 2 or more other Hunny characters in play, this character gets +2 {}."
   }
  ],
  "Lumpy - Hunny Druid": [
@@ -2135,12 +1755,6 @@
    "text": "YOU’RE GROUNDED When you shift a character on top of this character, chosen opposing exerted character can’t ready at the start of their next turn."
   }
  ],
- "Merida - Wisp Conjurer": [
-  {
-   "impl": "unimplemented",
-   "text": "[FOCUSED ENERGY] This character may enter play exerted to draw a card.\n[BECKON] During your turn, whenever another character of yours enters play exerted, you may draw a card."
-  }
- ],
  "Mrs. Incredible - Created by the Vine": [
   {
    "impl": "unimplemented",
@@ -2177,34 +1791,10 @@
    "text": "[ADVANCED MIMICRY] You can shift any character on top of this character. (This includes all Shift variants.)"
   }
  ],
- "Peter Pan - Playful Prankster": [
-  {
-   "impl": "unimplemented",
-   "text": "[STAY RIGHT THERE] When you play this character, chosen opposing character can’t ready at the start of their next turn."
-  }
- ],
  "Aladdin & Genie - Mischievous Pals": [
   {
    "impl": "unimplemented",
    "text": "Shift 3 {}[SLEIGHT OF HAND] When you play this character, you may put any number of cards from your hand on the bottom of your deck in any order. If you do, draw that number of cards plus 1."
-  }
- ],
- "Peter Pan & Tinker Bell - Fast Friends": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 4 {} (You may pay 4 Ink to play this on top of one of your characters named Peter Pan or Tinker Bell.)[YOU CAN FLY!] Your characters gain Evasive. (Only characters with Evasive can challenge them.)"
-  }
- ],
- "Christopher Robin - Hunny Sage": [
-  {
-   "impl": "unimplemented",
-   "text": "[GATHER THE PARTY] You can have other Hunny characters in your deck regardless of ink type.\n[MAGICAL SUMMONS] When you play this character, you may search your deck for a Hunny card, reveal it, and put it in your hand. If you do, shuffle your deck."
-  }
- ],
- "Winnie The Pooh & Piglet - Hunny Mages": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 3{}[MAGICAL MIX] This character gets +1{} for each different ink type of characters you have in play."
   }
  ],
  "Maleficent & Diablo - Evil Incarnate": [
@@ -2249,18 +1839,6 @@
    "text": "Return up to 2 chosen characters, items, or locations with cost 2 or less each to their player’s hand."
   }
  ],
- "Broken Pod": [
-  {
-   "impl": "unimplemented",
-   "text": "RENEWAL PROCESS {} , 1 {} - Put a card from chosen player's discard on the bottom of their deck."
-  }
- ],
- "Magical Hunny Staff": [
-  {
-   "impl": "unimplemented",
-   "text": "[GIFT OF THE HIVE] Once during your turn, you may pay 1 Ink to give chosen character of yours the Hunny classification until the start of your next turn.\n\nSPELL OF SWIFTNESS [Exert], 2 Ink – Chosen Hunny character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
-  }
- ],
  "Source Of The Vine": [
   {
    "impl": "unimplemented",
@@ -2297,46 +1875,16 @@
    "text": "[ACTION FIGURE] When you play this character, choose one of the following. If you have another Toy character in play, choose both instead:\n• You may return an action card with cost 2 or less from your discard to your hand.\n• You may play an action with cost 2 or less for free."
   }
  ],
- "Gopher - Hunny Cook": [
-  {
-   "impl": "unimplemented",
-   "text": "[DOWN THE HOLE] This character may enter play exerted.\n[FORTIFYING MEAL] During an opponent’s turn, while this character is exerted, your other Hunny characters gain Resist +1. (Damage dealt to them is reduced by 1.)"
-  }
- ],
  "Russell - Senior Wilderness Explorer": [
   {
    "impl": "unimplemented",
    "text": "Shift 3 {} (You may pay 3 Ink to play this on top of one of your characters named Russell.)[BASE CAMP] Your characters at locations get +1{}.[GOOD LEADERSHIP] Whenever one of your characters with 4{} or more quests, gain 1 lore."
   }
  ],
- "Rapunzel - Tower Defender": [
-  {
-   "impl": "unimplemented",
-   "text": "[THE FATE'S DESIGN] When you play this character, you may choose and discard a card. If you do, return chosen character to their player's hand."
-  }
- ],
- "Tod - Clever Fox": [
-  {
-   "impl": "unimplemented",
-   "text": "[PROBLEM SOLVING] When you play this character, draw 2 cards, then choose and discard a card."
-  }
- ],
  "Russell - Junior Wilderness Explorer": [
   {
    "impl": "unimplemented",
    "text": "[ASSISTING THE ELDERLY BADGE] Whenever this character quests, you may move him and one of your other characters to the same location for free."
-  }
- ],
- "Roo - Hunny Rogue": [
-  {
-   "impl": "unimplemented",
-   "text": "Ward (Opponents can't choose this character except to challenge.)\n[ELUSIVE EXPERTISE] While you have another Hunny character in play, this character gains Evasive. (Only characters with Evasive can challenge them.)"
-  }
- ],
- "Aladdin - Doing His Part": [
-  {
-   "impl": "unimplemented",
-   "text": "[CLEAR IT OUT] When you play this character, you may pay 1 Ink to banish chosen item."
   }
  ],
  "Madam Mim - Hummingbird": [
@@ -2363,12 +1911,6 @@
    "text": "Potato Shift 5 {} (You may pay 5 Ink to play this on top of one of your items named Potato.)"
   }
  ],
- "Dr. Bushroot - Evil Botanist": [
-  {
-   "impl": "unimplemented",
-   "text": "Ward (Opponents can’t choose this character except to challenge.)[FAIR IS FAIR] Whenever this character is challenged, chosen opponent chooses and discards a card."
-  }
- ],
  "Mother Gothel - Evil as Ever": [
   {
    "impl": "unimplemented",
@@ -2381,34 +1923,10 @@
    "text": "Shift 2 {} (You may pay 2 Ink to play this on top of one of your characters named Tod or Copper.)\n\nEvasive (Only characters with Evasive can challenge this character.)"
   }
  ],
- "Rapunzel - Escaping the Tower": [
-  {
-   "impl": "unimplemented",
-   "text": "[THE CALL OF ADVENTURE] Once during your turn, you may discard a card to give this character +1 {} and Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
-  }
- ],
- "Mushu - Stealthy Dragon": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[TIP THE SCALES] Whenever this character quests, if an opponent has more cards in their hand than you, you may draw a card."
-  }
- ],
  "Carl Fredricksen & Russell - Intrepid Explorers": [
   {
    "impl": "unimplemented",
    "text": "Shift 4 {}[OUTDOOR SKILLS] While this character is at a location, all characters at that location get +1 {} and gain Evasive."
-  }
- ],
- "Mickey Mouse & Minnie Mouse - Adventuring Duo": [
-  {
-   "impl": "unimplemented",
-   "text": "Duo Shift 0 {} (You may pay 0 Ink to play this on top of two of your characters, one named Mickey Mouse and one named Minnie Mouse.)\n[THINKING OF YOU] If this character would be banished, put them into your inkwell facedown and exerted instead."
-  }
- ],
- "Rapunzel & Flynn Rider - Unlikely Pair": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 3 {} (You may pay 3 Ink to play this on top of one of your characters named Rapunzel or Flynn Rider.)[CLEVER SWAP] Whenever this character quests, you may draw a card, then choose and discard a card.[FRESH START] During your turn, whenever you discard a character card, you may play that character from your discard. (You pay all costs.)"
   }
  ],
  "To Wither A Flower": [
@@ -2421,12 +1939,6 @@
   {
    "impl": "unimplemented",
    "text": "Deal 2 damage to chosen character. This damage can't be reduced by Resist."
-  }
- ],
- "Put That Thing Back": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.)\n\nReturn chosen character or item to their player's hand."
   }
  ],
  "Scout Ahead": [
@@ -2524,24 +2036,6 @@
    "text": "Evasive (Only characters with Evasive can challenge this character.)\n[AFTER-HOURS PROJECT] While all cards in your inkwell are exerted, this character gets +2 {}."
   }
  ],
- "Meilin Lee - Popular Red Panda": [
-  {
-   "impl": "unimplemented",
-   "text": "Temporary Shift 3 {}[KARAOKE QUEEN] Once during your turn, whenever this character sings a song, gain 3 lore."
-  }
- ],
- "Tigger - Hunny Barbarian": [
-  {
-   "impl": "unimplemented",
-   "text": "Reckless (This character can’t quest and must challenge each turn if able.)\n[PROTECTIVE CHARGE] Once during your turn, whenever this character challenges another character, you may ready chosen Hunny character. If you do, that character can’t quest for the rest of this turn."
-  }
- ],
- "Boo - Energetic Child": [
-  {
-   "impl": "unimplemented",
-   "text": "Rush (This character can challenge the turn they’re played.)\n[KID-TASTROPHE!] Whenever this character challenges another character with 3 {} or less, banish that character. (No damage is dealt in that challenge.)"
-  }
- ],
  "Sulley - Protective Monster": [
   {
    "impl": "unimplemented",
@@ -2570,18 +2064,6 @@
   {
    "impl": "unimplemented",
    "text": "Combo Shift 6 {}\nEvasive, Resist +1[INCREDIBLE TACTICS] Whenever this character quests or challenges, draw a card for each card under them."
-  }
- ],
- "Red Moon Ritual": [
-  {
-   "impl": "unimplemented",
-   "text": "Sing Together 7 (Any number of your or your teammates’ characters with total cost 7 or more may {} to sing this song for free.)\n\nBanish chosen character."
-  }
- ],
- "Red Alert": [
-  {
-   "impl": "unimplemented",
-   "text": "Banish chosen character with 3 {} or less. If you have a Monster character in play, chosen opponent loses 1 lore."
   }
  ],
  "Rahr!": [
@@ -2630,12 +2112,6 @@
   {
    "impl": "unimplemented",
    "text": "[ALWAYS] Each opponent plays with the top card of their deck faceup."
-  }
- ],
- "Merlin - Envisioning the Future": [
-  {
-   "impl": "unimplemented",
-   "text": "[MINOR TRICKERY] When you play this character, you may draw a card from the bottom of your deck.\n[AGE OF INCONVENIENCE] When this character is banished, put this card from your discard on the bottom of your deck."
   }
  ],
  "Quackerjack - Loony Toymaker": [
@@ -2710,12 +2186,6 @@
    "text": "[THE BOTTOM LINE] While you have more cards in your inkwell than each opposing player, this character gets +2 {} and gains Ward. (Opponents can’t choose them except to challenge.)"
   }
  ],
- "Eeyore - Hunny Scholar": [
-  {
-   "impl": "unimplemented",
-   "text": "[HUNNYTACTICS] Whenever this character quests, chosen Hunny character of yours gets +1 {} and gains Ward until the start of your next turn.\n(Opponents can't choose them except to challenge.)"
-  }
- ],
  "Darkwing Duck & Launchpad - St. Canard’s Finest": [
   {
    "impl": "unimplemented",
@@ -2770,18 +2240,6 @@
    "text": "YOU ARE MY FRIEND {}, 1{} - Chosen character gets +1 {} and gains Support this turn. (Whenever they quest, you may add their {} to another chosen character's {} this turn.)"
   }
  ],
- "Big Book Of Hunny": [
-  {
-   "impl": "unimplemented",
-   "text": "INVOKE HUNNY {}, 2 {} - Reveal the top card of your deck. If it’s a Hunny card, put it into your hand. Otherwise, put it on the bottom of your deck."
-  }
- ],
- "Hundred Acre Wood - Hunny Campsite": [
-  {
-   "impl": "unimplemented",
-   "text": "[HOME AWAY FROM HOME] Characters get +1 Willpower while here.\n[HUNNY QUEST] Hunny characters get +1 Lore while here."
-  }
- ],
  "Violet Parr - Super Resilient": [
   {
    "impl": "unimplemented",
@@ -2804,12 +2262,6 @@
   {
    "impl": "unimplemented",
    "text": "Resist +1 (Damage dealt to this character is reduced by 1.)\n[BOTANICAL EVIL] When you play this character, you may choose and discard an Alien character card or a location card from your hand. If you do, deal 2 damage to chosen character."
-  }
- ],
- "Owl - Hunny Ranger": [
-  {
-   "impl": "unimplemented",
-   "text": "[HUNNY ALLIANCE] While you have another Hunny character in play, this character gains Resist +2. (Damage dealt to them is reduced by 2.)"
   }
  ],
  "Megavolt - Electrical Menace": [
@@ -2884,34 +2336,10 @@
    "text": "Up to 2 chosen opposing characters can't challenge during their next turn."
   }
  ],
- "We'll Save Our Village": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\n\nYour characters and locations gain Resist +1 until the start of your next turn. (Damage dealt to them is reduced by 1.)"
-  }
- ],
- "Look What You've Done": [
-  {
-   "impl": "unimplemented",
-   "text": "Deal 2 damage to chosen character. During your turn, when you discard this card, you may play it from your discard. (You pay all costs.)"
-  }
- ],
- "You Broke My Smolder": [
-  {
-   "impl": "unimplemented",
-   "text": "Discard your hand. Draw 2 cards."
-  }
- ],
  "Attack Of The Vine!": [
   {
    "impl": "unimplemented",
    "text": "Your Floodborn characters gain Resist +2 and can challenge ready characters this turn. (Damage dealt to them is reduced by 2.)"
-  }
- ],
- "Windstorm": [
-  {
-   "impl": "unimplemented",
-   "text": "Deal 1 damage to each opposing character and location. Then, deal 2 damage to each opposing character with Evasive and each opposing location with Evasive."
   }
  ],
  "Discarded Armor": [
@@ -2944,22 +2372,10 @@
    "text": "Shift 3 {}[CLEVER TRADE] Once per turn, whenever this character quests, you may draw 1 card, then choose and discard 1 card from your hand.[NEW BEGINNING] Whenever you discard 1 character card during your turn, you may play that character from your discard pile."
   }
  ],
- "Darkwing Duck & Launchpad - St. Canard's Finest": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink\nWard[VICTORY POSE] During your turn, whenever this character banishes another character in a challenge, gain 2 lore."
-  }
- ],
  "Gaston - Frightful Bully": [
   {
    "impl": "unimplemented",
    "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[TOP THAT!] Whenever this character quests, if there's a card under him, chosen opposing character can't challenge and must quest if able during their next turn."
-  }
- ],
- "Rapunzel - Ready for Adventure": [
-  {
-   "impl": "unimplemented",
-   "text": "Support (Whenever this character quests, you may add their Strength to another chosen character's Strength this turn.)[ACT OF KINDNESS] Whenever one of your characters is chosen for Support, until the start of your next turn, the next time they would be dealt damage they take no damage instead."
   }
  ],
  "Scrooge McDuck - On the Right Track": [
@@ -2992,22 +2408,10 @@
    "text": "Support (Whenever this character quests, you may add their Strength to another chosen character's Strength this turn.)[FOLLOW THE PIG] Whenever this character quests, you may return a character card named Hen Wen from your discard to your hand."
   }
  ],
- "Ariel - Ethereal Voice": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink[COMMAND PERFORMANCE] Once during your turn, whenever you play a song, if there's a card under this character, you may draw a card."
-  }
- ],
  "Scrooge McDuck - Cavern Prospector": [
   {
    "impl": "unimplemented",
    "text": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Scrooge McDuck.)[SPECULATION] Whenever you play a character or location with Boost, you may put the top card of your deck facedown under them."
-  }
- ],
- "Mowgli - Man Cub": [
-  {
-   "impl": "unimplemented",
-   "text": "[HAVE A BETTER LOOK] When you play this character, chosen opponent reveals their hand and discards a non-character card of their choice."
   }
  ],
  "Simba - King in the Making": [
@@ -3066,34 +2470,10 @@
    "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nReturn a character card from your discard to your hand."
   }
  ],
- "Della's Moon Lullaby": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nChosen opposing character gets -2 Strength until the start of your next turn. Draw a card."
-  }
- ],
- "The Horseman Strikes!": [
-  {
-   "impl": "unimplemented",
-   "text": "Draw a card. You may banish chosen character with Evasive."
-  }
- ],
  "Recovered Page": [
   {
    "impl": "unimplemented",
    "text": "[WHAT IS TO COME] When you play this item, look at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order.[WHISPERED POWER 1] Ink, Banish this item — Put the top card of your deck facedown under one of your characters or locations with Boost."
-  }
- ],
- "Webby's Diary": [
-  {
-   "impl": "unimplemented",
-   "text": "[LATEST ENTRY] Whenever you put a card under one of your characters or locations, you may pay 1 Ink to draw a card."
-  }
- ],
- "The Black Cauldron": [
-  {
-   "impl": "unimplemented",
-   "text": "THE CAULDRON CALLS [Exert], 1 Ink — Put a character card from your discard under this item faceup.\nRISE AND JOIN ME! [Exert], 1 Ink — This turn, you may play characters from under this item."
   }
  ],
  "Munchings and Crunchings": [
@@ -3192,18 +2572,6 @@
    "text": "Shift 7 Ink (You may pay 7 Ink to play this on top of one of your characters named Magica De Spell.)[SHADOW'S GRASP] When you play this character, if you used Shift to play her, you may draw 4 cards."
   }
  ],
- "Demona - Scourge of the Wyvern Clan": [
-  {
-   "impl": "unimplemented",
-   "text": "[AD SAXUM COMMUTATE] When you play this character, exert all opposing characters. Then, each player with fewer than 3 cards in their hand draws until they have 3.[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
-  }
- ],
- "Hades - Looking for a Deal": [
-  {
-   "impl": "unimplemented",
-   "text": "WHAT D'YA SAY? When you play this character, you may choose an opposing character. If you do, draw 2 cards unless that character’s player puts that card on the bottom of their deck."
-  }
- ],
  "Olaf - Helping Hand": [
   {
    "impl": "unimplemented",
@@ -3220,12 +2588,6 @@
   {
    "impl": "unimplemented",
    "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[SLIPPERY SPELL] While there's a card under this character, she gets +1 Lore and gains Evasive. (Only characters with Evasive can challenge them.)"
-  }
- ],
- "Cheshire Cat - Inexplicable": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[IT'S LOADS OF FUN] Whenever you put a card under this character, you may move up to 2 damage counters from chosen character to chosen opposing character."
   }
  ],
  "Begone!": [
@@ -3246,22 +2608,10 @@
    "text": "Each opponent chooses and exerts one of their ready characters."
   }
  ],
- "Performance Review": [
-  {
-   "impl": "unimplemented",
-   "text": "[Exert] chosen ready character of yours to draw cards equal to that character’s Lore."
-  }
- ],
  "Fragile as a Flower": [
   {
    "impl": "unimplemented",
    "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nDraw a card. Exert chosen character with cost 2 or less. They can't ready at the start of their next turn."
-  }
- ],
- "Junior Woodchuck Guidebook": [
-  {
-   "impl": "unimplemented",
-   "text": "THE BOOK KNOWS EVERYTHING [Exert], 1 Ink, Banish this item — Draw 2 cards."
   }
  ],
  "Grimorum Arcanorum": [
@@ -3344,40 +2694,16 @@
    "text": "Shift 3 Ink[ROLL WITH IT] When you play this character, choose one:\n- Each player draws a card.\n- Each player chooses and discards a card."
   }
  ],
- "Megara - Secret Keeper": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)\nI’LL BE FINE While there’s a card under this character, she gets +1 Lore and gains \"Whenever this character is challenged, each opponent chooses and discards a card.\""
-  }
- ],
  "Goldie O'Gilt - Cunning Prospector": [
   {
    "impl": "unimplemented",
    "text": "[CLAIM JUMPER] When you play this character, chosen opponent reveals their hand and discards a location card of your choice.[STRIKE GOLD] Whenever this character quests, you may put a location card from chosen player's discard on the bottom of their deck to gain 1 lore."
   }
  ],
- "Shere Khan - Fearsome Tiger": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[ON THE HUNT] Whenever this character quests, banish chosen opposing damaged character. Then, you may put 1 damage counter on another chosen character."
-  }
- ],
- "Scrooge McDuck - S.H.U.S.H. Agent": [
-  {
-   "impl": "unimplemented",
-   "text": "[BACKUP PLAN] When you play this character, draw a card, then choose and discard a card.[ON THE MOVE] When this character is challenged, return this card to your hand. (No damage is dealt in that challenge.)"
-  }
- ],
  "Akela - Forest Runner": [
   {
    "impl": "unimplemented",
    "text": "[AHEAD OF THE PACK 1] Ink — This character gets +1 Strength this turn."
-  }
- ],
- "Goofy - Emerald Champion": [
-  {
-   "impl": "unimplemented",
-   "text": "[EVEN THE SCORE] Whenever one of your other Emerald characters is challenged and banished, banish the challenging character.[PROVIDE COVER] Your other Emerald characters gain Ward. (Opponents can't choose them except to challenge.)"
   }
  ],
  "Little John - Impermanent Outlaw": [
@@ -3402,18 +2728,6 @@
   {
    "impl": "unimplemented",
    "text": "(A character with cost 6 or more can [Exert] to sing this song for free.)\nChoose one:\n- Each opposing character gets -1 until the start of your next turn.\n- Each opponent chooses and discards 2 cards."
-  }
- ],
- "Chomp!": [
-  {
-   "impl": "unimplemented",
-   "text": "Deal 2 damage to chosen damaged character."
-  }
- ],
- "Malicious, Mean, and Scary": [
-  {
-   "impl": "unimplemented",
-   "text": "Put 1 damage counter on each opposing character."
   }
  ],
  "Potion of Malice": [
@@ -3500,12 +2814,6 @@
    "text": "[JOSTLING FOR POWER] King and Queen characters can't quest.[GROWING INFLUENCE] At the start of your turn, if an opponent has 2 or more ready characters in play, gain 2 lore."
   }
  ],
- "Hercules - Mighty Leader": [
-  {
-   "impl": "unimplemented",
-   "text": "[EVER VIGILANT] This character can't be dealt damage unless he's being challenged.[EVER VALIANT] While this character is exerted, your other Hero characters can't be dealt damage unless they're being challenged."
-  }
- ],
  "Goliath - Guardian of Castle Wyvern": [
   {
    "impl": "unimplemented",
@@ -3528,12 +2836,6 @@
   {
    "impl": "unimplemented",
    "text": "[SPECIAL DETAIL] While you have 2 or more other characters in play with 5 Strength or more, this character gets +2 Lore."
-  }
- ],
- "Aladdin - Barreling Through": [
-  {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)\nReckless (This character can't quest and must challenge each turn if able.)[ONLY THE BOLD] While there's a card under this character, your characters with Reckless gain \" [Exert] — Gain 1 lore.\""
   }
  ],
  "Lady Tremaine - Sinister Socialite": [
@@ -3602,12 +2904,6 @@
    "text": "[GATHER RESOURCES] Once during your turn, whenever you move a character with 5 Strength or more here, you may draw a card."
   }
  ],
- "Judy Hopps - On the Case": [
-  {
-   "impl": "unimplemented",
-   "text": "[HIDDEN CLUES] When you play this character, if you have another Detective character in play, you may put chosen item into its player's inkwell facedown and exerted."
-  }
- ],
  "Hen Wen - Prophetic Pig": [
   {
    "impl": "unimplemented",
@@ -3646,12 +2942,6 @@
    "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[UPLIFTING AURA] Whenever this character quests, if there’s a card under her, remove up to 3 damage from each of your characters."
   }
  ],
- "Judy Hopps - Lead Detective": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink[LATERAL THINKING] During your turn, your Detective characters gain Alert and Resist +2."
-  }
- ],
  "Ichabod Crane - Scared Out of His Mind": [
   {
    "impl": "unimplemented",
@@ -3670,18 +2960,6 @@
    "text": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Daisy Duck.)\nSupport (Whenever this character quests, you may add their Strength to another chosen character's Strength this turn.)[STRANGE HAPPENINGS] While this character is exerted, cards enter opponents' inkwells exerted."
   }
  ],
- "Cinderella - Dream Come True": [
-  {
-   "impl": "unimplemented",
-   "text": "[WHATEVER YOU WISH FOR] At the end of your turn, if you played a Princess character this turn, you may put a card from your hand into your inkwell facedown to draw a card."
-  }
- ],
- "Judy Hopps - Uncovering Clues": [
-  {
-   "impl": "unimplemented",
-   "text": "[THOROUGH INVESTIGATION] When you play this character and whenever she quests, look at the top 3 cards of your deck. You may reveal a Detective character card and put it into your hand. Put the rest on the bottom of your deck in any order."
-  }
- ],
  "Pluto - Clever Cluefinder": [
   {
    "impl": "unimplemented",
@@ -3698,12 +2976,6 @@
   {
    "impl": "unimplemented",
    "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.) WORTH MINING Whenever this character quests, if there's a card under him, put the top card of your deck into your inkwell facedown and exerted."
-  }
- ],
- "Mickey Mouse - Detective": [
-  {
-   "impl": "unimplemented",
-   "text": "[GET A CLUE] When you play this character, you may put the top card of your deck into your inkwell facedown and exerted."
   }
  ],
  "Hen Wen's Visions": [
@@ -3832,12 +3104,6 @@
    "text": "[TWO FOR ONE] When you play this character, if you have a location in play, you may deal 2 damage to chosen character."
   }
  ],
- "Nick Wilde - Persistent Investigator": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink[CASE CLOSED] During your turn, whenever one of your Detective characters banishes another character in a challenge, draw a card."
-  }
- ],
  "Prince Charming - Protector of the Realm": [
   {
    "impl": "unimplemented",
@@ -3848,12 +3114,6 @@
   {
    "impl": "unimplemented",
    "text": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can’t ready."
-  }
- ],
- "Pluto - Steel Champion": [
-  {
-   "impl": "unimplemented",
-   "text": "[WINNER TAKE ALL] During your turn, whenever one of your other Steel characters banishes another character in a challenge, gain 2 lore.[MAKE ROOM] Whenever you play another Steel character, you may banish chosen item."
   }
  ],
  "Fairy Godmother - Magical Benefactor": [
@@ -3878,12 +3138,6 @@
   {
    "impl": "unimplemented",
    "text": "Chosen opposing character can't challenge during their next turn. Draw a card."
-  }
- ],
- "He Hurled His Thunderbolt": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nDeal 4 damage to chosen character. Your Deity characters gain Challenger +2 this turn. (They get +2 Strength while challenging.)"
   }
  ],
  "The Game's Afoot!": [
@@ -3922,12 +3176,6 @@
    "text": "Evasive (Only characters with Evasive can challenge this character.)\nYOU JUST HAVE TO SEE IT [Exert] — Name a card, then reveal the top card of your deck. If it's the named card, put it into your hand and gain 3 lore. Otherwise, put it on the top of your deck."
   }
  ],
- "The Queen - Conceited Ruler": [
-  {
-   "impl": "unimplemented",
-   "text": "Support (Whenever this character quests, you may add their Strength to another chosen character's Strength this turn.)[ROYAL SUMMONS] At the start of your turn, you may choose and discard a Princess or Queen character card to return a character card from your discard to your hand."
-  }
- ],
  "Pongo - Determined Father": [
   {
    "impl": "unimplemented",
@@ -3944,12 +3192,6 @@
   {
    "impl": "unimplemented",
    "text": "[FULL DANCE CARD] Your Princess characters get +1 Strength and +1 Willpower."
-  }
- ],
- "Minnie Mouse - Sweetheart Princess": [
-  {
-   "impl": "unimplemented",
-   "text": "[ROYAL FAVOR] Your characters named Mickey Mouse gain Support.[BYE BYE, NOW] Whenever this character quests, you may banish chosen exerted character with 5 Strength or more."
   }
  ],
  "Rapunzel - Sunshine": [
@@ -4017,18 +3259,6 @@
    "text": "[ALL WAYS HERE ARE MY WAYS] Whenever this character quests, your other Villain characters get +1 Lore this turn."
   }
  ],
- "Stitch - Carefree Surfer": [
-  {
-   "impl": "unimplemented",
-   "text": "[OHANA] When you play this character, if you have 2 or more other characters in play, you may draw 2 cards."
-  }
- ],
- "Look at This Family": [
-  {
-   "impl": "unimplemented",
-   "text": "Sing Together 7 (Any number of your or your teammates’ characters with total cost 7 or more may [Exert] to sing this song for free.)\nLook at the top 5 cards of your deck. You may reveal up to 2 character cards and put them into your hand. Put the rest on the bottom of your deck in any order."
-  }
- ],
  "Circle of Life": [
   {
    "impl": "unimplemented",
@@ -4051,12 +3281,6 @@
   {
    "impl": "unimplemented",
    "text": "Return a character card from your discard to your hand. You may remove up to 2 damage from chosen character."
-  }
- ],
- "World's Greatest Criminal Mind": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nBanish chosen character with 5 Strength or more."
   }
  ],
  "Be Our Guest": [
@@ -4087,12 +3311,6 @@
   {
    "impl": "unimplemented",
    "text": "I SUMMON THEE [Exert] — Draw a card."
-  }
- ],
- "Rafiki - Mystical Fighter": [
-  {
-   "impl": "unimplemented",
-   "text": "Challenger +3 (While challenging, this character gets +3 Strength.)[ANCIENT SKILLS] Whenever he challenges a Hyena character, this character takes no damage from the challenge."
   }
  ],
  "Ursula - Sea Witch": [
@@ -4135,12 +3353,6 @@
   {
    "impl": "unimplemented",
    "text": "[SING FOR ME] When you play this character, exert chosen opposing ready character. Then, you may play a song with cost equal to or less than the exerted character's cost for free."
-  }
- ],
- "Dumbo - Ninth Wonder of the Universe": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive\nBREAKING RECORDS [Exert], 1 Ink — Draw a card and gain 1 lore.[MAKING HISTORY] Your other characters with Evasive gain \"[Exert], 1 Ink — Draw a card and gain 1 lore.\""
   }
  ],
  "Dumbo - The Flying Elephant": [
@@ -4257,12 +3469,6 @@
    "text": "Ward (Opponents can't choose this character except to challenge.)[NO TOUCHY!] When this character is challenged and banished, you may banish the challenging character."
   }
  ],
- "Cursed Merfolk - Ursula's Handiwork": [
-  {
-   "impl": "unimplemented",
-   "text": "[POOR SOULS] Whenever this character is challenged, each opponent chooses and discards a card."
-  }
- ],
  "Prince Phillip - Warden of the Woods": [
   {
    "impl": "unimplemented",
@@ -4291,18 +3497,6 @@
   {
    "impl": "unimplemented",
    "text": "Evasive[LET'S MAKE SOME MAGIC] While this character is exerted, your other characters get +2 Strength."
-  }
- ],
- "Max Goof - Chart Topper": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink[NUMBER ONE HIT] Whenever this character quests, you may play a song card with cost 4 or less from your discard for free, then put it on the bottom of your deck instead of into your discard."
-  }
- ],
- "Bobby Zimuruski - Spray Cheese Kid": [
-  {
-   "impl": "unimplemented",
-   "text": "[SO CHEESY] When you play this character, you may draw a card, then choose and discard a card."
   }
  ],
  "Megara - Pulling the Strings": [
@@ -4349,22 +3543,10 @@
    "text": "[I'LL HANDLE THIS] While this character is at a location, she gets +3 Strength.\nWHAT'S THE HURRY? While this character is at a location, whenever she challenges another character, you may draw a card."
   }
  ],
- "Tinker Bell - Most Helpful": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[PIXIE DUST] When you play this character, chosen character gains Evasive this turn."
-  }
- ],
  "John Silver - Alien Pirate": [
   {
    "impl": "unimplemented",
    "text": "[PICK YOUR FIGHTS] When you play this character and whenever he quests, chosen opposing character gains Reckless during their next turn. (They can't quest and must challenge if able.)"
-  }
- ],
- "Ursula - Deceiver": [
-  {
-   "impl": "unimplemented",
-   "text": "[YOU'LL NEVER EVEN MISS IT] When you play this character, chosen opponent reveals their hand and discards a song card of your choice."
   }
  ],
  "Wildcat - Mechanic": [
@@ -4385,28 +3567,33 @@
    "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nChosen character gets +3 Strength and gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
   }
  ],
- "Sudden Chill": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nEach opponent chooses and discards a card."
-  }
- ],
  "Improvise": [
   {
-   "impl": "unimplemented",
-   "text": "Chosen character gets +1 Strength this turn. Draw a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 1,
+    "target": "chosen_character",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "Chosen character gets +1 Strength this turn. Draw a card."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Chosen character gets +1 Strength this turn. Draw a card."
   }
  ],
  "Make the Potion": [
   {
    "impl": "unimplemented",
    "text": "Choose one: • Banish chosen item. • Deal 2 damage to chosen damaged character."
-  }
- ],
- "Mother Knows Best": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nReturn chosen character to their player's hand."
   }
  ],
  "Family Fishing Pole": [
@@ -4445,34 +3632,10 @@
    "text": "[THIS MISSION IS CURSED] This character can't ready at the start of your turn.[I GOT YOUR BACK 2] Ink – Ready this character. He can't quest for the rest of this turn."
   }
  ],
- "Ariel - Adventurous Collector": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive[INSPIRING VOICE] Whenever you play a song, chosen character of yours gains Evasive until the start of your next turn."
-  }
- ],
- "Maleficent - Monstrous Dragon": [
-  {
-   "impl": "unimplemented",
-   "text": "[DRAGON FIRE] When you play this character, you may banish chosen character."
-  }
- ],
- "Powerline - World's Greatest Rock Star": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink\nSinger 9[MASH-UP] Once during your turn, whenever this character sings a song, look at the top 4 cards of your deck. You may reveal a song card with cost 9 or less and play it for free. Put the rest on the bottom of your deck in any order."
-  }
- ],
  "Mickey Mouse - Brave Little Prince": [
   {
    "impl": "unimplemented",
    "text": "Shift 5 Ink\nEvasive[CROWNING ACHIEVEMENT] While this character has a card under him, he gets +3 Strength, +3 Willpower, and +3 Lore."
-  }
- ],
- "Max Goof - Rockin' Teen": [
-  {
-   "impl": "unimplemented",
-   "text": "Singer 5 (This character counts as cost 5 to sing songs.)[I JUST WANNA STAY HOME] This character can't move to locations."
   }
  ],
  "Roxanne - Powerline Fan": [
@@ -4497,12 +3660,6 @@
   {
    "impl": "unimplemented",
    "text": "[SURGE OF POWER] This character gets +1 Strength for each card in opponents' hands."
-  }
- ],
- "Sisu - Daring Visitor": [
-  {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[BRING ON THE HEAT!] When you play this character, banish chosen opposing character with 1 Strength or less."
   }
  ],
  "Queen of Hearts - Sensing Weakness": [
@@ -4558,24 +3715,6 @@
    "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nChosen character gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
   }
  ],
- "A Pirate's Life": [
-  {
-   "impl": "unimplemented",
-   "text": "Sing Together 6 (Any number of your or your teammates’ characters with total cost 6 or more may [Exert] to sing this song for free.)\nEach opponent loses 2 lore. You gain 2 lore."
-  }
- ],
- "Be King Undisputed": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nEach opponent chooses and banishes one of their characters."
-  }
- ],
- "Medallion Weights": [
-  {
-   "impl": "unimplemented",
-   "text": "DISCIPLINE AND STRENGTH [Exert], 2 Ink — Chosen character gets +2 Strength this turn. Whenever they challenge another character this turn, you may draw a card."
-  }
- ],
  "Dinner Bell": [
   {
    "impl": "unimplemented",
@@ -4600,12 +3739,6 @@
    "text": "[WASHED AWAY] When you play this character, you may put chosen item into its player's inkwell facedown and exerted.[MAKING WAVES] Whenever this character quests, chosen opposing character gets -2 Strength this turn."
   }
  ],
- "Mulan - Considerate Diplomat": [
-  {
-   "impl": "unimplemented",
-   "text": "[IMPERIAL INVITATION] Whenever this character quests, look at the top 4 cards of your deck. You may reveal a Princess character card and put it into your hand. Put the rest on the bottom of your deck in any order."
-  }
- ],
  "Cruella De Vil - Style Icon": [
   {
    "impl": "unimplemented",
@@ -4616,12 +3749,6 @@
   {
    "impl": "unimplemented",
    "text": "[NOW GET GOING] During your turn, this character gains Evasive. (They can challenge characters with Evasive.)"
-  }
- ],
- "Anna - Braving the Storm": [
-  {
-   "impl": "unimplemented",
-   "text": "[I WAS BORN READY] While you have another Hero character in play, this character gets +1 Lore."
   }
  ],
  "Hans - Noble Scoundrel": [
@@ -4642,22 +3769,10 @@
    "text": "[ANCIENT INSIGHT] Whenever you remove 1 or more damage from one of your characters, gain 2 lore."
   }
  ],
- "Hades - Infernal Schemer": [
-  {
-   "impl": "unimplemented",
-   "text": "IS THERE A DOWNSIDE TO THIS? When you play this character, you may put chosen opposing character into their player's inkwell facedown."
-  }
- ],
  "Mama Odie - Mystical Maven": [
   {
    "impl": "unimplemented",
    "text": "[THIS GOING TO BE GOOD] Whenever you play a song, you may put the top card of your deck into your inkwell facedown and exerted."
-  }
- ],
- "Aurora - Dreaming Guardian": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Aurora.)[PROTECTIVE EMBRACE] Your other characters gain Ward. (Opponents can't choose them except to challenge.)"
   }
  ],
  "Jasmine - Heir of Agrabah": [
@@ -4684,28 +3799,10 @@
    "text": "[HIGHBORN LADY] When you play this character, chosen character gets -2 Strength this turn."
   }
  ],
- "Winnie the Pooh - Having a Think": [
-  {
-   "impl": "unimplemented",
-   "text": "[HUNNY POT] Whenever this character quests, you may put a card from your hand into your inkwell facedown."
-  }
- ],
- "Alice - Growing Girl": [
-  {
-   "impl": "unimplemented",
-   "text": "[GOOD ADVICE] Your other characters gain Support. (Whenever they quest, you may add their Strength to another chosen character's Strength this turn.)\nWHAT DID I DO? While this character has 10 Strength or more, she gets +4 Lore."
-  }
- ],
  "Robin Hood - Unrivaled Archer": [
   {
    "impl": "unimplemented",
    "text": "[FEED THE POOR] When you play this character, if an opponent has more cards in their hand than you, you may draw a card.[GOOD SHOT] During your turn, this character gains Evasive. (They can challenge characters with Evasive.)"
-  }
- ],
- "Develop Your Brain": [
-  {
-   "impl": "unimplemented",
-   "text": "Look at the top 2 cards of your deck. Put one into your hand and the other on the bottom of your deck."
   }
  ],
  "Four Dozen Eggs": [
@@ -4760,12 +3857,6 @@
   {
    "impl": "unimplemented",
    "text": "SOUND THE CALL [Exert], 2 Ink — Play a character for free."
-  }
- ],
- "Nala - Undaunted Lioness": [
-  {
-   "impl": "unimplemented",
-   "text": "[DETERMINED DIVERSION] While this character has no damage, she gets +1 Lore and gains Resist +1. (Damage dealt to them is reduced by 1.)"
   }
  ],
  "Lilo - Best Explorer Ever": [
@@ -4828,12 +3919,6 @@
    "text": "[PAYBACK] While this character has no damage, he gets +4 Strength."
   }
  ],
- "Tinker Bell - Giant Fairy": [
-  {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Tinker Bell.)[ROCK THE BOAT] When you play this character, deal 1 damage to each opposing character.[PUNY PIRATE!] During your turn, whenever this character banishes another character in a challenge, you may deal 2 damage to chosen opposing character."
-  }
- ],
  "Tinker Bell - Tiny Tactician": [
   {
    "impl": "unimplemented",
@@ -4852,22 +3937,16 @@
    "text": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Ariel.)[AMPLIFIED VOICE] Whenever you play a song, you may pay 2 Ink to deal 3 damage to chosen character."
   }
  ],
- "Ariel - Determined Mermaid": [
-  {
-   "impl": "unimplemented",
-   "text": "[I WANT MORE] Whenever you play a song, you may draw a card, then choose and discard a card."
-  }
- ],
- "One Last Hope": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nChosen character gains Resist +2 until the start of your next turn. If a Hero character is chosen, they can also challenge ready characters this turn. (Damage dealt to them is reduced by 2.)"
-  }
- ],
  "Smash": [
   {
-   "impl": "unimplemented",
-   "text": "Deal 3 damage to chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 3,
+    "target": "chosen_opposing"
+   },
+   "confidence": "high",
+   "source": "Deal 3 damage to chosen character."
   }
  ],
  "I Find 'Em, I Flatten 'Em": [
@@ -4878,20 +3957,14 @@
  ],
  "Fire the Cannons!": [
   {
-   "impl": "unimplemented",
-   "text": "Deal 2 damage to chosen character."
-  }
- ],
- "Strength of a Raging Fire": [
-  {
-   "impl": "unimplemented",
-   "text": "(A character with cost 3 or more can [Exert] to sing this song for free.)\nDeal damage to chosen character equal to the number of characters you have in play."
-  }
- ],
- "The Mob Song": [
-  {
-   "impl": "unimplemented",
-   "text": "Sing Together 10 (Any number of your or your teammates’ characters with total cost 10 or more may [Exert] to sing this song for free.)\nDeal 3 damage to up to 3 chosen characters and/or locations."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 2,
+    "target": "chosen_opposing"
+   },
+   "confidence": "high",
+   "source": "Deal 2 damage to chosen character."
   }
  ],
  "Beast's Mirror": [

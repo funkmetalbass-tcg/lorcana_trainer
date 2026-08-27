@@ -36,6 +36,9 @@ def core_prose(desc):
     t = clean_text(desc)
     t = re.sub(r"\([^)]*\)", "", t)          # reminder text
     t = re.sub(r"\[[^\]]*\]", "", t)         # [NAMED ABILITY] labels
+    t = t.replace("{}", " ")                 # ink/lore symbol notation
+    # Bare ALLCAPS ability names (no brackets) -- 70 cards print them this way.
+    t = re.sub(r"(?m)(?:^|(?<=[.\n]))\s*[A-Z][A-Z0-9'\u2019 !,&.-]{3,40}?(?=\s*(?:\[|\u2014|\u2013|-\s|$))", " ", t)
     t = re.sub(r"\s+", " ", t).strip()
     return t
 
@@ -164,6 +167,99 @@ def _t(m):
 
 
 # ---------------------------------------------------------------------
+# CLAUSE templates: match a SINGLE sentence. Used only when the whole-text
+# templates fail. Composition rule stays conservative -- EVERY sentence must
+# match a clause or the card stays unimplemented.
+#
+# These carry trigger on_play because abilities.py routes action cards through
+# schema.dispatch_play (abilities.py:1536), so an action's resolution and a
+# character's enters-play trigger share one dispatch point.
+# ---------------------------------------------------------------------
+_CLAUSES = []
+
+
+def clause(pattern, confidence="high"):
+    rx = re.compile(pattern, re.IGNORECASE)
+
+    def deco(fn):
+        _CLAUSES.append((rx, fn, confidence))
+        return fn
+    return deco
+
+
+@clause(r"Deal (\d+) damage to chosen character\.?")
+def _c(m):
+    return {"type": "deal_damage", "amount": int(m.group(1)),
+            "target": "chosen_opposing"}
+
+
+@clause(r"Chosen character gets \+(\d+) Strength this turn\.?")
+def _c(m):
+    return {"type": "stat_mod", "stat": "str", "amount": int(m.group(1)),
+            "target": "chosen_character", "duration": "eot"}
+
+
+@clause(r"Chosen character gets \+(\d+) Lore this turn\.?")
+def _c(m):
+    return {"type": "stat_mod", "stat": "lore", "amount": int(m.group(1)),
+            "target": "chosen_character", "duration": "eot"}
+
+
+@clause(r"Chosen opposing character gets \-(\d+) Strength this turn\.?")
+def _c(m):
+    return {"type": "stat_mod", "stat": "str", "amount": -int(m.group(1)),
+            "target": "chosen_opposing", "duration": "eot"}
+
+
+@clause(r"Draw a card\.?")
+def _c(m):
+    return {"type": "draw", "amount": 1}
+
+
+@clause(r"Draw (\d+) cards\.?")
+def _c(m):
+    return {"type": "draw", "amount": int(m.group(1))}
+
+
+@clause(r"Gain (\d+) lore\.?")
+def _c(m):
+    return {"type": "gain_lore", "amount": int(m.group(1))}
+
+
+@clause(r"Each opponent loses (\d+) lore\.?")
+def _c(m):
+    return {"type": "opponent_lose_lore", "amount": int(m.group(1))}
+
+
+@clause(r"Each opponent chooses and discards a card\.?")
+def _c(m):
+    return {"type": "opponent_discard", "amount": 1}
+
+
+_SENT = re.compile(r"(?<=\.)\s+")
+
+
+def parse_by_clauses(prose):
+    """Split into sentences; require EVERY sentence to match a clause.
+    Returns list of effect dicts, or None."""
+    sents = [x.strip() for x in _SENT.split(prose) if x.strip()]
+    if len(sents) < 2:
+        return None            # single-sentence cards are the whole-text path
+    effects = []
+    for sent in sents:
+        hit = None
+        for rx, builder, conf in _CLAUSES:
+            m = rx.fullmatch(sent)
+            if m:
+                hit = builder(m)
+                break
+        if hit is None:
+            return None        # one unrecognized sentence rejects the card
+        effects.append(hit)
+    return effects
+
+
+# ---------------------------------------------------------------------
 # Parser core
 # ---------------------------------------------------------------------
 def parse_card(name, raw):
@@ -183,6 +279,20 @@ def parse_card(name, raw):
             entry["confidence"] = conf
             entry["source"] = _src(desc)
             return [entry]
+
+    # Single-sentence bare-imperative (action cards): try clauses directly.
+    for rx, builder, conf in _CLAUSES:
+        m = rx.fullmatch(prose)
+        if m:
+            return [{"trigger": "on_play", "effect": builder(m),
+                     "confidence": conf, "source": _src(desc)}]
+
+    # Multi-sentence composition.
+    effects = parse_by_clauses(prose)
+    if effects:
+        return [{"trigger": "on_play", "effect": e, "confidence": "medium",
+                 "source": _src(desc)} for e in effects]
+
     # nothing matched -> visible gap
     return [{"impl": "unimplemented", "text": _src(desc)}]
 

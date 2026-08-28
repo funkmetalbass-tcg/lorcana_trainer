@@ -83,6 +83,33 @@ def greedy_policy(game, rng, epsilon=0.10):
     for a in acts:
         if a[0] == "activate" and a[1] == "guidebook" and len(game.players[p].hand) <= 4:
             return a
+    # Generic schema-driven activations ("activate", "schema", uid, index).
+    # The hand-written keys above each encode a bespoke judgement; data-driven
+    # entries have no such rule, so apply one conservative default: take the
+    # ability when its whole cost is an exert we are not otherwise using, and
+    # skip anything that spends ink, cards or bodies. Without this they would
+    # sit in the action space and only ever be explored at random by MCTS.
+    for a in acts:
+        if a[0] != "activate" or a[1] != "schema":
+            continue
+        from . import schema
+        obj = game.chars.get(a[2]) \
+            or next((x for x in game.items[p] if x.uid == a[2]), None) \
+            or game.locs.get(a[2])
+        if obj is None:
+            continue
+        ents = schema.activated_entries(obj.card.name)
+        if a[3] >= len(ents):
+            continue
+        cost = ents[a[3]].get("cost") or {}
+        if cost.get("ink") or cost.get("discard") \
+                or cost.get("banish_self") or cost.get("banish_own_char"):
+            continue
+        # exerting a character costs us a quest or a challenge; only free for
+        # items and locations, which have nothing else to do with the exert.
+        if hasattr(obj, "damage"):
+            continue
+        return a
 
     # 2. ink once per turn: highest-cost inkable (prefer duplicates implicitly).
     #    An ("ink", name, "discard") action (Moana ANCESTRAL LEGACY) draws from

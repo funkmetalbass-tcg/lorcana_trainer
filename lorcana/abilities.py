@@ -2205,9 +2205,30 @@ def _count_diaries(g, p):
     return sum(1 for i in g.items.get(p, []) if i.card.name == "Webby's Diary")
 
 
+def _schema_activated_actions(g, p):
+    """Generic, data-driven activated abilities from abilities_*.json.
+
+    Emitted as ("activate", "schema", uid, index) so one card can expose more
+    than one activated ability (e.g. Battering Ram's FULL FORCE / BREAK
+    THROUGH). Cards whose activation is hand-written in apply_activated below
+    are skipped by schema.entries_for(), so there is no double exposure.
+    """
+    from . import schema
+    acts = []
+    objs = list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p))
+    for obj in objs:
+        ents = schema.activated_entries(obj.card.name)
+        for i, e in enumerate(ents):
+            if "effect" not in e:
+                continue
+            if schema.can_activate(g, p, obj, e):
+                acts.append(("activate", "schema", obj.uid, i))
+    return acts
+
+
 def activated_actions(g, p):
     """Activated abilities exposed as engine actions."""
-    acts = []
+    acts = list(_schema_activated_actions(g, p))
     # Dumbo BREAKING RECORDS / MAKING HISTORY: [Exert], 1 Ink -- draw and
     # gain 1 lore. Dumbo grants the same to your other Evasive characters.
     has_dumbo = any(c.card.name == "Dumbo - Ninth Wonder of the Universe"
@@ -2339,6 +2360,14 @@ def activated_actions(g, p):
 
 def apply_activated(g, p, action):
     what, uid = action[1], action[2]
+    if what == "schema":
+        from . import schema
+        obj = g.chars.get(uid) \
+            or next((x for x in g.items[p] if x.uid == uid), None) \
+            or g.locs.get(uid)
+        if obj is not None:
+            schema.dispatch_activated(g, p, obj, action[3])
+        return
     if what == "renewal_process":
         # Broken Pod: exert, 1 Ink -> put a card from chosen player's discard on
         # the bottom of their deck. Heuristic: target the opponent's discard

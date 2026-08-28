@@ -24,7 +24,9 @@ import argparse, json, os, re, sys
 
 # Make the package importable when run from repo root or tools/.
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from lorcana.keywords import clean_text, residual_prose  # noqa: E402
+from lorcana.keywords import (clean_text, residual_prose,  # noqa: E402
+                              parse_printed_keywords,
+                              _PATTERNS as _KW_PATTERNS)
 
 
 # ---------------------------------------------------------------------
@@ -37,6 +39,11 @@ def core_prose(desc):
     t = re.sub(r"\([^)]*\)", "", t)          # reminder text
     t = re.sub(r"\[[^\]]*\]", "", t)         # [NAMED ABILITY] labels
     t = t.replace("{}", " ")                 # ink/lore symbol notation
+    # Printed keywords are already handled by the keyword layer; leaving them
+    # in the prose blocks every template on cards that carry both a keyword
+    # and an ability (Shift + a triggered effect, Sing Together + an effect).
+    for kw in parse_printed_keywords(desc):
+        t = _KW_PATTERNS[kw].sub(" ", t, count=1)
     # Bare ALLCAPS ability names (no brackets) -- 70 cards print them this way.
     t = re.sub(r"(?m)(?:^|(?<=[.\n]))\s*[A-Z][A-Z0-9'\u2019 !,&.-]{3,40}?(?=\s*(?:\[|\u2014|\u2013|-\s|$))", " ", t)
     t = re.sub(r"\s+", " ", t).strip()
@@ -236,27 +243,215 @@ def _c(m):
     return {"type": "opponent_discard", "amount": 1}
 
 
+# --- Phase 4 clauses -------------------------------------------------
+@clause(r"Deal (\d+) damage to chosen character\. This damage can't be reduced by Resist\.?")
+def _c(m):
+    return {"type": "deal_damage", "amount": int(m.group(1)),
+            "target": "chosen_opposing", "ignore_resist": True}
+
+
+@clause(r"Deal (\d+) damage to chosen damaged character\.?")
+def _c(m):
+    return {"type": "deal_damage", "amount": int(m.group(1)),
+            "filter": {"damaged": True}}
+
+
+@clause(r"Chosen opposing character gets \-(\d+) (Strength|Lore) until the start of your next turn\.?")
+def _c(m):
+    return {"type": "stat_mod",
+            "stat": "str" if m.group(2).lower() == "strength" else "lore",
+            "amount": -int(m.group(1)), "target": "chosen_opposing",
+            "duration": "until_your_next"}
+
+
+@clause(r"You pay (\d+) Ink less for the next (character|action|item|location) you play this turn\.?")
+def _c(m):
+    return {"type": "cost_reduce", "amount": int(m.group(1)),
+            "filter": m.group(2).lower()}
+
+
+@clause(r"Banish all opposing damaged characters\.?")
+def _c(m):
+    return {"type": "banish_all", "side": "opposing",
+            "filter": {"damaged": True}}
+
+
+@clause(r"Banish all opposing characters\.?")
+def _c(m):
+    return {"type": "banish_all", "side": "opposing"}
+
+
+@clause(r"Play a character from your discard for free\.?")
+def _c(m):
+    return {"type": "play_from_discard", "filter": {"card_type": "character"}}
+
+
+@clause(r"Play a character with cost up to (\d+) more than the banished character for free\.?")
+def _c(m):
+    return {"type": "play_from_hand_free", "max_cost_delta": int(m.group(1)),
+            "filter": {"card_type": "character"}}
+
+
+@clause(r"[Rr]eturn chosen opposing character with (\d+) Strength or less to their player's hand\.?")
+def _c(m):
+    return {"type": "return_to_hand", "side": "opposing",
+            "filter": {"max_strength": int(m.group(1))}}
+
+
+@clause(r"[Rr]eturn chosen opposing character to their player's hand\.?")
+def _c(m):
+    return {"type": "return_to_hand", "side": "opposing"}
+
+
+# Dig-N is one composite effect spanning three sentences, so it is matched
+# as a whole-text unit rather than sentence by sentence.
+_DIG = re.compile(
+    r"look at the top (\d+) cards of your deck\. "
+    r"You may reveal an? (character|item|action) card"
+    r"(?: with cost (\d+) or less)? and put it into your hand\. "
+    r"Put the rest on the bottom of your deck(?: in any order)?\.?",
+    re.IGNORECASE)
+
+
+def _dig_effect(m):
+    filt = {"card_type": m.group(2).lower()}
+    if m.group(3):
+        filt["max_cost"] = int(m.group(3))
+    return {"type": "look_at_top", "count": int(m.group(1)),
+            "destination": "hand", "filter": filt}
+
+
+def match_clause(text):
+    """Effect dict for a single clause, or None."""
+    text = text.strip()
+    m = _DIG.fullmatch(text)
+    if m:
+        return _dig_effect(m)
+    for rx, builder, conf in _CLAUSES:
+        m = rx.fullmatch(text)
+        if m:
+            return builder(m)
+    return None
+
+
+# ---------------------------------------------------------------------
+# Activated abilities: "NAME [Exert], 1 Ink, Banish this item - EFFECT"
+#
+# Parsed off the cleaned text rather than core_prose, because core_prose
+# deletes the [Exert] token and the ability name -- which is where the cost
+# lives. The separator is normalized first: across the pool 63 cards use an
+# em dash, 8 an en dash and 12 a plain hyphen.
+# ---------------------------------------------------------------------
+_ACT_HEAD = re.compile(
+    r"^\s*(?:[A-Z][A-Z0-9'\u2019 !,&.?-]{2,45}?\s+)?"       # optional ALLCAPS name
+    r"((?:\[Exert\]|\{\})(?:\s*,\s*[^\u2014]{1,45}?)*)"      # cost list
+    r"\s*\u2014\s*(.+)$")                                    # separator + effect
+
+
+def _parse_cost(text):
+    cost = {}
+    for tok in text.split(","):
+        tok = tok.strip()
+        if not tok:
+            continue
+        if re.fullmatch(r"\[Exert\]|\{\}", tok):
+            cost["exert"] = True
+            continue
+        m = re.fullmatch(r"(\d+)\s*(?:Ink|\{\})", tok, re.IGNORECASE)
+        if m:
+            cost["ink"] = int(m.group(1))
+            continue
+        if re.fullmatch(r"Banish this (item|character|location)", tok, re.IGNORECASE):
+            cost["banish_self"] = True
+            continue
+        if re.fullmatch(r"Banish chosen character of yours", tok, re.IGNORECASE):
+            cost["banish_own_char"] = True
+            continue
+        m = re.fullmatch(r"Discard (?:a card|(\d+) cards)", tok, re.IGNORECASE)
+        if m:
+            cost["discard"] = int(m.group(1) or 1)
+            continue
+        return None            # unrecognized cost token -> reject the card
+    return cost or None
+
+
+def parse_activated(desc):
+    """List of activated entries, or None if ANY ability line on the card
+    fails to parse. All-or-nothing per card: a half-parsed card would play
+    with only some of its abilities and silently misreport its win rate."""
+    text = clean_text(desc)
+    text = re.sub(r"(?<=\s)[\u2013-](?=\s)", "\u2014", text)   # normalize separator
+    lines = [l.strip() for l in re.split(r"\n", text) if l.strip()]
+    if not any(_ACT_HEAD.match(l) for l in lines):
+        return None
+    out = []
+    for line in lines:
+        m = _ACT_HEAD.match(line)
+        if not m:
+            return None                       # mixed static/triggered text
+        cost = _parse_cost(m.group(1))
+        if cost is None:
+            return None
+        eff = match_clause(m.group(2).strip())
+        if eff is None:
+            return None
+        out.append({"trigger": "activated", "cost": cost, "effect": eff})
+    return out or None
+
+
 _SENT = re.compile(r"(?<=\.)\s+")
 
 
 def parse_by_clauses(prose):
     """Split into sentences; require EVERY sentence to match a clause.
     Returns list of effect dicts, or None."""
+    whole = match_clause(prose)
+    if whole:
+        return [whole]         # multi-sentence composite (e.g. dig-N)
     sents = [x.strip() for x in _SENT.split(prose) if x.strip()]
     if len(sents) < 2:
         return None            # single-sentence cards are the whole-text path
     effects = []
     for sent in sents:
-        hit = None
-        for rx, builder, conf in _CLAUSES:
-            m = rx.fullmatch(sent)
-            if m:
-                hit = builder(m)
-                break
+        hit = match_clause(sent)
         if hit is None:
             return None        # one unrecognized sentence rejects the card
         effects.append(hit)
     return effects
+
+
+# ---------------------------------------------------------------------
+# Triggered preambles. "When you play this character, <clause>" is the same
+# effect as a bare action clause with a different trigger, so route the
+# remainder through the clause table instead of writing a second copy of
+# every template. An optional "you may pay N Ink to" prefix becomes a cost
+# on the entry, which schema._run pays before applying the effect.
+# ---------------------------------------------------------------------
+_PREAMBLES = [
+    (re.compile(r"^When you play this character,\s*", re.IGNORECASE), "on_play"),
+    (re.compile(r"^Whenever this character quests,\s*", re.IGNORECASE), "on_quest"),
+]
+_MAY_PAY = re.compile(r"^you may pay (\d+) Ink to\s*", re.IGNORECASE)
+
+
+def parse_triggered(prose):
+    """Return (trigger, cost_or_None, [effects]) or None."""
+    for rx, trig in _PREAMBLES:
+        m = rx.match(prose)
+        if not m:
+            continue
+        rest = prose[m.end():].strip()
+        cost = None
+        mp = _MAY_PAY.match(rest)
+        if mp:
+            cost = {"ink": int(mp.group(1))}
+            rest = rest[mp.end():].strip()
+            if rest and rest[0].islower():
+                rest = rest[0].upper() + rest[1:]
+        effects = parse_by_clauses(rest)
+        if effects:
+            return trig, cost, effects
+    return None
 
 
 # ---------------------------------------------------------------------
@@ -280,12 +475,32 @@ def parse_card(name, raw):
             entry["source"] = _src(desc)
             return [entry]
 
+    # Activated abilities (cost -- effect), parsed off the raw text.
+    acts = parse_activated(desc)
+    if acts:
+        for a in acts:
+            a["confidence"] = "medium"
+            a["source"] = _src(desc)
+        return acts
+
+    # Triggered preamble + clause body.
+    trig = parse_triggered(prose)
+    if trig:
+        trigger, cost, effects = trig
+        ents = []
+        for e in effects:
+            ent = {"trigger": trigger, "effect": e,
+                   "confidence": "medium", "source": _src(desc)}
+            if cost:
+                ent["cost"] = cost
+            ents.append(ent)
+        return ents
+
     # Single-sentence bare-imperative (action cards): try clauses directly.
-    for rx, builder, conf in _CLAUSES:
-        m = rx.fullmatch(prose)
-        if m:
-            return [{"trigger": "on_play", "effect": builder(m),
-                     "confidence": conf, "source": _src(desc)}]
+    single = match_clause(prose)
+    if single:
+        return [{"trigger": "on_play", "effect": single,
+                 "confidence": "high", "source": _src(desc)}]
 
     # Multi-sentence composition.
     effects = parse_by_clauses(prose)

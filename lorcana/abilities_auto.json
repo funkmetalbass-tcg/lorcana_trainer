@@ -877,8 +877,19 @@
  ],
  "Sarabi - Protecting the Pride": [
   {
-   "impl": "unimplemented",
-   "text": "FEARSOME SNARL [Exert] — Chosen opposing character gets -4 Strength until the start of your next turn."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": -4,
+    "target": "chosen_opposing",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "FEARSOME SNARL [Exert] — Chosen opposing character gets -4 Strength until the start of your next turn."
   }
  ],
  "Cobra Bubbles - Dedicated Official": [
@@ -919,8 +930,18 @@
  ],
  "Nani - Stage Manager": [
   {
-   "impl": "unimplemented",
-   "text": "[THAT'S YOUR CUE] When you play this character, look at the top 4 cards of your deck. You may reveal a character card with cost 2 or less and put it into your hand. Put the rest on the bottom of your deck in any order."
+   "trigger": "on_play",
+   "effect": {
+    "type": "look_at_top",
+    "count": 4,
+    "destination": "hand",
+    "filter": {
+     "card_type": "character",
+     "max_cost": 2
+    }
+   },
+   "confidence": "medium",
+   "source": "[THAT'S YOUR CUE] When you play this character, look at the top 4 cards of your deck. You may reveal a character card with cost 2 or less and put it into your hand. Put the rest on the bottom of your deck in any order."
   }
  ],
  "Reuben - Sandwich Expert": [
@@ -1233,8 +1254,21 @@
  ],
  "Retro Evolution Device": [
   {
-   "impl": "unimplemented",
-   "text": "TURN INTO DINOSAUR [Exert], 1 Ink, Banish chosen character of yours — Play a character with cost up to 2 more than the banished character for free."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1,
+    "banish_own_char": true
+   },
+   "effect": {
+    "type": "play_from_hand_free",
+    "max_cost_delta": 2,
+    "filter": {
+     "card_type": "character"
+    }
+   },
+   "confidence": "medium",
+   "source": "TURN INTO DINOSAUR [Exert], 1 Ink, Banish chosen character of yours — Play a character with cost up to 2 more than the banished character for free."
   }
  ],
  "Battering Ram": [
@@ -1397,8 +1431,17 @@
  ],
  "Gosalyn Mallard - Curious Child": [
   {
-   "impl": "unimplemented",
-   "text": "[KEEN GEAR] When you play this character, look at the top 4 cards of your deck. You may reveal an item card and put it into your hand. Put the rest on the bottom of your deck in any order."
+   "trigger": "on_play",
+   "effect": {
+    "type": "look_at_top",
+    "count": 4,
+    "destination": "hand",
+    "filter": {
+     "card_type": "item"
+    }
+   },
+   "confidence": "medium",
+   "source": "[KEEN GEAR] When you play this character, look at the top 4 cards of your deck. You may reveal an item card and put it into your hand. Put the rest on the bottom of your deck in any order."
   }
  ],
  "Darkwing Duck - Dashing Gadgeteer": [
@@ -1937,8 +1980,15 @@
  ],
  "Piercing Attack": [
   {
-   "impl": "unimplemented",
-   "text": "Deal 2 damage to chosen character. This damage can't be reduced by Resist."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 2,
+    "target": "chosen_opposing",
+    "ignore_resist": true
+   },
+   "confidence": "high",
+   "source": "Deal 2 damage to chosen character. This damage can't be reduced by Resist."
   }
  ],
  "Scout Ahead": [
@@ -2642,8 +2692,19 @@
  ],
  "Finnick - Tiny Terror": [
   {
-   "impl": "unimplemented",
-   "text": "[YOU BETTER RUN] When you play this character, you may pay 2 Ink to return chosen opposing character with 2 Strength or less to their player's hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_to_hand",
+    "side": "opposing",
+    "filter": {
+     "max_strength": 2
+    }
+   },
+   "confidence": "medium",
+   "source": "[YOU BETTER RUN] When you play this character, you may pay 2 Ink to return chosen opposing character with 2 Strength or less to their player's hand.",
+   "cost": {
+    "ink": 2
+   }
   }
  ],
  "Vladimir - Ceramic Unicorn Fan": [
@@ -2738,8 +2799,20 @@
  ],
  "Inscrutable Map": [
   {
-   "impl": "unimplemented",
-   "text": "BACKTRACK [Exert], 1 Ink — Chosen opposing character gets -1 Lore until the start of your next turn."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1
+   },
+   "effect": {
+    "type": "stat_mod",
+    "stat": "lore",
+    "amount": -1,
+    "target": "chosen_opposing",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "BACKTRACK [Exert], 1 Ink — Chosen opposing character gets -1 Lore until the start of your next turn."
   }
  ],
  "Enigmatic Inkcaster": [
@@ -3213,8 +3286,17 @@
  ],
  "Tinker Bell - Generous Fairy": [
   {
-   "impl": "unimplemented",
-   "text": "[MAKE A NEW FRIEND] When you play this character, look at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order."
+   "trigger": "on_play",
+   "effect": {
+    "type": "look_at_top",
+    "count": 4,
+    "destination": "hand",
+    "filter": {
+     "card_type": "character"
+    }
+   },
+   "confidence": "medium",
+   "source": "[MAKE A NEW FRIEND] When you play this character, look at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order."
   }
  ],
  "Pluto - Determined Defender": [
@@ -3249,8 +3331,17 @@
  ],
  "Pluto - Friendly Pooch": [
   {
-   "impl": "unimplemented",
-   "text": "GOOD DOG [Exert] — You pay 1 Ink less for the next character you play this turn."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "cost_reduce",
+    "amount": 1,
+    "filter": "character"
+   },
+   "confidence": "medium",
+   "source": "GOOD DOG [Exert] — You pay 1 Ink less for the next character you play this turn."
   }
  ],
  "Queen of Hearts - Wonderland Empress": [
@@ -3261,8 +3352,15 @@
  ],
  "Circle of Life": [
   {
-   "impl": "unimplemented",
-   "text": "Sing Together 8\nPlay a character from your discard for free."
+   "trigger": "on_play",
+   "effect": {
+    "type": "play_from_discard",
+    "filter": {
+     "card_type": "character"
+    }
+   },
+   "confidence": "high",
+   "source": "Sing Together 8\nPlay a character from your discard for free."
   }
  ],
  "Heal What Has Been Hurt": [
@@ -3285,14 +3383,32 @@
  ],
  "Be Our Guest": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nLook at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order."
+   "trigger": "on_play",
+   "effect": {
+    "type": "look_at_top",
+    "count": 4,
+    "destination": "hand",
+    "filter": {
+     "card_type": "character"
+    }
+   },
+   "confidence": "high",
+   "source": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nLook at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order."
   }
  ],
  "Lantern": [
   {
-   "impl": "unimplemented",
-   "text": "BIRTHDAY LIGHTS [Exert] — You pay 1 Ink less for the next character you play this turn."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "cost_reduce",
+    "amount": 1,
+    "filter": "character"
+   },
+   "confidence": "medium",
+   "source": "BIRTHDAY LIGHTS [Exert] — You pay 1 Ink less for the next character you play this turn."
   }
  ],
  "Ursula's Shell Necklace": [
@@ -3309,8 +3425,16 @@
  ],
  "The Queen - Wicked and Vain": [
   {
-   "impl": "unimplemented",
-   "text": "I SUMMON THEE [Exert] — Draw a card."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "I SUMMON THEE [Exert] — Draw a card."
   }
  ],
  "Ursula - Sea Witch": [
@@ -3441,8 +3565,17 @@
  ],
  "Magic Mirror": [
   {
-   "impl": "unimplemented",
-   "text": "SPEAK! [Exert], 4 Ink — Draw a card."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 4
+   },
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "SPEAK! [Exert], 4 Ink — Draw a card."
   }
  ],
  "White Rabbit's Pocket Watch": [
@@ -3477,8 +3610,16 @@
  ],
  "Prince Phillip - Vanquisher of Foes": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 6 Ink (You may pay 6 Ink to play this on top of one of your characters named Prince Phillip.)\nEvasive (Only characters with Evasive can challenge this character.)[SWIFT AND SURE] When you play this character, banish all opposing damaged characters."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_all",
+    "side": "opposing",
+    "filter": {
+     "damaged": true
+    }
+   },
+   "confidence": "medium",
+   "source": "Shift 6 Ink (You may pay 6 Ink to play this on top of one of your characters named Prince Phillip.)\nEvasive (Only characters with Evasive can challenge this character.)[SWIFT AND SURE] When you play this character, banish all opposing damaged characters."
   }
  ],
  "Goofy - Set for Adventure": [
@@ -3557,8 +3698,13 @@
  ],
  "Daisy Duck - Secret Agent": [
   {
-   "impl": "unimplemented",
-   "text": "[THWART] Whenever this character quests, each opponent chooses and discards a card."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "opponent_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[THWART] Whenever this character quests, each opponent chooses and discards a card."
   }
  ],
  "Stand Out": [
@@ -3783,8 +3929,14 @@
  ],
  "Belle - Inventive Engineer": [
   {
-   "impl": "unimplemented",
-   "text": "[TINKER] Whenever this character quests, you pay 1 Ink less for the next item you play this turn."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "cost_reduce",
+    "amount": 1,
+    "filter": "item"
+   },
+   "confidence": "medium",
+   "source": "[TINKER] Whenever this character quests, you pay 1 Ink less for the next item you play this turn."
   }
  ],
  "Judy Hopps - Optimistic Officer": [
@@ -3903,8 +4055,17 @@
  ],
  "Robin Hood - Capable Fighter": [
   {
-   "impl": "unimplemented",
-   "text": "SKIRMISH [Exert] — Deal 1 damage to chosen character."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "SKIRMISH [Exert] — Deal 1 damage to chosen character."
   }
  ],
  "Mickey Mouse - Standard Bearer": [

@@ -13,7 +13,7 @@ human-reviewed) merges beneath it -- manual always wins. The engine calls
 dispatch_* at each trigger point; unknown cards simply have no entries.
 
 Currently implemented (deliberately small -- grow as templates demand):
-  triggers:   on_play, on_quest
+  triggers:   on_play, on_quest, activated, static
   conditions: your_other_classification_count, you_have_named, opponent_ahead
   effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage,
               draw_then_discard, grant_keyword
@@ -207,9 +207,16 @@ def _eff_stat_mod(g, p, ctx, eff):
 
 
 def _eff_deal_damage(g, p, ctx, eff):
-    tgt = _resolve_target(g, p, ctx, eff.get("target", "chosen_opposing"))
+    filt = eff.get("filter")
+    if filt:
+        from . import abilities
+        tgt = abilities._best_opp_char(
+            g, p, cond=lambda gg, c: _char_matches(gg, c, filt))
+    else:
+        tgt = _resolve_target(g, p, ctx, eff.get("target", "chosen_opposing"))
     if tgt is not None:
-        g.deal_damage(tgt, eff.get("amount", 1))
+        g.deal_damage(tgt, eff.get("amount", 1),
+                      apply_resist=not eff.get("ignore_resist", False))
 
 
 def _eff_opponent_lose_lore(g, p, ctx, eff):
@@ -264,7 +271,146 @@ def _eff_opponent_discard(g, p, ctx, eff):
             g.emit(f"schema: opponent discards {c.name}")
 
 
+# ---------------------------------------------------------------------
+# Additional effects (Phase 4). Each takes (g, p, ctx, eff).
+# ctx may carry "banished_cost" from a banish_own_char activation cost.
+# ---------------------------------------------------------------------
+def _card_matches(card, filt):
+    """Match a Card object against a filter dict."""
+    if not filt:
+        return True
+    ct = filt.get("card_type")
+    if ct == "character" and not card.is_character:
+        return False
+    if ct == "item" and not card.is_item:
+        return False
+    if ct == "action" and not card.is_action:
+        return False
+    if ct == "non_character" and card.is_character:
+        return False
+    if filt.get("max_cost") is not None and card.cost > filt["max_cost"]:
+        return False
+    if filt.get("name") and card.base_name != filt["name"]:
+        return False
+    return True
+
+
+def _char_matches(g, ch, filt):
+    """Match a CharInPlay against a filter dict."""
+    if not filt:
+        return True
+    if filt.get("damaged") and ch.damage <= 0:
+        return False
+    if filt.get("max_strength") is not None \
+            and g.eff_strength(ch) > filt["max_strength"]:
+        return False
+    if filt.get("max_cost") is not None and ch.card.cost > filt["max_cost"]:
+        return False
+    if filt.get("classification") \
+            and filt["classification"] not in ch.card.classifications:
+        return False
+    return True
+
+
+def _eff_look_at_top(g, p, ctx, eff):
+    """Look at the top N cards; put the best match into hand (or reveal it),
+    put the rest on the bottom. Deck top is the END of the list."""
+    pl = g.players[p]
+    n = eff.get("count", 3)
+    if not pl.deck:
+        return
+    n = min(n, len(pl.deck))
+    looked = [pl.deck.pop() for _ in range(n)]        # index 0 == topmost
+    filt = eff.get("filter")
+    taken = None
+    if eff.get("destination", "hand") == "hand":
+        matches = [c for c in looked if _card_matches(c, filt)]
+        if matches:
+            # heuristic: take the most expensive legal hit (best card)
+            taken = max(matches, key=lambda c: c.cost)
+            looked.remove(taken)
+            pl.hand.append(taken)
+    # rest to the bottom of the deck (front of the list) in any order
+    for c in reversed(looked):
+        pl.deck.insert(0, c)
+    g.emit(f"schema: looked at top {n}, "
+           + (f"took {taken.name}" if taken else "took nothing"))
+
+
+def _eff_banish_all(g, p, ctx, eff):
+    """Banish every character on a side matching a filter."""
+    side = eff.get("side", "opposing")
+    filt = eff.get("filter")
+    owners = {"opposing": [1 - p], "yours": [p], "all": [p, 1 - p]}[side]
+    victims = [c for c in g.chars.values()
+               if c.owner in owners and _char_matches(g, c, filt)]
+    for c in victims:
+        g.emit(f"schema: banishes {c.card.base_name}(P{c.owner})")
+        g.banish_char(c, cause="effect")
+        if g.winner is not None:
+            return
+
+
+def _eff_return_to_hand(g, p, ctx, eff):
+    """Return a chosen character to its owner's hand."""
+    from . import abilities
+    filt = eff.get("filter")
+    side = eff.get("side", "opposing")
+    if side == "opposing":
+        tgt = abilities._best_opp_char(
+            g, p, cond=lambda gg, c: _char_matches(gg, c, filt))
+    else:
+        pool = [c for c in g.my_chars(p) if _char_matches(g, c, filt)]
+        tgt = min(pool, key=lambda c: (g.eff_lore(c), g.eff_strength(c))) \
+            if pool else None
+    if tgt is None:
+        return
+    g.chars.pop(tgt.uid, None)
+    g.players[tgt.owner].hand.append(tgt.card)
+    g.emit(f"schema: returns {tgt.card.base_name}(P{tgt.owner}) to hand")
+
+
+def _eff_play_from_discard(g, p, ctx, eff):
+    """Play a card from your discard for free."""
+    pl = g.players[p]
+    filt = eff.get("filter") or {"card_type": "character"}
+    pool = [c for c in pl.discard if _card_matches(c, filt)]
+    if not pool:
+        return
+    pick = max(pool, key=lambda c: c.cost)
+    pl.discard.remove(pick)
+    g.emit(f"schema: plays {pick.name} from discard (free)")
+    g._play_card(p, pick, {}, free=True)
+
+
+def _eff_play_from_hand_free(g, p, ctx, eff):
+    """Play a card from hand for free, optionally capped by a cost ceiling.
+    'max_cost_delta' is relative to ctx['banished_cost'] when present."""
+    pl = g.players[p]
+    filt = dict(eff.get("filter") or {"card_type": "character"})
+    cap = eff.get("max_cost")
+    if eff.get("max_cost_delta") is not None:
+        base = ctx.get("banished_cost")
+        if base is None:
+            return
+        cap = base + eff["max_cost_delta"]
+    if cap is not None:
+        filt["max_cost"] = cap if filt.get("max_cost") is None \
+            else min(cap, filt["max_cost"])
+    pool = [c for c in pl.hand if _card_matches(c, filt)]
+    if not pool:
+        return
+    pick = max(pool, key=lambda c: c.cost)
+    g.emit(f"schema: plays {pick.name} from hand (free)")
+    g._play_card(p, pick, {}, free=True)
+
+
 _EFFECTS = {
+    "look_at_top": _eff_look_at_top,
+    "banish_all": _eff_banish_all,
+    "return_to_hand": _eff_return_to_hand,
+    "play_from_discard": _eff_play_from_discard,
+    "play_from_hand_free": _eff_play_from_hand_free,
     "draw": _eff_draw,
     "gain_lore": _eff_gain_lore,
     "gain_lore_equal_to_exerted": _eff_gain_lore_equal_to_exerted,
@@ -293,16 +439,129 @@ def _run(g, p, ctx, ents):
     for e in ents:
         if "effect" not in e:
             continue  # e.g. {"impl": "python"} marker entries
-        if check_condition(g, p, ctx, e.get("condition")):
-            apply_effect(g, p, ctx, e["effect"])
-            if g.winner is not None:
-                return
+        if not check_condition(g, p, ctx, e.get("condition")):
+            continue
+        # Optional cost on a triggered ability ("you may pay 2 Ink to ...").
+        # Skipped rather than failed when unaffordable, matching "you may".
+        cost = e.get("cost")
+        if cost:
+            pl = g.players[p]
+            if pl.ink_ready < cost.get("ink", 0):
+                continue
+            if cost.get("discard", 0) > len(pl.hand):
+                continue
+            if cost.get("ink", 0):
+                g.pay_ink(p, cost["ink"])
+            for _ in range(cost.get("discard", 0)):
+                from . import abilities
+                card = abilities._worst_hand_card(g, p)
+                if card is None:
+                    break
+                pl.hand.remove(card)
+                pl.discard.append(card)
+                g.emit(f"schema: discards {card.name} (cost)")
+        apply_effect(g, p, ctx, e["effect"])
+        if g.winner is not None:
+            return
 
 
 def dispatch_play(g, p, card, obj, params):
     ents = entries_for(card.name, "on_play")
     if ents:
         _run(g, p, {"card": card, "char": obj if card.is_character else None}, ents)
+
+
+# ---------------------------------------------------------------------
+# Activated abilities (Phase 4).
+#
+# The engine already has the plumbing: abilities.activated_actions() puts
+# ("activate", key, uid) tuples into the action space and engine.apply()
+# routes "activate" to abilities.apply_activated(). Everything there was
+# hand-written per card. These helpers let abilities_manual/auto express the
+# same thing as data, so functional reprints stop needing new Python.
+#
+# Entry shape:
+#   {"trigger": "activated",
+#    "cost": {"exert": true, "ink": 1, "banish_self": false,
+#             "banish_own_char": false, "discard": 0},
+#    "effect": {...}}
+# ---------------------------------------------------------------------
+def activated_entries(card_name):
+    return entries_for(card_name, "activated")
+
+
+def _obj_is_char(obj):
+    return hasattr(obj, "damage")
+
+
+def can_activate(g, p, obj, entry):
+    """Is this activated ability legally available right now?"""
+    cost = entry.get("cost") or {}
+    pl = g.players[p]
+    if cost.get("exert", True):
+        if getattr(obj, "exerted", False):
+            return False
+        # characters need to be dry; items and locations do not
+        if _obj_is_char(obj) and not g.is_dry(obj):
+            return False
+    if pl.ink_ready < cost.get("ink", 0):
+        return False
+    if cost.get("discard", 0) > len(pl.hand):
+        return False
+    if cost.get("banish_own_char"):
+        others = [c for c in g.my_chars(p)
+                  if not (_obj_is_char(obj) and c.uid == obj.uid)]
+        if not others:
+            return False
+    return True
+
+
+def _pay_activation_cost(g, p, obj, entry, ctx):
+    """Pay the cost. Returns False if it could not be paid."""
+    from . import abilities
+    cost = entry.get("cost") or {}
+    pl = g.players[p]
+    if not can_activate(g, p, obj, entry):
+        return False
+    if cost.get("exert", True):
+        obj.exerted = True
+    if cost.get("ink", 0):
+        g.pay_ink(p, cost["ink"])
+    for _ in range(cost.get("discard", 0)):
+        if not pl.hand:
+            break
+        card = abilities._worst_hand_card(g, p)
+        pl.hand.remove(card)
+        pl.discard.append(card)
+        g.emit(f"schema: discards {card.name} (cost)")
+    if cost.get("banish_own_char"):
+        others = [c for c in g.my_chars(p)
+                  if not (_obj_is_char(obj) and c.uid == obj.uid)]
+        if others:
+            # cheapest body; record its cost for cost-relative effects
+            victim = min(others, key=lambda c: (g.eff_lore(c), c.card.cost))
+            ctx["banished_cost"] = victim.card.cost
+            g.emit(f"schema: banishes own {victim.card.base_name} (cost)")
+            g.banish_char(victim, cause="effect")
+    if cost.get("banish_self"):
+        if _obj_is_char(obj):
+            g.banish_char(obj, cause="effect")
+        elif obj in g.items[p]:
+            g.banish_item(obj)
+    return True
+
+
+def dispatch_activated(g, p, obj, index):
+    """Run the index-th activated entry on obj's card."""
+    ents = activated_entries(obj.card.name)
+    if index >= len(ents):
+        return
+    entry = ents[index]
+    ctx = {"card": obj.card, "char": obj if _obj_is_char(obj) else None}
+    if not _pay_activation_cost(g, p, obj, entry, ctx):
+        return
+    if check_condition(g, p, ctx, entry.get("condition")):
+        apply_effect(g, p, ctx, entry["effect"])
 
 
 def dispatch_quest(g, ch):

@@ -240,8 +240,21 @@
  ],
  "Luisa Madrigal - Confident Climber": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink[I CAN TAKE IT 1] Ink — Move up to 1 damage from chosen character of yours to this character. Then, if this character has 3 or more damage, move all damage from this character to chosen opposing character."
+   "trigger": "activated",
+   "cost": {
+    "ink": 1
+   },
+   "effect": {
+    "type": "move_damage",
+    "amount": 1,
+    "dump_at": 3
+   },
+   "condition": {
+    "type": "damage_to_move",
+    "dump_at": 3
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink[I CAN TAKE IT 1] Ink — Move up to 1 damage from chosen character of yours to this character. Then, if this character has 3 or more damage, move all damage from this character to chosen opposing character."
   }
  ],
  "Dash Parr - Lava Runner": [
@@ -1186,8 +1199,19 @@
  ],
  "Ling - Snow Warrior": [
   {
-   "impl": "unimplemented",
-   "text": "[BUILDING MUSCLES 1] Ink — Chosen character gets +1 Strength this turn."
+   "trigger": "activated",
+   "cost": {
+    "ink": 1
+   },
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 1,
+    "target": "chosen_character",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[BUILDING MUSCLES 1] Ink — Chosen character gets +1 Strength this turn."
   }
  ],
  "Boomer - Has the Beak": [
@@ -1464,8 +1488,17 @@
  ],
  "Kanga - Peaceful Gatherer": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[EXTRA HELP] While there’s a card under this character, she gets +1 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[EXTRA HELP] While there’s a card under this character, she gets +1 Lore."
   }
  ],
  "Honker Muddlefoot - Timid Genius": [
@@ -1845,8 +1878,25 @@
  ],
  "Vixey - Expert Fisher": [
   {
-   "impl": "unimplemented",
-   "text": "[STEALING IN] When you play this character, if you have a character with Evasive in play, you may return chosen character, item, or location with cost 2 or less to their player’s hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_to_hand",
+    "side": "opposing",
+    "zones": [
+     "character",
+     "item",
+     "location"
+    ],
+    "filter": {
+     "max_cost": 2
+    }
+   },
+   "confidence": "medium",
+   "source": "[STEALING IN] When you play this character, if you have a character with Evasive in play, you may return chosen character, item, or location with cost 2 or less to their player’s hand.",
+   "condition": {
+    "type": "you_have_keyword",
+    "keyword": "evasive"
+   }
   }
  ],
  "Pain - Running with Scissors": [
@@ -2107,8 +2157,12 @@
  ],
  "Dash Parr - Super Fast": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 {} (You may pay 3 Ink to play this on top of one of your characters named Dash Parr.)\n\nEvasive (Only characters with Evasive can challenge this character.)\n[FOLLOW ME!] Whenever this character quests, you may reveal the top card of your deck. If you do, you may play it. Otherwise, put it into your discard. (You pay all costs.)"
+   "trigger": "on_quest",
+   "effect": {
+    "type": "reveal_and_play"
+   },
+   "confidence": "medium",
+   "source": "Shift 3 {} (You may pay 3 Ink to play this on top of one of your characters named Dash Parr.)\n\nEvasive (Only characters with Evasive can challenge this character.)\n[FOLLOW ME!] Whenever this character quests, you may reveal the top card of your deck. If you do, you may play it. Otherwise, put it into your discard. (You pay all costs.)"
   }
  ],
  "Yzma - Choosy Customer": [
@@ -2166,8 +2220,17 @@
  ],
  "Randall Boggs - Envious Coworker": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)\n[AFTER-HOURS PROJECT] While all cards in your inkwell are exerted, this character gets +2 {}."
+   "trigger": "static",
+   "condition": {
+    "type": "inkwell_all_exerted"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Evasive (Only characters with Evasive can challenge this character.)\n[AFTER-HOURS PROJECT] While all cards in your inkwell are exerted, this character gets +2 {}."
   }
  ],
  "Sulley - Protective Monster": [
@@ -2406,8 +2469,14 @@
  ],
  "Darkwing Duck - Shadowy Superhero": [
   {
-   "impl": "unimplemented",
-   "text": "[PREEMPTIVE STRIKE] When you play this character, you may deal 1 damage to chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "[PREEMPTIVE STRIKE] When you play this character, you may deal 1 damage to chosen character."
   }
  ],
  "Omnidroid - Scanning for Threats": [
@@ -2660,8 +2729,13 @@
  ],
  "Elsa - Exploring the Unknown": [
   {
-   "impl": "unimplemented",
-   "text": "[CLOSER LOOK] When you play this character, you may draw a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[CLOSER LOOK] When you play this character, you may draw a card."
   }
  ],
  "Duckworth - Ghost Butler": [
@@ -2720,14 +2794,48 @@
  ],
  "Ursula - Whisper of Vanessa": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[SLIPPERY SPELL] While there's a card under this character, she gets +1 Lore and gains Evasive. (Only characters with Evasive can challenge them.)"
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[SLIPPERY SPELL] While there's a card under this character, she gets +1 Lore and gains Evasive. (Only characters with Evasive can challenge them.)"
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "evasive"
+   },
+   "confidence": "medium",
+   "source": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[SLIPPERY SPELL] While there's a card under this character, she gets +1 Lore and gains Evasive. (Only characters with Evasive can challenge them.)"
   }
  ],
  "Begone!": [
   {
-   "impl": "unimplemented",
-   "text": "Return chosen character, item, or location with cost 3 or less to their player's hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_to_hand",
+    "side": "opposing",
+    "zones": [
+     "character",
+     "item",
+     "location"
+    ],
+    "filter": {
+     "max_cost": 3
+    }
+   },
+   "confidence": "high",
+   "source": "Return chosen character, item, or location with cost 3 or less to their player's hand."
   }
  ],
  "Can't Hold It Back Anymore": [
@@ -2829,8 +2937,12 @@
  ],
  "Launchpad - Exceptional Pilot": [
   {
-   "impl": "unimplemented",
-   "text": "[OFF THE MAP] When you play this character, you may banish chosen location."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_location"
+   },
+   "confidence": "medium",
+   "source": "[OFF THE MAP] When you play this character, you may banish chosen location."
   }
  ],
  "Baloo - Carefree Bear": [
@@ -3666,8 +3778,21 @@
  ],
  "Poor Unfortunate Souls": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nReturn chosen character, item, or location with cost 2 or less to their player's hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_to_hand",
+    "side": "opposing",
+    "zones": [
+     "character",
+     "item",
+     "location"
+    ],
+    "filter": {
+     "max_cost": 2
+    }
+   },
+   "confidence": "high",
+   "source": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nReturn chosen character, item, or location with cost 2 or less to their player's hand."
   }
  ],
  "Last-Ditch Effort": [

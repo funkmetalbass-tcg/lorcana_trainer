@@ -38,6 +38,7 @@ def core_prose(desc):
     t = clean_text(desc)
     t = re.sub(r"\([^)]*\)", "", t)          # reminder text
     t = re.sub(r"\[[^\]]*\]", "", t)         # [NAMED ABILITY] labels
+    t = t.replace("\u2019", "'")             # curly apostrophe
     t = t.replace("{}", " ")                 # ink/lore symbol notation
     # Printed keywords are already handled by the keyword layer; leaving them
     # in the prose blocks every template on cards that carry both a keyword
@@ -387,6 +388,30 @@ def _reveal_effect(m):
             "filter": filt}
 
 
+
+# --- Phase 6 clauses -------------------------------------------------
+@clause(r"Move up to (\d+) damage from chosen character of yours to this character\. "
+        r"Then, if this character has (\d+) or more damage, move all damage from this "
+        r"character to chosen opposing character\.?")
+def _c(m):
+    return {"type": "move_damage", "amount": int(m.group(1)),
+            "dump_at": int(m.group(2))}
+
+
+@clause(r"[Yy]ou may reveal the top card of your deck\. If you do, you may play it\. "
+        r"Otherwise, put it into your discard\.?")
+def _c(m):
+    return {"type": "reveal_and_play"}
+
+
+@clause(r"[Rr]eturn chosen character, item, or location with cost (\d+) or less "
+        r"to their player's hand\.?")
+def _c(m):
+    return {"type": "return_to_hand", "side": "opposing",
+            "zones": ["character", "item", "location"],
+            "filter": {"max_cost": int(m.group(1))}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -413,7 +438,8 @@ def match_clause(text):
 # ---------------------------------------------------------------------
 _ACT_HEAD = re.compile(
     r"^\s*(?:[A-Z][A-Z0-9'\u2019 !,&.?-]{2,45}?\s+)?"       # optional ALLCAPS name
-    r"((?:\[Exert\]|\{\})(?:\s*,\s*[^\u2014]{1,45}?)*)"      # cost list
+    r"((?:\[Exert\]|\{\}|\d+\s*Ink|Banish this [a-z]+)"      # first cost token
+    r"(?:\s*,\s*[^\u2014]{1,45}?)*)"                          # further cost tokens
     r"\s*\u2014\s*(.+)$")                                    # separator + effect
 
 
@@ -455,8 +481,12 @@ _LABEL = re.compile(r"^\s*(?:\[[^\]]*\]|[A-Z][A-Z0-9' !,&.-]{2,45}?(?=\s+[A-Z][a
 
 
 def parse_static_line(line):
-    """Static/replacement lines that are not activated abilities."""
+    """Static/replacement lines that are not activated abilities.
+    Returns a single entry, a list of entries, or None."""
     line = _LABEL.sub("", line.strip())
+    ss = parse_static_self(line)
+    if ss:
+        return ss
     m = _FREE_IF.fullmatch(line.strip())
     if m:
         return {"trigger": "static",
@@ -469,15 +499,94 @@ def parse_static_line(line):
 _COND_PREFIX = re.compile(r"^If you've played (\d+) or more cards this turn,\s*",
                           re.IGNORECASE)
 
+
+# The Strength symbol arrives as "{}" in this card export. Confirmed by
+# Grandma Wu, whose Challenger reminder text reads "gets +2 {}" -- Challenger
+# is unambiguously a Strength bonus.
+_STAT_SYMBOL = "str"
+
+_STATIC_SELF = re.compile(
+    r"While (?P<cond>.+?), (?:this character|she|he|they) gets \+(?P<amt>\d+) "
+    r"(?P<stat>\{\}|Strength|Lore|Willpower)"
+    r"(?: and gains (?P<kw>Evasive|Ward|Reckless|Rush|Support))?\.?",
+    re.IGNORECASE)
+
+_STATIC_CONDS = [
+    (re.compile(r"all cards in your inkwell are exerted", re.I),
+     {"type": "inkwell_all_exerted"}),
+    (re.compile(r"there's a card under this character", re.I),
+     {"type": "has_card_under"}),
+]
+
+
+def _stat_name(tok):
+    tok = tok.strip().lower()
+    if tok == "{}":
+        return _STAT_SYMBOL
+    return {"strength": "str", "lore": "lore", "willpower": "will"}[tok]
+
+
+def parse_static_self(line):
+    """'While <condition>, this character gets +N <stat> [and gains KW].'"""
+    m = _STATIC_SELF.fullmatch(line.strip())
+    if not m:
+        return None
+    cond = None
+    for rx, c in _STATIC_CONDS:
+        if rx.fullmatch(m.group("cond").strip()):
+            cond = c
+            break
+    if cond is None:
+        return None                 # unrecognized condition -> leave the gap
+    stat = _stat_name(m.group("stat"))
+    out = [{"trigger": "static", "condition": cond,
+            "effect": {"type": "static_self_stat", "stat": stat,
+                       "amount": int(m.group("amt"))}}]
+    if m.group("kw"):
+        out.append({"trigger": "static", "condition": cond,
+                    "effect": {"type": "static_self_keyword",
+                               "keyword": m.group("kw").lower()}})
+    return out
+
+
+# ---------------------------------------------------------------------
+# Shared line normalization for the activated and static parsers.
+#
+# core_prose is not usable here: it deletes [Exert] and the ability labels,
+# which is exactly where activation costs live. This does the same cleanup
+# but keeps the cost structure intact.
+# ---------------------------------------------------------------------
+# Split before an ALLCAPS label so "...free.[SLIPPERY SPELL] While..." becomes
+# two abilities. Requires no lowercase inside the brackets, so [Exert] (which
+# is a cost token, not a label) is left alone.
+_LABEL_SPLIT = re.compile(r"(?=\[[^a-z\]]{3,}\])")
+
+# Some exports fold the ink cost inside the label: Luisa Madrigal ships as
+# "[I CAN TAKE IT 1] Ink -" where the ability is "I CAN TAKE IT" at a cost of
+# 1 Ink. Recover the digit rather than dropping the cost with the label.
+_LABEL_COST = re.compile(r"\[[^\]]*?\s+(\d+)\]\s*Ink\b")
+
+_BOOST_KW = re.compile(r"\bBoost\s+\d+\s*Ink\b", re.IGNORECASE)
+
+
+def ability_lines(desc):
+    text = clean_text(desc)
+    text = text.replace("\u2019", "'")             # curly apostrophe
+    text = re.sub(r"\([^)]*\)", "", text)          # reminder text
+    for kw in parse_printed_keywords(desc):        # Shift N, Evasive, ...
+        text = _KW_PATTERNS[kw].sub(" ", text, count=1)
+    text = _BOOST_KW.sub(" ", text)                # engine reads Boost itself
+    text = _LABEL_COST.sub(r"\1 Ink", text)
+    text = re.sub(r"(?<=\s)[\u2013-](?=\s)", "\u2014", text)   # separator
+    text = _LABEL_SPLIT.sub("\n", text)
+    return [l.strip() for l in re.split(r"\n", text) if l.strip()]
+
+
 def parse_activated(desc):
     """List of activated entries, or None if ANY ability line on the card
     fails to parse. All-or-nothing per card: a half-parsed card would play
     with only some of its abilities and silently misreport its win rate."""
-    text = clean_text(desc)
-    text = text.replace("\u2019", "'")                         # curly apostrophe
-    text = re.sub(r"\([^)]*\)", "", text)                      # reminder text
-    text = re.sub(r"(?<=\s)[\u2013-](?=\s)", "\u2014", text)   # normalize separator
-    lines = [l.strip() for l in re.split(r"\n", text) if l.strip()]
+    lines = ability_lines(desc)
     if not any(_ACT_HEAD.match(l) for l in lines):
         return None
     out = []
@@ -490,7 +599,7 @@ def parse_activated(desc):
             st = parse_static_line(line)
             if st is None:
                 return None
-            out.append(st)
+            out.extend(st if isinstance(st, list) else [st])
             continue
         cost = _parse_cost(m.group(1))
         if cost is None:
@@ -508,6 +617,9 @@ def parse_activated(desc):
         if eff is None:
             return None
         ent = {"trigger": "activated", "cost": cost, "effect": eff}
+        if cond is None and eff.get("type") == "move_damage":
+            # gate availability so the ability is not offered as a no-op
+            cond = {"type": "damage_to_move", "dump_at": eff.get("dump_at")}
         if cond:
             ent["condition"] = cond
         out.append(ent)
@@ -535,6 +647,21 @@ def parse_by_clauses(prose):
     return effects
 
 
+
+def parse_static_card(desc):
+    """Cards whose only text is static lines (Randall Boggs, Ursula)."""
+    lines = ability_lines(desc)
+    if not lines:
+        return None
+    out = []
+    for line in lines:
+        st = parse_static_line(line)
+        if st is None:
+            return None            # all-or-nothing, as elsewhere
+        out.extend(st if isinstance(st, list) else [st])
+    return out or None
+
+
 # ---------------------------------------------------------------------
 # Triggered preambles. "When you play this character, <clause>" is the same
 # effect as a bare action clause with a different trigger, so route the
@@ -547,6 +674,12 @@ _PREAMBLES = [
     (re.compile(r"^Whenever this character quests,\s*", re.IGNORECASE), "on_quest"),
 ]
 _MAY_PAY = re.compile(r"^you may pay (\d+) Ink to\s*", re.IGNORECASE)
+_MAY = re.compile(r"^you may\s+", re.IGNORECASE)
+_TRIG_CONDS = [
+    (re.compile(r"^if you have a character with (Evasive|Ward|Reckless|Support) "
+                r"in play,\s*", re.IGNORECASE),
+     lambda m: {"type": "you_have_keyword", "keyword": m.group(1).lower()}),
+]
 
 
 def parse_triggered(prose):
@@ -556,6 +689,13 @@ def parse_triggered(prose):
         if not m:
             continue
         rest = prose[m.end():].strip()
+        cond = None
+        for crx, build in _TRIG_CONDS:
+            cm = crx.match(rest)
+            if cm:
+                cond = build(cm)
+                rest = rest[cm.end():].strip()
+                break
         cost = None
         mp = _MAY_PAY.match(rest)
         if mp:
@@ -564,8 +704,14 @@ def parse_triggered(prose):
             if rest and rest[0].islower():
                 rest = rest[0].upper() + rest[1:]
         effects = parse_by_clauses(rest)
+        if effects is None:
+            stripped = _MAY.sub("", rest)
+            if stripped != rest:
+                if stripped and stripped[0].islower():
+                    stripped = stripped[0].upper() + stripped[1:]
+                effects = parse_by_clauses(stripped)
         if effects:
-            return trig, cost, effects
+            return trig, cond, cost, effects
     return None
 
 
@@ -598,14 +744,24 @@ def parse_card(name, raw):
             a["source"] = _src(desc)
         return acts
 
+    # Static-only cards (no activated ability, no trigger preamble).
+    st = parse_static_card(desc)
+    if st:
+        for e in st:
+            e["confidence"] = "medium"
+            e["source"] = _src(desc)
+        return st
+
     # Triggered preamble + clause body.
     trig = parse_triggered(prose)
     if trig:
-        trigger, cost, effects = trig
+        trigger, cond, cost, effects = trig
         ents = []
         for e in effects:
             ent = {"trigger": trigger, "effect": e,
                    "confidence": "medium", "source": _src(desc)}
+            if cond:
+                ent["condition"] = cond
             if cost:
                 ent["cost"] = cost
             ents.append(ent)

@@ -131,7 +131,54 @@ def _cond_named_banished_this_turn(g, p, ctx, cond):
     return ("banished_base", cond.get("name")) in g.turn_flags
 
 
+def _cond_inkwell_all_exerted(g, p, ctx, cond):
+    """All cards in your inkwell are exerted (Randall Boggs). ink_ready is the
+    unexerted count, so this is simply having spent everything."""
+    return g.players[p].ink_total > 0 and g.players[p].ink_ready == 0
+
+
+def _cond_has_card_under(g, p, ctx, cond):
+    """There is a card under this character, from Boost or from being shifted
+    onto (Ursula - Whisper of Vanessa)."""
+    ch = ctx.get("char")
+    if ch is None:
+        return False
+    return bool(getattr(ch, "boosted", None) or getattr(ch, "under", None))
+
+
+def _cond_you_have_keyword(g, p, ctx, cond):
+    """You control a character with the named keyword (Vixey)."""
+    from . import abilities
+    kw = cond.get("keyword", "evasive").lower()
+    fn = {"evasive": abilities.has_evasive,
+          "reckless": abilities.has_reckless,
+          "ward": abilities.has_ward,
+          "support": abilities.has_support}.get(kw)
+    if fn is None:
+        return False
+    return any(fn(g, c) for c in g.my_chars(p))
+
+
+def _cond_damage_to_move(g, p, ctx, cond):
+    """The move_damage ability would actually do something: either one of your
+    other characters is damaged, or this one is already at the dump threshold.
+    Without this the ink-only activation is offered every turn and MCTS burns
+    ink exploring a no-op."""
+    me = ctx.get("char")
+    if me is None:
+        return False
+    if any(c.uid != me.uid and c.damage > 0 for c in g.my_chars(p)):
+        return True
+    thresh = cond.get("dump_at")
+    return thresh is not None and me.damage >= thresh \
+        and any(True for _ in g.my_chars(1 - p))
+
+
 _CONDITIONS = {
+    "damage_to_move": _cond_damage_to_move,
+    "inkwell_all_exerted": _cond_inkwell_all_exerted,
+    "has_card_under": _cond_has_card_under,
+    "you_have_keyword": _cond_you_have_keyword,
     "cards_played_this_turn": _cond_cards_played_this_turn,
     "named_banished_this_turn": _cond_named_banished_this_turn,
     "your_other_classification_count": _cond_your_other_classification_count,
@@ -371,10 +418,18 @@ def _eff_banish_all(g, p, ctx, eff):
 
 
 def _eff_return_to_hand(g, p, ctx, eff):
-    """Return a chosen character to its owner's hand."""
+    """Return a chosen character to its owner's hand.
+
+    With zones=["character","item","location"] the choice widens to any
+    permanent matching the filter (Vixey STEALING IN). Items and locations
+    have no lore or strength to rank by, so cost is the tiebreak.
+    """
     from . import abilities
     filt = eff.get("filter")
     side = eff.get("side", "opposing")
+    zones = eff.get("zones")
+    if zones and zones != ["character"]:
+        return _return_permanent(g, p, eff, filt, side, zones)
     if side == "opposing":
         tgt = abilities._best_opp_char(
             g, p, cond=lambda gg, c: _char_matches(gg, c, filt))
@@ -387,6 +442,38 @@ def _eff_return_to_hand(g, p, ctx, eff):
     g.chars.pop(tgt.uid, None)
     g.players[tgt.owner].hand.append(tgt.card)
     g.emit(f"schema: returns {tgt.card.base_name}(P{tgt.owner}) to hand")
+
+
+def _return_permanent(g, p, eff, filt, side, zones):
+    owners = [1 - p] if side == "opposing" else [p]
+    cands = []
+    from . import abilities
+    if "character" in zones:
+        for o in owners:
+            cands += [(c, "char") for c in g.my_chars(o)
+                      if _char_matches(g, c, filt)
+                      and not (o != p and abilities.has_ward(g, c))]
+    if "item" in zones:
+        for o in owners:
+            cands += [(i, "item") for i in g.items[o]
+                      if _card_matches(i.card, filt)]
+    if "location" in zones:
+        for o in owners:
+            cands += [(l, "loc") for l in g.my_locs(o)
+                      if _card_matches(l.card, filt)]
+    if not cands:
+        return
+    obj, kind = max(cands, key=lambda t: t[0].card.cost)
+    owner = obj.owner
+    if kind == "char":
+        g.chars.pop(obj.uid, None)
+    elif kind == "item":
+        if obj in g.items[owner]:
+            g.items[owner].remove(obj)
+    else:
+        g.locs.pop(obj.uid, None)
+    g.players[owner].hand.append(obj.card)
+    g.emit(f"schema: returns {obj.card.base_name}(P{owner}) to hand")
 
 
 def _eff_play_from_discard(g, p, ctx, eff):
@@ -515,7 +602,69 @@ def static_free_discount(g, p, card):
     return 0
 
 
+
+def _eff_move_damage(g, p, ctx, eff):
+    """Move up to N damage from one of your characters onto this one, then
+    optionally dump the accumulated damage onto an opposing character
+    (Luisa Madrigal I CAN TAKE IT).
+
+    Heuristic: pull from your most-damaged other character, since that is the
+    one nearest to being banished.
+    """
+    from . import abilities
+    me = ctx.get("char")
+    if me is None:
+        return
+    n = eff.get("amount", 1)
+    donors = [c for c in g.my_chars(p) if c.uid != me.uid and c.damage > 0]
+    if donors:
+        src = max(donors, key=lambda c: c.damage)
+        moved = min(n, src.damage)
+        src.damage -= moved
+        me.damage += moved
+        g.emit(f"schema: moves {moved} damage {src.card.base_name} -> "
+               f"{me.card.base_name}")
+    # Second clause: if this character is at the threshold, dump it all.
+    thresh = eff.get("dump_at")
+    if thresh is not None and me.damage >= thresh:
+        tgt = abilities._best_opp_char(g, p)
+        if tgt is not None:
+            amount = me.damage
+            me.damage = 0
+            g.emit(f"schema: dumps {amount} damage onto "
+                   f"{tgt.card.base_name}(P{tgt.owner})")
+            g.deal_damage(tgt, amount, apply_resist=False)
+        # Moving damage off a character never banishes it, so no check here.
+
+
+def _eff_reveal_and_play(g, p, ctx, eff):
+    """Reveal the top card of your deck; play it if you can pay, otherwise
+    discard it (Dash Parr FOLLOW ME!).
+
+    The reveal is a "may", and revealing with no ink available can only mill,
+    so it is declined in that case. Otherwise reveal and play when affordable.
+    """
+    pl = g.players[p]
+    if not pl.deck:
+        return
+    if pl.ink_ready <= 0:
+        return                      # would be pure self-mill
+    card = pl.deck[-1]
+    if card.is_action or card.is_character or card.is_item or card.is_location:
+        cost = g.play_cost(p, card)
+        if cost <= pl.ink_ready:
+            pl.deck.pop()
+            g.emit(f"schema: reveals {card.name} and plays it")
+            g._play_card(p, card, {})
+            return
+    pl.deck.pop()
+    pl.discard.append(card)
+    g.emit(f"schema: reveals {card.name} and discards it")
+
+
 _EFFECTS = {
+    "move_damage": _eff_move_damage,
+    "reveal_and_play": _eff_reveal_and_play,
     "mass_grant_keyword": _eff_mass_grant_keyword,
     "quest_lock": _eff_quest_lock,
     "banish_location": _eff_banish_location,
@@ -539,8 +688,10 @@ _EFFECTS = {
 
 
 def apply_effect(g, p, ctx, eff):
-    if eff.get("type") == "play_free_if":
-        return          # handled in static_free_discount at play time
+    if eff.get("type") in ("play_free_if", "static_self_stat",
+                           "static_self_lore", "static_self_keyword",
+                           "static_location_resist"):
+        return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
         g.emit(f"schema: unknown effect {eff.get('type')} (skipped)")
@@ -601,6 +752,10 @@ def dispatch_play(g, p, card, obj, params):
 #    "cost": {"exert": true, "ink": 1, "banish_self": false,
 #             "banish_own_char": false, "discard": 0},
 #    "effect": {...}}
+#
+# "exert" is opt-in. Some abilities cost only ink ("1 Ink -- ..." on Luisa
+# Madrigal and Ling), and those neither require a ready body nor exert one,
+# so they can be used more than once a turn while the ink lasts.
 # ---------------------------------------------------------------------
 def activated_entries(card_name):
     return entries_for(card_name, "activated")
@@ -623,7 +778,7 @@ def can_activate(g, p, obj, entry):
     ctx = {"card": obj.card, "char": obj if _obj_is_char(obj) else None}
     if not check_condition(g, p, ctx, entry.get("condition")):
         return False
-    if cost.get("exert", True):
+    if cost.get("exert", False):
         if getattr(obj, "exerted", False):
             return False
         # characters need to be dry; items and locations do not
@@ -648,7 +803,7 @@ def _pay_activation_cost(g, p, obj, entry, ctx):
     pl = g.players[p]
     if not can_activate(g, p, obj, entry):
         return False
-    if cost.get("exert", True):
+    if cost.get("exert", False):
         obj.exerted = True
     if cost.get("ink", 0):
         g.pay_ink(p, cost["ink"])
@@ -700,14 +855,44 @@ def dispatch_quest(g, ch):
 # dispatched at an event. Returns the numeric contribution or 0.
 # ---------------------------------------------------------------------
 def static_self_lore(g, ch):
+    return static_self_stat(g, ch, "lore")
+
+
+def static_self_stat(g, ch, stat):
+    """Sum of conditional self-buffs on this character for one stat.
+
+    "static_self_lore" is kept as an alias for stat == "lore" so entries
+    already promoted into abilities_manual.json keep working.
+    """
     total = 0
+    aliases = {"static_self_stat"}
+    if stat == "lore":
+        aliases.add("static_self_lore")
     for e in entries_for(ch.card.name, "static"):
         eff = e.get("effect", {})
-        if eff.get("type") == "static_self_lore":
-            if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
-                               e.get("condition")):
-                total += eff.get("amount", 0)
+        if eff.get("type") not in aliases:
+            continue
+        if eff.get("type") == "static_self_stat" and eff.get("stat") != stat:
+            continue
+        if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                           e.get("condition")):
+            total += eff.get("amount", 0)
     return total
+
+
+def static_self_keyword(g, ch, kw):
+    """Does a static entry grant this character the named keyword right now?
+    (Ursula - Whisper of Vanessa gains Evasive while boosted.)"""
+    for e in entries_for(ch.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "static_self_keyword":
+            continue
+        if eff.get("keyword", "").lower() != kw.lower():
+            continue
+        if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                           e.get("condition")):
+            return True
+    return False
 
 
 def static_location_resist(g, loc):

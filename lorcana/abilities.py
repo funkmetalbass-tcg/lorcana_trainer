@@ -93,7 +93,9 @@ def boost_cost(card):
 # Derived stats
 # =====================================================================
 def strength(g, ch):
+    from . import schema
     s = ch.card.strength or 0
+    s += schema.static_self_stat(g, ch, "str")
     name = ch.card.name
     # MAGICAL MIX: +1 for each different ink type among your characters
     if name == "Winnie The Pooh & Piglet - Hunny Mages":
@@ -133,7 +135,9 @@ def strength(g, ch):
 
 
 def willpower(g, ch):
+    from . import schema
     w = ch.card.willpower or 0
+    w += schema.static_self_stat(g, ch, "will")
     if ch.location is not None:
         loc = g.locs.get(ch.location)
         if loc and loc.card.name == "Hundred Acre Wood - Hunny Campsite":
@@ -326,6 +330,9 @@ def has_evasive(g, ch):
     for c in g.my_chars(ch.owner):
         if c.card.name == "Peter Pan & Tinker Bell - Fast Friends":
             return True
+    from . import schema
+    if schema.static_self_keyword(g, ch, "evasive"):
+        return True
     return any(e["kind"] == "evasive" and e["target"] == ch.uid for e in g.effects)
 
 

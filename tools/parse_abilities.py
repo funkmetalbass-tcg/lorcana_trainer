@@ -412,6 +412,22 @@ def _c(m):
             "filter": {"max_cost": int(m.group(1))}}
 
 
+
+# --- Phase 7 clauses -------------------------------------------------
+@clause(r"[Cc]hosen character gains (Evasive|Ward|Rush|Reckless|Support) "
+        r"until the start of your next turn\.?")
+def _c(m):
+    # Protective grants go to the quester, matching the best_quester note in
+    # _resolve_target rather than the strongest attacker.
+    return {"type": "grant_keyword", "keyword": m.group(1).lower(),
+            "target": "best_quester", "duration": "until_your_next"}
+
+
+@clause(r"[Pp]ut this card on the top of your deck\.?")
+def _c(m):
+    return {"type": "self_to_deck_top"}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -648,6 +664,40 @@ def parse_by_clauses(prose):
 
 
 
+
+_WATCH_PLAY_CHAR = re.compile(
+    r"^Whenever you play a character,\s*(?P<rest>.+)$", re.IGNORECASE)
+_MAY_PAY_BANISH = re.compile(
+    r"^you may pay (?P<ink>\d+) Ink and banish this (?:item|character|location) to\s*",
+    re.IGNORECASE)
+
+
+def parse_play_character_watcher(prose):
+    """'Whenever you play a character, <optional cost> <clause>'."""
+    m = _WATCH_PLAY_CHAR.match(prose.strip())
+    if not m:
+        return None
+    rest = m.group("rest").strip()
+    cost = None
+    cm = _MAY_PAY_BANISH.match(rest)
+    if cm:
+        cost = {"ink": int(cm.group("ink")), "banish_self": True}
+        rest = rest[cm.end():].strip()
+    else:
+        mp = _MAY_PAY.match(rest)
+        if mp:
+            cost = {"ink": int(mp.group(1))}
+            rest = rest[mp.end():].strip()
+        else:
+            rest = _MAY.sub("", rest)
+    if rest and rest[0].islower():
+        rest = rest[0].upper() + rest[1:]
+    effects = parse_by_clauses(rest)
+    if not effects:
+        return None
+    return cost, effects
+
+
 def parse_static_card(desc):
     """Cards whose only text is static lines (Randall Boggs, Ursula)."""
     lines = ability_lines(desc)
@@ -751,6 +801,23 @@ def parse_card(name, raw):
             e["confidence"] = "medium"
             e["source"] = _src(desc)
         return st
+
+    # "Whenever you play a character" watchers.
+    watch = parse_play_character_watcher(prose)
+    if watch:
+        cost, effects = watch
+        ents = []
+        for e in effects:
+            ent = {"trigger": "on_play_character", "effect": e,
+                   "confidence": "medium", "source": _src(desc)}
+            if cost:
+                ent["cost"] = cost
+                if cost.get("banish_self") and e.get("type") == "deal_damage":
+                    # one-shot removal: hold it until it actually trades up
+                    ent["condition"] = {"type": "damage_would_banish",
+                                        "amount": e.get("amount", 1)}
+            ents.append(ent)
+        return ents
 
     # Triggered preamble + clause body.
     trig = parse_triggered(prose)

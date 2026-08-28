@@ -2051,8 +2051,12 @@
  ],
  "Kevin - Flightless Bird": [
   {
-   "impl": "unimplemented",
-   "text": "[BACK TO THE NEST] Whenever this character quests, put this card on the top of your deck."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "self_to_deck_top"
+   },
+   "confidence": "medium",
+   "source": "[BACK TO THE NEST] Whenever this character quests, put this card on the top of your deck."
   }
  ],
  "Peter Pan - Created by the Vine": [
@@ -3458,8 +3462,22 @@
  ],
  "The Robot Queen": [
   {
-   "impl": "unimplemented",
-   "text": "[MAJOR MALFUNCTION] Whenever you play a character, you may pay 1 Ink and banish this item to deal 2 damage to chosen character."
+   "trigger": "on_play_character",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 2,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "[MAJOR MALFUNCTION] Whenever you play a character, you may pay 1 Ink and banish this item to deal 2 damage to chosen character.",
+   "cost": {
+    "ink": 1,
+    "banish_self": true
+   },
+   "condition": {
+    "type": "damage_would_banish",
+    "amount": 2
+   }
   }
  ],
  "The Sword of Hercules": [
@@ -3718,8 +3736,15 @@
  ],
  "Dumbo - The Flying Elephant": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[AERIAL DUO] When you play this character, chosen character gains Evasive until the start of your next turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "evasive",
+    "target": "best_quester",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "Evasive (Only characters with Evasive can challenge this character.)[AERIAL DUO] When you play this character, chosen character gains Evasive until the start of your next turn."
   }
  ],
  "Timothy Q. Mouse - Flight Instructor": [
@@ -4107,8 +4132,15 @@
  ],
  "You Can Fly!": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nChosen character gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "evasive",
+    "target": "best_quester",
+    "duration": "until_your_next"
+   },
+   "confidence": "high",
+   "source": "(A character with cost 2 or more can [Exert] to sing this song for free.)\nChosen character gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
   }
  ],
  "Dinner Bell": [

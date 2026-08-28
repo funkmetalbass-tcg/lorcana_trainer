@@ -13,7 +13,7 @@ human-reviewed) merges beneath it -- manual always wins. The engine calls
 dispatch_* at each trigger point; unknown cards simply have no entries.
 
 Currently implemented (deliberately small -- grow as templates demand):
-  triggers:   on_play, on_quest, activated, static
+  triggers:   on_play, on_play_character, on_quest, activated, static
   conditions: your_other_classification_count, you_have_named, opponent_ahead
   effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage,
               draw_then_discard, grant_keyword
@@ -174,7 +174,27 @@ def _cond_damage_to_move(g, p, ctx, cond):
         and any(True for _ in g.my_chars(1 - p))
 
 
+def _cond_damage_would_banish(g, p, ctx, cond):
+    """N damage would finish off at least one opposing character.
+
+    Used to gate one-shot removal whose cost is banishing its own source
+    (The Robot Queen). Firing it on the first character played each game
+    would usually waste the item, so it is held until it actually trades up.
+    Resist is subtracted, since it reduces the damage that lands.
+    """
+    from . import abilities
+    n = cond.get("amount", 1)
+    for c in g.my_chars(1 - p):
+        if abilities.has_ward(g, c):
+            continue
+        landed = max(0, n - g.eff_resist(c))
+        if landed and g.eff_willpower(c) - c.damage <= landed:
+            return True
+    return False
+
+
 _CONDITIONS = {
+    "damage_would_banish": _cond_damage_would_banish,
     "damage_to_move": _cond_damage_to_move,
     "inkwell_all_exerted": _cond_inkwell_all_exerted,
     "has_card_under": _cond_has_card_under,
@@ -603,6 +623,22 @@ def static_free_discount(g, p, card):
 
 
 
+def _eff_self_to_deck_top(g, p, ctx, eff):
+    """Put this character from play onto the top of its owner's deck
+    (Kevin - Flightless Bird). Cards underneath it go to the discard, the
+    same as any other way of leaving play."""
+    ch = ctx.get("char")
+    if ch is None or ch.uid not in g.chars:
+        return
+    owner = ch.owner
+    pl = g.players[owner]
+    pl.discard.extend(ch.under)
+    pl.discard.extend(ch.boosted)
+    g.chars.pop(ch.uid, None)
+    pl.deck.append(ch.card)              # top of deck is the end of the list
+    g.emit(f"schema: {ch.card.base_name}(P{owner}) returns to the top of the deck")
+
+
 def _eff_move_damage(g, p, ctx, eff):
     """Move up to N damage from one of your characters onto this one, then
     optionally dump the accumulated damage onto an opposing character
@@ -663,6 +699,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "self_to_deck_top": _eff_self_to_deck_top,
     "move_damage": _eff_move_damage,
     "reveal_and_play": _eff_reveal_and_play,
     "mass_grant_keyword": _eff_mass_grant_keyword,
@@ -717,6 +754,9 @@ def _run(g, p, ctx, ents):
                 continue
             if cost.get("discard", 0) > len(pl.hand):
                 continue
+            src = ctx.get("source")
+            if cost.get("banish_self") and src is None:
+                continue
             if cost.get("ink", 0):
                 g.pay_ink(p, cost["ink"])
             for _ in range(cost.get("discard", 0)):
@@ -727,6 +767,11 @@ def _run(g, p, ctx, ents):
                 pl.hand.remove(card)
                 pl.discard.append(card)
                 g.emit(f"schema: discards {card.name} (cost)")
+            if cost.get("banish_self"):
+                if hasattr(src, "damage"):
+                    g.banish_char(src, cause="effect")
+                elif src in g.items[p]:
+                    g.banish_item(src)
         apply_effect(g, p, ctx, e["effect"])
         if g.winner is not None:
             return
@@ -736,6 +781,22 @@ def dispatch_play(g, p, card, obj, params):
     ents = entries_for(card.name, "on_play")
     if ents:
         _run(g, p, {"card": card, "char": obj if card.is_character else None}, ents)
+    if card.is_character:
+        dispatch_play_character(g, p, card, obj)
+
+
+def dispatch_play_character(g, p, card, obj):
+    """'Whenever you play a character' watchers sitting on your own permanents
+    (The Robot Queen). ctx["source"] is the watcher, so a banish_self cost
+    knows what to banish; ctx["char"] is the character just played."""
+    for src in list(g.items[p]) + list(g.my_chars(p)) + list(g.my_locs(p)):
+        if hasattr(src, "damage") and obj is not None and src.uid == obj.uid:
+            continue                     # a character does not watch itself
+        ents = entries_for(src.card.name, "on_play_character")
+        if ents:
+            _run(g, p, {"card": src.card, "char": obj, "source": src}, ents)
+        if g.winner is not None:
+            return
 
 
 # ---------------------------------------------------------------------

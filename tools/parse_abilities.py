@@ -321,12 +321,81 @@ def _dig_effect(m):
             "destination": "hand", "filter": filt}
 
 
+
+# --- Phase 5 clauses -------------------------------------------------
+@clause(r"Put (\d+) damage counters? on chosen character\.?")
+def _c(m):
+    # Damage counters are not "damage dealt", so Resist does not apply.
+    return {"type": "deal_damage", "amount": int(m.group(1)),
+            "target": "chosen_opposing", "ignore_resist": True}
+
+
+@clause(r"Each opposing damaged character gains (Reckless|Evasive|Ward|Rush) until the start of your next turn\.?")
+def _c(m):
+    return {"type": "mass_grant_keyword", "side": "opposing",
+            "filter": {"damaged": True}, "keyword": m.group(1).lower(),
+            "duration": "until_your_next"}
+
+
+@clause(r"Banish chosen location\.?")
+def _c(m):
+    return {"type": "banish_location"}
+
+
+@clause(r"Up to (\d+) chosen characters can't quest until the start of your next turn\.?")
+def _c(m):
+    return {"type": "quest_lock", "count": int(m.group(1)),
+            "duration": "until_your_next"}
+
+
+@clause(r"Chosen character can't quest until the start of your next turn\.?")
+def _c(m):
+    return {"type": "quest_lock", "count": 1, "duration": "until_your_next"}
+
+
+@clause(r"You pay (\d+) Ink less for the next action or item you play this turn\.?")
+def _c(m):
+    return {"type": "cost_reduce", "amount": int(m.group(1)),
+            "filter": "action_or_item"}
+
+
+@clause(r"Chosen opponent chooses 3 of their characters and returns one of those cards "
+        r"to their hand, puts one on the bottom of their deck, and puts one on the top "
+        r"of their deck\.?")
+def _c(m):
+    return {"type": "opponent_scatter"}
+
+
+# Reveal-top-1. Same shape as dig-N but with an OR filter and a named
+# exception, so it gets its own pattern rather than more optional groups.
+_REVEAL = re.compile(
+    r"Reveal the top card of your deck\. If it's an? (non-character|character) card"
+    r"(?: or an? (?:character )?card named ([A-Za-z' -]+))?, put it into your hand\. "
+    r"Otherwise, put it on the bottom of your deck\.?",
+    re.IGNORECASE)
+
+
+def _reveal_effect(m):
+    base = {"card_type": m.group(1).lower().replace("-", "_")
+            if m.group(1).lower() == "non-character" else m.group(1).lower()}
+    if m.group(2):
+        filt = {"any_of": [base, {"card_type": "character",
+                                  "name": m.group(2).strip()}]}
+    else:
+        filt = base
+    return {"type": "look_at_top", "count": 1, "destination": "hand",
+            "filter": filt}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
     m = _DIG.fullmatch(text)
     if m:
         return _dig_effect(m)
+    m = _REVEAL.fullmatch(text)
+    if m:
+        return _reveal_effect(m)
     for rx, builder, conf in _CLAUSES:
         m = rx.fullmatch(text)
         if m:
@@ -375,11 +444,38 @@ def _parse_cost(text):
     return cost or None
 
 
+
+_FREE_IF = re.compile(
+    r"If a character named ([A-Za-z' .-]+) was banished this turn, "
+    r"you may play this (?:item|character|action) for free\.?",
+    re.IGNORECASE)
+
+
+_LABEL = re.compile(r"^\s*(?:\[[^\]]*\]|[A-Z][A-Z0-9' !,&.-]{2,45}?(?=\s+[A-Z][a-z]))\s*")
+
+
+def parse_static_line(line):
+    """Static/replacement lines that are not activated abilities."""
+    line = _LABEL.sub("", line.strip())
+    m = _FREE_IF.fullmatch(line.strip())
+    if m:
+        return {"trigger": "static",
+                "condition": {"type": "named_banished_this_turn",
+                              "name": m.group(1).strip()},
+                "effect": {"type": "play_free_if"}}
+    return None
+
+
+_COND_PREFIX = re.compile(r"^If you've played (\d+) or more cards this turn,\s*",
+                          re.IGNORECASE)
+
 def parse_activated(desc):
     """List of activated entries, or None if ANY ability line on the card
     fails to parse. All-or-nothing per card: a half-parsed card would play
     with only some of its abilities and silently misreport its win rate."""
     text = clean_text(desc)
+    text = text.replace("\u2019", "'")                         # curly apostrophe
+    text = re.sub(r"\([^)]*\)", "", text)                      # reminder text
     text = re.sub(r"(?<=\s)[\u2013-](?=\s)", "\u2014", text)   # normalize separator
     lines = [l.strip() for l in re.split(r"\n", text) if l.strip()]
     if not any(_ACT_HEAD.match(l) for l in lines):
@@ -388,14 +484,33 @@ def parse_activated(desc):
     for line in lines:
         m = _ACT_HEAD.match(line)
         if not m:
-            return None                       # mixed static/triggered text
+            # A card may mix an activated ability with a static one
+            # (Buzz's Arm: MISSING PIECE + SOME ASSEMBLY REQUIRED). Still
+            # all-or-nothing: an unparsed line rejects the whole card.
+            st = parse_static_line(line)
+            if st is None:
+                return None
+            out.append(st)
+            continue
         cost = _parse_cost(m.group(1))
         if cost is None:
             return None
-        eff = match_clause(m.group(2).strip())
+        body = m.group(2).strip()
+        cond = None
+        cm = _COND_PREFIX.match(body)
+        if cm:
+            cond = {"type": "cards_played_this_turn",
+                    "count": int(cm.group(1))}
+            body = body[cm.end():].strip()
+            if body and body[0].islower():
+                body = body[0].upper() + body[1:]
+        eff = match_clause(body)
         if eff is None:
             return None
-        out.append({"trigger": "activated", "cost": cost, "effect": eff})
+        ent = {"trigger": "activated", "cost": cost, "effect": eff}
+        if cond:
+            ent["condition"] = cond
+        out.append(ent)
     return out or None
 
 

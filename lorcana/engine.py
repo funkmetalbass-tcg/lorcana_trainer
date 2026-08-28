@@ -103,6 +103,7 @@ class Game:
         self.items = {0: [], 1: []}   # player -> list of ItemInPlay
         self.effects = []        # dicts: kind,target,amount,until(player) / 'eot'
         self.turn_flags = set()  # cleared at start of every turn
+        self.cards_played = [0, 0]   # cards played this turn, per player
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
         self.discounts = []      # dicts: owner, amount, filt, static(bool)
         self.log = log           # list to append log lines, or None
@@ -119,6 +120,7 @@ class Game:
         g.items = {0: [i.clone() for i in self.items[0]],
                    1: [i.clone() for i in self.items[1]]}
         g.effects = [dict(e) for e in self.effects]
+        g.cards_played = list(self.cards_played)
         g.turn_flags = set(self.turn_flags)
         g.turn_discards = dict(self.turn_discards)
         g.discounts = [dict(d) for d in self.discounts]
@@ -212,6 +214,7 @@ class Game:
         self.turn += 1
         p = self.active
         self.turn_flags = set()
+        self.cards_played = [0, 0]
         self.turn_discards = {0: 0, 1: 0}
         # Ready step
         self.players[p].ink_ready = self.players[p].ink_total
@@ -433,6 +436,8 @@ class Game:
         for ch in self.my_chars(p):
             if not ch.exerted and self.is_dry(ch) and not abilities.has_reckless(self, ch) \
                     and ("no_quest", ch.uid) not in self.turn_flags \
+                    and not any(e["kind"] == "no_quest" and e["target"] == ch.uid
+                                for e in self.effects) \
                     and pl.ink_ready >= abilities.action_ink_surcharge(self, ch):
                 loc = self.locs.get(ch.location)
                 if loc and loc.card.name == "Sleepy Hollow - The Bridge":
@@ -725,6 +730,7 @@ class Game:
             self.pay_ink(p, paid)
         if card in pl.hand:
             pl.hand.remove(card)
+        self.cards_played[p] += 1
         self.emit(f"P{p} plays {card.name}" + (" (shift)" if shift_uid else "") +
                   (f" paying {paid}" if not free else " (free)"))
 

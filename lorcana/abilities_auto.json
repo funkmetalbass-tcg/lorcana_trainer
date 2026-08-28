@@ -342,8 +342,23 @@
  ],
  "Strange Things": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.) \nUp to 2 chosen characters can't quest until the start of your next turn. Draw a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "quest_lock",
+    "count": 2,
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "(A character with cost 4 or more can [Exert] to sing this song for free.) \nUp to 2 chosen characters can't quest until the start of your next turn. Draw a card."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "(A character with cost 4 or more can [Exert] to sing this song for free.) \nUp to 2 chosen characters can't quest until the start of your next turn. Draw a card."
   }
  ],
  "Sabotage": [
@@ -354,14 +369,39 @@
  ],
  "The Family Scattered": [
   {
-   "impl": "unimplemented",
-   "text": "Chosen opponent chooses 3 of their characters and returns one of those cards to their hand, puts one on the bottom of their deck, and puts one on the top of their deck."
+   "trigger": "on_play",
+   "effect": {
+    "type": "opponent_scatter"
+   },
+   "confidence": "high",
+   "source": "Chosen opponent chooses 3 of their characters and returns one of those cards to their hand, puts one on the bottom of their deck, and puts one on the top of their deck."
   }
  ],
  "Buzz's Arm": [
   {
-   "impl": "unimplemented",
-   "text": "[MISSING PIECE] If a character named Buzz Lightyear was banished this turn, you may play this item for free.\nSOME ASSEMBLY REQUIRED [Exert] — You pay 1 Ink less for the next action or item you play this turn."
+   "trigger": "static",
+   "condition": {
+    "type": "named_banished_this_turn",
+    "name": "Buzz Lightyear"
+   },
+   "effect": {
+    "type": "play_free_if"
+   },
+   "confidence": "medium",
+   "source": "[MISSING PIECE] If a character named Buzz Lightyear was banished this turn, you may play this item for free.\nSOME ASSEMBLY REQUIRED [Exert] — You pay 1 Ink less for the next action or item you play this turn."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "cost_reduce",
+    "amount": 1,
+    "filter": "action_or_item"
+   },
+   "confidence": "medium",
+   "source": "[MISSING PIECE] If a character named Buzz Lightyear was banished this turn, you may play this item for free.\nSOME ASSEMBLY REQUIRED [Exert] — You pay 1 Ink less for the next action or item you play this turn."
   }
  ],
  "The Claw": [
@@ -1273,8 +1313,31 @@
  ],
  "Battering Ram": [
   {
-   "impl": "unimplemented",
-   "text": "FULL FORCE [Exert] — Deal 1 damage to chosen damaged character.\nBREAK THROUGH [Exert], Banish this item — Banish chosen location."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "filter": {
+     "damaged": true
+    }
+   },
+   "confidence": "medium",
+   "source": "FULL FORCE [Exert] — Deal 1 damage to chosen damaged character.\nBREAK THROUGH [Exert], Banish this item — Banish chosen location."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "banish_self": true
+   },
+   "effect": {
+    "type": "banish_location"
+   },
+   "confidence": "medium",
+   "source": "FULL FORCE [Exert] — Deal 1 damage to chosen damaged character.\nBREAK THROUGH [Exert], Banish this item — Banish chosen location."
   }
  ],
  "Game Preserve - Protected Land": [
@@ -2005,8 +2068,29 @@
  ],
  "My Adventure Book": [
   {
-   "impl": "unimplemented",
-   "text": "NEW MEMORIES {}, 1{} - Reveal the top card of your deck. If it’s a non-character card or a character card named Kevin, put it into your hand. Otherwise, put it on the bottom of your deck."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1
+   },
+   "effect": {
+    "type": "look_at_top",
+    "count": 1,
+    "destination": "hand",
+    "filter": {
+     "any_of": [
+      {
+       "card_type": "non_character"
+      },
+      {
+       "card_type": "character",
+       "name": "Kevin"
+      }
+     ]
+    }
+   },
+   "confidence": "medium",
+   "source": "NEW MEMORIES {}, 1{} - Reveal the top card of your deck. If it’s a non-character card or a character card named Kevin, put it into your hand. Otherwise, put it on the bottom of your deck."
   }
  ],
  "Vine Pod": [
@@ -2793,8 +2877,37 @@
  ],
  "Potion of Malice": [
   {
-   "impl": "unimplemented",
-   "text": "SUPPRESSED ANGER [Exert], 1 Ink — Put 1 damage counter on chosen character.\nMINDLESS RAGE [Exert], Banish this item – Each opposing damaged character gains Reckless until the start of your next turn. (They can't quest and must challenge if able.)"
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1
+   },
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "chosen_opposing",
+    "ignore_resist": true
+   },
+   "confidence": "medium",
+   "source": "SUPPRESSED ANGER [Exert], 1 Ink — Put 1 damage counter on chosen character.\nMINDLESS RAGE [Exert], Banish this item – Each opposing damaged character gains Reckless until the start of your next turn. (They can't quest and must challenge if able.)"
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "banish_self": true
+   },
+   "effect": {
+    "type": "mass_grant_keyword",
+    "side": "opposing",
+    "filter": {
+     "damaged": true
+    },
+    "keyword": "reckless",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "SUPPRESSED ANGER [Exert], 1 Ink — Put 1 damage counter on chosen character.\nMINDLESS RAGE [Exert], Banish this item – Each opposing damaged character gains Reckless until the start of your next turn. (They can't quest and must challenge if able.)"
   }
  ],
  "Inscrutable Map": [
@@ -2817,8 +2930,20 @@
  ],
  "Enigmatic Inkcaster": [
   {
-   "impl": "unimplemented",
-   "text": "ITS OWN REWARD [Exert] — If you've played 2 or more cards this turn, gain 1 lore."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "condition": {
+    "type": "cards_played_this_turn",
+    "count": 2
+   },
+   "confidence": "medium",
+   "source": "ITS OWN REWARD [Exert] — If you've played 2 or more cards this turn, gain 1 lore."
   }
  ],
  "Blessed Bagpipes": [

@@ -120,7 +120,20 @@ def _cond_opponent_ahead(g, p, ctx, cond):
     return g.players[1 - p].lore > g.players[p].lore
 
 
+def _cond_cards_played_this_turn(g, p, ctx, cond):
+    """You've played N or more cards this turn (Enigmatic Inkcaster)."""
+    return g.cards_played[p] >= cond.get("count", 2)
+
+
+def _cond_named_banished_this_turn(g, p, ctx, cond):
+    """A character with this base name was banished this turn, either side
+    (Buzz's Arm MISSING PIECE)."""
+    return ("banished_base", cond.get("name")) in g.turn_flags
+
+
 _CONDITIONS = {
+    "cards_played_this_turn": _cond_cards_played_this_turn,
+    "named_banished_this_turn": _cond_named_banished_this_turn,
     "your_other_classification_count": _cond_your_other_classification_count,
     "your_other_character_count": _cond_your_other_character_count,
     "you_have_named": _cond_you_have_named,
@@ -276,9 +289,15 @@ def _eff_opponent_discard(g, p, ctx, eff):
 # ctx may carry "banished_cost" from a banish_own_char activation cost.
 # ---------------------------------------------------------------------
 def _card_matches(card, filt):
-    """Match a Card object against a filter dict."""
+    """Match a Card object against a filter dict.
+
+    "any_of" holds a list of sub-filters, any one of which is enough. My
+    Adventure Book needs it: a non-character card OR a character named Kevin.
+    """
     if not filt:
         return True
+    if filt.get("any_of"):
+        return any(_card_matches(card, f) for f in filt["any_of"])
     ct = filt.get("card_type")
     if ct == "character" and not card.is_character:
         return False
@@ -405,7 +424,102 @@ def _eff_play_from_hand_free(g, p, ctx, eff):
     g._play_card(p, pick, {}, free=True)
 
 
+
+def _eff_mass_grant_keyword(g, p, ctx, eff):
+    """Grant a keyword to every character on a side matching a filter
+    (Potion of Malice MINDLESS RAGE)."""
+    side = eff.get("side", "opposing")
+    owners = {"opposing": [1 - p], "yours": [p], "all": [p, 1 - p]}[side]
+    kw = eff.get("keyword", "reckless")
+    until = "eot" if eff.get("duration", "eot") == "eot" else p
+    n = 0
+    for c in list(g.chars.values()):
+        if c.owner in owners and _char_matches(g, c, eff.get("filter")):
+            g.effects.append({"kind": kw, "target": c.uid,
+                              "amount": 0, "until": until})
+            n += 1
+    g.emit(f"schema: {n} character(s) gain {kw}")
+
+
+def _eff_quest_lock(g, p, ctx, eff):
+    """Up to N chosen characters can't quest until the start of your next
+    turn (Strange Things). Modeled as a timed effect rather than a turn flag
+    because the lock has to survive the opponent's turn."""
+    from . import abilities
+    n = eff.get("count", 1)
+    until = "eot" if eff.get("duration") == "eot" else p
+    picked = []
+    for _ in range(n):
+        tgt = abilities._best_opp_char(
+            g, p, cond=lambda gg, c: c.uid not in [x.uid for x in picked]
+            and _char_matches(gg, c, eff.get("filter")))
+        if tgt is None:
+            break                       # "up to": fewer targets is legal
+        picked.append(tgt)
+        g.effects.append({"kind": "no_quest", "target": tgt.uid,
+                          "amount": 0, "until": until})
+    if picked:
+        g.emit("schema: quest-locks "
+               + ", ".join(c.card.base_name for c in picked))
+
+
+def _eff_banish_location(g, p, ctx, eff):
+    """Banish chosen opposing location (Battering Ram BREAK THROUGH)."""
+    opp = 1 - p
+    locs = list(g.my_locs(opp))
+    if not locs:
+        return
+    tgt = max(locs, key=lambda l: (g.loc_lore(l), l.card.cost))
+    g.emit(f"schema: banishes location {tgt.card.base_name}")
+    g.banish_loc(tgt)
+
+
+def _eff_opponent_scatter(g, p, ctx, eff):
+    """Chosen opponent picks 3 of their characters: one to hand, one to the
+    bottom of their deck, one to the top (The Family Scattered).
+
+    The opponent chooses, so the heuristic is theirs, not ours: they keep the
+    best body (top of deck, drawn next turn), take the middle one back to
+    hand, and bury the worst. With fewer than 3 characters, everything they
+    have is scattered, cheapest destination first.
+    """
+    opp = 1 - p
+    mine = list(g.my_chars(opp))
+    if not mine:
+        return
+    ranked = sorted(mine, key=lambda c: (g.eff_lore(c), g.eff_strength(c),
+                                         c.card.cost), reverse=True)
+    picks = ranked[:3]
+    dests = ["top", "hand", "bottom"][:len(picks)]
+    for c, dest in zip(picks, dests):
+        g.chars.pop(c.uid, None)
+        if dest == "hand":
+            g.players[opp].hand.append(c.card)
+        elif dest == "top":
+            g.players[opp].deck.append(c.card)      # top of deck == end
+        else:
+            g.players[opp].deck.insert(0, c.card)
+        g.emit(f"schema: {c.card.base_name}(P{opp}) -> {dest}")
+
+
+def static_free_discount(g, p, card):
+    """Alternate 'you may play this for free' costs, expressed as a static
+    entry so the existing play_cost / static_discount path handles them.
+    Returns the discount in ink (the whole cost when the condition holds)."""
+    for e in entries_for(card.name, "static"):
+        if e.get("effect", {}).get("type") != "play_free_if":
+            continue
+        if check_condition(g, p, {"card": card, "char": None},
+                           e.get("condition")):
+            return card.cost
+    return 0
+
+
 _EFFECTS = {
+    "mass_grant_keyword": _eff_mass_grant_keyword,
+    "quest_lock": _eff_quest_lock,
+    "banish_location": _eff_banish_location,
+    "opponent_scatter": _eff_opponent_scatter,
     "look_at_top": _eff_look_at_top,
     "banish_all": _eff_banish_all,
     "return_to_hand": _eff_return_to_hand,
@@ -425,6 +539,8 @@ _EFFECTS = {
 
 
 def apply_effect(g, p, ctx, eff):
+    if eff.get("type") == "play_free_if":
+        return          # handled in static_free_discount at play time
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
         g.emit(f"schema: unknown effect {eff.get('type')} (skipped)")
@@ -495,9 +611,18 @@ def _obj_is_char(obj):
 
 
 def can_activate(g, p, obj, entry):
-    """Is this activated ability legally available right now?"""
+    """Is this activated ability legally available right now?
+
+    Also checks the entry condition, so an ability that would resolve to
+    nothing is never offered. Without this, Enigmatic Inkcaster would expose
+    "exert -> gain 1 lore" before you had played 2 cards and the policy could
+    burn the exert for no effect.
+    """
     cost = entry.get("cost") or {}
     pl = g.players[p]
+    ctx = {"card": obj.card, "char": obj if _obj_is_char(obj) else None}
+    if not check_condition(g, p, ctx, entry.get("condition")):
+        return False
     if cost.get("exert", True):
         if getattr(obj, "exerted", False):
             return False

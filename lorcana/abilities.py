@@ -404,8 +404,16 @@ def cant_challenge(g, ch):
 
 
 def has_reckless(g, ch):
-    """Reckless: can't quest; must challenge each turn if able."""
-    return bool(ch.card.kw("Reckless"))
+    """Reckless: can't quest; must challenge each turn if able.
+
+    Also consults g.effects so prose-granted Reckless works (Potion of Malice
+    MINDLESS RAGE). Mirrors has_evasive; without this a grant_keyword entry
+    naming "reckless" would be written and then silently ignored.
+    """
+    if ch.card.kw("Reckless"):
+        return True
+    return any(e["kind"] == "reckless" and e["target"] == ch.uid
+               for e in g.effects)
 
 
 def has_support(g, ch):
@@ -491,7 +499,8 @@ def location_resist(g, loc):
 # Cost modifiers
 # =====================================================================
 def static_discount(g, p, card):
-    d = 0
+    from . import schema
+    d = schema.static_free_discount(g, p, card)
     # Liquidator UNDERDOG: if this is your first turn and you're not the first
     # player, you pay 1 ink less. (Global turn counter: P1's first turn is 2.)
     if card.name == "Liquidator - Iced Over" and p == 1 and g.turn <= 2:
@@ -519,6 +528,12 @@ def discount_applies(d, card):
     f = d["filt"]
     if f == "character":
         return card.is_character
+    if f == "action":
+        return card.is_action
+    if f == "item":
+        return card.is_item
+    if f == "action_or_item":
+        return card.is_action or card.is_item
     if f == "location":
         return card.is_location
     if f == "princess_queen":
@@ -1891,6 +1906,8 @@ def on_banish(g, ch, cause="damage"):
     p = ch.owner
     name = ch.card.name
     g.turn_flags.add(("banished_this_turn",))
+    g.turn_flags.add(("banished_name", name))
+    g.turn_flags.add(("banished_base", ch.card.base_name))
     # Belle - Snowfield Strategist WINTER STOCKPILE: whenever one of your
     # characters is banished, you may put that card from your discard into your
     # inkwell facedown and exerted. Belle is deleted from play before this hook

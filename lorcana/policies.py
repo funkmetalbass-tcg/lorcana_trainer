@@ -2,6 +2,8 @@
 The greedy player is also the MCTS rollout policy."""
 import random
 
+from . import abilities, combos, schema
+
 
 def default_mulligan(game, p):
     """Bottom cards costing 5+, except live combo pieces.
@@ -12,7 +14,6 @@ def default_mulligan(game, p):
     dead card. Nothing is in play at mulligan time, so hand-internal pairs are
     the only inference available -- and the only one this rule needs.
     """
-    from . import combos
     hand = game.players[p].hand
     keeps = combos.combo_mulligan_keeps(hand)
     return [c for c in hand if c.cost >= 5 and c.name not in keeps]
@@ -92,7 +93,6 @@ def greedy_policy(game, rng, epsilon=0.10):
     for a in acts:
         if a[0] != "activate" or a[1] != "schema":
             continue
-        from . import schema
         obj = game.chars.get(a[2]) \
             or next((x for x in game.items[p] if x.uid == a[2]), None) \
             or game.locs.get(a[2])
@@ -117,7 +117,6 @@ def greedy_policy(game, rng, epsilon=0.10):
     #    inks, since spending a dead card is strictly better than a hand card.
     inks = act_of("ink")
     if inks:
-        from . import combos
         protected = combos.combo_protected_names(game, p)
 
         def ink_key(a):
@@ -160,7 +159,6 @@ def greedy_policy(game, rng, epsilon=0.10):
         return max(shifts, key=shift_key)
 
     # 3. favorable challenges: kill the defender and either survive or trade up
-    from . import abilities, combos
     shift_bases = combos.live_shift_bases(game, p)
     COMBO_BASE_PENALTY = 6
     best_chal, best_score = None, 0

@@ -148,43 +148,33 @@ class Game:
 
     # ---------- derived stats (delegated to abilities) ----------
     def eff_strength(self, ch):
-        from . import abilities
         return max(0, abilities.strength(self, ch))
 
     def eff_willpower(self, ch):
-        from . import abilities
         return abilities.willpower(self, ch)
 
     def eff_lore(self, ch):
-        from . import abilities
         return abilities.lore(self, ch)
 
     def eff_resist(self, ch):
-        from . import abilities
         return abilities.resist(self, ch)
 
     def has_evasive(self, ch):
-        from . import abilities
         return abilities.has_evasive(self, ch)
 
     def can_challenge_evasive(self, ch):
-        from . import abilities
         return abilities.can_challenge_evasive(self, ch)
 
     def has_rush(self, ch):
-        from . import abilities
         return abilities.has_rush(self, ch)
 
     def has_bodyguard(self, ch):
-        from . import abilities
         return abilities.has_bodyguard(self, ch)
 
     def loc_lore(self, loc):
-        from . import abilities
         return abilities.location_lore(self, loc)
 
     def eff_loc_willpower(self, loc):
-        from . import abilities
         return abilities.location_willpower(self, loc)
 
     def is_dry(self, ch):
@@ -210,7 +200,6 @@ class Game:
 
     # ---------- turn flow ----------
     def begin_turn(self, first=False):
-        from . import abilities
         self.turn += 1
         p = self.active
         self.turn_flags = set()
@@ -245,7 +234,6 @@ class Game:
             self.draw(p, 1, forced=True)
 
     def end_turn(self):
-        from . import abilities
         p = self.active
         abilities.end_of_turn(self, p)
         # expire this-turn effects & non-static discounts
@@ -275,7 +263,6 @@ class Game:
             self.winner = p
 
     def deal_damage(self, ch, amount, apply_resist=True, challenge=False):
-        from . import abilities
         if amount <= 0:
             return
         # replacement / prevention effects (Lilo EXTRA LAYERS, Hercules EVER
@@ -294,7 +281,6 @@ class Game:
             self.banish_char(ch)
 
     def banish_char(self, ch, cause="damage"):
-        from . import abilities
         if ch.uid not in self.chars:
             return
         if abilities.replace_banish(self, ch):
@@ -320,7 +306,6 @@ class Game:
 
     def banish_item(self, item):
         """Banish an item in play, firing item-banish triggers (TAKE THAT!)."""
-        from . import abilities
         p = item.owner
         if item in self.items[p]:
             self.items[p].remove(item)
@@ -332,7 +317,6 @@ class Game:
     def discard_card(self, p, card):
         """Send a card from hand to discard, tracking count (Milo) and firing
         discard triggers (Look What You've Done)."""
-        from . import abilities
         self.players[p].discard.append(card)
         self.turn_discards[p] = self.turn_discards.get(p, 0) + 1
         abilities.on_discard(self, p, card)
@@ -349,7 +333,6 @@ class Game:
             self.banish_loc(loc)
 
     def eff_loc_resist(self, loc):
-        from . import abilities
         return abilities.location_resist(self, loc)
 
     def check_banish(self, ch):
@@ -358,7 +341,6 @@ class Game:
 
     # ---------- cost computation ----------
     def play_cost(self, p, card):
-        from . import abilities
         cost = card.cost
         cost -= abilities.static_discount(self, p, card)
         for d in self.discounts:
@@ -367,7 +349,6 @@ class Game:
         return max(0, cost)
 
     def consume_discounts(self, p, card):
-        from . import abilities
         remaining = []
         for d in self.discounts:
             if d["owner"] == p and not d.get("static") and abilities.discount_applies(d, card):
@@ -381,7 +362,6 @@ class Game:
 
     # ---------- action generation ----------
     def legal_actions(self):
-        from . import abilities
         p = self.active
         pl = self.players[p]
         acts = [("pass",)]
@@ -502,7 +482,6 @@ class Game:
         return acts
 
     def challenge_targets(self, attacker):
-        from . import abilities
         p = attacker.owner
         opp = 1 - p
         char_targets = []
@@ -525,7 +504,6 @@ class Game:
 
     # ---------- action application ----------
     def apply(self, action):
-        from . import abilities
         p = self.active
         pl = self.players[p]
         kind = action[0]
@@ -652,7 +630,6 @@ class Game:
         raise ValueError(f"unknown action {action}")
 
     def _challenge(self, attacker, kind, uid):
-        from . import abilities
         attacker.exerted = True
         # Dale SPIKE SUIT: your characters deal challenge damage with their
         # Willpower instead of their Strength (abilities.challenge_damage).
@@ -716,7 +693,6 @@ class Game:
         raise ValueError(f"{name} not in hand of P{p}")
 
     def _play_card(self, p, card, params, free=False, sung=False):
-        from . import abilities
         pl = self.players[p]
         paid = 0
         shift_uid = params.get("shift")
@@ -777,3 +753,11 @@ class Game:
             self.turn_flags.add(("played_loc", p))
         # "whenever you pay N ink or less to play a card" triggers (free counts as 0)
         abilities.on_pay_to_play(self, p, card, paid if not free else 0)
+
+
+# Imported at the bottom, not the top: engine <-> abilities is a genuine cycle
+# (abilities needs engine.LocInPlay). Binding here works because abilities.py
+# has no module-level imports of its own, so it loads cleanly once engine's
+# classes are defined. Previously each of the 24 call sites re-ran the import
+# machinery on every call -- millions of _handle_fromlist calls per search.
+from . import abilities  # noqa: E402

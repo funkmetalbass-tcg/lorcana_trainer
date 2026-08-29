@@ -149,7 +149,6 @@ def _cond_has_card_under(g, p, ctx, cond):
 
 def _cond_you_have_keyword(g, p, ctx, cond):
     """You control a character with the named keyword (Vixey)."""
-    from . import abilities
     kw = cond.get("keyword", "evasive").lower()
     fn = {"evasive": abilities.has_evasive,
           "reckless": abilities.has_reckless,
@@ -183,7 +182,6 @@ def _cond_damage_would_banish(g, p, ctx, cond):
     would usually waste the item, so it is held until it actually trades up.
     Resist is subtracted, since it reduces the damage that lands.
     """
-    from . import abilities
     n = cond.get("amount", 1)
     for c in g.my_chars(1 - p):
         if abilities.has_ward(g, c):
@@ -277,7 +275,6 @@ def _eff_cost_reduce(g, p, ctx, eff):
 
 def _resolve_target(g, p, ctx, spec):
     """Map a target spec string to a CharInPlay (or None)."""
-    from . import abilities
     if spec in (None, "self"):
         return ctx.get("char")
     if spec == "chosen_opposing":
@@ -315,7 +312,6 @@ def _eff_stat_mod(g, p, ctx, eff):
 def _eff_deal_damage(g, p, ctx, eff):
     filt = eff.get("filter")
     if filt:
-        from . import abilities
         tgt = abilities._best_opp_char(
             g, p, cond=lambda gg, c: _char_matches(gg, c, filt))
     else:
@@ -338,7 +334,6 @@ def _eff_draw_then_discard(g, p, ctx, eff):
     mandatory and part of the same effect, so it must not be skipped even
     when the draw whiffs on an empty deck. Heuristic choice: _worst_hand_card,
     the same picker Strike A Good Match and EYE FOR VALUE use."""
-    from . import abilities
     g.draw(p, eff.get("draw", 2))
     for _ in range(eff.get("discard", 1)):
         if not g.players[p].hand:
@@ -367,7 +362,6 @@ def _eff_grant_keyword(g, p, ctx, eff):
 
 
 def _eff_opponent_discard(g, p, ctx, eff):
-    from . import abilities
     opp = 1 - p
     for _ in range(eff.get("amount", 1)):
         if g.players[opp].hand:
@@ -470,7 +464,6 @@ def _eff_return_to_hand(g, p, ctx, eff):
     permanent matching the filter (Vixey STEALING IN). Items and locations
     have no lore or strength to rank by, so cost is the tiebreak.
     """
-    from . import abilities
     filt = eff.get("filter")
     side = eff.get("side", "opposing")
     zones = eff.get("zones")
@@ -493,7 +486,6 @@ def _eff_return_to_hand(g, p, ctx, eff):
 def _return_permanent(g, p, eff, filt, side, zones):
     owners = [1 - p] if side == "opposing" else [p]
     cands = []
-    from . import abilities
     if "character" in zones:
         for o in owners:
             cands += [(c, "char") for c in g.my_chars(o)
@@ -578,7 +570,6 @@ def _eff_quest_lock(g, p, ctx, eff):
     """Up to N chosen characters can't quest until the start of your next
     turn (Strange Things). Modeled as a timed effect rather than a turn flag
     because the lock has to survive the opponent's turn."""
-    from . import abilities
     n = eff.get("count", 1)
     until = "eot" if eff.get("duration") == "eot" else p
     picked = []
@@ -688,7 +679,6 @@ def _eff_move_damage(g, p, ctx, eff):
     Heuristic: pull from your most-damaged other character, since that is the
     one nearest to being banished.
     """
-    from . import abilities
     me = ctx.get("char")
     if me is None:
         return
@@ -803,7 +793,6 @@ def _run(g, p, ctx, ents):
             if cost.get("ink", 0):
                 g.pay_ink(p, cost["ink"])
             for _ in range(cost.get("discard", 0)):
-                from . import abilities
                 card = abilities._worst_hand_card(g, p)
                 if card is None:
                     break
@@ -902,7 +891,6 @@ def can_activate(g, p, obj, entry):
 
 def _pay_activation_cost(g, p, obj, entry, ctx):
     """Pay the cost. Returns False if it could not be paid."""
-    from . import abilities
     cost = entry.get("cost") or {}
     pl = g.players[p]
     if not can_activate(g, p, obj, entry):
@@ -1018,3 +1006,6 @@ def static_location_resist(g, loc):
             if eff.get("type") == "static_location_resist":
                 total += eff.get("amount", 0)
     return total
+
+
+from . import abilities  # noqa: E402

@@ -12,9 +12,41 @@ bottom so the user can audit them.
 """
 
 
+# ---------------------------------------------------------------------
+# Card-text parsers are memoized by card name.
+#
+# Card text is immutable after load, but these are called for every card in
+# hand and every permanent on board at every node of the search, so the regex
+# work dominated the profile (~1.4M re.search calls, ~13% of runtime).
+# keywords.py already parses printed keywords once at load; these helpers
+# predate that and never got the same treatment.
+#
+# Keyed by card.name rather than id(card): Card objects are shared per name via
+# CardDB, but a name key stays correct even if a second DB is loaded.
+# ---------------------------------------------------------------------
+_CARD_TEXT_MEMO = {}
+
+
+def _memo_by_card(fn):
+    cache = _CARD_TEXT_MEMO.setdefault(fn.__name__, {})
+
+    def wrapper(card):
+        name = card.name
+        try:
+            return cache[name]
+        except KeyError:
+            v = cache[name] = fn(card)
+            return v
+    wrapper.__name__ = fn.__name__
+    wrapper.__doc__ = fn.__doc__
+    wrapper.__wrapped__ = fn
+    return wrapper
+
+
 _COMBO_RE = None
 
 
+@_memo_by_card
 def combo_shift_cost(card):
     """Printed 'Combo Shift N Ink' -> N, else None.
 
@@ -26,7 +58,6 @@ def combo_shift_cost(card):
     if _COMBO_RE is None:
         import re as _re
         _COMBO_RE = _re.compile(r"\bCombo Shift\s+(\d+)\s*Ink\b")
-    from . import keywords
     m = _COMBO_RE.search(keywords.clean_text(card.text))
     return int(m.group(1)) if m else None
 
@@ -40,6 +71,7 @@ _DUO_RE = None
 _TEMP_RE = None
 
 
+@_memo_by_card
 def duo_shift_cost(card):
     """'Duo Shift N' -> N. Plays on top of TWO characters named after each half
     of the combo name (Mickey Mouse & Minnie Mouse)."""
@@ -47,11 +79,11 @@ def duo_shift_cost(card):
     if _DUO_RE is None:
         import re as _re
         _DUO_RE = _re.compile(r"\bDuo Shift\s+(\d+)")
-    from . import keywords
     m = _DUO_RE.search(keywords.clean_text(card.text))
     return int(m.group(1)) if m else None
 
 
+@_memo_by_card
 def temporary_shift_cost(card):
     """'Temporary Shift N' -> N. Like Shift, but the character returns to its
     previous form at the end of the turn."""
@@ -59,11 +91,11 @@ def temporary_shift_cost(card):
     if _TEMP_RE is None:
         import re as _re
         _TEMP_RE = _re.compile(r"\bTemporary Shift\s+(\d+)")
-    from . import keywords
     m = _TEMP_RE.search(keywords.clean_text(card.text))
     return int(m.group(1)) if m else None
 
 
+@_memo_by_card
 def shift_cost(card):
     """Printed 'Shift N' cost (generic, Phase 1), or a Shift variant."""
     if card.shift_ink is not None:
@@ -78,13 +110,13 @@ def shift_cost(card):
 _BOOST_RE = None
 
 
+@_memo_by_card
 def boost_cost(card):
     """Printed 'Boost N Ink' -> N, else None. Generic: read from card text."""
     global _BOOST_RE
     if _BOOST_RE is None:
         import re as _re
         _BOOST_RE = _re.compile(r"\bBoost\s+(\d+)\s*Ink\b")
-    from . import keywords
     m = _BOOST_RE.search(keywords.clean_text(card.text))
     return int(m.group(1)) if m else None
 
@@ -93,7 +125,6 @@ def boost_cost(card):
 # Derived stats
 # =====================================================================
 def strength(g, ch):
-    from . import schema
     s = ch.card.strength or 0
     s += schema.static_self_stat(g, ch, "str")
     name = ch.card.name
@@ -135,7 +166,6 @@ def strength(g, ch):
 
 
 def willpower(g, ch):
-    from . import schema
     w = ch.card.willpower or 0
     w += schema.static_self_stat(g, ch, "will")
     if ch.location is not None:
@@ -190,7 +220,6 @@ def lore(g, ch):
     if name == "Alice - Growing Girl" and g.eff_strength(ch) >= 10:
         l += 4
     # schema-driven static self-lore (e.g. "While you have X, +N Lore")
-    from . import schema
     l += schema.static_self_lore(g, ch)
     for e in g.effects:
         if e["kind"] == "lore" and e["target"] == ch.uid:
@@ -330,7 +359,6 @@ def has_evasive(g, ch):
     for c in g.my_chars(ch.owner):
         if c.card.name == "Peter Pan & Tinker Bell - Fast Friends":
             return True
-    from . import schema
     if schema.static_self_keyword(g, ch, "evasive"):
         return True
     return any(e["kind"] == "evasive" and e["target"] == ch.uid for e in g.effects)
@@ -497,7 +525,6 @@ def location_resist(g, loc):
     for e in g.effects:
         if e["kind"] == "resist" and e["target"] == loc.uid:
             r += e["amount"]
-    from . import schema
     r += schema.static_location_resist(g, loc)
     return r
 
@@ -506,7 +533,6 @@ def location_resist(g, loc):
 # Cost modifiers
 # =====================================================================
 def static_discount(g, p, card):
-    from . import schema
     d = schema.static_free_discount(g, p, card)
     # Liquidator UNDERDOG: if this is your first turn and you're not the first
     # player, you pay 1 ink less. (Global turn counter: P1's first turn is 2.)
@@ -1554,7 +1580,6 @@ def on_play(g, p, card, obj, params):
             g.emit(f"EASY TARGET discards {target.name}")
 
     # Phase 2: data-driven abilities
-    from . import schema
     schema.dispatch_play(g, p, card, obj, params)
 
     # after-the-fact: playing a location fires location-play triggers
@@ -1874,7 +1899,6 @@ def on_quest(g, ch, sh_banish=False, choice=None):
                     g.emit(f"ACT OF KINDNESS shields {tgt.card.base_name}")
 
     # Phase 2: data-driven abilities
-    from . import schema
     schema.dispatch_quest(g, ch)
 
     # Mickey SECRET PATH: your OTHER characters questing while he is exerted
@@ -1916,7 +1940,6 @@ def on_banish(g, ch, cause="damage"):
     g.turn_flags.add(("banished_name", name))
     g.turn_flags.add(("banished_base", ch.card.base_name))
     # data-driven "when this character is banished" triggers
-    from . import schema
     schema.dispatch_banish(g, ch, cause)
     # Belle - Snowfield Strategist WINTER STOCKPILE: whenever one of your
     # characters is banished, you may put that card from your discard into your
@@ -2240,7 +2263,6 @@ def _schema_activated_actions(g, p):
     THROUGH). Cards whose activation is hand-written in apply_activated below
     are skipped by schema.entries_for(), so there is no double exposure.
     """
-    from . import schema
     acts = []
     objs = list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p))
     for obj in objs:
@@ -2388,7 +2410,6 @@ def activated_actions(g, p):
 def apply_activated(g, p, action):
     what, uid = action[1], action[2]
     if what == "schema":
-        from . import schema
         obj = g.chars.get(uid) \
             or next((x for x in g.items[p] if x.uid == uid), None) \
             or g.locs.get(uid)
@@ -3270,3 +3291,8 @@ ASSUMPTIONS = [
  "No printed Evasive/Ward/Support/Singer exists in either deck; only the granted "
  "Evasive from Sleepy Hollow is modeled.",
 ]
+
+
+# See the note in engine.py. `from .engine import LocInPlay` stays deferred
+# (single cold call site) so importing abilities never pulls in engine.
+from . import schema, keywords  # noqa: E402

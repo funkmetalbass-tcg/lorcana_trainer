@@ -33,7 +33,6 @@ def shift_target_names(card):
     hit = _SHIFT_TARGETS.get(card.name)
     if hit is not None:
         return hit
-    from . import abilities
     if card.shift_ink is not None or abilities.temporary_shift_cost(card) is not None:
         out = frozenset((card.base_name,))
     elif (abilities.combo_shift_cost(card) is not None
@@ -117,3 +116,6 @@ def combo_mulligan_keeps(hand):
             keeps.add(c.name)
             keeps.update(o.name for o in bases)
     return keeps
+
+
+from . import abilities  # noqa: E402

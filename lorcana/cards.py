@@ -15,7 +15,7 @@ class Card:
                  "ink_types",
                  "card_type", "classifications", "strength", "willpower", "lore",
                  "move_cost", "text", "placeholder",
-                 "keywords", "residual", "schema_abilities")
+                 "keywords", "residual", "schema_abilities", "_is_song")
 
     def __init__(self, name, raw):
         self.name = name
@@ -39,6 +39,10 @@ class Card:
         self.move_cost = int(raw["Move Cost"]) if raw.get("Move Cost") not in (None, "",) else None
         self.text = re.sub(r"<[^>]+>", "", raw.get("Description", "") or "")
         self.placeholder = raw.get("_PLACEHOLDER", False)
+        # Precomputed: legal_actions() tests is_song for every card in hand at
+        # every node of the search, and it never changes after load.
+        self._is_song = (self.card_type == "Action"
+                         and "sing this song" in self.text.lower())
         # Phase 1: printed keywords parsed once at load
         desc = raw.get("Description", "") or ""
         self.keywords = parse_printed_keywords(desc)
@@ -75,7 +79,7 @@ class Card:
     @property
     def is_item(self): return self.card_type == "Item"
     @property
-    def is_song(self): return self.is_action and "sing this song" in self.text.lower()
+    def is_song(self): return self._is_song
     @property
     def is_toy(self): return "Toy" in self.classifications
 

@@ -96,6 +96,15 @@ def repair(g, pool, rng, ink_pair=None):
             # Credit each ink a (possibly dual-ink) card belongs to.
             for ink in by_name[n].ink_types:
                 counts[ink] += k
+        if not counts:
+            # An EMPTY genome credits no inks, which left keep_inks empty and
+            # made every pool card "off-ink" -- so repair() raised and
+            # `deckbuild` without --inks died before generation 0
+            # (random_genome() starts from {}). Fall back to the inks best
+            # represented in the pool itself.
+            for c in pool:
+                for ink in c.ink_types:
+                    counts[ink] += 1
         keep_inks = set(i for i, _ in counts.most_common(MAX_INKS))
     # A card is legal if it shares any ink with the kept inks.
     g = {n: k for n, k in g.items() if not by_name[n].ink_types.isdisjoint(keep_inks)}
@@ -178,25 +187,28 @@ def genome_to_text(g):
 _W = {}
 
 
-def _init_fit(db_path, field_paths, pol_name, iters):
+def _init_fit(db_path, field_paths):
+    """Worker setup. Deliberately does NOT capture the policy or iteration
+    count: those travel with each task instead, so a single Pool can serve
+    both the greedy GA phase and the MCTS verification phase. Re-creating a
+    Pool per generation meant every worker re-parsed the ~500KB card DB
+    (~95ms each) and paid process-spawn cost, per generation."""
     db = CardDB(db_path)
     _W["db"] = db
     _W["field"] = [parse_decklist(p, db)[0] for p in field_paths]
-    _W["pol"] = pol_name
-    _W["iters"] = iters
 
 
 def _fit_task(args):
-    """(genome_id, serialized_genome, opp_idx, seed, seat0) -> (gid, won)"""
-    gid, gser, opp_idx, seed, seat0 = args
+    """(gid, serialized_genome, opp_idx, seed, seat0, pol, iters) -> (gid, won)"""
+    gid, gser, opp_idx, seed, seat0, pol_name, iters = args
     db = _W["db"]
     by_name = db.cards
     deck = []
     for name, k in gser:
         deck.extend([by_name[name]] * k)
     deckO = _W["field"][opp_idx]
-    polU = make_policy(_W["pol"], _W["iters"], seed=seed * 2 + 1)
-    polO = make_policy(_W["pol"], _W["iters"], seed=seed * 2 + 2)
+    polU = make_policy(pol_name, iters, seed=seed * 2 + 1)
+    polO = make_policy(pol_name, iters, seed=seed * 2 + 2)
     won = _play(deck, deckO, polU, polO, seed, seat0)
     return (gid, won)
 
@@ -210,20 +222,34 @@ def evaluate_population(genomes, db_path, field_paths, games, pol, iters,
         gser = tuple(sorted(g.items()))
         for opp_idx in range(len(field_paths)):
             for gi in range(games):
-                tasks.append((gid, gser, opp_idx, seed0 + gi, gi % 2 == 0))
+                tasks.append((gid, gser, opp_idx, seed0 + gi,
+                              gi % 2 == 0, pol, iters))
 
     wins = Counter()
     played = Counter()
-    initargs = (db_path, field_paths, pol, iters)
+    initargs = (db_path, field_paths)
+    # chunksize: the GA phase dispatches thousands of ~10ms greedy games, where
+    # one-task-at-a-time IPC is a large fraction of the cost. MCTS verification
+    # tasks run for seconds each, so those stay at chunksize=1 to avoid a
+    # ragged tail (one worker grinding a batch while the others idle).
+    _chunk = 1
+    if pol == "greedy" and len(tasks) > workers * 4:
+        _chunk = max(1, len(tasks) // (workers * 4))
     if workers == 1:
-        _init_fit(*initargs)
+        if "db" not in _W:
+            _init_fit(*initargs)
         for t in tasks:
             gid, won = _fit_task(t)
             wins[gid] += won
             played[gid] += 1
+    elif pool_obj is not None:
+        # Reuse the caller's long-lived Pool (see evolve()).
+        for gid, won in pool_obj.imap_unordered(_fit_task, tasks, chunksize=_chunk):
+            wins[gid] += won
+            played[gid] += 1
     else:
         with Pool(workers, initializer=_init_fit, initargs=initargs) as pool_:
-            for gid, won in pool_.imap_unordered(_fit_task, tasks, chunksize=1):
+            for gid, won in pool_.imap_unordered(_fit_task, tasks, chunksize=_chunk):
                 wins[gid] += won
                 played[gid] += 1
     return [wins[i] / played[i] if played[i] else 0.0 for i in range(len(genomes))]
@@ -250,8 +276,7 @@ def mutate(g, pool, rng, rate, ink_pair=None):
     """Three mutation kinds: adjust a copy count, swap a card for a pool card,
     and introduce/remove a card entirely."""
     g = dict(g)
-    by_name = {c.name: c for c in pool}
-    legal = [c.name for c in pool]
+    legal = [c.name for c in pool]   # (by_name was built here and never used)
     n_mut = max(1, int(len(g) * rate))
     for _ in range(n_mut):
         r = rng.random()
@@ -319,47 +344,61 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
         pop = seeded_genomes(pool, rng, pop_size // 2, ink_pair)
         pop += [random_genome(pool, rng, ink_pair) for _ in range(pop_size - len(pop))]
 
-    best_g, best_f = None, -1.0
-    for gen in range(start_gen, generations):
+    # One Pool for the entire run: the GA generations, the final scoring pass
+    # and the MCTS verification all share it. Workers load the card DB once
+    # instead of once per generation.
+    _pool = None
+    if workers > 1:
+        _pool = Pool(workers, initializer=_init_fit,
+                     initargs=(db_path, field_paths))
+    try:
+        best_g, best_f = None, -1.0
+        for gen in range(start_gen, generations):
+            fits = evaluate_population(pop, db_path, field_paths, games, pol, iters,
+                                       workers, seed0=seed + gen * 1000,
+                                       pool_obj=_pool)
+            order = sorted(range(len(pop)), key=lambda i: -fits[i])
+            if fits[order[0]] > best_f:
+                best_f, best_g = fits[order[0]], dict(pop[order[0]])
+            mean_f = sum(fits) / len(fits)
+            print(f"  gen {gen:2d}/{generations}  best {100*fits[order[0]]:.0f}%  "
+                  f"mean {100*mean_f:.0f}%  (pop {len(pop)}, {games} games/deck)")
+
+            # next generation: elites + offspring
+            nxt = [dict(pop[i]) for i in order[:elite]]
+            while len(nxt) < pop_size:
+                pa = tournament_select(pop, fits, rng)
+                pb = tournament_select(pop, fits, rng)
+                child = crossover(pa, pb, pool, rng, ink_pair)
+                child = mutate(child, pool, rng, mut_rate, ink_pair)
+                nxt.append(child)
+            pop = nxt
+
+            if checkpoint:
+                tmp = checkpoint + ".tmp"
+                with open(tmp, "w") as f:
+                    json.dump({"pool_path": os.path.abspath(pool_path),
+                               "generation": gen + 1,
+                               "population": pop}, f)
+                os.replace(tmp, checkpoint)
+
+        # --- final scoring of the last population, then MCTS verification ---
         fits = evaluate_population(pop, db_path, field_paths, games, pol, iters,
-                                   workers, seed0=seed + gen * 1000)
+                                   workers, seed0=seed + 999999, pool_obj=_pool)
         order = sorted(range(len(pop)), key=lambda i: -fits[i])
-        if fits[order[0]] > best_f:
-            best_f, best_g = fits[order[0]], dict(pop[order[0]])
-        mean_f = sum(fits) / len(fits)
-        print(f"  gen {gen:2d}/{generations}  best {100*fits[order[0]]:.0f}%  "
-              f"mean {100*mean_f:.0f}%  (pop {len(pop)}, {games} games/deck)")
+        finalists = [pop[i] for i in order[:verify_top]]
+        if best_g is not None and not any(g == best_g for g in finalists):
+            finalists.append(best_g)
 
-        # next generation: elites + offspring
-        nxt = [dict(pop[i]) for i in order[:elite]]
-        while len(nxt) < pop_size:
-            pa = tournament_select(pop, fits, rng)
-            pb = tournament_select(pop, fits, rng)
-            child = crossover(pa, pb, pool, rng, ink_pair)
-            child = mutate(child, pool, rng, mut_rate, ink_pair)
-            nxt.append(child)
-        pop = nxt
-
-        if checkpoint:
-            tmp = checkpoint + ".tmp"
-            with open(tmp, "w") as f:
-                json.dump({"pool_path": os.path.abspath(pool_path),
-                           "generation": gen + 1,
-                           "population": pop}, f)
-            os.replace(tmp, checkpoint)
-
-    # --- final scoring of the last population, then MCTS verification ---
-    fits = evaluate_population(pop, db_path, field_paths, games, pol, iters,
-                               workers, seed0=seed + 999999)
-    order = sorted(range(len(pop)), key=lambda i: -fits[i])
-    finalists = [pop[i] for i in order[:verify_top]]
-    if best_g is not None and not any(g == best_g for g in finalists):
-        finalists.append(best_g)
-
-    print(f"\nVerifying {len(finalists)} finalist(s) with MCTS "
-          f"({verify_games} games/opponent, {verify_iters} iters)... this is the slow part.")
-    vfits = evaluate_population(finalists, db_path, field_paths, verify_games,
-                                "mcts", verify_iters, workers, seed0=seed + 7)
+        print(f"\nVerifying {len(finalists)} finalist(s) with MCTS "
+              f"({verify_games} games/opponent, {verify_iters} iters)... this is the slow part.")
+        vfits = evaluate_population(finalists, db_path, field_paths, verify_games,
+                                    "mcts", verify_iters, workers, seed0=seed + 7,
+                                    pool_obj=_pool)
+    finally:
+        if _pool is not None:
+            _pool.close()
+            _pool.join()
     vorder = sorted(range(len(finalists)), key=lambda i: -vfits[i])
     champion = finalists[vorder[0]]
 

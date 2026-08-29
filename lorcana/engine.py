@@ -9,6 +9,48 @@ import random
 LORE_TO_WIN = 20
 
 
+class _BoardDict(dict):
+    """dict that counts mutations so my_chars()/my_locs() can cache safely.
+
+    chars/locs are mutated from engine.py, abilities.py and schema.py.
+    Centralising invalidation here means a future call site cannot silently
+    stale the cache the way an explicit bump at each known mutation would.
+    """
+    __slots__ = ("version",)
+
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k)
+        self.version = 0
+
+    def __setitem__(self, k, v):
+        self.version += 1
+        super().__setitem__(k, v)
+
+    def __delitem__(self, k):
+        self.version += 1
+        super().__delitem__(k)
+
+    def pop(self, *a):
+        self.version += 1
+        return super().pop(*a)
+
+    def popitem(self):
+        self.version += 1
+        return super().popitem()
+
+    def clear(self):
+        self.version += 1
+        super().clear()
+
+    def update(self, *a, **k):
+        self.version += 1
+        super().update(*a, **k)
+
+    def setdefault(self, *a):
+        self.version += 1
+        return super().setdefault(*a)
+
+
 class CharInPlay:
     __slots__ = ("uid", "card", "owner", "damage", "exerted", "turn_played",
                  "location", "under", "boosted")
@@ -98,8 +140,9 @@ class Game:
         self.turn = 0            # global half-turn counter, +1 each player turn
         self.winner = None       # 0, 1, or None
         self.uid_seq = 0
-        self.chars = {}          # uid -> CharInPlay
-        self.locs = {}           # uid -> LocInPlay
+        self.chars = _BoardDict()   # uid -> CharInPlay
+        self.locs = _BoardDict()    # uid -> LocInPlay
+        self._own_cache = None
         self.items = {0: [], 1: []}   # player -> list of ItemInPlay
         self.effects = []        # dicts: kind,target,amount,until(player) / 'eot'
         self.turn_flags = set()  # cleared at start of every turn
@@ -115,8 +158,9 @@ class Game:
         g.players = [p.clone() for p in self.players]
         g.active = self.active; g.turn = self.turn; g.winner = self.winner
         g.uid_seq = self.uid_seq
-        g.chars = {u: c.clone() for u, c in self.chars.items()}
-        g.locs = {u: l.clone() for u, l in self.locs.items()}
+        g.chars = _BoardDict((u, c.clone()) for u, c in self.chars.items())
+        g.locs = _BoardDict((u, l.clone()) for u, l in self.locs.items())
+        g._own_cache = None
         g.items = {0: [i.clone() for i in self.items[0]],
                    1: [i.clone() for i in self.items[1]]}
         g.effects = [dict(e) for e in self.effects]
@@ -143,8 +187,29 @@ class Game:
         self.uid_seq += 1
         return self.uid_seq
 
-    def my_chars(self, p):   return [c for c in self.chars.values() if c.owner == p]
-    def my_locs(self, p):    return [l for l in self.locs.values() if l.owner == p]
+    def _own(self):
+        """Per-owner char/loc lists, rebuilt only when the board changes.
+
+        These were millions of list rebuilds per game. Returned lists are
+        SHARED and must not be mutated by callers; a board change builds fresh
+        lists, so a reference taken before a banish still sees the pre-banish
+        snapshot, matching the old copy-every-time semantics.
+        """
+        cv, lv = self.chars.version, self.locs.version
+        c = self._own_cache
+        if c is not None and c[0] == cv and c[1] == lv:
+            return c
+        c0, c1, l0, l1 = [], [], [], []
+        for ch in self.chars.values():
+            (c0 if ch.owner == 0 else c1).append(ch)
+        for lo in self.locs.values():
+            (l0 if lo.owner == 0 else l1).append(lo)
+        c = (cv, lv, c0, c1, l0, l1)
+        self._own_cache = c
+        return c
+
+    def my_chars(self, p):   return self._own()[2 + p]
+    def my_locs(self, p):    return self._own()[4 + p]
 
     # ---------- derived stats (delegated to abilities) ----------
     def eff_strength(self, ch):
@@ -413,11 +478,13 @@ class Game:
         # quests. Reckless characters can't quest (generic, Phase 1). A character
         # questing at Sleepy Hollow MAY banish it for 2 lore + Evasive -> expose
         # both choices as separate actions.
+        # Build the no_quest target set once instead of rescanning self.effects
+        # once per character.
+        no_quest = {e["target"] for e in self.effects if e["kind"] == "no_quest"}
         for ch in self.my_chars(p):
             if not ch.exerted and self.is_dry(ch) and not abilities.has_reckless(self, ch) \
                     and ("no_quest", ch.uid) not in self.turn_flags \
-                    and not any(e["kind"] == "no_quest" and e["target"] == ch.uid
-                                for e in self.effects) \
+                    and ch.uid not in no_quest \
                     and pl.ink_ready >= abilities.action_ink_surcharge(self, ch):
                 loc = self.locs.get(ch.location)
                 if loc and loc.card.name == "Sleepy Hollow - The Bridge":
@@ -432,6 +499,7 @@ class Game:
                     acts.append(("quest", ch.uid))
         # challenges
         opp = 1 - p
+
         reckless_must_challenge = False
         for ch in self.my_chars(p):
             if ch.exerted or (not self.is_dry(ch) and not self.has_rush(ch)):

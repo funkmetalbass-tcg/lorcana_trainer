@@ -59,14 +59,30 @@ def _hand_implemented():
     return _HAND
 
 
+_ENTRIES_CACHE = {}
+_EMPTY = ()
+
+
 def entries_for(card_name, trigger):
     # A card implemented in Python must never also run schema entries, or its
     # effects would double-apply. Manual entries are exempt (they are authored
     # deliberately and are expected to be the single source for that card).
-    if card_name in _hand_implemented() and card_name not in (registry_manual_names()):
-        return []
-    ents = registry().get(card_name) or []
-    return [e for e in ents if isinstance(e, dict) and e.get("trigger") == trigger]
+    #
+    # Pure function of (card_name, trigger) over immutable JSON, so memoized:
+    # this was rebuilding a list several million times per search. The returned
+    # sequence is SHARED -- callers must treat it as read-only.
+    key = (card_name, trigger)
+    hit = _ENTRIES_CACHE.get(key)
+    if hit is not None:
+        return hit
+    if card_name in _hand_implemented() and card_name not in registry_manual_names():
+        out = _EMPTY
+    else:
+        ents = registry().get(card_name) or _EMPTY
+        out = [e for e in ents
+               if isinstance(e, dict) and e.get("trigger") == trigger] or _EMPTY
+    _ENTRIES_CACHE[key] = out
+    return out
 
 
 _MANUAL_NAMES = None

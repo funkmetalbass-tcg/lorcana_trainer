@@ -30,8 +30,18 @@ def greedy_policy(game, rng, epsilon=0.10):
         return rng.choice(acts)
     p = game.active
 
+    # Bucket once instead of rescanning `acts` for every tier below. act_of()
+    # plus the per-key "activate" loops walked the whole action list ~14 times
+    # per decision, and this runs for every step of every rollout. Insertion
+    # order within a bucket is preserved, so first-match tiers pick exactly
+    # what they picked before.
+    _buckets = {}
+    for _a in acts:
+        _buckets.setdefault(_a[0], []).append(_a)
+    _activates = _buckets.get("activate", ())
+
     def act_of(kind):
-        return [a for a in acts if a[0] == kind]
+        return _buckets.get(kind, [])
 
     # 1. lethal quest first. A Sleepy Hollow banish ('sh_banish') adds +2 lore,
     #    so account for that when checking for lethal.
@@ -52,37 +62,37 @@ def greedy_policy(game, rng, epsilon=0.10):
     # 1b. free lore from activated abilities (ONLY THE BOLD): a Reckless body
     #     that can't quest converting an exert into 1 lore is pure upside.
     #     Guidebook: draw 2 for 1 ink is taken when hand is thin.
-    for a in acts:
-        if a[0] == "activate" and a[1] == "only_the_bold":
+    for a in _activates:
+        if a[1] == "only_the_bold":
             return a
     # Dumbo BREAKING RECORDS: 1 ink -> draw + 1 lore is always worth it
-    for a in acts:
-        if a[0] == "activate" and a[1] == "breaking_records":
+    for a in _activates:
+        if a[1] == "breaking_records":
             return a
     # Gyro-Evac TAKE HER UP: free-ish evasion for our best quester
-    for a in acts:
-        if a[0] == "activate" and a[1] == "gyro_evasive":
+    for a in _activates:
+        if a[1] == "gyro_evasive":
             return a
     # Look What You've Done: replaying it from the discard is pure value
-    for a in acts:
-        if a[0] == "activate" and a[1] == "lwyd_from_discard":
+    for a in _activates:
+        if a[1] == "lwyd_from_discard":
             return a
     # Angel GOOD AIM: discard to deal 2 -- only with a fat hand
-    for a in acts:
-        if a[0] == "activate" and a[1] == "good_aim" and len(game.players[p].hand) >= 4:
+    for a in _activates:
+        if a[1] == "good_aim" and len(game.players[p].hand) >= 4:
             return a
     # Rapunzel THE CALL OF ADVENTURE: discarding a card for +1 Strength and
     # Evasive is card disadvantage, so it is only taken with a surplus hand
     # (same bar as GOOD AIM) and only while she is still unprotected -- once
     # Evasive is up, a second activation this turn is impossible anyway.
-    for a in acts:
-        if a[0] == "activate" and a[1] == "call_of_adventure" \
+    for a in _activates:
+        if a[1] == "call_of_adventure" \
                 and len(game.players[p].hand) >= 4:
             ch = game.chars.get(a[2])
             if ch is not None and not game.has_evasive(ch):
                 return a
-    for a in acts:
-        if a[0] == "activate" and a[1] == "guidebook" and len(game.players[p].hand) <= 4:
+    for a in _activates:
+        if a[1] == "guidebook" and len(game.players[p].hand) <= 4:
             return a
     # Generic schema-driven activations ("activate", "schema", uid, index).
     # The hand-written keys above each encode a bespoke judgement; data-driven
@@ -90,8 +100,8 @@ def greedy_policy(game, rng, epsilon=0.10):
     # ability when its whole cost is an exert we are not otherwise using, and
     # skip anything that spends ink, cards or bodies. Without this they would
     # sit in the action space and only ever be explored at random by MCTS.
-    for a in acts:
-        if a[0] != "activate" or a[1] != "schema":
+    for a in _activates:
+        if a[1] != "schema":
             continue
         obj = game.chars.get(a[2]) \
             or next((x for x in game.items[p] if x.uid == a[2]), None) \
@@ -149,8 +159,8 @@ def greedy_policy(game, rng, epsilon=0.10):
     #     NB: test for `is not None`, not truthiness -- uid 0 is a valid target
     #     and silently disabled this whole tier when the base happened to be the
     #     first character created in the game.
-    shifts = [a for a in acts
-              if a[0] == "play" and len(a) > 2 and a[2]
+    shifts = [a for a in act_of("play")
+              if len(a) > 2 and a[2]
               and dict(a[2]).get("shift") is not None]
     if shifts:
         def shift_key(a):

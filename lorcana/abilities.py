@@ -2331,13 +2331,14 @@ def activated_actions(g, p):
     # Rapunzel & Flynn Rider FRESH START: characters discarded this turn
     # (while R&F was in play) may be played from the discard, paying all costs.
     if g.active == p:
-        for flag in list(g.turn_flags):
-            if isinstance(flag, tuple) and len(flag) == 3 \
-                    and flag[0] == "fresh_start" and flag[1] == p:
-                cname = flag[2]
-                c = next((x for x in g.players[p].discard if x.name == cname), None)
-                if c is not None and g.players[p].ink_ready >= c.cost:
-                    acts.append(("activate", "fresh_start_play", cname))
+        # sorted(): turn_flags is a SET, so iterating it raw made action order
+        # PYTHONHASHSEED-dependent (see the note on Woody above).
+        for cname in sorted(f[2] for f in g.turn_flags
+                            if isinstance(f, tuple) and len(f) == 3
+                            and f[0] == "fresh_start" and f[1] == p):
+            c = next((x for x in g.players[p].discard if x.name == cname), None)
+            if c is not None and g.players[p].ink_ready >= c.cost:
+                acts.append(("activate", "fresh_start_play", cname))
     # Look What You've Done: during your turn it may be played from the
     # discard (you pay all costs).
     if g.active == p:
@@ -2950,11 +2951,16 @@ def play_param_options(g, p, card):
                 if c.is_character and c.cost <= 2}
         frees = {c.name for c in g.players[p].hand
                  if c.is_character and c.cost <= 2 and c.name != name}
+        # sorted(): rets/frees are SETS, and iterating them raw made the action
+        # order depend on PYTHONHASHSEED -- so the same seed produced different
+        # games in different processes. Every other branch here already sorts.
+        rets_l, frees_l = sorted(rets), sorted(frees)
         if both:
-            combos = [(r, f) for r in (list(rets) + [None])
-                      for f in (list(frees) + [None])]
+            combos = [(r, f) for r in (rets_l + [None])
+                      for f in (frees_l + [None])]
         else:
-            combos = [(r, None) for r in rets] + [(None, f) for f in frees] + [(None, None)]
+            combos = ([(r, None) for r in rets_l]
+                      + [(None, f) for f in frees_l] + [(None, None)])
         for r, f in combos:
             opts.append((("ret", r), ("free", f)))
     elif name == "Get to Safety!":

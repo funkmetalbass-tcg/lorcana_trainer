@@ -1,0 +1,8 @@
+*.ck
+*.pyc
+__pycache__/
+.git/
+.gitignore
+*.md
+emsteel_deckbuilder_*.txt
+out/

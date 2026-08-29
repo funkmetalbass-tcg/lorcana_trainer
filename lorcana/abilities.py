@@ -1915,6 +1915,9 @@ def on_banish(g, ch, cause="damage"):
     g.turn_flags.add(("banished_this_turn",))
     g.turn_flags.add(("banished_name", name))
     g.turn_flags.add(("banished_base", ch.card.base_name))
+    # data-driven "when this character is banished" triggers
+    from . import schema
+    schema.dispatch_banish(g, ch, cause)
     # Belle - Snowfield Strategist WINTER STOCKPILE: whenever one of your
     # characters is banished, you may put that card from your discard into your
     # inkwell facedown and exerted. Belle is deleted from play before this hook

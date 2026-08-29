@@ -13,7 +13,8 @@ human-reviewed) merges beneath it -- manual always wins. The engine calls
 dispatch_* at each trigger point; unknown cards simply have no entries.
 
 Currently implemented (deliberately small -- grow as templates demand):
-  triggers:   on_play, on_play_character, on_quest, activated, static
+  triggers:   on_play, on_play_character, on_quest, on_banish, activated,
+              static
   conditions: your_other_classification_count, you_have_named, opponent_ahead
   effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage,
               draw_then_discard, grant_keyword
@@ -193,7 +194,32 @@ def _cond_damage_would_banish(g, p, ctx, cond):
     return False
 
 
+def _cond_you_have_classification(g, p, ctx, cond):
+    """You control a character with any of the named classifications.
+
+    The banished character is already out of g.chars when on_banish fires
+    (engine.banish_char deletes at :302 and dispatches at :308), so a card
+    like Sleepy - Deep Sleeper, who is himself a Seven Dwarf, correctly does
+    not satisfy his own condition.
+    """
+    want = cond.get("any_of") or [cond.get("name")]
+    want = {w for w in want if w}
+    return any(c.card.classifications & want for c in g.my_chars(p))
+
+
+def _cond_first_turn_on_the_draw(g, p, ctx, cond):
+    """It is your first turn and you were not the first player.
+
+    g.turn is a global half-turn counter incremented once per player turn,
+    and player 0 always starts (engine.Game sets active = 0 and start() does
+    not flip it), so the second player's first turn is exactly turn 2.
+    """
+    return p == 1 and g.turn == 2
+
+
 _CONDITIONS = {
+    "you_have_classification": _cond_you_have_classification,
+    "first_turn_on_the_draw": _cond_first_turn_on_the_draw,
     "damage_would_banish": _cond_damage_would_banish,
     "damage_to_move": _cond_damage_to_move,
     "inkwell_all_exerted": _cond_inkwell_all_exerted,
@@ -610,17 +636,32 @@ def _eff_opponent_scatter(g, p, ctx, eff):
 
 
 def static_free_discount(g, p, card):
-    """Alternate 'you may play this for free' costs, expressed as a static
-    entry so the existing play_cost / static_discount path handles them.
-    Returns the discount in ink (the whole cost when the condition holds)."""
-    for e in entries_for(card.name, "static"):
-        if e.get("effect", {}).get("type") != "play_free_if":
-            continue
-        if check_condition(g, p, {"card": card, "char": None},
-                           e.get("condition")):
-            return card.cost
-    return 0
+    """Conditional self-discounts on playing this card, expressed as static
+    entries so the existing play_cost / static_discount path handles them.
 
+    "play_free_if" waives the whole cost; "play_cost_reduction" takes a fixed
+    amount off (Christopher Robin UNDERDOG). Returns the total ink discount.
+    """
+    total = 0
+    ctx = {"card": card, "char": None}
+    for e in entries_for(card.name, "static"):
+        t = e.get("effect", {}).get("type")
+        if t not in ("play_free_if", "play_cost_reduction"):
+            continue
+        if not check_condition(g, p, ctx, e.get("condition")):
+            continue
+        total += card.cost if t == "play_free_if" \
+            else e["effect"].get("amount", 1)
+    return min(total, card.cost)
+
+
+
+def _eff_each_player_draw(g, p, ctx, eff):
+    """Each player draws N, active player first (Miriam Mendelsohn)."""
+    n = eff.get("amount", 1)
+    for who in (p, 1 - p):
+        g.draw(who, n)
+    g.emit(f"schema: each player draws {n}")
 
 
 def _eff_self_to_deck_top(g, p, ctx, eff):
@@ -699,6 +740,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "each_player_draw": _eff_each_player_draw,
     "self_to_deck_top": _eff_self_to_deck_top,
     "move_damage": _eff_move_damage,
     "reveal_and_play": _eff_reveal_and_play,
@@ -725,7 +767,8 @@ _EFFECTS = {
 
 
 def apply_effect(g, p, ctx, eff):
-    if eff.get("type") in ("play_free_if", "static_self_stat",
+    if eff.get("type") in ("play_free_if", "play_cost_reduction",
+                           "static_self_stat",
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist"):
         return          # consumed by the static hooks, not dispatched
@@ -903,6 +946,15 @@ def dispatch_activated(g, p, obj, index):
         return
     if check_condition(g, p, ctx, entry.get("condition")):
         apply_effect(g, p, ctx, entry["effect"])
+
+
+def dispatch_banish(g, ch, cause="damage"):
+    """'When this character is banished' triggers. Called from
+    abilities.on_banish, by which point the character is already off the
+    board, so conditions read the post-banish state."""
+    ents = entries_for(ch.card.name, "on_banish")
+    if ents:
+        _run(g, ch.owner, {"card": ch.card, "char": ch, "source": ch}, ents)
 
 
 def dispatch_quest(g, ch):

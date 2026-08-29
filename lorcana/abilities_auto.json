@@ -174,8 +174,20 @@
  ],
  "Sleepy - Deep Sleeper": [
   {
-   "impl": "unimplemented",
-   "text": "[PLEASANT DREAMS] When this character is banished, if you have a Seven Dwarfs or Princess character in play, you may draw a card."
+   "trigger": "on_banish",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[PLEASANT DREAMS] When this character is banished, if you have a Seven Dwarfs or Princess character in play, you may draw a card.",
+   "condition": {
+    "type": "you_have_classification",
+    "any_of": [
+     "Seven Dwarfs",
+     "Princess"
+    ]
+   }
   }
  ],
  "Alma Madrigal - Heart of the Family": [
@@ -1121,8 +1133,16 @@
  ],
  "Christopher Robin - Joining the Fun": [
   {
-   "impl": "unimplemented",
-   "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character."
+   "trigger": "static",
+   "condition": {
+    "type": "first_turn_on_the_draw"
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character."
   }
  ],
  "Witches of Morva - Orddu, Orwen, and Orgoch": [
@@ -1276,8 +1296,16 @@
  ],
  "White Rabbit - Late Again": [
   {
-   "impl": "unimplemented",
-   "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nEvasive (Only characters with Evasive can challenge this character.)"
+   "trigger": "static",
+   "condition": {
+    "type": "first_turn_on_the_draw"
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nEvasive (Only characters with Evasive can challenge this character.)"
   }
  ],
  "Tod - Playful Kit": [
@@ -1554,8 +1582,16 @@
  ],
  "Splatter Phoenix - Rejected Artist": [
   {
-   "impl": "unimplemented",
-   "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nWard (Opponents can't choose this character except to challenge.)"
+   "trigger": "static",
+   "condition": {
+    "type": "first_turn_on_the_draw"
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nWard (Opponents can't choose this character except to challenge.)"
   }
  ],
  "Tamatoa - Seeker of Shine": [
@@ -1692,8 +1728,16 @@
  ],
  "Judy Hopps - Snowball Patrol": [
   {
-   "impl": "unimplemented",
-   "text": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nResist +1 (Damage dealt to this character is reduced by 1.)"
+   "trigger": "static",
+   "condition": {
+    "type": "first_turn_on_the_draw"
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[UNDERDOG] If this is your first turn and you're not the first player, you pay 1 Ink less to play this character.\nResist +1 (Damage dealt to this character is reduced by 1.)"
   }
  ],
  "Keep the Ancient Ways": [
@@ -1758,8 +1802,13 @@
  ],
  "Miriam Mendelsohn - Ticket Holder": [
   {
-   "impl": "unimplemented",
-   "text": "I GOT ’EM! When you play this character, each player draws a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "each_player_draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "I GOT ’EM! When you play this character, each player draws a card."
   }
  ],
  "Woody - Town Sheriff": [
@@ -1788,8 +1837,13 @@
  ],
  "Jasmine - Vine Expert": [
   {
-   "impl": "unimplemented",
-   "text": "[SHARED RESOURCES] When you play this character, each player draws a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "each_player_draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[SHARED RESOURCES] When you play this character, each player draws a card."
   }
  ],
  "Mike Wazowski - Well-Rounded Entertainer": [
@@ -3755,8 +3809,13 @@
  ],
  "Kuzco - Wanted Llama": [
   {
-   "impl": "unimplemented",
-   "text": "OK, WHERE AM I? When this character is banished, you may draw a card."
+   "trigger": "on_banish",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "OK, WHERE AM I? When this character is banished, you may draw a card."
   }
  ],
  "Dolores Madrigal - Easy Listener": [

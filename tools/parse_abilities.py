@@ -38,6 +38,10 @@ def core_prose(desc):
     t = clean_text(desc)
     t = re.sub(r"\([^)]*\)", "", t)          # reminder text
     t = re.sub(r"\[[^\]]*\]", "", t)         # [NAMED ABILITY] labels
+    # Some cards print the ability name bare, with no brackets at all
+    # (Miriam Mendelsohn: "I GOT 'EM! When you play this character, ...").
+    # Require a following capitalised word so ordinary prose is untouched.
+    t = re.sub(r"^\s*[A-Z][A-Z0-9'\u2019 &.,-]{2,40}[!?.]\s+(?=[A-Z])", "", t)
     t = t.replace("\u2019", "'")             # curly apostrophe
     t = t.replace("{}", " ")                 # ink/lore symbol notation
     # Printed keywords are already handled by the keyword layer; leaving them
@@ -428,6 +432,18 @@ def _c(m):
     return {"type": "self_to_deck_top"}
 
 
+
+# --- Phase 8 clauses -------------------------------------------------
+@clause(r"[Ee]ach player draws a card\.?")
+def _c(m):
+    return {"type": "each_player_draw", "amount": 1}
+
+
+@clause(r"[Ee]ach player draws (\d+) cards\.?")
+def _c(m):
+    return {"type": "each_player_draw", "amount": int(m.group(1))}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -503,6 +519,12 @@ def parse_static_line(line):
     ss = parse_static_self(line)
     if ss:
         return ss
+    m = _SELF_DISCOUNT.fullmatch(line.strip())
+    if m:
+        return {"trigger": "static",
+                "condition": {"type": "first_turn_on_the_draw"},
+                "effect": {"type": "play_cost_reduction",
+                           "amount": int(m.group(1))}}
     m = _FREE_IF.fullmatch(line.strip())
     if m:
         return {"trigger": "static",
@@ -514,6 +536,11 @@ def parse_static_line(line):
 
 _COND_PREFIX = re.compile(r"^If you've played (\d+) or more cards this turn,\s*",
                           re.IGNORECASE)
+
+_SELF_DISCOUNT = re.compile(
+    r"If this is your first turn and you're not the first player, "
+    r"you pay (\d+) Ink less to play this (?:character|item|action|location)\.?",
+    re.IGNORECASE)
 
 
 # The Strength symbol arrives as "{}" in this card export. Confirmed by
@@ -698,6 +725,57 @@ def parse_play_character_watcher(prose):
     return cost, effects
 
 
+
+_ON_BANISH = re.compile(r"^When this character is banished,\s*(?P<rest>.+)$",
+                        re.IGNORECASE)
+_CLASS_COND = re.compile(
+    r"^if you have an? (?P<a>[A-Za-z' ]+?)(?: or (?P<b>[A-Za-z' ]+?))? "
+    r"character in play,\s*", re.IGNORECASE)
+
+# Classification names as they appear in the card data.
+_CLASS_CANON = {"seven dwarfs": "Seven Dwarfs", "princess": "Princess",
+                "hero": "Hero", "villain": "Villain", "ally": "Ally",
+                "dreamborn": "Dreamborn", "storyborn": "Storyborn",
+                "floodborn": "Floodborn", "captain": "Captain",
+                "pirate": "Pirate", "sorcerer": "Sorcerer", "queen": "Queen",
+                "king": "King", "prince": "Prince", "knight": "Knight",
+                "musketeer": "Musketeer", "inventor": "Inventor",
+                "detective": "Detective", "mentor": "Mentor",
+                "madrigal": "Madrigal", "puppy": "Puppy", "titan": "Titan",
+                "fairy": "Fairy", "deity": "Deity", "alien": "Alien",
+                "robot": "Robot", "tigger": "Tigger", "broom": "Broom",
+                "entangled": "Entangled", "racer": "Racer", "seer": "Seer"}
+
+
+def parse_on_banish(prose):
+    """'When this character is banished, [if <classification>,] <clause>'."""
+    m = _ON_BANISH.match(prose.strip())
+    if not m:
+        return None
+    rest = m.group("rest").strip()
+    cond = None
+    cm = _CLASS_COND.match(rest)
+    if cm:
+        names = [cm.group("a"), cm.group("b")]
+        canon = []
+        for n in names:
+            if not n:
+                continue
+            c = _CLASS_CANON.get(n.strip().lower())
+            if c is None:
+                return None        # unknown classification -> leave the gap
+            canon.append(c)
+        cond = {"type": "you_have_classification", "any_of": canon}
+        rest = rest[cm.end():].strip()
+    rest = _MAY.sub("", rest)
+    if rest and rest[0].islower():
+        rest = rest[0].upper() + rest[1:]
+    effects = parse_by_clauses(rest)
+    if not effects:
+        return None
+    return cond, effects
+
+
 def parse_static_card(desc):
     """Cards whose only text is static lines (Randall Boggs, Ursula)."""
     lines = ability_lines(desc)
@@ -801,6 +879,19 @@ def parse_card(name, raw):
             e["confidence"] = "medium"
             e["source"] = _src(desc)
         return st
+
+    # "When this character is banished" triggers.
+    ob = parse_on_banish(prose)
+    if ob:
+        cond, effects = ob
+        ents = []
+        for e in effects:
+            ent = {"trigger": "on_banish", "effect": e,
+                   "confidence": "medium", "source": _src(desc)}
+            if cond:
+                ent["condition"] = cond
+            ents.append(ent)
+        return ents
 
     # "Whenever you play a character" watchers.
     watch = parse_play_character_watcher(prose)

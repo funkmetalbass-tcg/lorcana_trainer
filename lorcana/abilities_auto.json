@@ -774,8 +774,29 @@
  ],
  "Syndrome - Out for Revenge": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink [GOT ME MONOLOGUING!] Whenever this character quests, return a Robot character card from your discard to your hand. Then, you may play or shift a Robot character with cost 8 or less for free."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "return_from_discard",
+    "filter": {
+     "card_type": "character",
+     "classification": "Robot"
+    }
+   },
+   "confidence": "medium",
+   "source": "Shift 4 Ink [GOT ME MONOLOGUING!] Whenever this character quests, return a Robot character card from your discard to your hand. Then, you may play or shift a Robot character with cost 8 or less for free."
+  },
+  {
+   "trigger": "on_quest",
+   "effect": {
+    "type": "play_from_hand_free",
+    "max_cost": 8,
+    "filter": {
+     "card_type": "character",
+     "classification": "Robot"
+    }
+   },
+   "confidence": "medium",
+   "source": "Shift 4 Ink [GOT ME MONOLOGUING!] Whenever this character quests, return a Robot character card from your discard to your hand. Then, you may play or shift a Robot character with cost 8 or less for free."
   }
  ],
  "Angus - Mighty Horse": [
@@ -786,8 +807,28 @@
  ],
  "Incrediboy - Buddy Pine": [
   {
-   "impl": "unimplemented",
-   "text": "[NERDING OUT] When you play this character, if a Hero character is in play, gain 1 lore.[SPOILER ALERT] This character also counts as being named Syndrome for Shift."
+   "trigger": "on_play",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[NERDING OUT] When you play this character, if a Hero character is in play, gain 1 lore.[SPOILER ALERT] This character also counts as being named Syndrome for Shift.",
+   "condition": {
+    "type": "classification_in_play",
+    "any_of": [
+     "Hero"
+    ]
+   }
+  },
+  {
+   "trigger": "static",
+   "effect": {
+    "type": "shift_alias",
+    "name": "Syndrome"
+   },
+   "confidence": "medium",
+   "source": "[NERDING OUT] When you play this character, if a Hero character is in play, gain 1 lore.[SPOILER ALERT] This character also counts as being named Syndrome for Shift."
   }
  ],
  "Mrs. Incredible - Helen Parr": [
@@ -804,14 +845,32 @@
  ],
  "Rat Capone - Rodent Gangster": [
   {
-   "impl": "unimplemented",
-   "text": "[SHADAAP!] While this character has no damage, he gets +3 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "self_undamaged"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 3
+   },
+   "confidence": "medium",
+   "source": "[SHADAAP!] While this character has no damage, he gets +3 Strength."
   }
  ],
  "Omnidroid - V.9": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 2 Ink (You may pay 2 Ink to play this on top of one of your characters named Omnidroid.)[ENEMY DETECTED] When you play this character, if you used Shift to play it, you may deal 2 damage to chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 2,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "Shift 2 Ink (You may pay 2 Ink to play this on top of one of your characters named Omnidroid.)[ENEMY DETECTED] When you play this character, if you used Shift to play it, you may deal 2 damage to chosen character.",
+   "condition": {
+    "type": "played_via_shift"
+   }
   }
  ],
  "Mr. Incredible - Taking Out the Trash": [
@@ -845,14 +904,41 @@
  ],
  "Omnidroid - V.10": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Omnidroid.)[ELECTRO-ARMOR] While there's a card under this character, it gains Resist +2. (Damage dealt to them is reduced by 2.)"
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "resist",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Omnidroid.)[ELECTRO-ARMOR] While there's a card under this character, it gains Resist +2. (Damage dealt to them is reduced by 2.)"
   }
  ],
  "Merida - Formidable Archer": [
   {
-   "impl": "unimplemented",
-   "text": "[FULL QUIVER] When you play this character, you may return an action card named Three Arrows from your discard to your hand.[STEADY AIM] Whenever one of your actions deals damage to an opposing character, deal 2 damage to that character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_from_discard",
+    "filter": {
+     "card_type": "action",
+     "name": "Three Arrows"
+    }
+   },
+   "confidence": "medium",
+   "source": "[FULL QUIVER] When you play this character, you may return an action card named Three Arrows from your discard to your hand.[STEADY AIM] Whenever one of your actions deals damage to an opposing character, deal 2 damage to that character."
+  },
+  {
+   "trigger": "on_action_damage",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 2,
+    "target": "self"
+   },
+   "confidence": "medium",
+   "source": "[FULL QUIVER] When you play this character, you may return an action card named Three Arrows from your discard to your hand.[STEADY AIM] Whenever one of your actions deals damage to an opposing character, deal 2 damage to that character."
   }
  ],
  "Gizmoduck - Duckburg Defender": [
@@ -875,8 +961,25 @@
  ],
  "Three Arrows": [
   {
-   "impl": "unimplemented",
-   "text": "Deal 2 damage to chosen character. Then, you may deal 1 damage to another chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 2,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "Deal 2 damage to chosen character. Then, you may deal 1 damage to another chosen character."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "chosen_opposing",
+    "exclude_previous": true
+   },
+   "confidence": "medium",
+   "source": "Deal 2 damage to chosen character. Then, you may deal 1 damage to another chosen character."
   }
  ],
  "Card Advantage": [
@@ -887,8 +990,17 @@
  ],
  "Plunger Crossbow": [
   {
-   "impl": "unimplemented",
-   "text": "SUCTION TECHNOLOGY [Exert], 2 Ink — Draw a card, then choose and discard a card."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 2
+   },
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "SUCTION TECHNOLOGY [Exert], 2 Ink — Draw a card, then choose and discard a card."
   }
  ],
  "Syndrome's Remote": [
@@ -936,8 +1048,16 @@
  ],
  "Fangmeyer - Icy Officer": [
   {
-   "impl": "unimplemented",
-   "text": "[REQUEST REINFORCEMENTS] When you play this character, you may return a Detective character card from your discard to your hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_from_discard",
+    "filter": {
+     "card_type": "character",
+     "classification": "Detective"
+    }
+   },
+   "confidence": "medium",
+   "source": "[REQUEST REINFORCEMENTS] When you play this character, you may return a Detective character card from your discard to your hand."
   }
  ],
  "Sarabi - Protecting the Pride": [
@@ -1686,8 +1806,17 @@
  ],
  "Nani - No Worries": [
   {
-   "impl": "unimplemented",
-   "text": "[TAKE IT EASY] While this character has no damage, she gets +1 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "self_undamaged"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[TAKE IT EASY] While this character has no damage, she gets +1 Lore."
   }
  ],
  "Stitch - High Badness Level": [
@@ -1716,8 +1845,17 @@
  ],
  "Gigi - Best in Snow": [
   {
-   "impl": "unimplemented",
-   "text": "Alert (This character can challenge as if they had Evasive.)[SO PRETTY] While this character has no damage, she gets +2 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "self_undamaged"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Alert (This character can challenge as if they had Evasive.)[SO PRETTY] While this character has no damage, she gets +2 Strength."
   }
  ],
  "John Smith - Undaunted Protector": [
@@ -1991,8 +2129,17 @@
  ],
  "Hera - Created by the Vine": [
   {
-   "impl": "unimplemented",
-   "text": "[MYSTICAL BOON] Whenever you play this or another Floodborn character, gain 1 lore."
+   "trigger": "on_play_character",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[MYSTICAL BOON] Whenever you play this or another Floodborn character, gain 1 lore.",
+   "include_self": true,
+   "played_classification": [
+    "Floodborn"
+   ]
   }
  ],
  "Morph - Little Imitator": [
@@ -2497,8 +2644,17 @@
  ],
  "Violet Parr - Super Resilient": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 (You may pay 3 ink to play this on top of one of your characters named Violet Parr.)\nResist +1 (Damage dealt to this character is reduced by 1.)[HEROIC SYNERGY] Whenever you play this or another Hero character, you may draw a card, then choose and discard a card."
+   "trigger": "on_play_character",
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Shift 3 (You may pay 3 ink to play this on top of one of your characters named Violet Parr.)\nResist +1 (Damage dealt to this character is reduced by 1.)[HEROIC SYNERGY] Whenever you play this or another Hero character, you may draw a card, then choose and discard a card.",
+   "include_self": true,
+   "played_classification": [
+    "Hero"
+   ]
   }
  ],
  "Aladdin - Created by the Vine": [
@@ -2539,8 +2695,17 @@
  ],
  "Omnidroid - Scanning for Threats": [
   {
-   "impl": "unimplemented",
-   "text": "[FACTORY SETTINGS] While this character has no damage, it gets +2 strength."
+   "trigger": "static",
+   "condition": {
+    "type": "self_undamaged"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[FACTORY SETTINGS] While this character has no damage, it gets +2 strength."
   }
  ],
  "Flynn Rider - High-Climbing Rogue": [
@@ -2581,8 +2746,12 @@
  ],
  "Omnidroid - Ultimate Iteration": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 6 (You may pay 6 ink to play this on top of one of your characters named Omnidroid.)\nResist +2 (Damage dealt to this character is reduced by 2.)[RETURN ON INVESTMENT] When you shift this character, you may return all cards under it to your hand."
+   "trigger": "on_shift",
+   "effect": {
+    "type": "return_cards_under"
+   },
+   "confidence": "medium",
+   "source": "Shift 6 (You may pay 6 ink to play this on top of one of your characters named Omnidroid.)\nResist +2 (Damage dealt to this character is reduced by 2.)[RETURN ON INVESTMENT] When you shift this character, you may return all cards under it to your hand."
   }
  ],
  "The Vine - Towering Stalk": [
@@ -4240,8 +4409,20 @@
  ],
  "Hans - Noble Scoundrel": [
   {
-   "impl": "unimplemented",
-   "text": "[ROYAL SCHEMES] When you play this character, if a Princess or Queen character is in play, gain 1 lore."
+   "trigger": "on_play",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[ROYAL SCHEMES] When you play this character, if a Princess or Queen character is in play, gain 1 lore.",
+   "condition": {
+    "type": "classification_in_play",
+    "any_of": [
+     "Princess",
+     "Queen"
+    ]
+   }
   }
  ],
  "The Queen - Mirror Seeker": [
@@ -4417,20 +4598,45 @@
  ],
  "Lawrence - Jealous Manservant": [
   {
-   "impl": "unimplemented",
-   "text": "[PAYBACK] While this character has no damage, he gets +4 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "self_undamaged"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 4
+   },
+   "confidence": "medium",
+   "source": "[PAYBACK] While this character has no damage, he gets +4 Strength."
   }
  ],
  "Tinker Bell - Tiny Tactician": [
   {
-   "impl": "unimplemented",
-   "text": "BATTLE PLANS [Exert] — Draw a card, then choose and discard a card."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "BATTLE PLANS [Exert] — Draw a card, then choose and discard a card."
   }
  ],
  "Captain Hook - Captain of the Jolly Roger": [
   {
-   "impl": "unimplemented",
-   "text": "[DOUBLE THE POWDER!] When you play this character, you may return an action card named Fire the Cannons! from your discard to your hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_from_discard",
+    "filter": {
+     "card_type": "action",
+     "name": "Fire the Cannons!"
+    }
+   },
+   "confidence": "medium",
+   "source": "[DOUBLE THE POWDER!] When you play this character, you may return an action card named Fire the Cannons! from your discard to your hand."
   }
  ],
  "Ariel - Sonic Warrior": [

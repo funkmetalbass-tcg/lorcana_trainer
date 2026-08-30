@@ -147,6 +147,8 @@ class Game:
         self.effects = []        # dicts: kind,target,amount,until(player) / 'eot'
         self.turn_flags = set()  # cleared at start of every turn
         self.cards_played = [0, 0]   # cards played this turn, per player
+        self.action_ctx = None       # (player, card) while an action resolves
+        self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
         self.discounts = []      # dicts: owner, amount, filt, static(bool)
         self.log = log           # list to append log lines, or None
@@ -165,6 +167,8 @@ class Game:
                    1: [i.clone() for i in self.items[1]]}
         g.effects = [dict(e) for e in self.effects]
         g.cards_played = list(self.cards_played)
+        g.action_ctx = self.action_ctx
+        g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)
         g.turn_discards = dict(self.turn_discards)
         g.discounts = [dict(d) for d in self.discounts]
@@ -342,7 +346,19 @@ class Game:
         ch.damage += amount
         self.emit(f"{ch.card.base_name}(P{ch.owner}) takes {amount} dmg "
                   f"({ch.damage}/{self.eff_willpower(ch)})")
-        if ch.damage >= self.eff_willpower(ch):
+        # "Whenever one of your actions deals damage to an opposing character"
+        # watchers. Guarded against re-entry so a watcher that itself deals
+        # damage cannot retrigger itself.
+        if self.action_ctx and not self._in_action_watcher:
+            ap, _acard = self.action_ctx
+            if ch.owner != ap and ch.damage < self.eff_willpower(ch):
+                from . import schema
+                self._in_action_watcher = True
+                try:
+                    schema.dispatch_action_damage(self, ap, ch)
+                finally:
+                    self._in_action_watcher = False
+        if ch.uid in self.chars and ch.damage >= self.eff_willpower(ch):
             self.banish_char(ch)
 
     def banish_char(self, ch, cause="damage"):

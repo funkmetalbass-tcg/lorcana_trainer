@@ -228,7 +228,8 @@ def lore(g, ch):
 
 
 def resist(g, ch):
-    r = 0
+    from . import schema
+    r = schema.static_self_resist(g, ch)
     kwv = ch.card.kw("Resist")
     if isinstance(kwv, int):
         r += kwv  # printed Resist +N (generic, Phase 1)
@@ -1580,7 +1581,17 @@ def on_play(g, p, card, obj, params):
             g.emit(f"EASY TARGET discards {target.name}")
 
     # Phase 2: data-driven abilities
-    schema.dispatch_play(g, p, card, obj, params)
+    if card.is_action:
+        # Mark that an action is resolving so "whenever one of your actions
+        # deals damage" watchers can attribute the damage (Merida STEADY AIM).
+        prev = g.action_ctx
+        g.action_ctx = (p, card)
+        try:
+            schema.dispatch_play(g, p, card, obj, params)
+        finally:
+            g.action_ctx = prev
+    else:
+        schema.dispatch_play(g, p, card, obj, params)
 
     # after-the-fact: playing a location fires location-play triggers
     if card.is_location:
@@ -3039,7 +3050,11 @@ def play_param_options(g, p, card):
     if card.shift_ink is not None:
         base_name = card.base_name
         for c in g.my_chars(p):
-            if c.card.base_name == base_name:
+            # A card may declare extra names it counts as for Shift
+            # (Incrediboy SPOILER ALERT counts as Syndrome).
+            from . import schema
+            if c.card.base_name == base_name \
+                    or base_name in schema.shift_aliases(c.card):
                 opts.append((("shift", c.uid),))
     # Combo Shift N: may shift onto a character named after either half of the
     # combo name (e.g. Sulley & Boo -> a 'Sulley' or a 'Boo').

@@ -13,8 +13,8 @@ human-reviewed) merges beneath it -- manual always wins. The engine calls
 dispatch_* at each trigger point; unknown cards simply have no entries.
 
 Currently implemented (deliberately small -- grow as templates demand):
-  triggers:   on_play, on_play_character, on_quest, on_banish, activated,
-              static
+  triggers:   on_play, on_play_character, on_shift, on_quest, on_banish,
+              on_action_damage, activated, static
   conditions: your_other_classification_count, you_have_named, opponent_ahead
   effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage,
               draw_then_discard, grant_keyword
@@ -231,7 +231,27 @@ def _cond_first_turn_on_the_draw(g, p, ctx, cond):
     return p == 1 and g.turn == 2
 
 
+def _cond_self_undamaged(g, p, ctx, cond):
+    ch = ctx.get("char")
+    return ch is not None and ch.damage == 0
+
+
+def _cond_classification_in_play(g, p, ctx, cond):
+    """A character with this classification is in play, on either side
+    (Incrediboy NERDING OUT says 'is in play', not 'you have')."""
+    want = set(cond.get("any_of") or [cond.get("name")]) - {None}
+    return any(c.card.classifications & want for c in g.chars.values())
+
+
+def _cond_played_via_shift(g, p, ctx, cond):
+    """This character was played by shifting onto another (Omnidroid V.9)."""
+    return bool((ctx.get("params") or {}).get("shift"))
+
+
 _CONDITIONS = {
+    "self_undamaged": _cond_self_undamaged,
+    "classification_in_play": _cond_classification_in_play,
+    "played_via_shift": _cond_played_via_shift,
     "you_have_classification": _cond_you_have_classification,
     "first_turn_on_the_draw": _cond_first_turn_on_the_draw,
     "damage_would_banish": _cond_damage_would_banish,
@@ -327,12 +347,20 @@ def _eff_stat_mod(g, p, ctx, eff):
 
 def _eff_deal_damage(g, p, ctx, eff):
     filt = eff.get("filter")
-    if filt:
-        tgt = abilities._best_opp_char(
-            g, p, cond=lambda gg, c: _char_matches(gg, c, filt))
+    # "another chosen character" must differ from one already hit by an
+    # earlier clause of the same ability (Three Arrows).
+    seen = ctx.get("damaged_uids") or set()
+    excl = eff.get("exclude_previous")
+    if filt or excl:
+        def _ok(gg, c):
+            if excl and c.uid in seen:
+                return False
+            return _char_matches(gg, c, filt) if filt else True
+        tgt = abilities._best_opp_char(g, p, cond=_ok)
     else:
         tgt = _resolve_target(g, p, ctx, eff.get("target", "chosen_opposing"))
     if tgt is not None:
+        ctx.setdefault("damaged_uids", set()).add(tgt.uid)
         g.deal_damage(tgt, eff.get("amount", 1),
                       apply_resist=not eff.get("ignore_resist", False))
 
@@ -413,6 +441,9 @@ def _card_matches(card, filt):
     if filt.get("max_cost") is not None and card.cost > filt["max_cost"]:
         return False
     if filt.get("name") and card.base_name != filt["name"]:
+        return False
+    if filt.get("classification") \
+            and filt["classification"] not in card.classifications:
         return False
     return True
 
@@ -663,6 +694,50 @@ def static_free_discount(g, p, card):
 
 
 
+def _eff_draw_then_discard(g, p, ctx, eff):
+    """Draw N, then choose and discard N (Violet Parr HEROIC SYNERGY).
+    Drawing first matters: the new card is a legal discard."""
+    from . import abilities
+    n = eff.get("amount", 1)
+    pl = g.players[p]
+    g.draw(p, n)
+    for _ in range(n):
+        if not pl.hand:
+            break
+        card = abilities._worst_hand_card(g, p)
+        if card is None:
+            break
+        pl.hand.remove(card)
+        pl.discard.append(card)
+        g.emit(f"schema: discards {card.name}")
+
+
+def _eff_return_from_discard(g, p, ctx, eff):
+    """Return a matching card from your discard to your hand."""
+    pl = g.players[p]
+    filt = eff.get("filter") or {}
+    pool = [c for c in pl.discard if _card_matches(c, filt)]
+    if not pool:
+        return
+    pick = max(pool, key=lambda c: c.cost)
+    pl.discard.remove(pick)
+    pl.hand.append(pick)
+    g.emit(f"schema: returns {pick.name} from discard to hand")
+
+
+def _eff_return_cards_under(g, p, ctx, eff):
+    """Return every card under this character to its owner's hand
+    (Omnidroid - Ultimate Iteration RETURN ON INVESTMENT)."""
+    ch = ctx.get("char")
+    if ch is None or not ch.under:
+        return
+    n = len(ch.under)
+    g.players[ch.owner].hand.extend(ch.under)
+    ch.under = []
+    g.emit(f"schema: returns {n} card(s) from under "
+           f"{ch.card.base_name} to hand")
+
+
 def _eff_each_player_draw(g, p, ctx, eff):
     """Each player draws N, active player first (Miriam Mendelsohn)."""
     n = eff.get("amount", 1)
@@ -746,6 +821,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "draw_then_discard": _eff_draw_then_discard,
+    "return_from_discard": _eff_return_from_discard,
+    "return_cards_under": _eff_return_cards_under,
     "each_player_draw": _eff_each_player_draw,
     "self_to_deck_top": _eff_self_to_deck_top,
     "move_damage": _eff_move_damage,
@@ -774,7 +852,7 @@ _EFFECTS = {
 
 def apply_effect(g, p, ctx, eff):
     if eff.get("type") in ("play_free_if", "play_cost_reduction",
-                           "static_self_stat",
+                           "shift_alias", "static_self_stat",
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist"):
         return          # consumed by the static hooks, not dispatched
@@ -828,7 +906,10 @@ def _run(g, p, ctx, ents):
 def dispatch_play(g, p, card, obj, params):
     ents = entries_for(card.name, "on_play")
     if ents:
-        _run(g, p, {"card": card, "char": obj if card.is_character else None}, ents)
+        _run(g, p, {"card": card, "params": params,
+                    "char": obj if card.is_character else None}, ents)
+    if params and params.get("shift"):
+        dispatch_shift(g, p, card, obj, params)
     if card.is_character:
         dispatch_play_character(g, p, card, obj)
 
@@ -838,13 +919,22 @@ def dispatch_play_character(g, p, card, obj):
     (The Robot Queen). ctx["source"] is the watcher, so a banish_self cost
     knows what to banish; ctx["char"] is the character just played."""
     for src in list(g.items[p]) + list(g.my_chars(p)) + list(g.my_locs(p)):
-        if hasattr(src, "damage") and obj is not None and src.uid == obj.uid:
-            continue                     # a character does not watch itself
         ents = entries_for(src.card.name, "on_play_character")
-        if ents:
-            _run(g, p, {"card": src.card, "char": obj, "source": src}, ents)
-        if g.winner is not None:
-            return
+        if not ents:
+            continue
+        is_self = hasattr(src, "damage") and obj is not None \
+            and src.uid == obj.uid
+        for e in ents:
+            # "another character" watchers skip their own arrival; "this or
+            # another" watchers (Violet Parr HEROIC SYNERGY) do not.
+            if is_self and not e.get("include_self"):
+                continue
+            want = e.get("played_classification")
+            if want and not (card.classifications & set(want)):
+                continue
+            _run(g, p, {"card": src.card, "char": obj, "source": src}, [e])
+            if g.winner is not None:
+                return
 
 
 # ---------------------------------------------------------------------
@@ -952,6 +1042,24 @@ def dispatch_activated(g, p, obj, index):
         apply_effect(g, p, ctx, entry["effect"])
 
 
+def dispatch_shift(g, p, card, obj, params):
+    """'When you shift this character' triggers."""
+    ents = entries_for(card.name, "on_shift")
+    if ents:
+        _run(g, p, {"card": card, "char": obj, "params": params}, ents)
+
+
+def dispatch_action_damage(g, p, victim):
+    """'Whenever one of your actions deals damage to an opposing character'
+    watchers on your own characters (Merida - Formidable Archer STEADY AIM)."""
+    for src in list(g.my_chars(p)):
+        ents = entries_for(src.card.name, "on_action_damage")
+        if ents:
+            _run(g, p, {"card": src.card, "char": victim, "source": src}, ents)
+        if g.winner is not None:
+            return
+
+
 def dispatch_banish(g, ch, cause="damage"):
     """'When this character is banished' triggers. Called from
     abilities.on_banish, by which point the character is already off the
@@ -995,6 +1103,22 @@ def static_self_stat(g, ch, stat):
                            e.get("condition")):
             total += eff.get("amount", 0)
     return total
+
+
+def static_self_resist(g, ch):
+    """Conditional Resist +N granted by a static entry (Omnidroid V.10)."""
+    return static_self_stat(g, ch, "resist")
+
+
+def shift_aliases(card):
+    """Extra base names this card counts as for Shift (Incrediboy SPOILER
+    ALERT: 'also counts as being named Syndrome')."""
+    out = []
+    for e in entries_for(card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") == "shift_alias" and eff.get("name"):
+            out.append(eff["name"])
+    return out
 
 
 def static_self_keyword(g, ch, kw):

@@ -444,6 +444,57 @@ def _c(m):
     return {"type": "each_player_draw", "amount": int(m.group(1))}
 
 
+
+# --- Phase 9 clauses -------------------------------------------------
+@clause(r"[Dd]eal (\d+) damage to that character\.?")
+def _c(m):
+    # ctx["char"] is the character that was just damaged.
+    return {"type": "deal_damage", "amount": int(m.group(1)), "target": "self"}
+
+
+@clause(r"[Dd]eal (\d+) damage to another chosen character\.?")
+def _c(m):
+    return {"type": "deal_damage", "amount": int(m.group(1)),
+            "target": "chosen_opposing", "exclude_previous": True}
+
+
+@clause(r"[Rr]eturn an action card named ([A-Za-z' !.-]+?) from your discard "
+        r"to your hand\.?")
+def _c(m):
+    return {"type": "return_from_discard",
+            "filter": {"card_type": "action", "name": m.group(1).strip()}}
+
+
+@clause(r"[Rr]eturn an? ([A-Za-z ]+?) character card from your discard "
+        r"to your hand\.?")
+def _c(m):
+    c = _CLASS_CANON.get(m.group(1).strip().lower())
+    if c is None:
+        return None
+    return {"type": "return_from_discard",
+            "filter": {"card_type": "character", "classification": c}}
+
+
+@clause(r"[Rr]eturn all cards under it to your hand\.?")
+def _c(m):
+    return {"type": "return_cards_under"}
+
+
+@clause(r"[Pp]lay or shift an? ([A-Za-z ]+?) character with cost (\d+) or less "
+        r"for free\.?")
+def _c(m):
+    c = _CLASS_CANON.get(m.group(1).strip().lower())
+    if c is None:
+        return None
+    return {"type": "play_from_hand_free", "max_cost": int(m.group(2)),
+            "filter": {"card_type": "character", "classification": c}}
+
+
+@clause(r"[Dd]raw a card, then choose and discard a card\.?")
+def _c(m):
+    return {"type": "draw_then_discard", "amount": 1}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -456,7 +507,9 @@ def match_clause(text):
     for rx, builder, conf in _CLAUSES:
         m = rx.fullmatch(text)
         if m:
-            return builder(m)
+            built = builder(m)
+            if built is not None:
+                return built
     return None
 
 
@@ -549,9 +602,19 @@ _SELF_DISCOUNT = re.compile(
 _STAT_SYMBOL = "str"
 
 _STATIC_SELF = re.compile(
-    r"While (?P<cond>.+?), (?:this character|she|he|they) gets \+(?P<amt>\d+) "
+    r"While (?P<cond>.+?), (?:this character|she|he|they|it) gets \+(?P<amt>\d+) "
     r"(?P<stat>\{\}|Strength|Lore|Willpower)"
     r"(?: and gains (?P<kw>Evasive|Ward|Reckless|Rush|Support))?\.?",
+    re.IGNORECASE)
+
+# "While <cond>, it gains Resist +N." -- a numeric keyword, so it goes through
+# the stat hook rather than the boolean keyword hook.
+_STATIC_RESIST = re.compile(
+    r"While (?P<cond>.+?), (?:this character|she|he|they|it) gains "
+    r"Resist \+(?P<amt>\d+)\.?", re.IGNORECASE)
+
+_SHIFT_ALIAS = re.compile(
+    r"This character also counts as being named ([A-Za-z' .-]+?) for Shift\.?",
     re.IGNORECASE)
 
 _STATIC_CONDS = [
@@ -559,7 +622,16 @@ _STATIC_CONDS = [
      {"type": "inkwell_all_exerted"}),
     (re.compile(r"there's a card under this character", re.I),
      {"type": "has_card_under"}),
+    (re.compile(r"this character has no damage", re.I),
+     {"type": "self_undamaged"}),
 ]
+
+
+def _static_cond(text):
+    for rx, c in _STATIC_CONDS:
+        if rx.fullmatch(text.strip()):
+            return c
+    return None
 
 
 def _stat_name(tok):
@@ -571,14 +643,23 @@ def _stat_name(tok):
 
 def parse_static_self(line):
     """'While <condition>, this character gets +N <stat> [and gains KW].'"""
-    m = _STATIC_SELF.fullmatch(line.strip())
+    line = line.strip()
+    ma = _SHIFT_ALIAS.fullmatch(line)
+    if ma:
+        return [{"trigger": "static",
+                 "effect": {"type": "shift_alias", "name": ma.group(1).strip()}}]
+    mr = _STATIC_RESIST.fullmatch(line)
+    if mr:
+        c = _static_cond(mr.group("cond"))
+        if c is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "static_self_stat", "stat": "resist",
+                            "amount": int(mr.group("amt"))}}]
+    m = _STATIC_SELF.fullmatch(line)
     if not m:
         return None
-    cond = None
-    for rx, c in _STATIC_CONDS:
-        if rx.fullmatch(m.group("cond").strip()):
-            cond = c
-            break
+    cond = _static_cond(m.group("cond"))
     if cond is None:
         return None                 # unrecognized condition -> leave the gap
     stat = _stat_name(m.group("stat"))
@@ -670,6 +751,7 @@ def parse_activated(desc):
 
 
 _SENT = re.compile(r"(?<=\.)\s+")
+_THEN = re.compile(r"^Then,?\s+", re.IGNORECASE)
 
 
 def parse_by_clauses(prose):
@@ -685,6 +767,14 @@ def parse_by_clauses(prose):
     for sent in sents:
         hit = match_clause(sent)
         if hit is None:
+            # "Then, you may <clause>" chains a second effect onto the first.
+            trimmed = _THEN.sub("", sent)
+            trimmed = _MAY.sub("", trimmed)
+            if trimmed != sent:
+                if trimmed and trimmed[0].islower():
+                    trimmed = trimmed[0].upper() + trimmed[1:]
+                hit = match_clause(trimmed)
+        if hit is None:
             return None        # one unrecognized sentence rejects the card
         effects.append(hit)
     return effects
@@ -693,7 +783,8 @@ def parse_by_clauses(prose):
 
 
 _WATCH_PLAY_CHAR = re.compile(
-    r"^Whenever you play a character,\s*(?P<rest>.+)$", re.IGNORECASE)
+    r"^Whenever you play (?:a|this or another(?:\s+(?P<cls>[A-Za-z ]+?))?) "
+    r"character,\s*(?P<rest>.+)$", re.IGNORECASE)
 _MAY_PAY_BANISH = re.compile(
     r"^you may pay (?P<ink>\d+) Ink and banish this (?:item|character|location) to\s*",
     re.IGNORECASE)
@@ -704,6 +795,14 @@ def parse_play_character_watcher(prose):
     m = _WATCH_PLAY_CHAR.match(prose.strip())
     if not m:
         return None
+    extra = {}
+    if "this or another" in m.group(0).lower():
+        extra["include_self"] = True
+    if m.group("cls"):
+        cls = _classes(m.group("cls"))
+        if cls is None:
+            return None            # unknown classification -> leave the gap
+        extra["played_classification"] = cls
     rest = m.group("rest").strip()
     cost = None
     cm = _MAY_PAY_BANISH.match(rest)
@@ -722,7 +821,7 @@ def parse_play_character_watcher(prose):
     effects = parse_by_clauses(rest)
     if not effects:
         return None
-    return cost, effects
+    return cost, effects, extra
 
 
 
@@ -799,14 +898,37 @@ def parse_static_card(desc):
 # ---------------------------------------------------------------------
 _PREAMBLES = [
     (re.compile(r"^When you play this character,\s*", re.IGNORECASE), "on_play"),
+    (re.compile(r"^When you shift this character,\s*", re.IGNORECASE), "on_shift"),
     (re.compile(r"^Whenever this character quests,\s*", re.IGNORECASE), "on_quest"),
+    (re.compile(r"^Whenever one of your actions deals damage to an opposing "
+                r"character,\s*", re.IGNORECASE), "on_action_damage"),
 ]
 _MAY_PAY = re.compile(r"^you may pay (\d+) Ink to\s*", re.IGNORECASE)
 _MAY = re.compile(r"^you may\s+", re.IGNORECASE)
+def _classes(*names):
+    """Canonical classification names, or None if any is unrecognized so the
+    card is left as a visible gap rather than silently never matching."""
+    out = []
+    for n in names:
+        if not n:
+            continue
+        c = _CLASS_CANON.get(n.strip().lower())
+        if c is None:
+            return None
+        out.append(c)
+    return out or None
+
+
 _TRIG_CONDS = [
     (re.compile(r"^if you have a character with (Evasive|Ward|Reckless|Support) "
                 r"in play,\s*", re.IGNORECASE),
      lambda m: {"type": "you_have_keyword", "keyword": m.group(1).lower()}),
+    (re.compile(r"^if an? (?P<a>[A-Za-z ]+?)(?: or (?P<b>[A-Za-z ]+?))? "
+                r"character is in play,\s*", re.IGNORECASE),
+     lambda m: {"type": "classification_in_play",
+                "any_of": _classes(m.group("a"), m.group("b"))}),
+    (re.compile(r"^if you used Shift to play it,\s*", re.IGNORECASE),
+     lambda m: {"type": "played_via_shift"}),
 ]
 
 
@@ -822,6 +944,9 @@ def parse_triggered(prose):
             cm = crx.match(rest)
             if cm:
                 cond = build(cm)
+                if cond is None or cond.get("any_of") is None \
+                        and cond.get("type") == "classification_in_play":
+                    return None       # unknown classification -> leave the gap
                 rest = rest[cm.end():].strip()
                 break
         cost = None
@@ -856,6 +981,41 @@ def parse_card(name, raw):
         return None                       # keyword-only; engine handles it
 
     prose = core_prose(desc)
+    ents = _parse_one(prose, desc)
+    if ents is not None:
+        return ents
+
+    # Multi-ability cards: one segment per printed ability. Each must parse on
+    # its own or the whole card is left as a gap, so a card never ends up with
+    # only half of its text implemented.
+    segs = ability_lines(desc)
+    if len(segs) > 1:
+        out = []
+        for seg in segs:
+            # Static patterns read the raw segment: core_prose deletes the
+            # "{}" stat glyph and the ability label they rely on.
+            got = parse_static_line(seg)
+            if got:
+                got = got if isinstance(got, list) else [got]
+                for e in got:
+                    e.setdefault("confidence", "medium")
+                    e.setdefault("source", _src(desc))
+            else:
+                got = _parse_one(core_prose(seg), desc)
+            if not got:
+                out = None
+                break
+            out.extend(got)
+        if out:
+            return out
+
+    return [{"impl": "unimplemented", "text": _src(desc)}]
+
+
+def _parse_one(prose, desc):
+    """Parse a single ability's prose. Returns entries, or None."""
+    if not prose:
+        return None
     for rx, builder, conf in _TEMPLATES:
         m = rx.fullmatch(prose)
         if m:
@@ -896,11 +1056,12 @@ def parse_card(name, raw):
     # "Whenever you play a character" watchers.
     watch = parse_play_character_watcher(prose)
     if watch:
-        cost, effects = watch
+        cost, effects, extra = watch
         ents = []
         for e in effects:
             ent = {"trigger": "on_play_character", "effect": e,
                    "confidence": "medium", "source": _src(desc)}
+            ent.update(extra)
             if cost:
                 ent["cost"] = cost
                 if cost.get("banish_self") and e.get("type") == "deal_damage":
@@ -937,8 +1098,7 @@ def parse_card(name, raw):
         return [{"trigger": "on_play", "effect": e, "confidence": "medium",
                  "source": _src(desc)} for e in effects]
 
-    # nothing matched -> visible gap
-    return [{"impl": "unimplemented", "text": _src(desc)}]
+    return None      # caller decides: try segments, else mark unimplemented
 
 
 def build(json_path, manual_path):

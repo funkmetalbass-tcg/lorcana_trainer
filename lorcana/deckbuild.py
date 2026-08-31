@@ -216,9 +216,13 @@ def _fit_task(args):
 
 
 def evaluate_population(genomes, db_path, field_paths, games, pol, iters,
-                        workers, seed0, pool_obj=None):
+                        workers, seed0, pool_obj=None, label=None):
     """Return list of win rates (0..1), one per genome, averaged over the field.
-    Every genome faces the SAME seeds, so comparisons between genomes are paired."""
+    Every genome faces the SAME seeds, so comparisons between genomes are paired.
+
+    If `label` is set, emit a throttled PROGRESS line as games complete (used by
+    the verification phase to show games-done / total). Unlabeled calls (the GA
+    generations) stay quiet here and keep their per-generation logging."""
     tasks = []
     for gid, g in enumerate(genomes):
         gser = tuple(sorted(g.items()))
@@ -230,6 +234,27 @@ def evaluate_population(genomes, db_path, field_paths, games, pol, iters,
     wins = Counter()
     played = Counter()
     initargs = (db_path, field_paths)
+
+    # Progress logging (only when labeled). Log ~1% increments, at least every
+    # game if the batch is tiny, so a long verification phase shows a live count
+    # and ETA without flooding the log.
+    _pg_total = len(tasks)
+    _pg_done = 0
+    _pg_start = time.time()
+    _pg_every = max(1, _pg_total // 100)
+
+    def _pg_tick():
+        nonlocal _pg_done
+        _pg_done += 1
+        if label and (_pg_done % _pg_every == 0 or _pg_done == _pg_total):
+            _el = time.time() - _pg_start
+            _rate = _pg_done / _el if _el > 0 else 0.0
+            _eta = (_pg_total - _pg_done) / _rate / 60 if _rate > 0 else 0.0
+            _log("PROGRESS", event="games", phase=label,
+                 done=_pg_done, of=_pg_total,
+                 pct=f"{100*_pg_done/_pg_total:.1f}",
+                 games_per_s=f"{_rate:.2f}", eta_min=f"{_eta:.0f}")
+
     # chunksize: the GA phase dispatches thousands of ~10ms greedy games, where
     # one-task-at-a-time IPC is a large fraction of the cost. MCTS verification
     # tasks run for seconds each, so those stay at chunksize=1 to avoid a
@@ -244,16 +269,19 @@ def evaluate_population(genomes, db_path, field_paths, games, pol, iters,
             gid, won = _fit_task(t)
             wins[gid] += won
             played[gid] += 1
+            _pg_tick()
     elif pool_obj is not None:
         # Reuse the caller's long-lived Pool (see evolve()).
         for gid, won in pool_obj.imap_unordered(_fit_task, tasks, chunksize=_chunk):
             wins[gid] += won
             played[gid] += 1
+            _pg_tick()
     else:
         with Pool(workers, initializer=_init_fit, initargs=initargs) as pool_:
             for gid, won in pool_.imap_unordered(_fit_task, tasks, chunksize=_chunk):
                 wins[gid] += won
                 played[gid] += 1
+                _pg_tick()
     return [wins[i] / played[i] if played[i] else 0.0 for i in range(len(genomes))]
 
 
@@ -358,6 +386,14 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
     # --- resume? ---
     start_gen = 0
     pop = None
+    cached_final = None   # {"sig":..., "fits":[...], "best_g":{...}, "best_f":float}
+    # Signature of the settings that determine the final-scoring result. A cached
+    # final block is only reused when this matches, so changing the field, games,
+    # policy or fit-iters correctly forces a recompute (mirrors gauntlet's guard).
+    final_sig = "|".join(str(x) for x in (
+        os.path.abspath(pool_path),
+        ";".join(os.path.abspath(p) for p in field_paths),
+        games, pol, iters, seed))
     if checkpoint and os.path.exists(checkpoint):
         try:
             with open(checkpoint) as f:
@@ -366,8 +402,17 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
                 pop = [dict(g) for g in st["population"]]
                 start_gen = st["generation"]
                 print(f"Resuming deckbuild from generation {start_gen}")
+                # Reuse a previously-computed final-scoring pass only when it was
+                # produced for THIS population and THESE settings.
+                fin = st.get("final")
+                if (fin and fin.get("sig") == final_sig
+                        and len(fin.get("fits", [])) == len(pop)):
+                    cached_final = fin
+                    print("  (found matching cached final scores; the "
+                          "final-scoring pass will be skipped)")
         except Exception:
             pop = None
+            cached_final = None
 
     if pop is None:
         pop = seeded_genomes(pool, rng, pop_size // 2, ink_pair)
@@ -439,8 +484,35 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
                      path=checkpoint)
 
         # --- final scoring of the last population, then MCTS verification ---
-        fits = evaluate_population(pop, db_path, field_paths, games, pol, iters,
-                                   workers, seed0=seed + 999999, pool_obj=_pool)
+        # On a verify-only resume (no generations ran this invocation) with a
+        # matching cached block, skip the ~1-generation final-scoring pass and
+        # reuse the stored scores. Any evolution this run makes the cache invalid.
+        reuse_final = (cached_final is not None and start_gen >= generations)
+        if reuse_final:
+            fits = list(cached_final["fits"])
+            if cached_final.get("best_g") is not None:
+                best_g = cached_final["best_g"]
+                best_f = cached_final.get("best_f", best_f)
+            _log("PROGRESS", event="final_scoring", status="skipped_cached")
+            print("Skipping final-scoring pass; using cached scores from checkpoint.")
+        else:
+            fits = evaluate_population(pop, db_path, field_paths, games, pol, iters,
+                                       workers, seed0=seed + 999999, pool_obj=_pool)
+            # Persist the final-scoring result so a later verify-only resume can
+            # skip this pass. Best-effort: a write failure never fails the run.
+            if checkpoint and os.path.exists(checkpoint):
+                try:
+                    with open(checkpoint) as f:
+                        _st = json.load(f)
+                    _st["final"] = {"sig": final_sig, "fits": fits,
+                                    "best_g": best_g, "best_f": best_f}
+                    tmp = checkpoint + ".tmp"
+                    with open(tmp, "w") as f:
+                        json.dump(_st, f)
+                    os.replace(tmp, checkpoint)
+                    _log("PROGRESS", event="final_scoring", status="computed_cached")
+                except Exception:
+                    pass
         order = sorted(range(len(pop)), key=lambda i: -fits[i])
         finalists = [pop[i] for i in order[:verify_top]]
         if best_g is not None and not any(g == best_g for g in finalists):
@@ -454,7 +526,7 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
              total_games=len(finalists) * len(field_paths) * verify_games)
         vfits = evaluate_population(finalists, db_path, field_paths, verify_games,
                                     "mcts", verify_iters, workers, seed0=seed + 7,
-                                    pool_obj=_pool)
+                                    pool_obj=_pool, label="verify")
         _log("VERIFY", event="done",
              elapsed_min=f"{(time.time() - _verify_start) / 60:.1f}",
              run_total_min=f"{(time.time() - _run_start) / 60:.1f}")

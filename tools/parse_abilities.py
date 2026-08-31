@@ -613,6 +613,10 @@ _STATIC_RESIST = re.compile(
     r"While (?P<cond>.+?), (?:this character|she|he|they|it) gains "
     r"Resist \+(?P<amt>\d+)\.?", re.IGNORECASE)
 
+_NO_READY = re.compile(
+    r"If you have (?P<n>\d+) or more cards in your hand, "
+    r"(?:this character|she|he|they|it) can't ready\.?", re.IGNORECASE)
+
 _SHIFT_ALIAS = re.compile(
     r"This character also counts as being named ([A-Za-z' .-]+?) for Shift\.?",
     re.IGNORECASE)
@@ -644,6 +648,12 @@ def _stat_name(tok):
 def parse_static_self(line):
     """'While <condition>, this character gets +N <stat> [and gains KW].'"""
     line = line.strip()
+    mn = _NO_READY.fullmatch(line)
+    if mn:
+        return [{"trigger": "static",
+                 "condition": {"type": "hand_size_at_least",
+                               "count": int(mn.group("n"))},
+                 "effect": {"type": "static_no_ready"}}]
     ma = _SHIFT_ALIAS.fullmatch(line)
     if ma:
         return [{"trigger": "static",

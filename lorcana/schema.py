@@ -248,7 +248,13 @@ def _cond_played_via_shift(g, p, ctx, cond):
     return bool((ctx.get("params") or {}).get("shift"))
 
 
+def _cond_hand_size_at_least(g, p, ctx, cond):
+    """You have N or more cards in hand (Demona STONE BY DAY)."""
+    return len(g.players[p].hand) >= cond.get("count", 1)
+
+
 _CONDITIONS = {
+    "hand_size_at_least": _cond_hand_size_at_least,
     "self_undamaged": _cond_self_undamaged,
     "classification_in_play": _cond_classification_in_play,
     "played_via_shift": _cond_played_via_shift,
@@ -852,7 +858,7 @@ _EFFECTS = {
 
 def apply_effect(g, p, ctx, eff):
     if eff.get("type") in ("play_free_if", "play_cost_reduction",
-                           "shift_alias", "static_self_stat",
+                           "shift_alias", "static_no_ready", "static_self_stat",
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist"):
         return          # consumed by the static hooks, not dispatched
@@ -1103,6 +1109,22 @@ def static_self_stat(g, ch, stat):
                            e.get("condition")):
             total += eff.get("amount", 0)
     return total
+
+
+def static_no_ready(g, ch):
+    """Is this character prevented from readying right now?
+
+    Distinct from the one-shot {"kind": "no_ready"} effect the engine already
+    consumes at the ready step: this is a standing restriction re-evaluated
+    every turn, so it must not be consumed.
+    """
+    for e in entries_for(ch.card.name, "static"):
+        if e.get("effect", {}).get("type") != "static_no_ready":
+            continue
+        if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                           e.get("condition")):
+            return True
+    return False
 
 
 def static_self_resist(g, ch):

@@ -276,11 +276,16 @@ class Game:
         self.turn_discards = {0: 0, 1: 0}
         # Ready step
         self.players[p].ink_ready = self.players[p].ink_total
+        from . import schema
         for ch in self.my_chars(p):
             if any(e["kind"] == "no_ready" and e["target"] == ch.uid
                    for e in self.effects):
                 self.effects = [e for e in self.effects
                                 if not (e["kind"] == "no_ready" and e["target"] == ch.uid)]
+                continue
+            # Standing restrictions are re-evaluated each turn and are never
+            # consumed (Demona - Betrayer of the Clan STONE BY DAY).
+            if schema.static_no_ready(self, ch):
                 continue
             ch.exerted = False
         for it in self.items[p]:

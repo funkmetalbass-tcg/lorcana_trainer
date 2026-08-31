@@ -19,7 +19,7 @@ measured the same way.
 import math, random
 from .policies import greedy_policy
 
-ROLLOUT_TURN_CAP = 50   # half-turns beyond current before heuristic eval
+ROLLOUT_TURN_CAP = 25   # half-turns beyond current before heuristic eval
 UCB_C = 0.9
 DISCOUNT = 0.97         # per HALF-TURN value decay toward neutral
 

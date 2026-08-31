@@ -29,7 +29,9 @@ selection pressure on quality instead of on constraint satisfaction.
 import json
 import os
 import random
+import statistics
 import sys
+import time
 from collections import Counter, defaultdict
 from multiprocessing import Pool
 
@@ -307,6 +309,21 @@ def tournament_select(pop, fits, rng, k=3):
 
 
 # =====================================================================
+# Structured progress logging
+# =====================================================================
+def _log(prefix, **fields):
+    """One structured, flushed log line: `PREFIX  t=...  k=v  k=v ...`.
+
+    Timestamped, greppable, and flushed so it survives redirection to a file
+    or `nohup` (unflushed stdout buffers into silent bursts). Reconstruct a
+    run's trace with `grep '^PROGRESS' log`.
+    """
+    ts = time.strftime("%Y-%m-%d %H:%M:%S")
+    body = "  ".join(f"{k}={v}" for k, v in fields.items())
+    print(f"{prefix}  t={ts}  {body}", flush=True)
+
+
+# =====================================================================
 # The GA loop
 # =====================================================================
 def evolve(db_path, pool_path, field_paths, ink_pair,
@@ -325,6 +342,18 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
     if cap < DECK_SIZE:
         print("ERROR: pool cannot make a legal 60-card deck.")
         sys.exit(1)
+
+    _log("CONFIG",
+         pool_cards=len(pool),
+         field_decks=len(field_paths),
+         field=";".join(os.path.basename(p) for p in field_paths),
+         inks=",".join(ink_pair) if ink_pair else "auto",
+         pop=pop_size, generations=generations, elite=elite,
+         games=games, policy=pol, fit_iters=iters,
+         verify_top=verify_top, verify_games=verify_games,
+         verify_iters=verify_iters, workers=workers, seed=seed,
+         games_per_gen=pop_size * len(field_paths) * games)
+    _run_start = time.time()
 
     # --- resume? ---
     start_gen = 0
@@ -354,15 +383,40 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
     try:
         best_g, best_f = None, -1.0
         for gen in range(start_gen, generations):
+            _gen_start = time.time()
+            _games_this_gen = len(pop) * len(field_paths) * games
+            _log("PROGRESS", event="gen_start", gen=gen, of=generations,
+                 pop=len(pop), games_this_gen=_games_this_gen)
+
             fits = evaluate_population(pop, db_path, field_paths, games, pol, iters,
                                        workers, seed0=seed + gen * 1000,
                                        pool_obj=_pool)
+            _elapsed = time.time() - _gen_start
+
             order = sorted(range(len(pop)), key=lambda i: -fits[i])
             if fits[order[0]] > best_f:
                 best_f, best_g = fits[order[0]], dict(pop[order[0]])
             mean_f = sum(fits) / len(fits)
+
+            # convergence signals
+            _spread = statistics.pstdev(fits) if len(fits) > 1 else 0.0
+            _distinct_genomes = len({tuple(sorted(g.items())) for g in pop})
+            _distinct_cards = len({n for g in pop for n in g})
+            # self-correcting ETA from this generation's real duration
+            _gens_left = generations - gen - 1
+            _eta_min = (_gens_left * _elapsed) / 60.0
+            _gps = _games_this_gen / _elapsed if _elapsed > 0 else 0.0
+
+            _log("PROGRESS", event="gen_end", gen=gen, of=generations,
+                 elapsed_s=f"{_elapsed:.0f}", games_per_s=f"{_gps:.2f}",
+                 best=f"{100*fits[order[0]]:.1f}", mean=f"{100*mean_f:.1f}",
+                 best_so_far=f"{100*best_f:.1f}", spread=f"{100*_spread:.1f}",
+                 distinct_genomes=_distinct_genomes, distinct_cards=_distinct_cards,
+                 eta_min=f"{_eta_min:.0f}")
+
             print(f"  gen {gen:2d}/{generations}  best {100*fits[order[0]]:.0f}%  "
-                  f"mean {100*mean_f:.0f}%  (pop {len(pop)}, {games} games/deck)")
+                  f"mean {100*mean_f:.0f}%  (pop {len(pop)}, {games} games/deck)",
+                  flush=True)
 
             # next generation: elites + offspring
             nxt = [dict(pop[i]) for i in order[:elite]]
@@ -381,6 +435,8 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
                                "generation": gen + 1,
                                "population": pop}, f)
                 os.replace(tmp, checkpoint)
+                _log("PROGRESS", event="checkpoint", gen_saved=gen + 1,
+                     path=checkpoint)
 
         # --- final scoring of the last population, then MCTS verification ---
         fits = evaluate_population(pop, db_path, field_paths, games, pol, iters,
@@ -392,9 +448,16 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
 
         print(f"\nVerifying {len(finalists)} finalist(s) with MCTS "
               f"({verify_games} games/opponent, {verify_iters} iters)... this is the slow part.")
+        _verify_start = time.time()
+        _log("VERIFY", event="start", finalists=len(finalists),
+             games_per_opp=verify_games, iters=verify_iters,
+             total_games=len(finalists) * len(field_paths) * verify_games)
         vfits = evaluate_population(finalists, db_path, field_paths, verify_games,
                                     "mcts", verify_iters, workers, seed0=seed + 7,
                                     pool_obj=_pool)
+        _log("VERIFY", event="done",
+             elapsed_min=f"{(time.time() - _verify_start) / 60:.1f}",
+             run_total_min=f"{(time.time() - _run_start) / 60:.1f}")
     finally:
         if _pool is not None:
             _pool.close()

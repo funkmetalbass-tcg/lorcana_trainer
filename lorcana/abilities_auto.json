@@ -2938,8 +2938,16 @@
  ],
  "Demona - Betrayer of the Clan": [
   {
-   "impl": "unimplemented",
-   "text": "Challenger +2 (While challenging, this character gets +2 Strength.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
+   "trigger": "static",
+   "condition": {
+    "type": "hand_size_at_least",
+    "count": 3
+   },
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "Challenger +2 (While challenging, this character gets +2 Strength.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
   }
  ],
  "Magica De Spell - Shadowy and Sinister": [
@@ -3329,8 +3337,16 @@
  ],
  "Bronx - Ferocious Beast": [
   {
-   "impl": "unimplemented",
-   "text": "Reckless (This character can't quest and must challenge each turn if able.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
+   "trigger": "static",
+   "condition": {
+    "type": "hand_size_at_least",
+    "count": 3
+   },
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "Reckless (This character can't quest and must challenge each turn if able.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
   }
  ],
  "Tinker Bell - Temperamental Fairy": [
@@ -3359,8 +3375,16 @@
  ],
  "Brooklyn - Second in Command": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
+   "trigger": "static",
+   "condition": {
+    "type": "hand_size_at_least",
+    "count": 3
+   },
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "Evasive (Only characters with Evasive can challenge this character.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
   }
  ],
  "Donald Duck - Ruby Champion": [
@@ -3607,8 +3631,25 @@
  ],
  "Hudson - Determined Reader": [
   {
-   "impl": "unimplemented",
-   "text": "[FINDING ANSWERS] When you play this character, you may draw a card, then choose and discard a card.[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[FINDING ANSWERS] When you play this character, you may draw a card, then choose and discard a card.[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "hand_size_at_least",
+    "count": 3
+   },
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "[FINDING ANSWERS] When you play this character, you may draw a card, then choose and discard a card.[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
   }
  ],
  "Minnie Mouse - Ghost Hunter": [
@@ -3619,8 +3660,16 @@
  ],
  "Lexington - Small in Stature": [
   {
-   "impl": "unimplemented",
-   "text": "Alert (This character can challenge as if they had Evasive.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
+   "trigger": "static",
+   "condition": {
+    "type": "hand_size_at_least",
+    "count": 3
+   },
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "Alert (This character can challenge as if they had Evasive.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
   }
  ],
  "David Xanatos - Steel Clan Leader": [
@@ -3649,8 +3698,16 @@
  ],
  "Broadway - Sturdy and Strong": [
   {
-   "impl": "unimplemented",
-   "text": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can’t ready."
+   "trigger": "static",
+   "condition": {
+    "type": "hand_size_at_least",
+    "count": 3
+   },
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[STONE BY DAY] If you have 3 or more cards in your hand, this character can’t ready."
   }
  ],
  "Fairy Godmother - Magical Benefactor": [

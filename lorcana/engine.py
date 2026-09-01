@@ -148,6 +148,7 @@ class Game:
         self.turn_flags = set()  # cleared at start of every turn
         self.cards_played = [0, 0]   # cards played this turn, per player
         self.action_ctx = None       # (player, card) while an action resolves
+        self._in_chosen_trigger = False
         self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
         self.discounts = []      # dicts: owner, amount, filt, static(bool)
@@ -168,6 +169,7 @@ class Game:
         g.effects = [dict(e) for e in self.effects]
         g.cards_played = list(self.cards_played)
         g.action_ctx = self.action_ctx
+        g._in_chosen_trigger = self._in_chosen_trigger
         g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)
         g.turn_discards = dict(self.turn_discards)

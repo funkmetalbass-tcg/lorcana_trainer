@@ -44,6 +44,7 @@ def core_prose(desc):
     t = re.sub(r"^\s*[A-Z][A-Z0-9'\u2019 &.,-]{2,40}[!?.]\s+(?=[A-Z])", "", t)
     t = t.replace("\u2019", "'")             # curly apostrophe
     t = t.replace("{}", " ")                 # ink/lore symbol notation
+    t = _BOOST_KW.sub(" ", t)                # engine reads Boost itself
     # Printed keywords are already handled by the keyword layer; leaving them
     # in the prose blocks every template on cards that carry both a keyword
     # and an ability (Shift + a triggered effect, Sing Together + an effect).
@@ -495,6 +496,45 @@ def _c(m):
     return {"type": "draw_then_discard", "amount": 1}
 
 
+
+# --- Phase 11 clauses ------------------------------------------------
+@clause(r"[Dd]eal (\d+) damage to the challenging character\.?")
+def _c(m):
+    # ctx["char"] is the attacker in an on_opposing_challenge dispatch.
+    return {"type": "deal_damage", "amount": int(m.group(1)), "target": "self"}
+
+
+@clause(r"[Bb]anish chosen item\.?")
+def _c(m):
+    return {"type": "banish_item"}
+
+
+@clause(r"[Dd]eal (\d+) damage to up to (\d+) chosen characters\.?")
+def _c(m):
+    return {"type": "deal_damage_multi", "amount": int(m.group(1)),
+            "count": int(m.group(2))}
+
+
+@clause(r"[Cc]hosen character of yours gains Resist \+(\d+) "
+        r"until the start of your next turn\.?")
+def _c(m):
+    return {"type": "grant_resist", "amount": int(m.group(1)),
+            "duration": "until_your_next"}
+
+
+@clause(r"[Tt]hey choose and discard a card\.?")
+def _c(m):
+    return {"type": "opponent_discard", "amount": 1}
+
+
+@clause(r"[Tt]his character may enter play exerted to deal (\d+) damage "
+        r"to chosen damaged character\.?")
+def _c(m):
+    return {"type": "enter_exerted_for",
+            "then": {"type": "deal_damage", "amount": int(m.group(1)),
+                     "filter": {"damaged": True}}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -523,7 +563,7 @@ def match_clause(text):
 # ---------------------------------------------------------------------
 _ACT_HEAD = re.compile(
     r"^\s*(?:[A-Z][A-Z0-9'\u2019 !,&.?-]{2,45}?\s+)?"       # optional ALLCAPS name
-    r"((?:\[Exert\]|\{\}|\d+\s*Ink|Banish this [a-z]+)"      # first cost token
+    r"((?:\[Exert\]|\{\}|\bexert\b|\d+\s*Ink|Banish this [a-z]+)"   # first cost token
     r"(?:\s*,\s*[^\u2014]{1,45}?)*)"                          # further cost tokens
     r"\s*\u2014\s*(.+)$")                                    # separator + effect
 
@@ -534,7 +574,7 @@ def _parse_cost(text):
         tok = tok.strip()
         if not tok:
             continue
-        if re.fullmatch(r"\[Exert\]|\{\}", tok):
+        if re.fullmatch(r"\[Exert\]|\{\}|exert", tok, re.IGNORECASE):
             cost["exert"] = True
             continue
         m = re.fullmatch(r"(\d+)\s*(?:Ink|\{\})", tok, re.IGNORECASE)
@@ -589,6 +629,8 @@ def parse_static_line(line):
 
 _COND_PREFIX = re.compile(r"^If you've played (\d+) or more cards this turn,\s*",
                           re.IGNORECASE)
+_COND_DISCARDED = re.compile(r"^If you discarded a card this turn,\s*",
+                             re.IGNORECASE)
 
 _SELF_DISCOUNT = re.compile(
     r"If this is your first turn and you're not the first player, "
@@ -602,8 +644,9 @@ _SELF_DISCOUNT = re.compile(
 _STAT_SYMBOL = "str"
 
 _STATIC_SELF = re.compile(
-    r"While (?P<cond>.+?), (?:this character|she|he|they|it) gets \+(?P<amt>\d+) "
-    r"(?P<stat>\{\}|Strength|Lore|Willpower)"
+    r"(?:While|As long as) (?P<cond>.+?), (?:this character|she|he|they|it) "
+    r"gets \+(?P<amt>\d+) (?P<stat>\{\}|Strength|Lore|Willpower)"
+    r"(?: and \+(?P<amt2>\d+) (?P<stat2>\{\}|Strength|Lore|Willpower))?"
     r"(?: and gains (?P<kw>Evasive|Ward|Reckless|Rush|Support))?\.?",
     re.IGNORECASE)
 
@@ -628,6 +671,10 @@ _STATIC_CONDS = [
      {"type": "has_card_under"}),
     (re.compile(r"this character has no damage", re.I),
      {"type": "self_undamaged"}),
+    (re.compile(r"this character has at least one card under it", re.I),
+     {"type": "has_card_under"}),
+    (re.compile(r"there's a card under (?:him|her|them|it)", re.I),
+     {"type": "has_card_under"}),
 ]
 
 
@@ -676,6 +723,11 @@ def parse_static_self(line):
     out = [{"trigger": "static", "condition": cond,
             "effect": {"type": "static_self_stat", "stat": stat,
                        "amount": int(m.group("amt"))}}]
+    if m.groupdict().get("amt2"):
+        out.append({"trigger": "static", "condition": cond,
+                    "effect": {"type": "static_self_stat",
+                               "stat": _stat_name(m.group("stat2")),
+                               "amount": int(m.group("amt2"))}})
     if m.group("kw"):
         out.append({"trigger": "static", "condition": cond,
                     "effect": {"type": "static_self_keyword",
@@ -710,9 +762,12 @@ def ability_lines(desc):
     for kw in parse_printed_keywords(desc):        # Shift N, Evasive, ...
         text = _KW_PATTERNS[kw].sub(" ", text, count=1)
     text = _BOOST_KW.sub(" ", text)                # engine reads Boost itself
-    text = _LABEL_COST.sub(r"\1 Ink", text)
     text = re.sub(r"(?<=\s)[\u2013-](?=\s)", "\u2014", text)   # separator
+    # Split on ability labels FIRST: _LABEL_COST rewrites "[FINAL ARROW 1] Ink"
+    # into "1 Ink", which would erase the boundary between two abilities that
+    # the export runs together with no separator (Merida's Bow).
     text = _LABEL_SPLIT.sub("\n", text)
+    text = _LABEL_COST.sub(r"\1 Ink", text)
     return [l.strip() for l in re.split(r"\n", text) if l.strip()]
 
 
@@ -745,6 +800,11 @@ def parse_activated(desc):
             cond = {"type": "cards_played_this_turn",
                     "count": int(cm.group(1))}
             body = body[cm.end():].strip()
+        else:
+            cd = _COND_DISCARDED.match(body)
+            if cd:
+                cond = {"type": "discarded_this_turn"}
+                body = body[cd.end():].strip()
             if body and body[0].islower():
                 body = body[0].upper() + body[1:]
         eff = match_clause(body)
@@ -907,11 +967,17 @@ def parse_static_card(desc):
 # on the entry, which schema._run pays before applying the effect.
 # ---------------------------------------------------------------------
 _PREAMBLES = [
-    (re.compile(r"^When you play this character,\s*", re.IGNORECASE), "on_play"),
+    (re.compile(r"^When you play this (?:character|item|location),\s*",
+                re.IGNORECASE), "on_play"),
     (re.compile(r"^When you shift this character,\s*", re.IGNORECASE), "on_shift"),
     (re.compile(r"^Whenever this character quests,\s*", re.IGNORECASE), "on_quest"),
     (re.compile(r"^Whenever one of your actions deals damage to an opposing "
                 r"character,\s*", re.IGNORECASE), "on_action_damage"),
+    (re.compile(r"^While this character is exerted, whenever an opposing "
+                r"character challenges,\s*", re.IGNORECASE),
+     "on_opposing_challenge"),
+    (re.compile(r"^Whenever an opponent chooses this character for an action "
+                r"or ability,\s*", re.IGNORECASE), "on_chosen_by_opponent"),
 ]
 _MAY_PAY = re.compile(r"^you may pay (\d+) Ink to\s*", re.IGNORECASE)
 _MAY = re.compile(r"^you may\s+", re.IGNORECASE)
@@ -939,6 +1005,9 @@ _TRIG_CONDS = [
                 "any_of": _classes(m.group("a"), m.group("b"))}),
     (re.compile(r"^if you used Shift to play it,\s*", re.IGNORECASE),
      lambda m: {"type": "played_via_shift"}),
+    (re.compile(r"^if there's a card under (?:him|her|them|it),\s*",
+                re.IGNORECASE),
+     lambda m: {"type": "has_card_under"}),
 ]
 
 
@@ -1012,6 +1081,12 @@ def parse_card(name, raw):
                     e.setdefault("source", _src(desc))
             else:
                 got = _parse_one(core_prose(seg), desc)
+            if not got:
+                got = parse_activated(seg)
+                if got:
+                    for e in got:
+                        e.setdefault("confidence", "medium")
+                        e.setdefault("source", _src(desc))
             if not got:
                 out = None
                 break
@@ -1089,6 +1164,10 @@ def _parse_one(prose, desc):
         for e in effects:
             ent = {"trigger": trigger, "effect": e,
                    "confidence": "medium", "source": _src(desc)}
+            if cond is None and e.get("type") == "enter_exerted_for":
+                # the exert is paid up front, so only offer it when the
+                # payoff exists (Lord MacGuffin WAIT FOR IT...)
+                cond = {"type": "opposing_damaged_present"}
             if cond:
                 ent["condition"] = cond
             if cost:
@@ -1099,8 +1178,13 @@ def _parse_one(prose, desc):
     # Single-sentence bare-imperative (action cards): try clauses directly.
     single = match_clause(prose)
     if single:
-        return [{"trigger": "on_play", "effect": single,
-                 "confidence": "high", "source": _src(desc)}]
+        ent = {"trigger": "on_play", "effect": single,
+               "confidence": "high", "source": _src(desc)}
+        if single.get("type") == "enter_exerted_for":
+            # the exert is paid up front, so only take it when the payoff
+            # exists (Lord MacGuffin WAIT FOR IT...)
+            ent["condition"] = {"type": "opposing_damaged_present"}
+        return [ent]
 
     # Multi-sentence composition.
     effects = parse_by_clauses(prose)

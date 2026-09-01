@@ -14,7 +14,8 @@ dispatch_* at each trigger point; unknown cards simply have no entries.
 
 Currently implemented (deliberately small -- grow as templates demand):
   triggers:   on_play, on_play_character, on_shift, on_quest, on_banish,
-              on_action_damage, activated, static
+              on_action_damage, on_opposing_challenge,
+              on_chosen_by_opponent, activated, static
   conditions: your_other_classification_count, you_have_named, opponent_ahead
   effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage,
               draw_then_discard, grant_keyword
@@ -253,7 +254,24 @@ def _cond_hand_size_at_least(g, p, ctx, cond):
     return len(g.players[p].hand) >= cond.get("count", 1)
 
 
+def _cond_discarded_this_turn(g, p, ctx, cond):
+    """You discarded a card this turn (Discarded Armor FOUND EQUIPMENT).
+    engine.discard_card already keeps this count for Milo."""
+    return g.turn_discards.get(p, 0) > 0
+
+
+def _cond_opposing_damaged_present(g, p, ctx, cond):
+    """There is a choosable damaged opposing character. Gates abilities whose
+    cost is paid up front (Lord MacGuffin enters exerted) so the cost is never
+    paid for nothing."""
+    from . import abilities
+    return abilities._best_opp_char(
+        g, p, cond=lambda gg, c: c.damage > 0, notify=False) is not None
+
+
 _CONDITIONS = {
+    "discarded_this_turn": _cond_discarded_this_turn,
+    "opposing_damaged_present": _cond_opposing_damaged_present,
     "hand_size_at_least": _cond_hand_size_at_least,
     "self_undamaged": _cond_self_undamaged,
     "classification_in_play": _cond_classification_in_play,
@@ -744,6 +762,61 @@ def _eff_return_cards_under(g, p, ctx, eff):
            f"{ch.card.base_name} to hand")
 
 
+def _eff_banish_item(g, p, ctx, eff):
+    """Banish chosen opposing item (Benja WE HAVE A CHOICE)."""
+    items = list(g.items[1 - p])
+    if not items:
+        return
+    tgt = max(items, key=lambda i: i.card.cost)
+    g.emit(f"schema: banishes item {tgt.card.base_name}(P{1 - p})")
+    g.banish_item(tgt)
+
+
+def _eff_deal_damage_multi(g, p, ctx, eff):
+    """Deal N damage to up to COUNT different chosen characters
+    (Robin Hood EXPERT SHOT). "Up to" tolerates fewer targets."""
+    from . import abilities
+    n = eff.get("amount", 1)
+    picked = []
+    for _ in range(eff.get("count", 1)):
+        tgt = abilities._best_opp_char(
+            g, p, cond=lambda gg, c: c.uid not in [x.uid for x in picked])
+        if tgt is None:
+            break
+        picked.append(tgt)
+    for t in picked:
+        g.deal_damage(t, n)
+        if g.winner is not None:
+            return
+
+
+def _eff_grant_resist(g, p, ctx, eff):
+    """Grant Resist +N to one of your characters (Discarded Armor)."""
+    pool = list(g.my_chars(p))
+    if not pool:
+        return
+    tgt = max(pool, key=lambda c: (g.eff_lore(c), g.eff_strength(c)))
+    until = "eot" if eff.get("duration") == "eot" else p
+    g.effects.append({"kind": "resist", "target": tgt.uid,
+                      "amount": eff.get("amount", 1), "until": until})
+    g.emit(f"schema: {tgt.card.base_name} gains Resist "
+           f"+{eff.get('amount', 1)}")
+
+
+def _eff_enter_exerted_for(g, p, ctx, eff):
+    """Optionally enter play exerted for an effect (Lord MacGuffin
+    WAIT FOR IT...). The entry is condition-gated, so by the time this runs
+    the payoff is known to exist."""
+    ch = ctx.get("char")
+    if ch is None:
+        return
+    ch.exerted = True
+    g.emit(f"schema: {ch.card.base_name} enters play exerted")
+    inner = eff.get("then")
+    if inner:
+        apply_effect(g, p, ctx, inner)
+
+
 def _eff_each_player_draw(g, p, ctx, eff):
     """Each player draws N, active player first (Miriam Mendelsohn)."""
     n = eff.get("amount", 1)
@@ -827,6 +900,10 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "banish_item": _eff_banish_item,
+    "deal_damage_multi": _eff_deal_damage_multi,
+    "grant_resist": _eff_grant_resist,
+    "enter_exerted_for": _eff_enter_exerted_for,
     "draw_then_discard": _eff_draw_then_discard,
     "return_from_discard": _eff_return_from_discard,
     "return_cards_under": _eff_return_cards_under,
@@ -1064,6 +1141,31 @@ def dispatch_action_damage(g, p, victim):
             _run(g, p, {"card": src.card, "char": victim, "source": src}, ents)
         if g.winner is not None:
             return
+
+
+def dispatch_opposing_challenge(g, attacker):
+    """'Whenever an opposing character challenges' watchers, on the
+    non-attacking side (Merida - Gifted Archer FIERCE PROTECTION)."""
+    p = 1 - attacker.owner
+    for src in list(g.my_chars(p)):
+        ents = entries_for(src.card.name, "on_opposing_challenge")
+        if not ents:
+            continue
+        _run(g, p, {"card": src.card, "char": attacker, "source": src}, ents)
+        if g.winner is not None:
+            return
+
+
+def dispatch_chosen_by_opponent(g, ch):
+    """'Whenever an opponent chooses this character for an action or ability'
+    (Flynn Rider - High-Climbing Rogue WE CAN WORK THIS OUT).
+
+    Hooked into abilities._best_opp_char, the single chokepoint every "chosen
+    opposing character" effect goes through in both the hand-written Python
+    abilities and the schema."""
+    ents = entries_for(ch.card.name, "on_chosen_by_opponent")
+    if ents:
+        _run(g, ch.owner, {"card": ch.card, "char": ch, "source": ch}, ents)
 
 
 def dispatch_banish(g, ch, cause="damage"):

@@ -579,17 +579,35 @@ def discount_applies(d, card):
 # =====================================================================
 # Heuristic target selection (documented simplifications)
 # =====================================================================
-def _best_opp_char(g, p, cond=lambda g, c: True, key=None):
+def _best_opp_char(g, p, cond=lambda g, c: True, key=None, notify=True):
     """Pick an opposing character for a CHOSEN effect. Ward makes a character
     unchoosable by opponents, so warded characters are excluded here. (Mass,
-    non-targeted effects like Under the Sea bypass this helper on purpose.)"""
+    non-targeted effects like Under the Sea bypass this helper on purpose.)
+
+    notify=False suppresses the "an opponent chooses this character" trigger.
+    Pass it when the call is a hypothetical -- a condition testing whether a
+    legal target exists, or a policy scoring a move -- rather than an actual
+    choice being made."""
     opts = [c for c in g.my_chars(1 - p)
             if cond(g, c) and not has_ward(g, c)]
     if not opts:
         return None
     if key is None:
         key = lambda c: (g.eff_lore(c), g.eff_strength(c))
-    return max(opts, key=key)
+    pick = max(opts, key=key)
+    # "Whenever an opponent chooses this character for an action or ability"
+    # (Flynn Rider - High-Climbing Rogue). This helper is the one place every
+    # chosen-opposing-character effect resolves its target, so hooking it here
+    # covers the Python abilities and the schema alike. Guarded against
+    # re-entry: the trigger itself must not re-run while resolving.
+    if notify and not getattr(g, "_in_chosen_trigger", False):
+        from . import schema
+        g._in_chosen_trigger = True
+        try:
+            schema.dispatch_chosen_by_opponent(g, pick)
+        finally:
+            g._in_chosen_trigger = False
+    return pick
 
 
 def _debuff_target(g, p):
@@ -2114,6 +2132,10 @@ def defender_returns_when_challenged(g, attacker, defender):
 
 def on_challenge(g, attacker, defender):
     """Called after a character-vs-character challenge resolves."""
+    # "Whenever an opposing character challenges" watchers on the defending
+    # side (Merida - Gifted Archer FIERCE PROTECTION).
+    from . import schema
+    schema.dispatch_opposing_challenge(g, attacker)
     # Medallion Weights: whenever the buffed character challenges another
     # character this turn, you may draw a card.
     if any(e["kind"] == "medallion_draw" and e["target"] == attacker.uid

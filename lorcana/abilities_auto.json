@@ -331,8 +331,22 @@
  ],
  "Lord MacGuffin - Clever Swordsman": [
   {
-   "impl": "unimplemented",
-   "text": "WAIT FOR IT... This character may enter play exerted to deal 3 damage to chosen damaged character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "enter_exerted_for",
+    "then": {
+     "type": "deal_damage",
+     "amount": 3,
+     "filter": {
+      "damaged": true
+     }
+    }
+   },
+   "confidence": "high",
+   "source": "WAIT FOR IT... This character may enter play exerted to deal 3 damage to chosen damaged character.",
+   "condition": {
+    "type": "opposing_damaged_present"
+   }
   }
  ],
  "Gaetan Moliere - Clever Burrower": [
@@ -349,8 +363,14 @@
  ],
  "Merida - Gifted Archer": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Merida.)[FIERCE PROTECTION] While this character is exerted, whenever an opposing character challenges, you may deal 1 damage to the challenging character."
+   "trigger": "on_opposing_challenge",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "self"
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Merida.)[FIERCE PROTECTION] While this character is exerted, whenever an opposing character challenges, you may deal 1 damage to the challenging character."
   }
  ],
  "Buzz Lightyear - Jungle Ranger": [
@@ -437,8 +457,28 @@
  ],
  "Merida's Bow": [
   {
-   "impl": "unimplemented",
-   "text": "[EASY SHOT] When you play this item, deal 1 damage to chosen character.[FINAL ARROW 1] Ink, Banish this item — Deal 1 damage to chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "[EASY SHOT] When you play this item, deal 1 damage to chosen character.[FINAL ARROW 1] Ink, Banish this item — Deal 1 damage to chosen character."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "ink": 1,
+    "banish_self": true
+   },
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "[EASY SHOT] When you play this item, deal 1 damage to chosen character.[FINAL ARROW 1] Ink, Banish this item — Deal 1 damage to chosen character."
   }
  ],
  "Pizza Planet - Spaceport": [
@@ -1460,8 +1500,31 @@
  ],
  "Rafiki's Bakora Staff": [
   {
-   "impl": "unimplemented",
-   "text": "READ THE OMENS [Exert], 1 Ink — Draw a card, then choose and discard a card.[BONK! 1] Ink , Banish this item — Deal 1 damage to chosen character."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1
+   },
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "READ THE OMENS [Exert], 1 Ink — Draw a card, then choose and discard a card.[BONK! 1] Ink , Banish this item — Deal 1 damage to chosen character."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "ink": 1,
+    "banish_self": true
+   },
+   "effect": {
+    "type": "deal_damage",
+    "amount": 1,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "READ THE OMENS [Exert], 1 Ink — Draw a card, then choose and discard a card.[BONK! 1] Ink , Banish this item — Deal 1 damage to chosen character."
   }
  ],
  "Retro Evolution Device": [
@@ -1788,8 +1851,12 @@
  ],
  "Donald Duck - Along for the Ride": [
   {
-   "impl": "unimplemented",
-   "text": "[COMIN' THROUGH!] When you play this character, you may banish chosen item."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_item"
+   },
+   "confidence": "medium",
+   "source": "[COMIN' THROUGH!] When you play this character, you may banish chosen item."
   }
  ],
  "Chief - Seasoned Tracker": [
@@ -1892,8 +1959,14 @@
  ],
  "Nearly Indestructible": [
   {
-   "impl": "unimplemented",
-   "text": "Chosen character of yours gains Resist +2 until the start of your next turn. (Damage dealt to them is reduced by 2.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_resist",
+    "amount": 2,
+    "duration": "until_your_next"
+   },
+   "confidence": "high",
+   "source": "Chosen character of yours gains Resist +2 until the start of your next turn. (Damage dealt to them is reduced by 2.)"
   }
  ],
  "Infra-Pink Ultra Scan Specs": [
@@ -2710,8 +2783,13 @@
  ],
  "Flynn Rider - High-Climbing Rogue": [
   {
-   "impl": "unimplemented",
-   "text": "[WE CAN WORK THIS OUT] Whenever an opponent chooses this character for an action or ability, they choose and discard a card."
+   "trigger": "on_chosen_by_opponent",
+   "effect": {
+    "type": "opponent_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[WE CAN WORK THIS OUT] Whenever an opponent chooses this character for an action or ability, they choose and discard a card."
   }
  ],
  "Kronk - Meat Hut Cook": [
@@ -2722,8 +2800,16 @@
  ],
  "Mulan - Created by the Vine": [
   {
-   "impl": "unimplemented",
-   "text": "[DEMOLISH] Whenever you play this or another Floodborn character, you may banish chosen item."
+   "trigger": "on_play_character",
+   "effect": {
+    "type": "banish_item"
+   },
+   "confidence": "medium",
+   "source": "[DEMOLISH] Whenever you play this or another Floodborn character, you may banish chosen item.",
+   "include_self": true,
+   "played_classification": [
+    "Floodborn"
+   ]
   }
  ],
  "Diablo - Protecting His Mistress": [
@@ -2774,8 +2860,20 @@
  ],
  "Discarded Armor": [
   {
-   "impl": "unimplemented",
-   "text": "FOUND EQUIPMENT exert - If you discarded a card this turn, chosen character of yours gains Resist +1 until the start of your next turn. (Damage dealt to them is reduced by 1.)"
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "grant_resist",
+    "amount": 1,
+    "duration": "until_your_next"
+   },
+   "condition": {
+    "type": "discarded_this_turn"
+   },
+   "confidence": "medium",
+   "source": "FOUND EQUIPMENT exert - If you discarded a card this turn, chosen character of yours gains Resist +1 until the start of your next turn. (Damage dealt to them is reduced by 1.)"
   }
  ],
  "The Weedwhacker": [
@@ -3136,8 +3234,12 @@
  ],
  "Vladimir - Ceramic Unicorn Fan": [
   {
-   "impl": "unimplemented",
-   "text": "[HIGH STANDARDS] Whenever this character quests, you may banish chosen item."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "banish_item"
+   },
+   "confidence": "medium",
+   "source": "[HIGH STANDARDS] Whenever this character quests, you may banish chosen item."
   }
  ],
  "Flintheart Glomgold - Scheming Billionaire": [
@@ -3160,8 +3262,30 @@
  ],
  "Flynn Rider - Spectral Scoundrel": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck face down under this character.)[I'LL TAKE THAT] As long as this character has at least one card under it, it gets +2 Strength and +1 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck face down under this character.)[I'LL TAKE THAT] As long as this character has at least one card under it, it gets +2 Strength and +1 Lore."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck face down under this character.)[I'LL TAKE THAT] As long as this character has at least one card under it, it gets +2 Strength and +1 Lore."
   }
  ],
  "Bellwether - Master Manipulator": [
@@ -3601,8 +3725,17 @@
  ],
  "Robin Hood - Ephemeral Archer": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[EXPERT SHOT] Whenever this character quests, if there's a card under him, deal 1 damage to up to 2 chosen characters."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "deal_damage_multi",
+    "amount": 1,
+    "count": 2
+   },
+   "confidence": "medium",
+   "source": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[EXPERT SHOT] Whenever this character quests, if there's a card under him, deal 1 damage to up to 2 chosen characters.",
+   "condition": {
+    "type": "has_card_under"
+   }
   }
  ],
  "Donald Duck - Ghost Hunter": [
@@ -3718,8 +3851,30 @@
  ],
  "Zeus - Missing His Spark": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[I NEED MORE THUNDERBOLTS!] While there's a card under this character, he gets +2 Strength and +2 Willpower."
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[I NEED MORE THUNDERBOLTS!] While there's a card under this character, he gets +2 Strength and +2 Willpower."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "will",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[I NEED MORE THUNDERBOLTS!] While there's a card under this character, he gets +2 Strength and +2 Willpower."
   }
  ],
  "But I'm Much Faster": [
@@ -4252,8 +4407,15 @@
  ],
  "Wildcat - Mechanic": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)\nDISASSEMBLE [Exert] – Banish chosen item."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "banish_item"
+   },
+   "confidence": "medium",
+   "source": "Evasive (Only characters with Evasive can challenge this character.)\nDISASSEMBLE [Exert] – Banish chosen item."
   }
  ],
  "Daisy Duck - Secret Agent": [
@@ -4622,8 +4784,12 @@
  ],
  "Benja - Guardian of the Dragon Gem": [
   {
-   "impl": "unimplemented",
-   "text": "[WE HAVE A CHOICE] When you play this character, you may banish chosen item."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_item"
+   },
+   "confidence": "medium",
+   "source": "[WE HAVE A CHOICE] When you play this character, you may banish chosen item."
   }
  ],
  "Jafar - Royal Vizier": [

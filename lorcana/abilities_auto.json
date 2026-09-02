@@ -5785,8 +5785,16 @@
  ],
  "Tuk Tuk - Lively Partner": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.) ON A ROLL When you play this character, you may move him and one of your other characters to the same location for free. If you do, the other character gets +2 Strength this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "move_two_to_location",
+    "buff": {
+     "stat": "str",
+     "amount": 2
+    }
+   },
+   "confidence": "medium",
+   "source": "Evasive (Only characters with Evasive can challenge this character.) ON A ROLL When you play this character, you may move him and one of your other characters to the same location for free. If you do, the other character gets +2 Strength this turn."
   }
  ],
  "I2I": [

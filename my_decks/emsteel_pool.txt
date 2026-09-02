@@ -1,43 +1,100 @@
-1 Tinker Bell - Most Helpful
-4 Rapunzel - Escaping the Tower
+1 Stitch - Protector of Frogs
+1 Mata - Meat Hut Waitress
 1 You Broke My Smolder
 1 Discarded Armor
-1 Cruella De Vil - Judgmental Traveler
-1 Tinker Bell - Giant Fairy
-1 Shere Khan - Fearsome Tiger
-1 Chomp!
-4 Bobby Zimuruski - Spray Cheese Kid
-1 Fire the Cannons!
-4 Merida - Defiant Daughter
-3 Dinky - Has the Brains
-1 Strike A Good Match
-1 Snowball Fight
-1 Ursula - Deceiver
-1 Mushu - Stealthy Dragon
-1 Tod - Clever Fox
-1 The Huntsman - On the Queen's Orders
-1 Three Arrows
-1 Maudie - Exasperated Nursemaid
-4 Malicious, Mean, and Scary
-1 Potion of Malice
-1 Benja - Guardian of the Dragon Gem
-1 Strength of a Raging Fire
-1 Smash
-1 Snow Fort
-1 Windstorm
-1 The Queen - Devious Disguise
-1 Merida - Gifted Archer
-1 Merida - Formidable Archer
-1 Merida's Bow
-1 Dr. Bushroot - Evil Botanist
+1 Omnidroid - V.8
+1 Violet Parr - At Wits' End
+1 John Smith - Skillful Explorer
+1 Plunger Crossbow
+1 Darkwing Duck - Crime Fighter
+1 Gantu - Hamsterviel's Accomplice
+1 Winterspell
+1 Nearly Indestructible
+1 Infra-Pink Ultra Scan Specs
+1 Nick Wilde - Sly Fox Sleuth
+1 But I'm Much Faster
 1 The Robot Queen
-1 Piercing Attack
+1 Zootopia - Police Headquarters
+1 Tiana - Diligent Waitress
+1 Fire the Cannons!
+1 Violet Parr - Force Field Practice
+1 Owl - Hunny Ranger
+1 Kronk - Meat Hut Cook
+1 Diablo - Protecting His Mistress
+1 Cower Before Me!
 1 Look What You've Done
+1 We'll Save Our Village
+1 Absorbing Bloom
+1 Fergus - King of DunBroch
+1 Incrediboy - Buddy Pine
+1 Mrs. Incredible - Helen Parr
+1 Goofy - Determined Traveler
+1 Diablo - Stone Servant
+1 Card Advantage
+1 Touch the Sky
+1 Syndrome's Remote
+1 Launchpad - Trusty Sidekick
+1 Nani - No Worries
+1 Stitch - High Badness Level
 1 Judy Hopps - Snowball Patrol
-1 Robin Hood - Ephemeral Archer
-1 Lord MacGuffin - Clever Swordsman
-1 Rapunzel & Flynn Rider - Unlikely Pair
-4 Flynn Rider - Spectral Scoundrel
-1 Goofy - Emerald Champion
+1 Lilo - Bundled Up
+1 Keep the Ancient Ways
+1 The Terror That Flaps in the Night
+1 Containment Unit
+1 Inspector Tezuka - Resolute Officer
+1 Hudson - Determined Reader
+1 Minnie Mouse - Ghost Hunter
+1 Black Heron - Real Bad Egg
+1 Putting It All Together
+1 The Game's Afoot!
+1 The Sword of Hercules
+1 Castle Wyvern - Above the Clouds
+1 Little John - Sir Reginald
+1 Nala - Undaunted Lioness
+1 Robin Hood - Capable Fighter
+1 Prince Eric - Dashing and Brave
+1 Beast's Mirror
+1 Mickey Mouse - Standard Bearer
+1 Aladdin - Created by the Vine
+1 Dr. Hamsterviel - Evil Observer
+1 Darkwing Duck - Shadowy Superhero
+1 Omnidroid - Scanning for Threats
 1 Flynn Rider - High-Climbing Rogue
-1 Ling - Snow Warrior
+1 Angus - Mighty Horse
+1 Wee Dingwall - Scrappy Lad
+1 Young Macintosh - Proud Son
+1 Fat Cat's Club - Seedy Headquarters
+1 Li Shang - Solemn Son
+1 Francine - Eyeing the Evidence
+1 Basil - Tenacious Mouse
+1 Benja - Guardian of the Dragon Gem
+1 Prince Naveen - Penniless Royal
+1 Tinker Bell - Tiny Tactician
+1 Hercules - True Hero
+1 Mulan - Created by the Vine
+1 Rat Capone - Rodent Gangster
+1 Amos Slade - Tenacious Tracker
+1 Donald Duck - Ghost Hunter
+1 The Headless Horseman - Relentless Spirit
+1 Sheriff of Nottingham - Vine Slayer
+1 Prince Naveen - Bundled Up
+1 Donald Duck - Along for the Ride
+1 McHorn - Ice-Cold Officer
+1 Fat Cat - Felonious Feline
+1 Clawhauser - Donut Detective
+1 The Twins - Lost Boys
+1 The Weedwhacker
+1 Maudie - Exasperated Nursemaid
+1 Three Arrows
+1 Club Door
+1 Launchpad - Hideout Defender
+1 Chief - Seasoned Tracker
+1 Gigi - Best in Snow
+1 Lexington - Small in Stature
+1 David Xanatos - Steel Clan Leader
+1 Zeus - Missing His Spark
+1 Lawrence - Jealous Manservant
+1 Megavolt - Electrical Menace
+1 The Irate Chef - Meat Hut Cook
+1 Lord Macintosh - Wiry and High-Strung
+1 Omnidroid - V.9

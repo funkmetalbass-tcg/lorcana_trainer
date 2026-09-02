@@ -41,6 +41,21 @@ _REMINDER = re.compile(r"\([^)]*\)")
 _HTML = re.compile(r"<[^>]+>")
 _BRACKET_NAME = re.compile(r"\[[^\]]*\]")
 
+# Some cards print the ability name in ALLCAPS with no brackets at all
+# ("Evasive  ON A ROLL When you play this character..."). Without treating
+# that as a boundary the keyword ends up in a sentence full of prose, fails
+# the purity check below, and the printed keyword is silently dropped -- the
+# character then never has its printed keyword at all.
+_BARE_NAME = re.compile(
+    r"(?:(?<=^)|(?<=[\s.\n]))"
+    r"(?:[A-Z][A-Z0-9'\u2019!?,&.-]*\s+){1,5}[A-Z][A-Z0-9'\u2019!?,&.-]*"
+    r"(?=\s+[A-Z][a-z])")
+
+
+def _strip_labels(t):
+    """Replace both bracketed and bare ability labels with line breaks."""
+    return _BARE_NAME.sub("\n", _BRACKET_NAME.sub("\n", t))
+
 
 def clean_text(raw):
     return _HTML.sub("", raw or "")
@@ -52,6 +67,9 @@ def _keyword_prefix(text):
     contain brackets (e.g. the [Exert] symbol inside Sing Together's reminder)."""
     t = _REMINDER.sub("", clean_text(text))
     idx = t.find("[")
+    bare = _BARE_NAME.search(t)
+    if bare is not None and (idx < 0 or bare.start() < idx):
+        idx = bare.start()
     return t if idx < 0 else t[:idx]
 
 
@@ -66,8 +84,8 @@ def _keyword_candidate_lines(text):
     """
     t = _REMINDER.sub("", clean_text(text))
     prefix = _keyword_prefix(text)
-    rest = _BRACKET_NAME.sub("\n", t[len(_keyword_prefix(text)):]) if t.startswith(prefix) \
-        else _BRACKET_NAME.sub("\n", t)
+    rest = _strip_labels(t[len(prefix):]) if t.startswith(prefix) \
+        else _strip_labels(t)
     return re.split(r"[.\n]", prefix) + re.split(r"[.\n]", rest)
 
 

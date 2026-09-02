@@ -26,6 +26,7 @@ import argparse, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lorcana.keywords import (clean_text, residual_prose,  # noqa: E402
                               parse_printed_keywords,
+                              _BARE_NAME as _KW_BARE_NAME,
                               _PATTERNS as _KW_PATTERNS)
 
 
@@ -42,6 +43,8 @@ def core_prose(desc):
     # (Miriam Mendelsohn: "I GOT 'EM! When you play this character, ...").
     # Require a following capitalised word so ordinary prose is untouched.
     t = re.sub(r"^\s*[A-Z][A-Z0-9'\u2019 &.,-]{2,40}[!?.]\s+(?=[A-Z])", "", t)
+    # ...and the unbracketed ALLCAPS labels the keyword layer also recognises.
+    t = _KW_BARE_NAME.sub(" ", t)
     t = t.replace("\u2019", "'")             # curly apostrophe
     t = t.replace("{}", " ")                 # ink/lore symbol notation
     t = _BOOST_KW.sub(" ", t)                # engine reads Boost itself

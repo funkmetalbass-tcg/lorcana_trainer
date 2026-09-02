@@ -1,0 +1,337 @@
+1 Carl Fredricksen - Loving Husband
+1 Ellie Fredricksen - Loving Wife
+1 Buzz Lightyear - Grounded
+1 Buzz Lightyear - Providing Cover
+1 Gopher - Hunny Cook
+1 Roo - Hunny Rogue
+1 Russell - Junior Wilderness Explorer
+1 Tod - Clever Fox
+1 Rapunzel - Tower Defender
+1 Russell - Senior Wilderness Explorer
+1 Winifred - Exasperated Elephant
+1 Peter Pan - Created by the Vine
+1 Copper - Creative Storyteller
+1 Aladdin - Doing His Part
+1 Madam Mim - Hummingbird
+1 Posey - Vampire Potato
+1 Dr. Bushroot - Evil Botanist
+1 Minnie Mouse - Curious Adventurer
+1 Kevin - Flightless Bird
+1 Mother Gothel - Evil as Ever
+1 Tod & Copper - Best of Friends
+1 Piercing Attack
+1 Put That Thing Back
+1 Rapunzel - Escaping the Tower
+1 Cetus - Mighty Serpent
+1 Scout Ahead
+1 Potato
+1 Mushu - Stealthy Dragon
+1 To Wither a Flower
+1 My Adventure Book
+1 Young MacGuffin - Soft-Spoken Son
+1 Buzz Lightyear - Space Ranger
+1 The Queen - Evil Ruler
+1 Hamish, Hubert & Harris - Troublemaking Triplets
+1 Merida - Defiant Daughter
+1 The Witch - Wily Woodcarver
+1 Helga Sinclair - No Backup Needed
+1 Paradise Falls - Exotic Destination
+1 Vine Pod
+1 Tod - Nimble Fox
+1 RC - Remote-Controlled Car
+1 Milo Thatch - Getting His Hands Dirty
+1 Alien - True Believer
+1 Lord MacGuffin - Clever Swordsman
+1 Lenny - Toy Binoculars
+1 Donald Duck - Distracted Traveler
+1 Buzz Lightyear - On the Way
+1 Gaetan Moliere - Clever Burrower
+1 Peter Pan - Searching Far and Wide
+1 Elinor - Renowned Diplomat
+1 Sabotage
+1 Strange Things
+1 The Huntsman - On the Queen's Orders
+1 Helga Sinclair - Prepared for Anything
+1 Cruella De Vil - Judgmental Traveler
+1 Lyle Tiberius Rourke - Adventurer for Hire
+1 Joshua Sweet - Field Surgeon
+1 Merida - Gifted Archer
+1 The Queen - Devious Disguise
+1 Buzz Lightyear - Jungle Ranger
+1 The Family Scattered
+1 The Claw
+1 Merida's Bow
+1 Mulan - Resourceful Recruit
+1 Big Mama - Clever and Calming
+1 Yao - Snow Warrior
+1 Ling - Snow Warrior
+1 Chernabog - Unnatural Force
+1 Stegmutt - Clumsy Dinosaur
+1 Aladdin - On the Edge of Adventure
+1 Goofy - Ghost of Jacob Marley
+1 Copper - Hound Pup
+1 Vixey - Forest Friend
+1 Buzz's Arm
+1 Gyro-Evac
+1 Pizza Planet - Spaceport
+1 Stitch - Naughty Experiment
+1 Minnie Mouse - Spinning Skater
+1 Chien-Po - Snow Warrior
+1 Boomer - Has the Beak
+1 Dinky - Has the Brains
+1 Squeaks - Cozy Caterpillar
+1 Mushu - Sneaky Dragon
+1 Copper - Champion of the Forest
+1 Minnie Mouse - Mrs. Cratchit
+1 Tod - Playful Kit
+1 Tod - Knows All the Tricks
+1 Strike A Good Match
+1 Freeze the Vine
+1 Tod - All Alone
+1 White Rabbit - Late Again
+1 Mickey Mouse - Snowboard Ace
+1 Donald Duck - Fred Honeywell
+1 Snowball Fight
+1 Snow Fort
+1 Retro Evolution Device
+1 Game Preserve - Protected Land
+1 Big Nose - Lovesick Poet
+1 Kaa - Suspicious Serpent
+1 Finnick - Tiny Terror
+1 Flintheart Glomgold - Scheming Billionaire
+1 Hook Hand - Unexpectedly Friendly
+1 Emily Quackfaster - Level-Headed Librarian
+1 Bellwether - Master Manipulator
+1 Penumbra - Moon Alien
+1 Megara - Secret Keeper
+1 Shere Khan - Fearsome Tiger
+1 Education or Elimination
+1 Rafiki's Bakora Staff
+1 Battering Ram
+1 Baloo - Laid-Back Bear
+1 Flotsam - Slippery as an Eel
+1 Webby Vanderquack - Mystery Enthusiast
+1 Vladimir - Ceramic Unicorn Fan
+1 Jetsam - Opportunistic Eel
+1 Kaa - Secretive Snake
+1 Flynn Rider - Spectral Scoundrel
+1 Launchpad - Exceptional Pilot
+1 Baloo - Carefree Bear
+1 Goldie O'Gilt - Cunning Prospector
+1 Scrooge McDuck - S.H.U.S.H. Agent
+1 Goofy - Emerald Champion
+1 Webby Vanderquack - Junior Prospector
+1 Trust In Me
+1 Malicious, Mean, and Scary
+1 Inscrutable Map
+1 Blessed Bagpipes
+1 Kuzco - Temperamental Emperor
+1 Cursed Merfolk - Ursula's Handiwork
+1 Prince Phillip - Vanquisher of Foes
+1 Max Goof - Rebellious Teen
+1 Max Goof - Chart Topper
+1 Megara - Pulling the Strings
+1 Enchantress - Unexpected Judge
+1 Donald Duck - Sleepwalker
+1 Akela - Forest Runner
+1 Little John - Impermanent Outlaw
+1 So Be It!
+1 Chomp!
+1 Potion of Malice
+1 Enigmatic Inkcaster
+1 White Agony Plains - Golden Lagoon
+1 Robin Hood - Daydreamer
+1 Prince Phillip - Warden of the Woods
+1 Goofy - Set for Adventure
+1 Genie - Of the Lamp
+1 Bobby Zimuruski - Spray Cheese Kid
+1 Mickey Mouse - Steamboat Pilot
+1 Virana - Fang Chief
+1 Pegasus - Gift for Hercules
+1 Donald Duck - Perfect Gentleman
+1 Shenzi - Hyena Pack Leader
+1 John Silver - Alien Pirate
+1 Wildcat - Mechanic
+1 Daisy Duck - Secret Agent
+1 Sudden Chill
+1 Under the Sea
+1 Mother Knows Best
+1 Signed Contract
+1 Dash Parr - Super Fast
+1 Kuzco - Picky Customer
+1 Carl Fredricksen - On the Move
+1 Heihei - Bumbling Rooster
+1 Tinker Bell - Most Helpful
+1 Ursula - Deceiver
+1 Aladdin - Prince Ali
+1 Stand Out
+1 Improvise
+1 Make the Potion
+1 Family Fishing Pole
+1 Hidden Cove - Tranquil Haven
+1 Yzma - Choosy Customer
+1 The Bear - Territorial Animal
+1 Dash Parr - Dodgeball Dynamo
+1 Gaston - Created by the Vine
+1 Splodyhead - Experiment 619
+1 Sun Yee - Red Panda Spirit
+1 King Louie - King of Swing
+1 Randall Boggs - Envious Coworker
+1 Meilin Lee - Popular Red Panda
+1 Boo - Energetic Child
+1 Ming Lee - Giant Red Panda
+1 Peter Pan - Vine Duelist
+1 Red Alert
+1 Colonel Hathi - On the March
+1 Pacha - Panicked Customer
+1 Grandma Wu - Fierce Red Panda
+1 Beast - Fierce Defender
+1 Donald Duck - Vineling Rider
+1 Tigger - Hunny Barbarian
+1 Sulley - Protective Monster
+1 Captain Hook - Conniving Pirate
+1 Red Moon Ritual
+1 RAHR!
+1 Prophetic Vision
+1 Scream Canister
+1 Beast's Castle - Overrun by the Vine
+1 Lyle Tiberius Rourke - Crystallized Commander
+1 Lyle Tiberius Rourke - Looking for His Moment
+1 Audrey Ramirez - Gutsy Mechanic
+1 Zeus - Defiant God
+1 Jingle Joe - Sid's Toy
+1 Roller Bob - Sid's Toy
+1 Daisy Duck - Trendy Traveler
+1 Jebidiah Farnsworth - Cookie
+1 Babyhead - Leader of Sid's Toys
+1 Jack-Jack Parr - Incredible Potential
+1 Hercules - Young Rescuer
+1 It's Gonna Be Great!
+1 Bunch of Balloons
+1 Carl's House - Flying High
+1 Mr. Incredible - Bob Parr
+1 Pegasus - Searching High and Low
+1 Milo Thatch - Courageous Explorer
+1 Preston Whitmore - Expedition Financier
+1 Wind-Up Frog - Sid's Toy
+1 Hand-in-the-Box - Sid's Toy
+1 Copper - Big Dog
+1 Dash Parr - Super Speedy
+1 Bouncing Ducky - Sid's Toy
+1 Queen of Hearts - Impatient Traveler
+1 Vincenzo Santorini - On the Run
+1 The Leviathan - Guardian of Atlantis
+1 Mr. Incredible - Super Strong
+1 Inner Strength
+1 Like A Bird In the Sky
+1 Dangerous Plan
+1 Remote Inklands - Desert Ruins
+1 Wreck-It Ralph - Raging Wrecker
+1 Donald Duck - Nephew Fred
+1 Copper - On the Scent
+1 Mulan - Ready for Battle
+1 Taurus Bulba - Steerminator
+1 Scrooge McDuck - Ghostly Ebenezer
+1 Leviathan's Lair - Dangerous Ground
+1 Amazu's Inkcaster
+1 Hero Work
+1 Firefly Swarm
+1 Pterodactyl Janie Doll - Sid's Toy
+1 Sid Phillips - Toy Surgeon
+1 Maui - Snow Slider
+1 Liquidator - Iced Over
+1 Iduna - Alarmed Queen
+1 Negaduck - Evil Doppelganger
+1 Hercules - Spectral Demigod
+1 Slushy - Glacial Guster
+1 Goofy - Klutzy Skier
+1 Elsa - Ice Artisan
+1 Elsa - Concerned Sister
+1 Nani's Payback
+1 Marching Off to Battle
+1 Grab Your Bow
+1 Kristoff's Lute
+1 Graveyard of Christmas Future - Lonely Resting Place
+1 Fa Zhou - Honorable Warrior
+1 Elisa Maza - Transformed Gargoyle
+1 Agnarr - King of Arendelle
+1 Negaduck - Public Enemy Number One
+1 Beast - Snowfield Troublemaker
+1 Goofy - Marley's Clumsy Spirit
+1 Olaf - Snowman of Action
+1 Scrooge McDuck - Ebenezer Scrooge
+1 Willie the Giant - Ghost of Christmas Present
+1 Force of a Great Typhoon
+1 The Cold Never Bothered Me
+1 Lonely Grave
+1 Scrooge's Counting House - Ebenezer's Office
+1 Beast's Castle - Winter Gardens
+1 Diablo - Watchful Raven
+1 Peter Pan - High Flyer
+1 Raksha - Fearless Mother
+1 Rama - Vigilant Father
+1 Katrina Van Tassel - Rosy-Cheeked Lass
+1 Beast - Aggressive Lord
+1 Tinker Bell - Temperamental Fairy
+1 Hans - Brazen Manipulator
+1 Goliath - Guardian of Castle Wyvern
+1 Donald Duck - Ruby Champion
+1 Aladdin - Barreling Through
+1 The Headless Horseman - Terror of Sleepy Hollow
+1 Brom Bones - Burly Bully
+1 Next Stop, Olympus
+1 Time to Go!
+1 Dragon Fire
+1 Ares - God of War
+1 Tinker Bell - Fancy Footwork
+1 Shere Khan - Keen-Eyed Hunter
+1 Mother Gothel - Underhanded Schemer
+1 Hermes - Harried Messenger
+1 Bronx - Ferocious Beast
+1 David Xanatos - Charismatic Leader
+1 Hercules - Mighty Leader
+1 Brooklyn - Second in Command
+1 Elisa Maza - Intrepid Investigator
+1 Lady Tremaine - Sinister Socialite
+1 Mulan - Standing Her Ground
+1 Shere Khan - Fierce and Furious
+1 Get to Safety!
+1 Ghostly Tale
+1 Mushu's Rocket
+1 The Bitterwood - Underground Forest
+1 LeFou - Instigator
+1 Simba - Scrappy Cub
+1 Ariel - Adventurous Collector
+1 Powerline - Taking the Stage
+1 Mickey Mouse - Brave Little Prince
+1 Roxanne - Powerline Fan
+1 Gaston - Arrogant Hunter
+1 Powerline - Musical Superstar
+1 Sisu - Daring Visitor
+1 Lumiere - Fiery Friend
+1 Queen of Hearts - Impulsive Ruler
+1 Mulan - Injured Soldier
+1 Raya - Headstrong
+1 Tuk Tuk - Lively Partner
+1 You Can Fly!
+1 Sleepy Hollow - The Bridge
+1 Shere Khan - Menacing Predator
+1 Maui - Whale
+1 Maleficent - Monstrous Dragon
+1 Powerline - World's Greatest Rock Star
+1 Max Goof - Rockin' Teen
+1 P.J. Pete - Caught Up in the Music
+1 Moana - Undeterred Voyager
+1 Sisu - Emboldened Warrior
+1 Queen of Hearts - Sensing Weakness
+1 Card Soldiers - Full Deck
+1 Rapunzel - Letting Down Her Hair
+1 Mulan - Elite Archer
+1 Sergeant Tibbs - Courageous Cat
+1 I2I
+1 A Pirate's Life
+1 Be King Undisputed
+1 Dinner Bell
+1 Carl Fredricksen & Russell - Intrepid Explorers
+1 Agrabah - Marketplace
+1 Medallion Weights

@@ -2921,6 +2921,9 @@ def on_challenge_banish(g, attacker, defender, atk_dies, def_dies):
     from . import schema
     if def_dies and defender is not None:
         schema.dispatch_challenged_banished(g, defender, attacker)
+        # "Whenever this character banishes another character in a challenge"
+        # (Raya - Headstrong), from the attacker's side.
+        schema.dispatch_banishes_in_challenge(g, attacker, defender)
     # Goofy EVEN THE SCORE: whenever one of your OTHER Emerald characters is
     # challenged and banished, banish the challenging character.
     if def_dies and _is_emerald(defender.card):

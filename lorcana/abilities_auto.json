@@ -656,8 +656,17 @@
  ],
  "Daisy Duck - Trendy Traveler": [
   {
-   "impl": "unimplemented",
-   "text": "[BREAK IS OVER] Whenever this character quests, if you played a character this turn, you may ready another chosen character. If you do, they can't quest for the rest of this turn."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "ready_chosen",
+    "no_quest": true,
+    "exclude_self": true
+   },
+   "confidence": "medium",
+   "source": "[BREAK IS OVER] Whenever this character quests, if you played a character this turn, you may ready another chosen character. If you do, they can't quest for the rest of this turn.",
+   "condition": {
+    "type": "played_another_character"
+   }
   }
  ],
  "Babyhead - Leader of Sid's Toys": [
@@ -3057,8 +3066,13 @@
  ],
  "Darkwing Duck & Launchpad - St. Canard’s Finest": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink (You may pay 5 Ink to play this on top of one of your characters named Darkwing Duck or Launchpad.)\n\nWard (Opponents can't choose this character except to challenge.)\n[VICTORY POSE] During your turn, whenever this character banishes another character in a challenge, gain 2 lore."
+   "trigger": "on_banishes_in_challenge",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink (You may pay 5 Ink to play this on top of one of your characters named Darkwing Duck or Launchpad.)\n\nWard (Opponents can't choose this character except to challenge.)\n[VICTORY POSE] During your turn, whenever this character banishes another character in a challenge, gain 2 lore."
   }
  ],
  "Power Surge": [
@@ -3927,8 +3941,14 @@
  ],
  "Rama - Vigilant Father": [
   {
-   "impl": "unimplemented",
-   "text": "[PROTECTION OF THE PACK] Whenever you play another character with 5 Strength or more, you may ready this character. If you do, he can't quest for the rest of this turn."
+   "trigger": "on_play_character",
+   "effect": {
+    "type": "ready_self",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "[PROTECTION OF THE PACK] Whenever you play another character with 5 Strength or more, you may ready this character. If you do, he can't quest for the rest of this turn.",
+   "played_min_strength": 5
   }
  ],
  "Mother Gothel - Underhanded Schemer": [
@@ -4040,8 +4060,17 @@
  ],
  "Shere Khan - Fierce and Furious": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink (You may pay 5 Ink to play this on top of one of your characters named Shere Khan.)[WILD RAGE 1] Ink, Deal 1 damage to this character — Ready this character. He can't quest for the rest of this turn."
+   "trigger": "activated",
+   "cost": {
+    "ink": 1,
+    "self_damage": 1
+   },
+   "effect": {
+    "type": "ready_self",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink (You may pay 5 Ink to play this on top of one of your characters named Shere Khan.)[WILD RAGE 1] Ink, Deal 1 damage to this character — Ready this character. He can't quest for the rest of this turn."
   }
  ],
  "Next Stop, Olympus": [
@@ -5152,8 +5181,24 @@
  ],
  "Maui - Whale": [
   {
-   "impl": "unimplemented",
-   "text": "[THIS MISSION IS CURSED] This character can't ready at the start of your turn.[I GOT YOUR BACK 2] Ink – Ready this character. He can't quest for the rest of this turn."
+   "trigger": "static",
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "[THIS MISSION IS CURSED] This character can't ready at the start of your turn.[I GOT YOUR BACK 2] Ink – Ready this character. He can't quest for the rest of this turn."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "ink": 2
+   },
+   "effect": {
+    "type": "ready_self",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "[THIS MISSION IS CURSED] This character can't ready at the start of your turn.[I GOT YOUR BACK 2] Ink – Ready this character. He can't quest for the rest of this turn."
   }
  ],
  "Mickey Mouse - Brave Little Prince": [
@@ -5246,8 +5291,13 @@
  ],
  "Raya - Headstrong": [
   {
-   "impl": "unimplemented",
-   "text": "[NOTE TO SELF, DON'T DIE] During your turn, whenever this character banishes another character in a challenge, you may ready this character. If you do, she can't quest for the rest of this turn."
+   "trigger": "on_banishes_in_challenge",
+   "effect": {
+    "type": "ready_self",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "[NOTE TO SELF, DON'T DIE] During your turn, whenever this character banishes another character in a challenge, you may ready this character. If you do, she can't quest for the rest of this turn."
   }
  ],
  "Tuk Tuk - Lively Partner": [

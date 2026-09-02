@@ -958,7 +958,12 @@ def _eff_mill_self(g, p, ctx, eff):
 def _eff_ready_chosen(g, p, ctx, eff):
     """Ready one of your exerted characters, optionally locking it out of
     questing for the rest of the turn (It's Gonna Be Great!)."""
-    pool = [c for c in g.my_chars(p) if c.exerted]
+    # dispatch_quest supplies only "char", so fall back to it: without this
+    # "ready ANOTHER chosen character" would happily ready the quester.
+    src = ctx.get("source") or ctx.get("char")
+    pool = [c for c in g.my_chars(p) if c.exerted
+            and not (eff.get("exclude_self") and src is not None
+                     and c.uid == getattr(src, "uid", None))]
     if not pool:
         return
     tgt = max(pool, key=lambda c: (g.eff_strength(c), g.eff_lore(c)))
@@ -969,11 +974,17 @@ def _eff_ready_chosen(g, p, ctx, eff):
 
 
 def _eff_ready_self(g, p, ctx, eff):
-    """Ready this character (Little John READY TO RASSLE)."""
+    """Ready this character (Little John READY TO RASSLE, Maui I GOT YOUR
+    BACK, Shere Khan WILD RAGE). "no_quest" adds the usual rider that the
+    character cannot quest for the rest of the turn."""
     ch = ctx.get("source") or ctx.get("char")
-    if ch is not None and getattr(ch, "exerted", False):
+    if ch is None:
+        return
+    if getattr(ch, "exerted", False):
         ch.exerted = False
         g.emit(f"schema: readies {ch.card.base_name}")
+    if eff.get("no_quest"):
+        g.turn_flags.add(("no_quest", ch.uid))
 
 
 def _eff_put_top_under_self(g, p, ctx, eff):
@@ -1502,6 +1513,10 @@ def dispatch_play_character(g, p, card, obj):
             want = e.get("played_classification")
             if want and not (card.classifications & set(want)):
                 continue
+            minstr = e.get("played_min_strength")
+            if minstr is not None:
+                if obj is None or g.eff_strength(obj) < minstr:
+                    continue
             _run(g, p, {"card": src.card, "char": obj, "source": src}, [e])
             if g.winner is not None:
                 return
@@ -1562,6 +1577,12 @@ def can_activate(g, p, obj, entry):
                   if not (_obj_is_char(obj) and c.uid == obj.uid)]
         if not others:
             return False
+    if cost.get("self_damage"):
+        # paying it must not be lethal, or the ability kills its own source
+        if not _obj_is_char(obj):
+            return False
+        if g.eff_willpower(obj) - obj.damage <= cost["self_damage"]:
+            return False
     return True
 
 
@@ -1591,6 +1612,10 @@ def _pay_activation_cost(g, p, obj, entry, ctx):
             ctx["banished_cost"] = victim.card.cost
             g.emit(f"schema: banishes own {victim.card.base_name} (cost)")
             g.banish_char(victim, cause="effect")
+    if cost.get("self_damage"):
+        obj.damage += cost["self_damage"]
+        g.emit(f"schema: {obj.card.base_name} takes {cost['self_damage']} "
+               f"damage (cost)")
     if cost.get("banish_self"):
         if _obj_is_char(obj):
             g.banish_char(obj, cause="effect")
@@ -1712,6 +1737,16 @@ def dispatch_opponent_song(g, p):
             _run(g, p, {"card": src.card,
                         "char": src if hasattr(src, "damage") else None,
                         "source": src}, ents)
+
+
+def dispatch_banishes_in_challenge(g, attacker, defender):
+    """'Whenever this character banishes another character in a challenge'
+    (Raya - Headstrong)."""
+    ents = entries_for(attacker.card.name, "on_banishes_in_challenge")
+    if ents:
+        _run(g, attacker.owner,
+             {"card": attacker.card, "char": defender, "source": attacker},
+             ents)
 
 
 def dispatch_challenged_banished(g, defender, attacker):

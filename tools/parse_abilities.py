@@ -814,6 +814,41 @@ def _c(m):
     return {"type": "ready_chosen", "no_quest": True}
 
 
+
+# --- Cluster A: the ready-then-quest-lock idiom ----------------------
+# The same rider appears on nine cards in four shapes: ready this character,
+# ready a chosen one, ready another chosen one, and the plain "Ready chosen
+# character." on an action.
+@clause(r"[Rr]eady this character\. (?:He|She|They|It) can't quest for the "
+        r"rest of this turn\.?")
+def _c(m):
+    return {"type": "ready_self", "no_quest": True}
+
+
+@clause(r"[Yy]ou may ready this character\. If you do, (?:he|she|they|it) "
+        r"can't quest for the rest of this turn\.?")
+def _c(m):
+    return {"type": "ready_self", "no_quest": True}
+
+
+@clause(r"[Yy]ou may ready another chosen character\. If you do, "
+        r"(?:they|he|she|it) can't quest for the rest of this turn\.?")
+def _c(m):
+    return {"type": "ready_chosen", "no_quest": True, "exclude_self": True}
+
+
+@clause(r"[Rr]eady this character\. If you do, (?:he|she|they|it) can't quest "
+        r"for the rest of this turn\.?")
+def _c(m):
+    return {"type": "ready_self", "no_quest": True}
+
+
+@clause(r"[Rr]eady (?:her|him|them)\. (?:He|She|They|It) can't quest for the "
+        r"rest of this turn\.?")
+def _c(m):
+    return {"type": "ready_self", "no_quest": True}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -865,6 +900,11 @@ def _parse_cost(text):
             continue
         if re.fullmatch(r"Banish chosen character of yours", tok, re.IGNORECASE):
             cost["banish_own_char"] = True
+            continue
+        m = re.fullmatch(r"Deal (\d+) damage to this character", tok,
+                         re.IGNORECASE)
+        if m:
+            cost["self_damage"] = int(m.group(1))
             continue
         m = re.fullmatch(r"Discard (?:a card|(\d+) cards)", tok, re.IGNORECASE)
         if m:
@@ -934,6 +974,10 @@ _STATIC_SELF = re.compile(
 _STATIC_RESIST = re.compile(
     r"(?:While|During) (?P<cond>.+?), (?:this character|she|he|they|it) gains "
     r"Resist \+(?P<amt>\d+)\.?", re.IGNORECASE)
+
+_NO_READY_PLAIN = re.compile(
+    r"This character can't ready at the start of your turn\.?",
+    re.IGNORECASE)
 
 _CANT_GAIN = re.compile(r"This character can't gain Evasive\.?", re.IGNORECASE)
 
@@ -1197,6 +1241,8 @@ def parse_static_self(line):
         return [{"trigger": "static",
                  "effect": {"type": "static_self_keyword",
                             "keyword": "cant_gain_evasive"}}]
+    if _NO_READY_PLAIN.fullmatch(line):
+        return [{"trigger": "static", "effect": {"type": "static_no_ready"}}]
     mn = _NO_READY.fullmatch(line)
     if mn:
         return [{"trigger": "static",
@@ -1384,8 +1430,10 @@ def parse_by_clauses(prose):
 
 
 _WATCH_PLAY_CHAR = re.compile(
-    r"^Whenever you play (?:a|this or another(?:\s+(?P<cls>[A-Za-z ]+?))?) "
-    r"character,\s*(?P<rest>.+)$", re.IGNORECASE)
+    r"^Whenever you play "
+    r"(?:a|another|this or another(?:\s+(?P<cls>[A-Za-z ]+?))?) "
+    r"character(?: with (?P<minstr>\d+) Strength or more)?,\s*"
+    r"(?P<rest>.+)$", re.IGNORECASE)
 _MAY_PAY_BANISH = re.compile(
     r"^you may pay (?P<ink>\d+) Ink and banish this (?:item|character|location) to\s*",
     re.IGNORECASE)
@@ -1399,6 +1447,8 @@ def parse_play_character_watcher(prose):
     extra = {}
     if "this or another" in m.group(0).lower():
         extra["include_self"] = True
+    if m.group("minstr"):
+        extra["played_min_strength"] = int(m.group("minstr"))
     if m.group("cls"):
         cls = _classes(m.group("cls"))
         if cls is None:
@@ -1534,6 +1584,9 @@ _PREAMBLES = [
                 re.IGNORECASE), "on_boost_used"),
     (re.compile(r"^Whenever this character challenges another character,\s*",
                 re.IGNORECASE), "on_challenges"),
+    (re.compile(r"^During your turn, whenever this character banishes another "
+                r"character in a challenge,\s*", re.IGNORECASE),
+     "on_banishes_in_challenge"),
     (re.compile(r"^Whenever an opponent plays a song,\s*", re.IGNORECASE),
      "on_opponent_song"),
     (re.compile(r"^When you play this character and whenever he quests,\s*",
@@ -1576,7 +1629,7 @@ _TRIG_CONDS = [
     (re.compile(r"^if there's a card under (?:him|her|them|it),\s*",
                 re.IGNORECASE),
      lambda m: {"type": "has_card_under"}),
-    (re.compile(r"^if you played another character this turn,\s*",
+    (re.compile(r"^if you played (?:a|another) character this turn,\s*",
                 re.IGNORECASE),
      lambda m: {"type": "played_another_character"}),
     (re.compile(r"^[Ii]f an opponent has more lore than you,\s*",

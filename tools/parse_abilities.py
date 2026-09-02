@@ -419,6 +419,13 @@ def _c(m):
 
 
 # --- Phase 7 clauses -------------------------------------------------
+@clause(r"[Cc]hosen character of yours gains (Evasive|Ward|Rush|Reckless) "
+        r"until the start of your next turn\.?")
+def _c(m):
+    return {"type": "grant_keyword", "keyword": m.group(1).lower(),
+            "target": "best_quester", "duration": "until_your_next"}
+
+
 @clause(r"[Cc]hosen character gains (Evasive|Ward|Rush|Reckless|Support) "
         r"until the start of your next turn\.?")
 def _c(m):
@@ -622,6 +629,51 @@ def _c(m):
             "filter": "character", "name": m.group(2).strip()}
 
 
+
+# --- Phase 13 clauses ------------------------------------------------
+@clause(r"[Dd]eal (\d+) damage to chosen opposing damaged character\.?")
+def _c(m):
+    return {"type": "deal_damage", "amount": int(m.group(1)),
+            "filter": {"damaged": True}}
+
+
+@clause(r"[Pp]ut (\d+) damage counters? on each opposing character\.?")
+def _c(m):
+    return {"type": "damage_counter_each_opposing", "amount": int(m.group(1))}
+
+
+@clause(r"[Bb]anish chosen item or location and all other items or locations "
+        r"with the same name\.?")
+def _c(m):
+    return {"type": "banish_same_name"}
+
+
+@clause(r"[Yy]ou may put the top card of your deck facedown under one of your "
+        r"characters or locations with Boost\.?")
+def _c(m):
+    return {"type": "put_top_under_boosted"}
+
+
+@clause(r"[Yy]ou may move him and one of your other characters to the same "
+        r"location for free\.?")
+def _c(m):
+    return {"type": "move_two_to_location"}
+
+
+@clause(r"[Dd]eal (\d+) damage to chosen opposing character\. If (\d+) or more "
+        r"cards were put into your discard this turn, deal (\d+) damage instead\.?")
+def _c(m):
+    return {"type": "damage_conditional", "amount": int(m.group(1)),
+            "upgraded_amount": int(m.group(3)),
+            "upgrade_if": {"type": "discards_this_turn_at_least",
+                           "count": int(m.group(2))}}
+
+
+@clause(r"[Ee]ach player chooses and discards a card\.?")
+def _c(m):
+    return {"type": "opponent_discard", "amount": 1}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -749,6 +801,23 @@ _NO_READY = re.compile(
     r"If you have (?P<n>\d+) or more cards in your hand, "
     r"(?:this character|she|he|they|it) can't ready\.?", re.IGNORECASE)
 
+# Modal abilities: "choose one:" followed by bullet options. The bullet glyph
+# varies across the export, so accept the common ones.
+_MODAL = re.compile(r"^choose one:?\s*(?P<rest>.+)$", re.IGNORECASE)
+_BULLET = re.compile(r"\s*[\u2022*\-\u2013]\s+")
+
+_SHIFT_ONTO = re.compile(
+    r"You may pay \d+ Ink to play this on top of one of your characters named "
+    r"(?P<a>[A-Za-z' .-]+?)(?: or (?P<b>[A-Za-z' .-]+?))?\.?", re.IGNORECASE)
+
+_LOC_LORE = re.compile(
+    r"While you have a character here, this location gets \+(\d+) Lore\.?",
+    re.IGNORECASE)
+
+_STATIC_WARD = re.compile(
+    r"While you have a character or location in play with a card under them, "
+    r"(?:this character|she|he|they|it) gains Ward\.?", re.IGNORECASE)
+
 _ENTERS_EXERTED = re.compile(
     r"This (?:item|character|location) enters play exerted\.?", re.IGNORECASE)
 
@@ -798,6 +867,16 @@ def _stat_name(tok):
 def parse_static_self(line):
     """'While <condition>, this character gets +N <stat> [and gains KW].'"""
     line = line.strip()
+    ml = _LOC_LORE.fullmatch(line)
+    if ml:
+        return [{"trigger": "static",
+                 "condition": {"type": "character_here"},
+                 "effect": {"type": "static_location_lore",
+                            "amount": int(ml.group(1))}}]
+    if _STATIC_WARD.fullmatch(line):
+        return [{"trigger": "static",
+                 "condition": {"type": "permanent_with_card_under"},
+                 "effect": {"type": "static_self_keyword", "keyword": "ward"}}]
     if _ENTERS_EXERTED.fullmatch(line):
         return [{"trigger": "static", "effect": {"type": "enters_exerted"}}]
     md = _SELF_DISCOUNT_NAMED.fullmatch(line)
@@ -947,9 +1026,31 @@ _SENT = re.compile(r"(?<=\.)\s+")
 _THEN = re.compile(r"^Then,?\s+", re.IGNORECASE)
 
 
+def parse_modal(text):
+    """"choose one: <a> <b>" -> a single choose_one effect."""
+    m = _MODAL.match(text.strip())
+    if not m:
+        return None
+    parts = [x.strip() for x in _BULLET.split(m.group("rest")) if x.strip()]
+    if len(parts) < 2:
+        return None
+    opts = []
+    for part in parts:
+        if part and part[0].islower():
+            part = part[0].upper() + part[1:]
+        e = match_clause(part)
+        if e is None:
+            return None        # all-or-nothing, as everywhere else
+        opts.append(e)
+    return {"type": "choose_one", "options": opts}
+
+
 def parse_by_clauses(prose):
     """Split into sentences; require EVERY sentence to match a clause.
     Returns list of effect dicts, or None."""
+    modal = parse_modal(prose)
+    if modal:
+        return [modal]
     whole = match_clause(prose)
     if whole:
         return [whole]         # multi-sentence composite (e.g. dig-N)
@@ -1068,6 +1169,17 @@ def parse_on_banish(prose):
     return cond, effects
 
 
+def parse_shift_onto(desc):
+    """Shift reminder text naming more than one legal target."""
+    txt = clean_text(desc).replace("\u2019", "'")
+    m = _SHIFT_ONTO.search(txt)
+    if not m or not m.group("b"):
+        return None
+    return {"trigger": "static",
+            "effect": {"type": "shift_onto_names",
+                       "names": [m.group("a").strip(), m.group("b").strip()]}}
+
+
 def parse_static_card(desc):
     """Cards whose only text is static lines (Randall Boggs, Ursula)."""
     lines = ability_lines(desc)
@@ -1105,6 +1217,8 @@ _PREAMBLES = [
      "on_play_location"),
     (re.compile(r"^Whenever you play an action,\s*", re.IGNORECASE),
      "on_play_action"),
+    (re.compile(r"^When this character is challenged and banished,\s*",
+                re.IGNORECASE), "on_challenged_banished"),
     (re.compile(r"^Whenever this character is challenged,\s*", re.IGNORECASE),
      "on_challenged"),
     (re.compile(r"^Whenever one of your ([A-Za-z ]+?) characters is "

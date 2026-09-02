@@ -406,6 +406,9 @@ def has_ward(g, ch):
     for c in g.my_chars(ch.owner):
         if c.card.name == "Aurora - Dreaming Guardian" and c.uid != ch.uid:
             return True
+    from . import schema
+    if schema.static_self_keyword(g, ch, "ward"):
+        return True
     return _has_ward_base(g, ch)
 
 
@@ -503,6 +506,8 @@ def can_enter_exerted(card):
 
 
 def location_lore(g, loc):
+    from . import schema
+    _schema_bonus = schema.static_location_lore(g, loc)
     l = loc.card.lore
     if loc.card.name == "Illuminary Tunnels - Linked Caverns":
         if any(c.location == loc.uid for c in g.my_chars(loc.owner)):
@@ -510,7 +515,7 @@ def location_lore(g, loc):
     # GOOD BUSINESS: +1 Willpower and +1 Lore for each card under it
     if loc.card.name == "Scrooge's Counting House - Ebenezer's Office":
         l += len(loc.under)
-    return l
+    return l + _schema_bonus
 
 
 def location_willpower(g, loc):
@@ -2894,6 +2899,9 @@ def end_of_turn(g, p):
 
 def on_challenge_banish(g, attacker, defender, atk_dies, def_dies):
     """Reactions to a challenge's banish outcome (fires on trades too)."""
+    from . import schema
+    if def_dies and defender is not None:
+        schema.dispatch_challenged_banished(g, defender, attacker)
     # Goofy EVEN THE SCORE: whenever one of your OTHER Emerald characters is
     # challenged and banished, banish the challenging character.
     if def_dies and _is_emerald(defender.card):
@@ -3080,12 +3088,16 @@ def play_param_options(g, p, card):
     # played onto one of your characters sharing its base name.
     if card.shift_ink is not None:
         base_name = card.base_name
+        from . import schema
+        # A card may declare which names it can be shifted ONTO (Tod & Copper
+        # shifts onto a character named Tod or Copper).
+        onto = set(schema.shift_onto_names(card))
         for c in g.my_chars(p):
-            # A card may declare extra names it counts as for Shift
+            # ...and a card may declare extra names it counts AS for Shift
             # (Incrediboy SPOILER ALERT counts as Syndrome).
-            from . import schema
             if c.card.base_name == base_name \
-                    or base_name in schema.shift_aliases(c.card):
+                    or base_name in schema.shift_aliases(c.card) \
+                    or c.card.base_name in onto:
                 opts.append((("shift", c.uid),))
     # Combo Shift N: may shift onto a character named after either half of the
     # combo name (e.g. Sulley & Boo -> a 'Sulley' or a 'Boo').

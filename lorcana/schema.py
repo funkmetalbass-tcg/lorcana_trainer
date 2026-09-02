@@ -303,7 +303,29 @@ def _cond_opponents_turn(g, p, ctx, cond):
     return g.active != p
 
 
+def _cond_character_here(g, p, ctx, cond):
+    """You have a character at this location (Paradise Falls)."""
+    loc = ctx.get("loc")
+    if loc is None:
+        return False
+    return any(c.location == loc.uid for c in g.my_chars(p))
+
+
+def _cond_permanent_with_card_under(g, p, ctx, cond):
+    """You control a character or location with a card under it
+    (Flintheart Glomgold TRY ME)."""
+    for c in g.my_chars(p):
+        if getattr(c, "under", None) or getattr(c, "boosted", None):
+            return True
+    for l in g.my_locs(p):
+        if getattr(l, "under", None) or getattr(l, "boosted", None):
+            return True
+    return False
+
+
 _CONDITIONS = {
+    "character_here": _cond_character_here,
+    "permanent_with_card_under": _cond_permanent_with_card_under,
     "opponent_has_more_lore": _cond_opponent_has_more_lore,
     "opposing_damaged_in_play": _cond_opposing_damaged_in_play,
     "discards_this_turn_at_least": _cond_discards_this_turn_at_least,
@@ -802,6 +824,109 @@ def _eff_return_cards_under(g, p, ctx, eff):
            f"{ch.card.base_name} to hand")
 
 
+def _eff_choose_one(g, p, ctx, eff):
+    """Modal "choose one" (Baloo ROLL WITH IT, Tod - Playful Kit).
+
+    Options are resolved by a fixed heuristic rather than by search: take the
+    first option whose effect can actually do something, preferring the one
+    that does not hand the opponent value. Symmetric options (each player
+    draws / each player discards) are decided on hand sizes.
+    """
+    opts = eff.get("options") or []
+    if not opts:
+        return
+    pick = None
+    for o in opts:
+        t = o.get("type")
+        if t == "each_player_draw" and len(g.players[p].hand) \
+                <= len(g.players[1 - p].hand):
+            pick = o
+            break
+        if t == "opponent_discard" and len(g.players[1 - p].hand) > 0 \
+                and len(g.players[1 - p].hand) >= len(g.players[p].hand):
+            pick = o
+            break
+    if pick is None:
+        pick = opts[0]
+    g.emit(f"schema: chooses {pick.get('type')}")
+    apply_effect(g, p, ctx, pick)
+
+
+def _eff_damage_conditional(g, p, ctx, eff):
+    """Deal N damage, or M instead when a condition holds
+    (Helga Sinclair - Prepared for Anything)."""
+    amount = eff.get("amount", 1)
+    if check_condition(g, p, ctx, eff.get("upgrade_if")):
+        amount = eff.get("upgraded_amount", amount)
+    apply_effect(g, p, ctx, {"type": "deal_damage", "amount": amount,
+                             "target": eff.get("target", "chosen_opposing"),
+                             "filter": eff.get("filter")})
+
+
+def _eff_banish_same_name(g, p, ctx, eff):
+    """Banish a chosen item or location and every other one sharing its name
+    (Sabotage). Targets the opponent's board, most expensive first."""
+    cands = [(i, "item") for i in g.items[1 - p]] \
+        + [(l, "loc") for l in g.my_locs(1 - p)]
+    if not cands:
+        return
+    obj, _kind = max(cands, key=lambda t: t[0].card.cost)
+    name = obj.card.name
+    for it in list(g.items[0]) + list(g.items[1]):
+        if it.card.name == name:
+            g.banish_item(it)
+    for lo in list(g.locs.values()):
+        if lo.card.name == name:
+            g.banish_loc(lo)
+    g.emit(f"schema: banishes every {name}")
+
+
+def _eff_put_top_under_boosted(g, p, ctx, eff):
+    """Put the top card of your deck facedown under one of your permanents
+    with Boost (Emily Quackfaster RECOMMENDED READING)."""
+    from . import abilities
+    pl = g.players[p]
+    if not pl.deck:
+        return
+    targets = [c for c in g.my_chars(p) if abilities.boost_cost(c.card)]
+    targets += [l for l in g.my_locs(p) if abilities.boost_cost(l.card)]
+    if not targets:
+        return
+    tgt = max(targets, key=lambda o: o.card.cost)
+    tgt.boosted.append(pl.deck.pop())
+    g.emit(f"schema: puts a card under {tgt.card.base_name}")
+
+
+def _eff_damage_counter_each_opposing(g, p, ctx, eff):
+    """Put N damage counters on every opposing character (Bellwether
+    VENDETTA). Counters are not damage dealt, so Resist does not apply."""
+    n = eff.get("amount", 1)
+    for c in list(g.my_chars(1 - p)):
+        if c.uid in g.chars:
+            g.deal_damage(c, n, apply_resist=False)
+            if g.winner is not None:
+                return
+
+
+def _eff_move_two_to_location(g, p, ctx, eff):
+    """Move this character and one other to the same location, for free
+    (Russell - Junior Wilderness Explorer)."""
+    me = ctx.get("char")
+    locs = list(g.my_locs(p))
+    if me is None or not locs:
+        return
+    loc = max(locs, key=lambda l: g.loc_lore(l))
+    others = [c for c in g.my_chars(p)
+              if c.uid != me.uid and c.location != loc.uid]
+    me.location = loc.uid
+    moved = [me.card.base_name]
+    if others:
+        buddy = max(others, key=lambda c: g.eff_lore(c))
+        buddy.location = loc.uid
+        moved.append(buddy.card.base_name)
+    g.emit(f"schema: moves {', '.join(moved)} to {loc.card.base_name}")
+
+
 def _eff_damage_each(g, p, ctx, eff):
     """Deal N damage to every opposing character matching a filter. A mass,
     non-targeted effect, so it bypasses _best_opp_char and Ward on purpose
@@ -1018,6 +1143,12 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "choose_one": _eff_choose_one,
+    "damage_conditional": _eff_damage_conditional,
+    "banish_same_name": _eff_banish_same_name,
+    "put_top_under_boosted": _eff_put_top_under_boosted,
+    "damage_counter_each_opposing": _eff_damage_counter_each_opposing,
+    "move_two_to_location": _eff_move_two_to_location,
     "damage_each": _eff_damage_each,
     "gain_lore_equal_strength": _eff_gain_lore_equal_strength,
     "exert_chosen": _eff_exert_chosen,
@@ -1063,7 +1194,8 @@ def apply_effect(g, p, ctx, eff):
                            "shift_alias", "static_no_ready", "enters_exerted",
                            "static_self_stat",
                            "static_self_lore", "static_self_keyword",
-                           "static_location_resist"):
+                           "static_location_resist", "static_location_lore",
+                           "shift_onto_names"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -1315,6 +1447,28 @@ def dispatch_leave_play(g, ch):
         _run(g, ch.owner, {"card": ch.card, "char": ch, "source": ch}, ents)
 
 
+def static_location_lore(g, loc):
+    """Conditional Lore on a location (Paradise Falls QUITE A SIGHT)."""
+    total = 0
+    for e in entries_for(loc.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "static_location_lore":
+            continue
+        if check_condition(g, loc.owner, {"card": loc.card, "loc": loc},
+                           e.get("condition")):
+            total += eff.get("amount", 0)
+    return total
+
+
+def dispatch_challenged_banished(g, defender, attacker):
+    """'When this character is challenged and banished' (Bellwether)."""
+    ents = entries_for(defender.card.name, "on_challenged_banished")
+    if ents:
+        _run(g, defender.owner,
+             {"card": defender.card, "char": attacker, "source": defender},
+             ents)
+
+
 def static_enters_exerted(card):
     """Does this permanent enter play exerted? (Potato, Vine Pod)"""
     for e in entries_for(card.name, "static"):
@@ -1412,6 +1566,17 @@ def static_no_ready(g, ch):
 def static_self_resist(g, ch):
     """Conditional Resist +N granted by a static entry (Omnidroid V.10)."""
     return static_self_stat(g, ch, "resist")
+
+
+def shift_onto_names(card):
+    """Extra base names this card may be shifted ONTO (Tod & Copper - Best of
+    Friends shifts onto a character named Tod or Copper)."""
+    out = []
+    for e in entries_for(card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") == "shift_onto_names":
+            out.extend(eff.get("names") or [])
+    return out
 
 
 def shift_aliases(card):

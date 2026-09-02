@@ -437,8 +437,18 @@
  ],
  "Helga Sinclair - Prepared for Anything": [
   {
-   "impl": "unimplemented",
-   "text": "[COMBAT TRAINING] Whenever this character quests, deal 1 damage to chosen opposing character. If 2 or more cards were put into your discard this turn, deal 2 damage instead."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "damage_conditional",
+    "amount": 1,
+    "upgraded_amount": 2,
+    "upgrade_if": {
+     "type": "discards_this_turn_at_least",
+     "count": 2
+    }
+   },
+   "confidence": "medium",
+   "source": "[COMBAT TRAINING] Whenever this character quests, deal 1 damage to chosen opposing character. If 2 or more cards were put into your discard this turn, deal 2 damage instead."
   }
  ],
  "Strange Things": [
@@ -464,8 +474,12 @@
  ],
  "Sabotage": [
   {
-   "impl": "unimplemented",
-   "text": "Banish chosen item or location and all other items or locations with the same name."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_same_name"
+   },
+   "confidence": "high",
+   "source": "Banish chosen item or location and all other items or locations with the same name."
   }
  ],
  "The Family Scattered": [
@@ -1283,8 +1297,15 @@
  ],
  "Nala - Romping in the Snow": [
   {
-   "impl": "unimplemented",
-   "text": "[PLAYFUL SLIDE] When you play this character, chosen character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "evasive",
+    "target": "best_quester",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[PLAYFUL SLIDE] When you play this character, chosen character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
   }
  ],
  "Alice - Well-Read Whisper": [
@@ -1583,8 +1604,24 @@
  ],
  "Tod - Playful Kit": [
   {
-   "impl": "unimplemented",
-   "text": "[LOOK AT THIS!] Whenever this character quests, choose one:\n* Gain 1 lore.\n* Chosen character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
+   "trigger": "on_quest",
+   "effect": {
+    "type": "choose_one",
+    "options": [
+     {
+      "type": "gain_lore",
+      "amount": 1
+     },
+     {
+      "type": "grant_keyword",
+      "keyword": "evasive",
+      "target": "best_quester",
+      "duration": "until_your_next"
+     }
+    ]
+   },
+   "confidence": "medium",
+   "source": "[LOOK AT THIS!] Whenever this character quests, choose one:\n* Gain 1 lore.\n* Chosen character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
   }
  ],
  "Mickey Mouse - Snowboard Ace": [
@@ -2471,8 +2508,12 @@
  ],
  "Russell - Junior Wilderness Explorer": [
   {
-   "impl": "unimplemented",
-   "text": "[ASSISTING THE ELDERLY BADGE] Whenever this character quests, you may move him and one of your other characters to the same location for free."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "move_two_to_location"
+   },
+   "confidence": "medium",
+   "source": "[ASSISTING THE ELDERLY BADGE] Whenever this character quests, you may move him and one of your other characters to the same location for free."
   }
  ],
  "Madam Mim - Hummingbird": [
@@ -2615,8 +2656,16 @@
  ],
  "Paradise Falls - Exotic Destination": [
   {
-   "impl": "unimplemented",
-   "text": "[QUITE A SIGHT] While you have a character here, this location gets +3 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "character_here"
+   },
+   "effect": {
+    "type": "static_location_lore",
+    "amount": 3
+   },
+   "confidence": "medium",
+   "source": "[QUITE A SIGHT] While you have a character here, this location gets +3 Lore."
   }
  ],
  "Dash Parr - Super Fast": [
@@ -3430,20 +3479,40 @@
  ],
  "Flintheart Glomgold - Scheming Billionaire": [
   {
-   "impl": "unimplemented",
-   "text": "[TRY ME] While you have a character or location in play with a card under them, this character gains Ward. (Opponents can't choose them except to challenge.)"
+   "trigger": "static",
+   "condition": {
+    "type": "permanent_with_card_under"
+   },
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "ward"
+   },
+   "confidence": "medium",
+   "source": "[TRY ME] While you have a character or location in play with a card under them, this character gains Ward. (Opponents can't choose them except to challenge.)"
   }
  ],
  "Jetsam - Opportunistic Eel": [
   {
-   "impl": "unimplemented",
-   "text": "[AMBUSH FROM THE DEEP] When you play this character, deal 3 damage to chosen opposing damaged character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 3,
+    "filter": {
+     "damaged": true
+    }
+   },
+   "confidence": "medium",
+   "source": "[AMBUSH FROM THE DEEP] When you play this character, deal 3 damage to chosen opposing damaged character."
   }
  ],
  "Emily Quackfaster - Level-Headed Librarian": [
   {
-   "impl": "unimplemented",
-   "text": "[RECOMMENDED READING] When you play this character, you may put the top card of your deck facedown under one of your characters or locations with Boost."
+   "trigger": "on_play",
+   "effect": {
+    "type": "put_top_under_boosted"
+   },
+   "confidence": "medium",
+   "source": "[RECOMMENDED READING] When you play this character, you may put the top card of your deck facedown under one of your characters or locations with Boost."
   }
  ],
  "Flynn Rider - Spectral Scoundrel": [
@@ -3476,8 +3545,13 @@
  ],
  "Bellwether - Master Manipulator": [
   {
-   "impl": "unimplemented",
-   "text": "[VENDETTA] When this character is challenged and banished, put 1 damage counter on each opposing character."
+   "trigger": "on_challenged_banished",
+   "effect": {
+    "type": "damage_counter_each_opposing",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[VENDETTA] When this character is challenged and banished, put 1 damage counter on each opposing character."
   }
  ],
  "Launchpad - Exceptional Pilot": [
@@ -3492,8 +3566,22 @@
  ],
  "Baloo - Carefree Bear": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink[ROLL WITH IT] When you play this character, choose one:\n- Each player draws a card.\n- Each player chooses and discards a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "choose_one",
+    "options": [
+     {
+      "type": "each_player_draw",
+      "amount": 1
+     },
+     {
+      "type": "opponent_discard",
+      "amount": 1
+     }
+    ]
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink[ROLL WITH IT] When you play this character, choose one:\n- Each player draws a card.\n- Each player chooses and discards a card."
   }
  ],
  "Goldie O'Gilt - Cunning Prospector": [
@@ -3797,8 +3885,15 @@
  ],
  "Fergus McDuck - Scrooge's Father": [
   {
-   "impl": "unimplemented",
-   "text": "[TOUGHEN UP] When you play this character, chosen character of yours gains Ward until the start of your next turn. (Opponents can't choose them except to challenge.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "ward",
+    "target": "best_quester",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[TOUGHEN UP] When you play this character, chosen character of yours gains Ward until the start of your next turn. (Opponents can't choose them except to challenge.)"
   }
  ],
  "Ichabod Crane - Bookish Schoolmaster": [
@@ -4646,8 +4741,24 @@
  ],
  "Make the Potion": [
   {
-   "impl": "unimplemented",
-   "text": "Choose one: • Banish chosen item. • Deal 2 damage to chosen damaged character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "choose_one",
+    "options": [
+     {
+      "type": "banish_item"
+     },
+     {
+      "type": "deal_damage",
+      "amount": 2,
+      "filter": {
+       "damaged": true
+      }
+     }
+    ]
+   },
+   "confidence": "medium",
+   "source": "Choose one: • Banish chosen item. • Deal 2 damage to chosen damaged character."
   }
  ],
  "Family Fishing Pole": [

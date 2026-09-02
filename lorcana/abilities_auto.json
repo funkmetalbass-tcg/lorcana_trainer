@@ -637,8 +637,19 @@
  ],
  "Jingle Joe - Sid's Toy": [
   {
-   "impl": "unimplemented",
-   "text": "[TURN OUT THE LIGHT] During your turn, whenever one of your other Toy characters is banished, chosen character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
+   "trigger": "on_ally_banished",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "evasive",
+    "target": "best_quester",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[TURN OUT THE LIGHT] During your turn, whenever one of your other Toy characters is banished, chosen character of yours gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)",
+   "condition": {
+    "type": "your_turn"
+   },
+   "banished_classification": "Toy"
   }
  ],
  "Wind-Up Frog - Sid's Toy": [
@@ -697,8 +708,18 @@
  ],
  "Queen of Hearts - Impatient Traveler": [
   {
-   "impl": "unimplemented",
-   "text": "[ROYAL COMMAND] Whenever this character quests, if you played another character this turn, chosen character gains Rush this turn. (They can challenge the turn they're played.)"
+   "trigger": "on_quest",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "rush",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[ROYAL COMMAND] Whenever this character quests, if you played another character this turn, chosen character gains Rush this turn. (They can challenge the turn they're played.)",
+   "condition": {
+    "type": "played_another_character"
+   }
   }
  ],
  "Hercules - Young Rescuer": [
@@ -727,8 +748,28 @@
  ],
  "Pterodactyl Janie Doll - Sid's Toy": [
   {
-   "impl": "unimplemented",
-   "text": "[DOUBLE TRANSPLANT] During your turn, when this character is banished, each opponent loses 1 lore and you gain 1 lore."
+   "trigger": "on_banish",
+   "effect": {
+    "type": "opponent_lose_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[DOUBLE TRANSPLANT] During your turn, when this character is banished, each opponent loses 1 lore and you gain 1 lore.",
+   "condition": {
+    "type": "your_turn"
+   }
+  },
+  {
+   "trigger": "on_banish",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[DOUBLE TRANSPLANT] During your turn, when this character is banished, each opponent loses 1 lore and you gain 1 lore.",
+   "condition": {
+    "type": "your_turn"
+   }
   }
  ],
  "Inner Strength": [
@@ -807,8 +848,12 @@
  ],
  "Leviathan's Lair - Dangerous Ground": [
   {
-   "impl": "unimplemented",
-   "text": "[LOST TO THE DUNES] When this location is banished, each opponent chooses and banishes one of their characters."
+   "trigger": "on_banish",
+   "effect": {
+    "type": "opponent_banish_own"
+   },
+   "confidence": "medium",
+   "source": "[LOST TO THE DUNES] When this location is banished, each opponent chooses and banishes one of their characters."
   }
  ],
  "Flora - Strong-Willed Fairy": [
@@ -1640,8 +1685,12 @@
  ],
  "Goofy - Ghost of Jacob Marley": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[GRAVE OUTCOME] When this character is banished, each opponent chooses and discards a card for each card that was under him."
+   "trigger": "on_banish",
+   "effect": {
+    "type": "opponent_discard_per_card_under"
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[GRAVE OUTCOME] When this character is banished, each opponent chooses and discards a card for each card that was under him."
   }
  ],
  "Copper - Champion of the Forest": [
@@ -3568,8 +3617,15 @@
  ],
  "Duckworth - Ghost Butler": [
   {
-   "impl": "unimplemented",
-   "text": "Rush (This character can challenge the turn they're played.)[FINAL ACT] During your turn, when this character is banished, you may put the top card of your deck facedown under one of your characters or locations with Boost."
+   "trigger": "on_banish",
+   "effect": {
+    "type": "put_top_under_boosted"
+   },
+   "confidence": "medium",
+   "source": "Rush (This character can challenge the turn they're played.)[FINAL ACT] During your turn, when this character is banished, you may put the top card of your deck facedown under one of your characters or locations with Boost.",
+   "condition": {
+    "type": "your_turn"
+   }
   }
  ],
  "Nibs - Lost Boy": [
@@ -4054,8 +4110,17 @@
  ],
  "Mother Gothel - Underhanded Schemer": [
   {
-   "impl": "unimplemented",
-   "text": "[SOMEBODY'S GOT TO USE IT] If a character was banished this turn, this character gets +2 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "character_banished_this_turn"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[SOMEBODY'S GOT TO USE IT] If a character was banished this turn, this character gets +2 Strength."
   }
  ],
  "Beast - Aggressive Lord": [
@@ -4113,8 +4178,28 @@
  ],
  "David Xanatos - Charismatic Leader": [
   {
-   "impl": "unimplemented",
-   "text": "[LEARN FROM EVERYTHING] During your turn, whenever one of your characters is banished, draw a card.\nWHAT ARE YOU WAITING FOR? Whenever this character quests, chosen character gains Rush this turn. (They can challenge the turn they're played.)"
+   "trigger": "on_ally_banished",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[LEARN FROM EVERYTHING] During your turn, whenever one of your characters is banished, draw a card.\nWHAT ARE YOU WAITING FOR? Whenever this character quests, chosen character gains Rush this turn. (They can challenge the turn they're played.)",
+   "condition": {
+    "type": "your_turn"
+   },
+   "include_self": true
+  },
+  {
+   "trigger": "on_quest",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "rush",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[LEARN FROM EVERYTHING] During your turn, whenever one of your characters is banished, draw a card.\nWHAT ARE YOU WAITING FOR? Whenever this character quests, chosen character gains Rush this turn. (They can challenge the turn they're played.)"
   }
  ],
  "Hans - Brazen Manipulator": [
@@ -4163,8 +4248,28 @@
  ],
  "The Headless Horseman - Terror of Sleepy Hollow": [
   {
-   "impl": "unimplemented",
-   "text": "[LEAVES NO TRACE] When you play this character, banish chosen opposing character with 2 Strength or less.[GATHERING STRENGTH] During your turn, whenever an opposing character is banished, each of your characters gets +1 Strength this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_chosen",
+    "filter": {
+     "max_strength": 2
+    }
+   },
+   "confidence": "medium",
+   "source": "[LEAVES NO TRACE] When you play this character, banish chosen opposing character with 2 Strength or less.[GATHERING STRENGTH] During your turn, whenever an opposing character is banished, each of your characters gets +1 Strength this turn."
+  },
+  {
+   "trigger": "on_opposing_banished",
+   "effect": {
+    "type": "buff_all_yours",
+    "stat": "str",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[LEAVES NO TRACE] When you play this character, banish chosen opposing character with 2 Strength or less.[GATHERING STRENGTH] During your turn, whenever an opposing character is banished, each of your characters gets +1 Strength this turn.",
+   "condition": {
+    "type": "your_turn"
+   }
   }
  ],
  "Mulan - Standing Her Ground": [
@@ -4231,8 +4336,30 @@
  ],
  "Mushu's Rocket": [
   {
-   "impl": "unimplemented",
-   "text": "[I NEED FIREPOWER] When you play this item, chosen character gains Rush this turn. (They can challenge the turn they're played.)[HITCH A RIDE 2] Ink, Banish this item — Chosen character gains Rush this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "rush",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[I NEED FIREPOWER] When you play this item, chosen character gains Rush this turn. (They can challenge the turn they're played.)[HITCH A RIDE 2] Ink, Banish this item — Chosen character gains Rush this turn."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "ink": 2,
+    "banish_self": true
+   },
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "rush",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[I NEED FIREPOWER] When you play this item, chosen character gains Rush this turn. (They can challenge the turn they're played.)[HITCH A RIDE 2] Ink, Banish this item — Chosen character gains Rush this turn."
   }
  ],
  "The Bitterwood - Underground Forest": [
@@ -4979,8 +5106,19 @@
  ],
  "White Rabbit's Pocket Watch": [
   {
-   "impl": "unimplemented",
-   "text": "I'M LATE! [Exert], 1 Ink — Chosen character gains Rush this turn. (They can challenge the turn they're played.)"
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1
+   },
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "rush",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "I'M LATE! [Exert], 1 Ink — Chosen character gains Rush this turn. (They can challenge the turn they're played.)"
   }
  ],
  "Rose Lantern": [

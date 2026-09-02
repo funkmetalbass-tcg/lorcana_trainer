@@ -419,6 +419,12 @@ def _c(m):
 
 
 # --- Phase 7 clauses -------------------------------------------------
+@clause(r"[Cc]hosen character gains (Rush|Evasive|Ward|Reckless) this turn\.?")
+def _c(m):
+    return {"type": "grant_keyword", "keyword": m.group(1).lower(),
+            "target": "best_quester", "duration": "eot"}
+
+
 @clause(r"[Cc]hosen character of yours gains (Evasive|Ward|Rush|Reckless) "
         r"until the start of your next turn\.?")
 def _c(m):
@@ -896,6 +902,37 @@ def _c(m):
     return {"type": "gain_lore", "amount": int(m.group(1))}
 
 
+
+# --- Cluster G: banish watchers --------------------------------------
+@clause(r"[Ee]ach opponent chooses and discards a card for each card that "
+        r"was under (?:him|her|them|it)\.?")
+def _c(m):
+    return {"type": "opponent_discard_per_card_under"}
+
+
+@clause(r"[Ee]ach opponent chooses and banishes one of their characters\.?")
+def _c(m):
+    return {"type": "opponent_banish_own"}
+
+
+@clause(r"[Ee]ach of your characters gets \+(\d+) Strength this turn\.?")
+def _c(m):
+    return {"type": "buff_all_yours", "stat": "str", "amount": int(m.group(1))}
+
+
+@clause(r"[Bb]anish chosen opposing character with (\d+) Strength or less\.?")
+def _c(m):
+    return {"type": "banish_chosen",
+            "filter": {"max_strength": int(m.group(1))}}
+
+
+@clause(r"[Cc]hosen character of yours gains (Evasive|Ward|Rush|Reckless) "
+        r"until the start of your next turn\.?")
+def _c(m):
+    return {"type": "grant_keyword", "keyword": m.group(1).lower(),
+            "target": "best_quester", "duration": "until_your_next"}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1025,7 +1062,7 @@ _NO_QUEST_UNLESS = re.compile(
     r"(?:him|her|them|it) this turn\.?", re.IGNORECASE)
 
 _STATIC_SELF = re.compile(
-    r"(?:While|As long as|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
+    r"(?:While|As long as|During|If) (?P<cond>.+?), (?:this character|she|he|they|it) "
     r"gets \+(?P<amt>\d+) (?P<stat>\{\}|Strength|Lore|Willpower)"
     r"(?: and \+(?P<amt2>\d+) (?P<stat2>\{\}|Strength|Lore|Willpower))?"
     r"(?: and gains (?P<kw>Evasive|Ward|Reckless|Rush|Support))?\.?",
@@ -1134,6 +1171,8 @@ _STATIC_CONDS = [
     (re.compile(r"this character has damage", re.I), {"type": "self_damaged"}),
     (re.compile(r"this character has a card under (?:him|her|them|it)", re.I),
      {"type": "has_card_under"}),
+    (re.compile(r"a character was banished this turn", re.I),
+     {"type": "character_banished_this_turn"}),
     (re.compile(r"you have a ([A-Za-z ]+?) character in play", re.I), None),
     (re.compile(r"you have a character with (Singer|Evasive|Ward|Support|Reckless) in play",
                 re.I), None),
@@ -1704,6 +1743,25 @@ _PREAMBLES = [
     (re.compile(r"^During opponents.? turns, whenever one of your other "
                 r"characters is banished,\s*", re.IGNORECASE),
      "on_ally_banished|oppturn"),
+    (re.compile(r"^During your turn, whenever one of your other "
+                r"(?P<cls>[A-Za-z ]+?) characters is banished,\s*",
+                re.IGNORECASE), "on_ally_banished|yourturn|cls"),
+    (re.compile(r"^During your turn, whenever one of your other characters "
+                r"is banished,\s*", re.IGNORECASE),
+     "on_ally_banished|yourturn"),
+    (re.compile(r"^During your turn, whenever one of your characters "
+                r"is banished,\s*", re.IGNORECASE),
+     "on_ally_banished|yourturn|self"),
+    (re.compile(r"^During your turn, whenever an opposing character is "
+                r"banished,\s*", re.IGNORECASE),
+     "on_opposing_banished|yourturn"),
+    (re.compile(r"^During your turn, whenever an? (?!opposing\b)"
+                r"(?P<cls>[A-Za-z ]+?) character is banished,\s*",
+                re.IGNORECASE), "on_ally_banished|yourturn|cls|self"),
+    (re.compile(r"^During your turn, when this character is banished,\s*",
+                re.IGNORECASE), "on_banish|yourturn"),
+    (re.compile(r"^When this location is banished,\s*", re.IGNORECASE),
+     "on_banish"),
     (re.compile(r"^Whenever one of your characters or locations with a card "
                 r"under them is challenged,\s*", re.IGNORECASE),
      "on_ally_challenged|hasunder"),
@@ -1796,6 +1854,15 @@ def parse_triggered(prose):
                 extra["condition"] = {"type": "self_at_location"}
             if "oppturn" in parts:
                 extra["condition"] = {"type": "opponents_turn"}
+            if "yourturn" in parts:
+                extra["condition"] = {"type": "your_turn"}
+            if "self" in parts:
+                extra["include_self"] = True
+            if "cls" in parts and m.groupdict().get("cls"):
+                _cl = _classes(m.group("cls"))
+                if _cl is None:
+                    return None
+                extra["banished_classification"] = _cl[0]
             if "hasunder" in parts:
                 extra["defender_has_card_under"] = True
         if trig == "on_ally_challenged" and not extra.get(

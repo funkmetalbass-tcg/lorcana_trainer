@@ -395,6 +395,8 @@ class Game:
                 ch.location = None
         self.players[loc.owner].discard.append(loc.card)
         self.players[loc.owner].discard.extend(loc.under)
+        from . import schema as _sch
+        _sch.dispatch_location_banished(self, loc)
         self.emit(f"{loc.card.name} (P{loc.owner}) banished")
 
     def banish_item(self, item):

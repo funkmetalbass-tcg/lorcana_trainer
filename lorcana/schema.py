@@ -410,7 +410,14 @@ def _cond_put_card_under_this_turn(g, p, ctx, cond):
     return ("under_this_turn", p) in g.turn_flags
 
 
+def _cond_character_banished_this_turn(g, p, ctx, cond):
+    """Any character was banished this turn, either side
+    (Mother Gothel - Underhanded Schemer)."""
+    return ("banished_this_turn",) in g.turn_flags
+
+
 _CONDITIONS = {
+    "character_banished_this_turn": _cond_character_banished_this_turn,
     "put_card_under_this_turn": _cond_put_card_under_this_turn,
     "keyword_character_here": _cond_keyword_character_here,
     "you_have_damaged_character": _cond_you_have_damaged_character,
@@ -930,6 +937,20 @@ def _eff_return_cards_under(g, p, ctx, eff):
     ch.under = []
     g.emit(f"schema: returns {n} card(s) from under "
            f"{ch.card.base_name} to hand")
+
+
+def _eff_opponent_banish_own(g, p, ctx, eff):
+    """Each opponent chooses and banishes one of their own characters
+    (Leviathan's Lair LOST TO THE DUNES). They choose, so they give up the
+    least valuable body they control."""
+    opp = 1 - p
+    pool = list(g.my_chars(opp))
+    if not pool:
+        return
+    victim = min(pool, key=lambda c: (g.eff_lore(c), g.eff_strength(c),
+                                      c.card.cost))
+    g.emit(f"schema: P{opp} banishes {victim.card.base_name}")
+    g.banish_char(victim, cause="effect")
 
 
 def _eff_draw_per_card_under(g, p, ctx, eff):
@@ -1452,6 +1473,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "opponent_banish_own": _eff_opponent_banish_own,
     "draw_per_card_under": _eff_draw_per_card_under,
     "move_other_here": _eff_move_other_here,
     "put_top_under_source": _eff_put_top_under_source,
@@ -2103,14 +2125,44 @@ def dispatch_ally_banished(g, ch):
     (Donald Duck - Fred Honeywell WELL WISHES). ctx["char"] is the banished
     character, so effects can scale on what was under it."""
     p = ch.owner
-    for src in list(g.my_chars(p)):
-        if src.uid == ch.uid:
-            continue
+    # engine.banish_char removes the character before dispatching, so a
+    # watcher that includes itself has to be considered separately -- it is
+    # no longer in g.my_chars.
+    watchers = list(g.my_chars(p)) + [ch]
+    for src in watchers:
         ents = entries_for(src.card.name, "on_ally_banished")
-        if ents:
-            _run(g, p, {"card": src.card, "char": ch, "source": src}, ents)
+        for e in ents:
+            # "one of your OTHER characters" is the default; entries that say
+            # "a <classification> character" may include the source itself.
+            if src.uid == ch.uid and not e.get("include_self"):
+                continue
+            if src is ch and not e.get("include_self"):
+                continue
+            want = e.get("banished_classification")
+            if want and want not in ch.card.classifications:
+                continue
+            _run(g, p, {"card": src.card, "char": ch, "source": src}, [e])
             if g.winner is not None:
                 return
+    # "whenever an opposing character is banished", watched from the far side
+    opp = 1 - p
+    for src in list(g.my_chars(opp)):
+        ents = entries_for(src.card.name, "on_opposing_banished")
+        for e in ents:
+            want = e.get("banished_classification")
+            if want and want not in ch.card.classifications:
+                continue
+            _run(g, opp, {"card": src.card, "char": ch, "source": src}, [e])
+            if g.winner is not None:
+                return
+
+
+def dispatch_location_banished(g, loc):
+    """'When this location is banished' (Leviathan's Lair)."""
+    ents = entries_for(loc.card.name, "on_banish")
+    if ents:
+        _run(g, loc.owner,
+             {"card": loc.card, "loc": loc, "source": loc}, ents)
 
 
 def blocks_quest_challenge(g, ch):

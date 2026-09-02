@@ -745,8 +745,14 @@
  ],
  "Dangerous Plan": [
   {
-   "impl": "unimplemented",
-   "text": "Draw 2 cards. Then, discard a card at random."
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw_then_discard_random",
+    "amount": 2,
+    "discard": 1
+   },
+   "confidence": "high",
+   "source": "Draw 2 cards. Then, discard a card at random."
   }
  ],
  "Amazu's Inkcaster": [
@@ -1839,8 +1845,20 @@
  ],
  "Agnarr - King of Arendelle": [
   {
-   "impl": "unimplemented",
-   "text": "[PROTECTIVE INSTINCT] While you have a Queen character in play, this character gets +2 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "you_have_classification",
+    "any_of": [
+     "Queen"
+    ]
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[PROTECTIVE INSTINCT] While you have a Queen character in play, this character gets +2 Strength."
   }
  ],
  "Negaduck - Public Enemy Number One": [
@@ -1851,14 +1869,27 @@
  ],
  "Goofy - Marley's Clumsy Spirit": [
   {
-   "impl": "unimplemented",
-   "text": "[PREPARE YOURSELF] When you play this character, you may ready chosen character. If you do, they can't quest for the rest of this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "ready_chosen",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "[PREPARE YOURSELF] When you play this character, you may ready chosen character. If you do, they can't quest for the rest of this turn."
   }
  ],
  "Goofy - Klutzy Skier": [
   {
-   "impl": "unimplemented",
-   "text": "YAAAAAAA-HOO-HOO-HOO-HOOEY [Exert], Banish this character — Banish chosen character."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "banish_self": true
+   },
+   "effect": {
+    "type": "banish_chosen"
+   },
+   "confidence": "medium",
+   "source": "YAAAAAAA-HOO-HOO-HOO-HOOEY [Exert], Banish this character — Banish chosen character."
   }
  ],
  "Olaf - Snowman of Action": [
@@ -3928,8 +3959,15 @@
  ],
  "Tinker Bell - Temperamental Fairy": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Tinker Bell.)[HARMLESS DIVERSION] When you play this character, exert chosen opposing character with 2 Strength or less."
+   "trigger": "on_play",
+   "effect": {
+    "type": "exert_chosen",
+    "filter": {
+     "max_strength": 2
+    }
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Tinker Bell.)[HARMLESS DIVERSION] When you play this character, exert chosen opposing character with 2 Strength or less."
   }
  ],
  "David Xanatos - Charismatic Leader": [
@@ -4020,14 +4058,25 @@
  ],
  "Ghostly Tale": [
   {
-   "impl": "unimplemented",
-   "text": "Exert all opposing characters with 2 Strength or less."
+   "trigger": "on_play",
+   "effect": {
+    "type": "exert_all_opposing",
+    "filter": {
+     "max_strength": 2
+    }
+   },
+   "confidence": "high",
+   "source": "Exert all opposing characters with 2 Strength or less."
   }
  ],
  "Dragon Fire": [
   {
-   "impl": "unimplemented",
-   "text": "Banish chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_chosen"
+   },
+   "confidence": "high",
+   "source": "Banish chosen character."
   }
  ],
  "Mushu's Rocket": [
@@ -4652,8 +4701,18 @@
  ],
  "Timothy Q. Mouse - Flight Instructor": [
   {
-   "impl": "unimplemented",
-   "text": "[LET'S SHOW 'EM, DUMBO!] While you have a character with Evasive in play, this character gets +1 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "you_have_keyword",
+    "keyword": "evasive"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[LET'S SHOW 'EM, DUMBO!] While you have a character with Evasive in play, this character gets +1 Lore."
   }
  ],
  "Kuzco - Wanted Llama": [
@@ -5105,8 +5164,32 @@
  ],
  "Roxanne - Powerline Fan": [
   {
-   "impl": "unimplemented",
-   "text": "[CONCERT LOVER] While you have a character with Singer in play, this character gets +1 Strength and +1 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "you_have_keyword",
+    "keyword": "singer"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[CONCERT LOVER] While you have a character with Singer in play, this character gets +1 Strength and +1 Lore."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "you_have_keyword",
+    "keyword": "singer"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[CONCERT LOVER] While you have a character with Singer in play, this character gets +1 Strength and +1 Lore."
   }
  ],
  "P.J. Pete - Caught Up in the Music": [

@@ -783,6 +783,37 @@ def _c(m):
     return {"type": "ready_chosen", "no_quest": True}
 
 
+
+# --- Phase 17 clauses ------------------------------------------------
+@clause(r"[Bb]anish chosen character\.?")
+def _c(m):
+    return {"type": "banish_chosen"}
+
+
+@clause(r"[Ee]xert all opposing characters with (\d+) Strength or less\.?")
+def _c(m):
+    return {"type": "exert_all_opposing",
+            "filter": {"max_strength": int(m.group(1))}}
+
+
+@clause(r"[Ee]xert chosen opposing character with (\d+) Strength or less\.?")
+def _c(m):
+    return {"type": "exert_chosen",
+            "filter": {"max_strength": int(m.group(1))}}
+
+
+@clause(r"[Dd]raw (\d+) cards\. Then, discard a card at random\.?")
+def _c(m):
+    return {"type": "draw_then_discard_random", "amount": int(m.group(1)),
+            "discard": 1}
+
+
+@clause(r"[Yy]ou may ready chosen character\. If you do, they can't quest "
+        r"for the rest of this turn\.?")
+def _c(m):
+    return {"type": "ready_chosen", "no_quest": True}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -988,6 +1019,9 @@ _STATIC_CONDS = [
     (re.compile(r"this character has no damage", re.I),
      {"type": "self_undamaged"}),
     (re.compile(r"this character has damage", re.I), {"type": "self_damaged"}),
+    (re.compile(r"you have a ([A-Za-z ]+?) character in play", re.I), None),
+    (re.compile(r"you have a character with (Singer|Evasive|Ward|Support|Reckless) in play",
+                re.I), None),
     (re.compile(r"your turn", re.I), {"type": "your_turn"}),
     (re.compile(r"you have a character named ([A-Za-z' .-]+?) in play", re.I),
      None),
@@ -1020,6 +1054,18 @@ def _static_cond(text):
         subs = [_static_cond(x) for x in parts]
         if len(subs) > 1 and all(subs):
             return {"type": "all_of", "all_of": subs}
+    mc = re.fullmatch(r"you have an? ([A-Za-z ]+?) character in play", text,
+                      re.IGNORECASE)
+    if mc:
+        cls = _classes(mc.group(1))
+        if cls is None:
+            return None
+        return {"type": "you_have_classification", "any_of": cls}
+    mk = re.fullmatch(r"you have a character with "
+                      r"(Singer|Evasive|Ward|Support|Reckless) in play", text,
+                      re.IGNORECASE)
+    if mk:
+        return {"type": "you_have_keyword", "keyword": mk.group(1).lower()}
     md = _DISCARD_COUNT.fullmatch(text)
     if md:
         return {"type": "discards_this_turn_at_least",

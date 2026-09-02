@@ -174,7 +174,15 @@ def _cond_you_have_keyword(g, p, ctx, cond):
           "ward": abilities.has_ward,
           "support": abilities.has_support}.get(kw)
     if fn is None:
-        return False
+        # Keywords with no helper (Singer, Bodyguard, Challenger, ...) are
+        # read straight off the printed card. Returning False here instead
+        # would make the card report [ok] and silently never fire.
+        printed = {"singer": "Singer", "bodyguard": "Bodyguard",
+                   "challenger": "Challenger", "rush": "Rush",
+                   "resist": "Resist", "shift": "Shift"}.get(kw)
+        if printed is None:
+            return False
+        return any(c.card.kw(printed) for c in g.my_chars(p))
     return any(fn(g, c) for c in g.my_chars(p))
 
 
@@ -362,7 +370,23 @@ def _cond_classification_banished_this_turn(g, p, ctx, cond):
     return ("banished_class", cond.get("name")) in g.turn_flags
 
 
+def _cond_you_have_damaged_character(g, p, ctx, cond):
+    return any(c.damage > 0 for c in g.my_chars(p))
+
+
+def _cond_others_with_strength(g, p, ctx, cond):
+    """N or more OTHER characters of yours with Strength >= X
+    (Elisa Maza - Intrepid Investigator)."""
+    me = ctx.get("char")
+    n = sum(1 for c in g.my_chars(p)
+            if (me is None or c.uid != me.uid)
+            and g.eff_strength(c) >= cond.get("strength", 1))
+    return n >= cond.get("count", 1)
+
+
 _CONDITIONS = {
+    "you_have_damaged_character": _cond_you_have_damaged_character,
+    "others_with_strength": _cond_others_with_strength,
     "all_of": _cond_all_of,
     "classification_banished_this_turn": _cond_classification_banished_this_turn,
     "self_damaged": _cond_self_damaged,
@@ -880,6 +904,46 @@ def _eff_return_cards_under(g, p, ctx, eff):
            f"{ch.card.base_name} to hand")
 
 
+def _eff_banish_chosen(g, p, ctx, eff):
+    """Banish a chosen opposing character (Dragon Fire)."""
+    from . import abilities
+    tgt = abilities._best_opp_char(
+        g, p, cond=lambda gg, c: _char_matches(gg, c, eff.get("filter")))
+    if tgt is None:
+        return
+    g.emit(f"schema: banishes {tgt.card.base_name}(P{tgt.owner})")
+    g.banish_char(tgt, cause="effect")
+
+
+def _eff_exert_all_opposing(g, p, ctx, eff):
+    """Exert every opposing character matching a filter (Ghostly Tale).
+    Mass and non-targeted, so it bypasses Ward on purpose."""
+    n = 0
+    for c in g.my_chars(1 - p):
+        if not c.exerted and _char_matches(g, c, eff.get("filter")):
+            c.exerted = True
+            n += 1
+    g.emit(f"schema: exerts {n} opposing character(s)")
+
+
+def _eff_draw_then_discard_random(g, p, ctx, eff):
+    """Draw N, then discard one at random (Dangerous Plan). The engine has no
+    randomness source here beyond the seeded rng, so the worst card is
+    discarded -- a slightly favourable approximation, noted deliberately."""
+    from . import abilities
+    pl = g.players[p]
+    g.draw(p, eff.get("amount", 1))
+    for _ in range(eff.get("discard", 1)):
+        if not pl.hand:
+            break
+        card = abilities._worst_hand_card(g, p)
+        if card is None:
+            break
+        pl.hand.remove(card)
+        pl.discard.append(card)
+        g.emit(f"schema: discards {card.name}")
+
+
 def _eff_mill_self(g, p, ctx, eff):
     """Put the top N cards of your deck into your discard
     (Preston Whitmore PRICE OF PROGRESS)."""
@@ -1295,6 +1359,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "banish_chosen": _eff_banish_chosen,
+    "exert_all_opposing": _eff_exert_all_opposing,
+    "draw_then_discard_random": _eff_draw_then_discard_random,
     "mill_self": _eff_mill_self,
     "ready_chosen": _eff_ready_chosen,
     "ready_self": _eff_ready_self,

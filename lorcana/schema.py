@@ -593,14 +593,26 @@ def _eff_grant_keyword(g, p, ctx, eff):
 
     duration: eot | until_your_next (start of your next turn).
     """
-    target = _resolve_target(g, p, ctx, eff.get("target", "self"))
+    filt = eff.get("target_filter")
+    if filt:
+        # "chosen <classification> character" -- your own board, best quester
+        pool = [c for c in g.my_chars(p)
+                if filt.get("classification") in c.card.classifications]
+        target = max(pool, key=lambda c: (g.eff_lore(c), g.eff_strength(c))) \
+            if pool else None
+    else:
+        target = _resolve_target(g, p, ctx, eff.get("target", "self"))
     if target is None:
         return
     kw = eff.get("keyword", "evasive")
     until = "eot" if eff.get("duration", "eot") == "eot" else p
+    # Numeric keywords (Challenger +N, Resist +N) carry their value here;
+    # challenger_bonus() and resist() sum g.effects entries by amount, so a
+    # grant with amount 0 would be silently inert.
     g.effects.append({"kind": kw, "target": target.uid,
-                      "amount": 0, "until": until})
-    g.emit(f"schema: {target.card.base_name} gains {kw}")
+                      "amount": eff.get("amount", 0), "until": until})
+    g.emit(f"schema: {target.card.base_name} gains {kw}"
+           + (f" +{eff['amount']}" if eff.get("amount") else ""))
 
 
 def _eff_opponent_discard(g, p, ctx, eff):

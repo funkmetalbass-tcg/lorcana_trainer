@@ -1177,8 +1177,15 @@
  ],
  "Angus - Mighty Horse": [
   {
-   "impl": "unimplemented",
-   "text": "[DAUNTLESS] When you play this character, chosen character gains Alert this turn. (They can challenge as if they had Evasive.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "alert",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[DAUNTLESS] When you play this character, chosen character gains Alert this turn. (They can challenge as if they had Evasive.)"
   }
  ],
  "Incrediboy - Buddy Pine": [
@@ -1209,14 +1216,33 @@
  ],
  "Mrs. Incredible - Helen Parr": [
   {
-   "impl": "unimplemented",
-   "text": "[PEP TALK] When you play this character, chosen character gains Challenger +2 this turn. (They get +2 Strength while challenging.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "challenger",
+    "target": "best_quester",
+    "duration": "eot",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[PEP TALK] When you play this character, chosen character gains Challenger +2 this turn. (They get +2 Strength while challenging.)"
   }
  ],
  "Lord Macintosh - Wiry and High-Strung": [
   {
-   "impl": "unimplemented",
-   "text": "[TOUGH IT OUT] This character may enter play exerted to give chosen character Resist +2 until the start of your next turn. (Damage dealt to them is reduced by 2.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "enter_exerted_for",
+    "then": {
+     "type": "grant_keyword",
+     "keyword": "resist",
+     "target": "best_quester",
+     "duration": "until_your_next",
+     "amount": 2
+    }
+   },
+   "confidence": "high",
+   "source": "[TOUGH IT OUT] This character may enter play exerted to give chosen character Resist +2 until the start of your next turn. (Damage dealt to them is reduced by 2.)"
   }
  ],
  "Rat Capone - Rodent Gangster": [
@@ -1675,8 +1701,16 @@
  ],
  "Swordplay": [
   {
-   "impl": "unimplemented",
-   "text": "Chosen character gains Challenger +3 this turn. (They get +3 Strength while challenging.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "challenger",
+    "target": "best_quester",
+    "duration": "eot",
+    "amount": 3
+   },
+   "confidence": "high",
+   "source": "Chosen character gains Challenger +3 this turn. (They get +3 Strength while challenging.)"
   }
  ],
  "Colors of the Wind": [
@@ -4762,8 +4796,28 @@
  ],
  "Inkrunner": [
   {
-   "impl": "unimplemented",
-   "text": "[PREFLIGHT CHECK] When you play this item, draw a card.\nREADY TO RIDE [Exert], 1 Ink - Chosen character gains Alert this turn. (They can challenge as if they had Evasive.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[PREFLIGHT CHECK] When you play this item, draw a card.\nREADY TO RIDE [Exert], 1 Ink - Chosen character gains Alert this turn. (They can challenge as if they had Evasive.)"
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1
+   },
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "alert",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[PREFLIGHT CHECK] When you play this item, draw a card.\nREADY TO RIDE [Exert], 1 Ink - Chosen character gains Alert this turn. (They can challenge as if they had Evasive.)"
   }
  ],
  "Castle of the Horned King - Bastion of Evil": [
@@ -4789,8 +4843,19 @@
  ],
  "Donald Duck - Ghost Hunter": [
   {
-   "impl": "unimplemented",
-   "text": "[RAISE A RUCKUS] When you play this character, chosen Detective character gains Challenger +2 this turn. (They get +2 Strength while challenging.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "challenger",
+    "target": "best_quester",
+    "duration": "eot",
+    "amount": 2,
+    "target_filter": {
+     "classification": "Detective"
+    }
+   },
+   "confidence": "medium",
+   "source": "[RAISE A RUCKUS] When you play this character, chosen Detective character gains Challenger +2 this turn. (They get +2 Strength while challenging.)"
   }
  ],
  "Goliath - Clan Leader": [
@@ -4836,8 +4901,18 @@
  ],
  "Minnie Mouse - Ghost Hunter": [
   {
-   "impl": "unimplemented",
-   "text": "[SEARCH THE SHADOWS] When you play this character, chosen Detective character gains Alert this turn. (They can challenge as if they had Evasive.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "alert",
+    "target": "best_quester",
+    "duration": "eot",
+    "target_filter": {
+     "classification": "Detective"
+    }
+   },
+   "confidence": "medium",
+   "source": "[SEARCH THE SHADOWS] When you play this character, chosen Detective character gains Alert this turn. (They can challenge as if they had Evasive.)"
   }
  ],
  "Lexington - Small in Stature": [
@@ -4928,8 +5003,27 @@
  ],
  "But I'm Much Faster": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 1 or more can [Exert] to sing this song for free.)\nChosen character gains Alert and Challenger +2 this turn. (They can challenge as if they had Evasive. They get +2 Strength while challenging.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "alert",
+    "target": "best_quester",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "(A character with cost 1 or more can [Exert] to sing this song for free.)\nChosen character gains Alert and Challenger +2 this turn. (They can challenge as if they had Evasive. They get +2 Strength while challenging.)"
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "challenger",
+    "target": "best_quester",
+    "duration": "eot",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "(A character with cost 1 or more can [Exert] to sing this song for free.)\nChosen character gains Alert and Challenger +2 this turn. (They can challenge as if they had Evasive. They get +2 Strength while challenging.)"
   }
  ],
  "Putting It All Together": [
@@ -6160,8 +6254,16 @@
  ],
  "Mickey Mouse - Standard Bearer": [
   {
-   "impl": "unimplemented",
-   "text": "[STAND STRONG] When you play this character, chosen character gains Challenger +2 this turn. (They get +2 Strength while challenging.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "challenger",
+    "target": "best_quester",
+    "duration": "eot",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[STAND STRONG] When you play this character, chosen character gains Challenger +2 this turn. (They get +2 Strength while challenging.)"
   }
  ],
  "Lawrence - Jealous Manservant": [

@@ -543,6 +543,14 @@ def _c(m):
     return {"type": "opponent_discard", "amount": 1}
 
 
+@clause(r"[Tt]his character may enter play exerted to give chosen character "
+        r"(Challenger|Resist) \+(\d+) until the start of your next turn\.?")
+def _c(m):
+    return {"type": "enter_exerted_for",
+            "then": _grant(m.group(1), m.group(2),
+                           duration="until_your_next")}
+
+
 @clause(r"[Tt]his character may enter play exerted to deal (\d+) damage "
         r"to chosen damaged character\.?")
 def _c(m):
@@ -747,6 +755,10 @@ def _c(m):
     return {"type": "stat_mod", "stat": "str", "amount": int(m.group(1)),
             "target": "chosen_character", "duration": "eot"}
 
+
+_TWO_KEYWORDS = re.compile(
+    r"[Cc]hosen character gains (Alert|Evasive|Ward|Rush) and "
+    r"(Challenger|Resist) \+(\d+) this turn\.?")
 
 _DRAIN_AND_GAIN = re.compile(
     r"[Ee]ach opponent loses (\d+) lore and you gain (\d+) lore\.?")
@@ -1015,6 +1027,64 @@ def _c(m):
         r"characters or locations(?: with Boost)?\.?")
 def _c(m):
     return {"type": "put_top_under_boosted"}
+
+
+
+# --- keyword grants to a chosen character -----------------------------
+# Alert is boolean; Challenger and Resist are numeric and must carry their
+# value, or the grant resolves to +0.
+_KW_NUMERIC = {"challenger", "resist"}
+
+
+def _grant(kw, amount, cls=None, duration="eot"):
+    e = {"type": "grant_keyword", "keyword": kw.lower(),
+         "target": "best_quester", "duration": duration}
+    if amount is not None:
+        e["amount"] = int(amount)
+    if cls:
+        e["target_filter"] = {"classification": cls}
+    return e
+
+
+@clause(r"[Cc]hosen character gains (Alert|Evasive|Ward|Rush|Reckless) "
+        r"this turn\.?")
+def _c(m):
+    return _grant(m.group(1), None)
+
+
+@clause(r"[Cc]hosen character gains (Challenger|Resist) \+(\d+) this turn\.?")
+def _c(m):
+    return _grant(m.group(1), m.group(2))
+
+
+@clause(r"[Cc]hosen character gains (Challenger|Resist) \+(\d+) until the "
+        r"start of your next turn\.?")
+def _c(m):
+    return _grant(m.group(1), m.group(2), duration="until_your_next")
+
+
+@clause(r"[Cc]hosen ([A-Za-z ]+?) character gains (Alert|Evasive|Ward|Rush) "
+        r"this turn\.?")
+def _c(m):
+    cls = _CLASS_CANON.get(m.group(1).strip().lower())
+    if cls is None:
+        return None
+    return _grant(m.group(2), None, cls)
+
+
+@clause(r"[Cc]hosen ([A-Za-z ]+?) character gains (Challenger|Resist) "
+        r"\+(\d+) this turn\.?")
+def _c(m):
+    cls = _CLASS_CANON.get(m.group(1).strip().lower())
+    if cls is None:
+        return None
+    return _grant(m.group(2), m.group(3), cls)
+
+
+@clause(r"[Gg]ive chosen character (Challenger|Resist) \+(\d+) until the "
+        r"start of your next turn\.?")
+def _c(m):
+    return _grant(m.group(1), m.group(2), duration="until_your_next")
 
 
 def match_clause(text):
@@ -1700,6 +1770,10 @@ def parse_by_clauses(prose):
                  "then": {"type": "grant_keyword",
                           "keyword": mbp.group(3).lower(),
                           "target": "self", "duration": "eot"}}]
+    mtk = _TWO_KEYWORDS.fullmatch(prose.strip())
+    if mtk:
+        return [_grant(mtk.group(1), None),
+                _grant(mtk.group(2), mtk.group(3))]
     mdg = _DRAIN_AND_GAIN.fullmatch(prose.strip())
     if mdg:
         return [{"type": "opponent_lose_lore", "amount": int(mdg.group(1))},
@@ -2192,9 +2266,12 @@ def _parse_one(prose, desc):
             ent = {"trigger": trigger, "effect": e,
                    "confidence": "medium", "source": _src(desc)}
             ent.update(extra)
-            if cond is None and e.get("type") == "enter_exerted_for":
+            if cond is None and e.get("type") == "enter_exerted_for" \
+                    and (e.get("then") or {}).get("type") == "deal_damage":
                 # the exert is paid up front, so only offer it when the
-                # payoff exists (Lord MacGuffin WAIT FOR IT...)
+                # payoff exists (Lord MacGuffin WAIT FOR IT...). Only
+                # meaningful when the payoff is damage -- Lord Macintosh
+                # buffs a friendly character and must not be gated on it.
                 cond = {"type": "opposing_damaged_present"}
             if cond:
                 ent["condition"] = cond
@@ -2224,9 +2301,10 @@ def _parse_one(prose, desc):
     if single:
         ent = {"trigger": "on_play", "effect": single,
                "confidence": "high", "source": _src(desc)}
-        if single.get("type") == "enter_exerted_for":
-            # the exert is paid up front, so only take it when the payoff
-            # exists (Lord MacGuffin WAIT FOR IT...)
+        if single.get("type") == "enter_exerted_for" \
+                and (single.get("then") or {}).get("type") == "deal_damage":
+            # gate only when the payoff is damage; a friendly buff payoff
+            # (Lord Macintosh) has nothing to do with opposing damage
             ent["condition"] = {"type": "opposing_damaged_present"}
         return [ent]
 

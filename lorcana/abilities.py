@@ -377,6 +377,9 @@ def has_alert(g, ch):
     Evasive to the character itself (they remain challengeable normally)."""
     if ch.card.kw("Alert"):
         return True
+    # prose-granted Alert (Angus, Minnie Mouse - Ghost Hunter, ...)
+    if any(e["kind"] == "alert" and e["target"] == ch.uid for e in g.effects):
+        return True
     # Judy Hopps LATERAL THINKING: during your turn, your Detective characters
     # gain Alert and Resist +2
     if g.active == ch.owner and has_classification(g, ch, "Detective"):

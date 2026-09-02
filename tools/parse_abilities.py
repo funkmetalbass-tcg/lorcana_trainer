@@ -981,6 +981,42 @@ def _c(m):
             "filter": {"max_strength": int(m.group(1))}}
 
 
+
+# --- Clusters B and I -------------------------------------------------
+@clause(r"[Yy]ou may put the top card of your deck into your inkwell "
+        r"facedown and exerted\.?")
+def _c(m):
+    return {"type": "put_top_into_inkwell"}
+
+
+@clause(r"[Yy]ou may exert all cards in your inkwell\.?")
+def _c(m):
+    return {"type": "exert_all_inkwell"}
+
+
+@clause(r"[Ee]xert all cards in your inkwell\.?")
+def _c(m):
+    return {"type": "exert_all_inkwell"}
+
+
+@clause(r"[Ee]xert chosen opposing character with (\d+) or less\.?")
+def _c(m):
+    # the Strength glyph is stripped in clean-up; this wording is Strength
+    return {"type": "exert_chosen",
+            "filter": {"max_strength": int(m.group(1))}}
+
+
+@clause(r"[Rr]eturn chosen opposing character to their player's hand\.?")
+def _c(m):
+    return {"type": "return_to_hand", "side": "opposing"}
+
+
+@clause(r"[Pp]ut the top card of your deck facedown under one of your "
+        r"characters or locations(?: with Boost)?\.?")
+def _c(m):
+    return {"type": "put_top_under_boosted"}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1030,7 +1066,8 @@ def _parse_cost(text):
         if re.fullmatch(r"Banish this (item|character|location)", tok, re.IGNORECASE):
             cost["banish_self"] = True
             continue
-        if re.fullmatch(r"Banish chosen character of yours", tok, re.IGNORECASE):
+        if re.fullmatch(r"Banish (?:chosen character of yours|one of your "
+                        r"characters)", tok, re.IGNORECASE):
             cost["banish_own_char"] = True
             continue
         m = re.fullmatch(r"Deal (\d+) damage to this character", tok,
@@ -1118,6 +1155,10 @@ _STATIC_SELF = re.compile(
 
 # "While <cond>, it gains Resist +N." -- a numeric keyword, so it goes through
 # the stat hook rather than the boolean keyword hook.
+_STATIC_GAINS_KW = re.compile(
+    r"(?:While|As long as|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
+    r"gains (?P<kw>Rush|Evasive|Ward|Reckless|Support)\.?", re.IGNORECASE)
+
 _STATIC_RESIST = re.compile(
     r"(?:While|During) (?P<cond>.+?), (?:this character|she|he|they|it) gains "
     r"Resist \+(?P<amt>\d+)\.?", re.IGNORECASE)
@@ -1470,6 +1511,14 @@ def parse_static_self(line):
                  "condition": {"type": "put_card_under_this_turn",
                                "scope": "self"},
                  "effect": {"type": "no_quest_or_challenge_unless"}}]
+    mgk = _STATIC_GAINS_KW.fullmatch(line)
+    if mgk:
+        c = _static_cond(mgk.group("cond"))
+        if c is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "static_self_keyword",
+                            "keyword": mgk.group("kw").lower()}}]
     mr = _STATIC_RESIST.fullmatch(line)
     if mr:
         c = _static_cond(mr.group("cond"))
@@ -1572,9 +1621,16 @@ def parse_activated(desc):
                 body = body[cd.end():].strip()
             if body and body[0].islower():
                 body = body[0].upper() + body[1:]
-        eff = match_clause(body)
-        if eff is None:
+        body = re.sub(r"\s*\{\}\s*", " ", body).strip()
+        body = re.sub(r"\s+", " ", body)
+        effs = parse_by_clauses(body)
+        if not effs:
             return None
+        # A multi-sentence activated ability is still ONE action with ONE
+        # cost, so wrap it rather than emitting several entries (which would
+        # expose the later halves as free activations).
+        eff = effs[0] if len(effs) == 1 else {"type": "sequence",
+                                              "effects": effs}
         ent = {"trigger": "activated", "cost": cost, "effect": eff}
         if cond is None and eff.get("type") == "move_damage":
             # gate availability so the ability is not offered as a no-op
@@ -1930,6 +1986,9 @@ _TRIG_CONDS = [
      lambda m: {"type": "self_at_location"}),
     (re.compile(r"^if there's a card under this character,\s*", re.IGNORECASE),
      lambda m: {"type": "has_card_under"}),
+    (re.compile(r"^if an opponent has more cards in their inkwell than you,"
+                r"\s*", re.IGNORECASE),
+     lambda m: {"type": "opponent_more_inkwell"}),
     (re.compile(r"^[Ii]f (\d+) or more(?: other)? cards were put into your "
                 r"discard this turn,\s*", re.IGNORECASE),
      lambda m: {"type": "discards_this_turn_at_least",

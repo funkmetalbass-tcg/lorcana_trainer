@@ -416,7 +416,14 @@ def _cond_character_banished_this_turn(g, p, ctx, cond):
     return ("banished_this_turn",) in g.turn_flags
 
 
+def _cond_opponent_more_inkwell(g, p, ctx, cond):
+    """An opponent has more cards in their inkwell than you
+    (Heihei, Webby Vanderquack)."""
+    return g.players[1 - p].ink_total > g.players[p].ink_total
+
+
 _CONDITIONS = {
+    "opponent_more_inkwell": _cond_opponent_more_inkwell,
     "character_banished_this_turn": _cond_character_banished_this_turn,
     "put_card_under_this_turn": _cond_put_card_under_this_turn,
     "keyword_character_here": _cond_keyword_character_here,
@@ -941,6 +948,36 @@ def _eff_return_cards_under(g, p, ctx, eff):
     ch.under = []
     g.emit(f"schema: returns {n} card(s) from under "
            f"{ch.card.base_name} to hand")
+
+
+def _eff_sequence(g, p, ctx, eff):
+    """Apply several effects as one indivisible resolution. Used for
+    activated abilities whose text is more than one sentence, so the whole
+    ability stays a single action with a single cost."""
+    for inner in eff.get("effects") or []:
+        apply_effect(g, p, ctx, inner)
+        if g.winner is not None:
+            return
+
+
+def _eff_put_top_into_inkwell(g, p, ctx, eff):
+    """Put the top card of your deck into your inkwell facedown and exerted.
+    The inkwell is modelled as two counters, so an exerted card raises the
+    total without raising what is ready this turn."""
+    pl = g.players[p]
+    if not pl.deck:
+        return
+    pl.deck.pop()
+    pl.ink_total += 1
+    g.emit("schema: puts the top card into the inkwell (exerted)")
+
+
+def _eff_exert_all_inkwell(g, p, ctx, eff):
+    """Exert every card in your inkwell (Sulley, Scream Canister)."""
+    pl = g.players[p]
+    if pl.ink_ready:
+        g.emit(f"schema: exerts {pl.ink_ready} inkwell card(s)")
+        pl.ink_ready = 0
 
 
 def _eff_discard_to_bottom(g, p, ctx, eff):
@@ -1544,6 +1581,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "sequence": _eff_sequence,
+    "put_top_into_inkwell": _eff_put_top_into_inkwell,
+    "exert_all_inkwell": _eff_exert_all_inkwell,
     "discard_to_bottom": _eff_discard_to_bottom,
     "then_if_moved": _eff_then_if_moved,
     "discard_hand_then_return": _eff_discard_hand_then_return,

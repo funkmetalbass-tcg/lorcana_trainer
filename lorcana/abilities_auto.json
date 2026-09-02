@@ -553,8 +553,18 @@
  ],
  "The Claw": [
   {
-   "impl": "unimplemented",
-   "text": "THE CLAW CHOOSES [Exert], 2 Ink, Banish one of your characters — Return chosen opposing character to their player's hand."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 2,
+    "banish_own_char": true
+   },
+   "effect": {
+    "type": "return_to_hand",
+    "side": "opposing"
+   },
+   "confidence": "medium",
+   "source": "THE CLAW CHOOSES [Exert], 2 Ink, Banish one of your characters — Return chosen opposing character to their player's hand."
   }
  ],
  "Merida's Bow": [
@@ -1041,8 +1051,15 @@
  ],
  "Cinderella - Resourceful Traveler": [
   {
-   "impl": "unimplemented",
-   "text": "[THIS AND THAT] Whenever this character quests, if you played another character this turn, you may put the top card of your deck into your inkwell facedown and exerted."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "put_top_into_inkwell"
+   },
+   "confidence": "medium",
+   "source": "[THIS AND THAT] Whenever this character quests, if you played another character this turn, you may put the top card of your deck into your inkwell facedown and exerted.",
+   "condition": {
+    "type": "played_another_character"
+   }
   }
  ],
  "Bruno Madrigal - Seeing the Future": [
@@ -1053,8 +1070,16 @@
  ],
  "Kida - Discovering the Unknown": [
   {
-   "impl": "unimplemented",
-   "text": "[READ THE RUNES] Whenever this character quests, if 2 or more cards were put into your discard this turn, you may put the top card of your deck into your inkwell facedown and exerted."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "put_top_into_inkwell"
+   },
+   "confidence": "medium",
+   "source": "[READ THE RUNES] Whenever this character quests, if 2 or more cards were put into your discard this turn, you may put the top card of your deck into your inkwell facedown and exerted.",
+   "condition": {
+    "type": "discards_this_turn_at_least",
+    "count": 2
+   }
   }
  ],
  "Kashekim - Wise King": [
@@ -2224,8 +2249,16 @@
  ],
  "Lonely Grave": [
   {
-   "impl": "unimplemented",
-   "text": "HAUNTING PRESENCE [Exert], Banish chosen character of yours — Put the top card of your deck facedown under one of your characters or locations with Boost."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "banish_own_char": true
+   },
+   "effect": {
+    "type": "put_top_under_boosted"
+   },
+   "confidence": "medium",
+   "source": "HAUNTING PRESENCE [Exert], Banish chosen character of yours — Put the top card of your deck facedown under one of your characters or locations with Boost."
   }
  ],
  "Kristoff's Lute": [
@@ -3186,8 +3219,24 @@
  ],
  "Sulley - Protective Monster": [
   {
-   "impl": "unimplemented",
-   "text": "[FEARSOME GLARE] When you play this character, you may exert all cards in your inkwell.\n[RILED UP] While all cards in your inkwell are exerted, this character gains Rush. (They can challenge the turn they're played.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "exert_all_inkwell"
+   },
+   "confidence": "medium",
+   "source": "[FEARSOME GLARE] When you play this character, you may exert all cards in your inkwell.\n[RILED UP] While all cards in your inkwell are exerted, this character gains Rush. (They can challenge the turn they're played.)"
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "inkwell_all_exerted"
+   },
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "rush"
+   },
+   "confidence": "medium",
+   "source": "[FEARSOME GLARE] When you play this character, you may exert all cards in your inkwell.\n[RILED UP] While all cards in your inkwell are exerted, this character gains Rush. (They can challenge the turn they're played.)"
   }
  ],
  "Ming Lee - Giant Red Panda": [
@@ -3252,8 +3301,27 @@
  ],
  "Scream Canister": [
   {
-   "impl": "unimplemented",
-   "text": "ERRATIC SCREAMS {}, 2 {} - Exert all cards in your inkwell. Exert chosen opposing character with 2 {} or less."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 2
+   },
+   "effect": {
+    "type": "sequence",
+    "effects": [
+     {
+      "type": "exert_all_inkwell"
+     },
+     {
+      "type": "exert_chosen",
+      "filter": {
+       "max_strength": 2
+      }
+     }
+    ]
+   },
+   "confidence": "medium",
+   "source": "ERRATIC SCREAMS {}, 2 {} - Exert all cards in your inkwell. Exert chosen opposing character with 2 {} or less."
   }
  ],
  "Bunch Of Balloons": [
@@ -3696,8 +3764,29 @@
  ],
  "Recovered Page": [
   {
-   "impl": "unimplemented",
-   "text": "[WHAT IS TO COME] When you play this item, look at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order.[WHISPERED POWER 1] Ink, Banish this item — Put the top card of your deck facedown under one of your characters or locations with Boost."
+   "trigger": "on_play",
+   "effect": {
+    "type": "look_at_top",
+    "count": 4,
+    "destination": "hand",
+    "filter": {
+     "card_type": "character"
+    }
+   },
+   "confidence": "medium",
+   "source": "[WHAT IS TO COME] When you play this item, look at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order.[WHISPERED POWER 1] Ink, Banish this item — Put the top card of your deck facedown under one of your characters or locations with Boost."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "ink": 1,
+    "banish_self": true
+   },
+   "effect": {
+    "type": "put_top_under_boosted"
+   },
+   "confidence": "medium",
+   "source": "[WHAT IS TO COME] When you play this item, look at the top 4 cards of your deck. You may reveal a character card and put it into your hand. Put the rest on the bottom of your deck in any order.[WHISPERED POWER 1] Ink, Banish this item — Put the top card of your deck facedown under one of your characters or locations with Boost."
   }
  ],
  "Munchings and Crunchings": [
@@ -4087,8 +4176,15 @@
  ],
  "Webby Vanderquack - Junior Prospector": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 2 Ink\nWard[WORK SMARTER] Whenever this character quests, if an opponent has more cards in their inkwell than you, you may put the top card of your deck into your inkwell facedown and exerted."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "put_top_into_inkwell"
+   },
+   "confidence": "medium",
+   "source": "Shift 2 Ink\nWard[WORK SMARTER] Whenever this character quests, if an opponent has more cards in their inkwell than you, you may put the top card of your deck into your inkwell facedown and exerted.",
+   "condition": {
+    "type": "opponent_more_inkwell"
+   }
   }
  ],
  "So Be It!": [
@@ -5424,8 +5520,15 @@
  ],
  "Heihei - Bumbling Rooster": [
   {
-   "impl": "unimplemented",
-   "text": "[FATTEN YOU UP] When you play this character, if an opponent has more cards in their inkwell than you, you may put the top card of your deck into your inkwell facedown and exerted."
+   "trigger": "on_play",
+   "effect": {
+    "type": "put_top_into_inkwell"
+   },
+   "confidence": "medium",
+   "source": "[FATTEN YOU UP] When you play this character, if an opponent has more cards in their inkwell than you, you may put the top card of your deck into your inkwell facedown and exerted.",
+   "condition": {
+    "type": "opponent_more_inkwell"
+   }
   }
  ],
  "Shenzi - Hyena Pack Leader": [
@@ -5848,8 +5951,16 @@
  ],
  "Cruella De Vil - Fashionable Cruiser": [
   {
-   "impl": "unimplemented",
-   "text": "[NOW GET GOING] During your turn, this character gains Evasive. (They can challenge characters with Evasive.)"
+   "trigger": "static",
+   "condition": {
+    "type": "your_turn"
+   },
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "evasive"
+   },
+   "confidence": "medium",
+   "source": "[NOW GET GOING] During your turn, this character gains Evasive. (They can challenge characters with Evasive.)"
   }
  ],
  "Hans - Noble Scoundrel": [
@@ -6020,8 +6131,16 @@
  ],
  "Jafar - Royal Vizier": [
   {
-   "impl": "unimplemented",
-   "text": "[I DON'T TRUST HIM, SIRE] During your turn, this character gains Evasive. (They can challenge characters with Evasive.)"
+   "trigger": "static",
+   "condition": {
+    "type": "your_turn"
+   },
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "evasive"
+   },
+   "confidence": "medium",
+   "source": "[I DON'T TRUST HIM, SIRE] During your turn, this character gains Evasive. (They can challenge characters with Evasive.)"
   }
  ],
  "Robin Hood - Capable Fighter": [

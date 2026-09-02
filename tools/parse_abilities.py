@@ -730,6 +730,46 @@ def _c(m):
     return {"type": "each_player_draw", "amount": 1}
 
 
+
+# --- Phase 15 clauses ------------------------------------------------
+@clause(r"[Cc]hosen character gets \+(\d+) this turn\.?")
+def _c(m):
+    # the stat glyph is stripped in clean-up; this wording is always Strength
+    return {"type": "stat_mod", "stat": "str", "amount": int(m.group(1)),
+            "target": "chosen_character", "duration": "eot"}
+
+
+_STAT_AND_KEYWORD = re.compile(
+    r"[Cc]hosen character gets \+(\d+) Strength and gains "
+    r"(Evasive|Ward|Rush|Reckless) until the start of your next turn\.?")
+
+
+@clause(r"[Rr]eady him\.?|[Rr]eady her\.?|[Rr]eady them\.?")
+def _c(m):
+    return {"type": "ready_self"}
+
+
+@clause(r"[Yy]ou may put the top card of your deck under them facedown\.?")
+def _c(m):
+    return {"type": "put_top_under_self"}
+
+
+@clause(r"[Ee]ach opponent chooses and discards a card for each card under "
+        r"(?:him|her|them|it)\.?")
+def _c(m):
+    return {"type": "opponent_discard_per_card_under"}
+
+
+@clause(r"[Yy]ou may move him to one of your locations for free\.?")
+def _c(m):
+    return {"type": "move_self_to_location"}
+
+
+@clause(r"[Gg]ain (\d+) lore\.?")
+def _c(m):
+    return {"type": "gain_lore", "amount": int(m.group(1))}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -839,7 +879,7 @@ _SELF_DISCOUNT = re.compile(
 _STAT_SYMBOL = "str"
 
 _STATIC_SELF = re.compile(
-    r"(?:While|As long as) (?P<cond>.+?), (?:this character|she|he|they|it) "
+    r"(?:While|As long as|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
     r"gets \+(?P<amt>\d+) (?P<stat>\{\}|Strength|Lore|Willpower)"
     r"(?: and \+(?P<amt2>\d+) (?P<stat2>\{\}|Strength|Lore|Willpower))?"
     r"(?: and gains (?P<kw>Evasive|Ward|Reckless|Rush|Support))?\.?",
@@ -868,6 +908,15 @@ _SHIFT_ONTO = re.compile(
 
 _LOC_LORE = re.compile(
     r"While you have a character here, this location gets \+(\d+) Lore\.?",
+    re.IGNORECASE)
+
+_TEAM_STAT_PLAIN = re.compile(
+    r"Your ([A-Za-z ]+?) characters get \+(\d+) (Strength|Lore|Willpower)\.?",
+    re.IGNORECASE)
+
+_LOC_AURA = re.compile(
+    r"Characters get \+(\d+) (Strength|Lore|Willpower)"
+    r"(?: and \+(\d+) (Strength|Lore|Willpower))? while here\.?",
     re.IGNORECASE)
 
 _TEAM_WARD = re.compile(
@@ -907,6 +956,10 @@ _STATIC_CONDS = [
      {"type": "has_card_under"}),
     (re.compile(r"this character has no damage", re.I),
      {"type": "self_undamaged"}),
+    (re.compile(r"this character has damage", re.I), {"type": "self_damaged"}),
+    (re.compile(r"your turn", re.I), {"type": "your_turn"}),
+    (re.compile(r"you have a character named ([A-Za-z' .-]+?) in play", re.I),
+     None),
     (re.compile(r"an opposing damaged character is in play", re.I),
      {"type": "opposing_damaged_in_play"}),
     (re.compile(r"opponents.? turns", re.I), {"type": "opponents_turn"}),
@@ -920,9 +973,17 @@ _STATIC_CONDS = [
 ]
 
 
+_NAMED_IN_PLAY = re.compile(
+    r"you have a character named ([A-Za-z' .-]+?) in play", re.IGNORECASE)
+
+
 def _static_cond(text):
+    text = text.strip()
+    m = _NAMED_IN_PLAY.fullmatch(text)
+    if m:
+        return {"type": "named_character_in_play", "name": m.group(1).strip()}
     for rx, c in _STATIC_CONDS:
-        if rx.fullmatch(text.strip()):
+        if c is not None and rx.fullmatch(text):
             return c
     return None
 
@@ -937,6 +998,29 @@ def _stat_name(tok):
 def parse_static_self(line):
     """'While <condition>, this character gets +N <stat> [and gains KW].'"""
     line = line.strip()
+    mtp = _TEAM_STAT_PLAIN.fullmatch(line)
+    if mtp:
+        cls = _classes(mtp.group(1))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "team_stat",
+                            "stat": _stat_name(mtp.group(3)),
+                            "amount": int(mtp.group(2)),
+                            "classification": cls[0],
+                            "include_self": True}}]
+    mla = _LOC_AURA.fullmatch(line)
+    if mla:
+        out = [{"trigger": "static",
+                "effect": {"type": "location_aura_stat",
+                           "stat": _stat_name(mla.group(2)),
+                           "amount": int(mla.group(1))}}]
+        if mla.group(3):
+            out.append({"trigger": "static",
+                        "effect": {"type": "location_aura_stat",
+                                   "stat": _stat_name(mla.group(4)),
+                                   "amount": int(mla.group(3))}})
+        return out
     mt = _TEAM_WARD.fullmatch(line)
     if mt:
         cls = _classes(mt.group(1))
@@ -1139,6 +1223,13 @@ def parse_modal(text):
 def parse_by_clauses(prose):
     """Split into sentences; require EVERY sentence to match a clause.
     Returns list of effect dicts, or None."""
+    msk = _STAT_AND_KEYWORD.fullmatch(prose.strip())
+    if msk:
+        return [{"type": "stat_mod", "stat": "str",
+                 "amount": int(msk.group(1)), "target": "best_quester",
+                 "duration": "until_your_next"},
+                {"type": "grant_keyword", "keyword": msk.group(2).lower(),
+                 "target": "best_quester", "duration": "until_your_next"}]
     modal = parse_modal(prose)
     if modal:
         return [modal]
@@ -1310,6 +1401,12 @@ _PREAMBLES = [
      "on_play_action"),
     (re.compile(r"^At the start of your turn,\s*", re.IGNORECASE),
      "on_turn_start"),
+    (re.compile(r"^Whenever you put a card under this character,\s*",
+                re.IGNORECASE), "on_card_under_self"),
+    (re.compile(r"^Whenever you use the Boost ability of a character,\s*",
+                re.IGNORECASE), "on_boost_used"),
+    (re.compile(r"^Whenever this character challenges another character,\s*",
+                re.IGNORECASE), "on_challenges"),
     (re.compile(r"^Whenever an opponent plays a song,\s*", re.IGNORECASE),
      "on_opponent_song"),
     (re.compile(r"^When you play this character and whenever he quests,\s*",

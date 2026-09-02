@@ -128,6 +128,7 @@ def strength(g, ch):
     s = ch.card.strength or 0
     s += schema.static_self_stat(g, ch, "str")
     s += schema.team_static_stat(g, ch, "str")
+    s += schema.location_aura_stat(g, ch, "str")
     name = ch.card.name
     # MAGICAL MIX: +1 for each different ink type among your characters
     if name == "Winnie The Pooh & Piglet - Hunny Mages":
@@ -169,6 +170,7 @@ def strength(g, ch):
 def willpower(g, ch):
     w = ch.card.willpower or 0
     w += schema.static_self_stat(g, ch, "will")
+    w += schema.location_aura_stat(g, ch, "will")
     if ch.location is not None:
         loc = g.locs.get(ch.location)
         if loc and loc.card.name == "Hundred Acre Wood - Hunny Campsite":
@@ -2152,6 +2154,7 @@ def on_challenge(g, attacker, defender):
     # side (Merida - Gifted Archer FIERCE PROTECTION).
     from . import schema
     schema.dispatch_opposing_challenge(g, attacker)
+    schema.dispatch_challenges(g, attacker)
     # "Whenever this / one of your X characters is challenged" watchers.
     if defender is not None:
         schema.dispatch_challenged(g, defender, attacker)
@@ -2279,6 +2282,8 @@ def on_item_banished(g, item):
 
 def on_boost(g, p, obj):
     """Called after a card is put facedown under a character/location."""
+    from . import schema
+    schema.dispatch_card_under(g, p, obj, via_boost=True)
     # Cheshire Cat IT'S LOADS OF FUN: move up to 2 damage from chosen
     # character to chosen opposing character.
     if getattr(obj, "card", None) is not None and \

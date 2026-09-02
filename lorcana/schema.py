@@ -342,7 +342,18 @@ def _cond_self_exerted(g, p, ctx, cond):
     return ch is not None and ch.exerted
 
 
+def _cond_self_damaged(g, p, ctx, cond):
+    ch = ctx.get("char")
+    return ch is not None and ch.damage > 0
+
+
+def _cond_your_turn(g, p, ctx, cond):
+    return g.active == p
+
+
 _CONDITIONS = {
+    "self_damaged": _cond_self_damaged,
+    "your_turn": _cond_your_turn,
     "self_at_location": _cond_self_at_location,
     "being_challenged": _cond_being_challenged,
     "self_exerted": _cond_self_exerted,
@@ -848,6 +859,48 @@ def _eff_return_cards_under(g, p, ctx, eff):
            f"{ch.card.base_name} to hand")
 
 
+def _eff_ready_self(g, p, ctx, eff):
+    """Ready this character (Little John READY TO RASSLE)."""
+    ch = ctx.get("source") or ctx.get("char")
+    if ch is not None and getattr(ch, "exerted", False):
+        ch.exerted = False
+        g.emit(f"schema: readies {ch.card.base_name}")
+
+
+def _eff_put_top_under_self(g, p, ctx, eff):
+    """Put the top card of your deck facedown under the character carried in
+    ctx (Donald Duck - Fred Honeywell SPIRIT OF GIVING)."""
+    tgt = ctx.get("char")
+    pl = g.players[p]
+    if tgt is None or not pl.deck:
+        return
+    tgt.boosted.append(pl.deck.pop())
+    g.emit(f"schema: puts a card under {tgt.card.base_name}")
+
+
+def _eff_opponent_discard_per_card_under(g, p, ctx, eff):
+    """Each opponent discards one card for each card under this character
+    (Goofy - Ghost of Jacob Marley GRAVE OUTCOME)."""
+    ch = ctx.get("char") or ctx.get("source")
+    if ch is None:
+        return
+    n = len(getattr(ch, "boosted", [])) + len(getattr(ch, "under", []))
+    if n:
+        apply_effect(g, p, ctx, {"type": "opponent_discard", "amount": n})
+
+
+def _eff_move_self_to_location(g, p, ctx, eff):
+    """Move this character to one of your locations for free
+    (Colonel Hathi HUP, TWO, THREE, FOUR)."""
+    ch = ctx.get("char")
+    locs = list(g.my_locs(p))
+    if ch is None or not locs:
+        return
+    loc = max(locs, key=lambda l: g.loc_lore(l))
+    ch.location = loc.uid
+    g.emit(f"schema: moves {ch.card.base_name} to {loc.card.base_name}")
+
+
 def _eff_buff_all_yours(g, p, ctx, eff):
     """All your characters get +N to a stat this turn (So Be It!)."""
     n = 0
@@ -1197,6 +1250,10 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "ready_self": _eff_ready_self,
+    "put_top_under_self": _eff_put_top_under_self,
+    "opponent_discard_per_card_under": _eff_opponent_discard_per_card_under,
+    "move_self_to_location": _eff_move_self_to_location,
     "buff_all_yours": _eff_buff_all_yours,
     "debuff_all_opposing": _eff_debuff_all_opposing,
     "banish_target": _eff_banish_target,
@@ -1252,7 +1309,8 @@ def apply_effect(g, p, ctx, eff):
                            "static_self_stat",
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist", "static_location_lore",
-                           "shift_onto_names", "team_keyword", "team_stat"):
+                           "shift_onto_names", "team_keyword", "team_stat",
+                           "location_aura_stat"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -1672,6 +1730,52 @@ def shift_aliases(card):
     return out
 
 
+def location_aura_stat(g, ch, stat):
+    """Stat bonus from the location this character is standing at
+    (Hidden Cove REVITALIZING WATERS). Applies to either side's characters,
+    matching the printed 'Characters get ... while here'."""
+    if ch.location is None:
+        return 0
+    loc = g.locs.get(ch.location)
+    if loc is None:
+        return 0
+    total = 0
+    for e in entries_for(loc.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") == "location_aura_stat" and eff.get("stat") == stat:
+            total += eff.get("amount", 0)
+    return total
+
+
+def dispatch_card_under(g, p, obj, via_boost):
+    """'Whenever you put a card under this character' (Little John) and
+    'whenever you use the Boost ability of a character' (Donald Duck - Fred
+    Honeywell). Called from the single place cards go under a permanent."""
+    ents = entries_for(obj.card.name, "on_card_under_self")
+    if ents:
+        _run(g, p, {"card": obj.card,
+                    "char": obj if hasattr(obj, "damage") else None,
+                    "source": obj}, ents)
+    if not via_boost:
+        return
+    for src in list(g.my_chars(p)) + list(g.items[p]):
+        if src.uid == obj.uid:
+            continue
+        ents = entries_for(src.card.name, "on_boost_used")
+        if ents:
+            _run(g, p, {"card": src.card, "char": obj, "source": src}, ents)
+
+
+def dispatch_challenges(g, attacker):
+    """'Whenever this character challenges another character'
+    (Captain Hook - Conniving Pirate)."""
+    ents = entries_for(attacker.card.name, "on_challenges")
+    if ents:
+        _run(g, attacker.owner,
+             {"card": attacker.card, "char": attacker, "source": attacker},
+             ents)
+
+
 def team_static_keyword(g, ch, kw):
     """A keyword granted to your OTHER characters by a permanent you control
     (Prince Phillip - Warden of the Woods SHINING BEACON)."""
@@ -1698,11 +1802,11 @@ def team_static_stat(g, ch, stat):
     """A stat bonus granted to your OTHER characters (Genie - Of the Lamp)."""
     total = 0
     for src in g.my_chars(ch.owner):
-        if src.uid == ch.uid:
-            continue
         for e in entries_for(src.card.name, "static"):
             eff = e.get("effect", {})
             if eff.get("type") != "team_stat" or eff.get("stat") != stat:
+                continue
+            if src.uid == ch.uid and not eff.get("include_self"):
                 continue
             want = eff.get("classification")
             if want and want not in ch.card.classifications:

@@ -770,6 +770,19 @@ def _c(m):
     return {"type": "gain_lore", "amount": int(m.group(1))}
 
 
+
+# --- Phase 16 clauses ------------------------------------------------
+@clause(r"[Yy]ou may put the top (\d+) cards of your deck into your discard\.?")
+def _c(m):
+    return {"type": "mill_self", "amount": int(m.group(1))}
+
+
+@clause(r"[Rr]eady chosen character\. They can't quest for the rest of "
+        r"this turn\.?")
+def _c(m):
+    return {"type": "ready_chosen", "no_quest": True}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -910,6 +923,24 @@ _LOC_LORE = re.compile(
     r"While you have a character here, this location gets \+(\d+) Lore\.?",
     re.IGNORECASE)
 
+_ENTERS_DAMAGE = re.compile(
+    r"This character enters play with (\d+) damage\.?", re.IGNORECASE)
+
+# "Your <classification> characters gain <keyword>." -- generalised from the
+# Ward-only pattern so a location can grant Rush to your team
+# (Beast's Castle - Overrun by the Vine).
+_TEAM_KEYWORD = re.compile(
+    r"Your (?:other )?([A-Za-z ]+?) characters gain "
+    r"(Ward|Rush|Evasive|Reckless|Support)\.?", re.IGNORECASE)
+
+_DISCOUNT_PER_DISCARD = re.compile(
+    r"For each ([A-Za-z ]+?) character card in your discard, you pay (\d+) "
+    r"Ink less to play this character\.?", re.IGNORECASE)
+
+_DISCOUNT_IF_BANISHED = re.compile(
+    r"If one of your ([A-Za-z ]+?) characters was banished this turn, "
+    r"you pay (\d+) Ink less to play this character\.?", re.IGNORECASE)
+
 _TEAM_STAT_PLAIN = re.compile(
     r"Your ([A-Za-z ]+?) characters get \+(\d+) (Strength|Lore|Willpower)\.?",
     re.IGNORECASE)
@@ -977,8 +1008,22 @@ _NAMED_IN_PLAY = re.compile(
     r"you have a character named ([A-Za-z' .-]+?) in play", re.IGNORECASE)
 
 
+_DISCARD_COUNT = re.compile(
+    r"if (\d+) or more cards were put into your discard this turn",
+    re.IGNORECASE)
+
+
 def _static_cond(text):
     text = text.strip()
+    if "," in text:
+        parts = [x.strip() for x in text.split(",") if x.strip()]
+        subs = [_static_cond(x) for x in parts]
+        if len(subs) > 1 and all(subs):
+            return {"type": "all_of", "all_of": subs}
+    md = _DISCARD_COUNT.fullmatch(text)
+    if md:
+        return {"type": "discards_this_turn_at_least",
+                "count": int(md.group(1))}
     m = _NAMED_IN_PLAY.fullmatch(text)
     if m:
         return {"type": "named_character_in_play", "name": m.group(1).strip()}
@@ -998,6 +1043,40 @@ def _stat_name(tok):
 def parse_static_self(line):
     """'While <condition>, this character gets +N <stat> [and gains KW].'"""
     line = line.strip()
+    med = _ENTERS_DAMAGE.fullmatch(line)
+    if med:
+        return [{"trigger": "static",
+                 "effect": {"type": "enters_with_damage",
+                            "amount": int(med.group(1))}}]
+    mtk = _TEAM_KEYWORD.fullmatch(line)
+    if mtk:
+        cls = _classes(mtk.group(1))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "team_keyword",
+                            "keyword": mtk.group(2).lower(),
+                            "classification": cls[0]}}]
+    mdd = _DISCOUNT_PER_DISCARD.fullmatch(line)
+    if mdd:
+        cls = _classes(mdd.group(1))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(mdd.group(2)),
+                            "per": "classification_in_discard",
+                            "classification": cls[0]}}]
+    mdb = _DISCOUNT_IF_BANISHED.fullmatch(line)
+    if mdb:
+        cls = _classes(mdb.group(1))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "condition": {"type": "classification_banished_this_turn",
+                               "name": cls[0]},
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(mdb.group(2))}}]
     mtp = _TEAM_STAT_PLAIN.fullmatch(line)
     if mtp:
         cls = _classes(mtp.group(1))
@@ -1319,7 +1398,9 @@ _CLASS_CANON = {"seven dwarfs": "Seven Dwarfs", "princess": "Princess",
                 "madrigal": "Madrigal", "puppy": "Puppy", "titan": "Titan",
                 "fairy": "Fairy", "deity": "Deity", "alien": "Alien",
                 "robot": "Robot", "tigger": "Tigger", "broom": "Broom",
-                "entangled": "Entangled", "racer": "Racer", "seer": "Seer"}
+                "entangled": "Entangled", "racer": "Racer", "seer": "Seer", "toy": "Toy",
+                "floodborn": "Floodborn", "hyena": "Hyena",
+                "red panda": "Red Panda", "gargoyle": "Gargoyle"}
 
 
 def parse_on_banish(prose):

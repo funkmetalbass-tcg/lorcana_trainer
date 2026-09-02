@@ -1,4 +1,16 @@
 {
+"Beast's Castle - Overrun by the Vine": {
+  "Rarity": "Rare",
+  "Description": "<strong>[IMMINENT THREAT]</strong> Your Floodborn characters gain <strong>Rush</strong>. <em>(They can challenge the turn they're played.)</em>",
+  "Cost Ink": "4",
+  "Character Version": "Overrun by the Vine",
+  "InkwellIcononCard": "Yes",
+  "InkType": "Ruby",
+  "CardType": "Location",
+  "Willpower": "7",
+  "Lore Value": "1",
+  "Move Cost": "2"
+},
   "Gosalyn Mallard - The Quiverwing Quack": {
     "Rarity": "Common",
     "Description": "<strong>[HEROIC INTERVENTION]</strong> When you play this character, you may ready chosen character with cost 2 or less. If you do, they can't quest or challenge for the rest of this turn.",

@@ -836,6 +836,9 @@ class Game:
             else:
                 exerted = bool(params.get("exerted"))
                 obj = CharInPlay(self.next_uid(), card, p, self.turn, exerted)
+                # Characters that arrive already damaged (Zeus - Defiant God).
+                from . import schema as _schema
+                obj.damage += _schema.static_enters_damage(card)
                 self.chars[obj.uid] = obj
         elif card.is_location:
             obj = LocInPlay(self.next_uid(), card, p)

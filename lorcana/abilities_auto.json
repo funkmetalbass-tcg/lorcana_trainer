@@ -1,4 +1,16 @@
 {
+ "Beast's Castle - Overrun by the Vine": [
+  {
+   "trigger": "static",
+   "effect": {
+    "type": "team_keyword",
+    "keyword": "rush",
+    "classification": "Floodborn"
+   },
+   "confidence": "medium",
+   "source": "[IMMINENT THREAT] Your Floodborn characters gain Rush. (They can challenge the turn they're played.)"
+  }
+ ],
  "Gosalyn Mallard - The Quiverwing Quack": [
   {
    "impl": "unimplemented",
@@ -565,20 +577,48 @@
  ],
  "Milo Thatch - Courageous Explorer": [
   {
-   "impl": "unimplemented",
-   "text": "[FASCINATING DISCOVERY] During your turn, if 2 or more cards were put into your discard this turn, this character gets +1 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "all_of",
+    "all_of": [
+     {
+      "type": "your_turn"
+     },
+     {
+      "type": "discards_this_turn_at_least",
+      "count": 2
+     }
+    ]
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[FASCINATING DISCOVERY] During your turn, if 2 or more cards were put into your discard this turn, this character gets +1 Lore."
   }
  ],
  "Zeus - Defiant God": [
   {
-   "impl": "unimplemented",
-   "text": "[IMMORTAL WOUND] This character enters play with 4 damage."
+   "trigger": "static",
+   "effect": {
+    "type": "enters_with_damage",
+    "amount": 4
+   },
+   "confidence": "medium",
+   "source": "[IMMORTAL WOUND] This character enters play with 4 damage."
   }
  ],
  "Preston Whitmore - Expedition Financier": [
   {
-   "impl": "unimplemented",
-   "text": "[PRICE OF PROGRESS] When you play this character, you may put the top 2 cards of your deck into your discard."
+   "trigger": "on_play",
+   "effect": {
+    "type": "mill_self",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[PRICE OF PROGRESS] When you play this character, you may put the top 2 cards of your deck into your discard."
   }
  ],
  "Jingle Joe - Sid's Toy": [
@@ -589,8 +629,17 @@
  ],
  "Wind-Up Frog - Sid's Toy": [
   {
-   "impl": "unimplemented",
-   "text": "[ADDED TRACTION] If one of your Toy characters was banished this turn, you pay 2 Ink less to play this character."
+   "trigger": "static",
+   "condition": {
+    "type": "classification_banished_this_turn",
+    "name": "Toy"
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[ADDED TRACTION] If one of your Toy characters was banished this turn, you pay 2 Ink less to play this character."
   }
  ],
  "Roller Bob - Sid's Toy": [
@@ -1773,8 +1822,13 @@
  ],
  "Fa Zhou - Honorable Warrior": [
   {
-   "impl": "unimplemented",
-   "text": "[BATTLE WOUND] This character enters play with 2 damage."
+   "trigger": "static",
+   "effect": {
+    "type": "enters_with_damage",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[BATTLE WOUND] This character enters play with 2 damage."
   }
  ],
  "Elisa Maza - Transformed Gargoyle": [
@@ -2859,8 +2913,13 @@
  ],
  "It's Gonna Be Great!": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 2 or more can [Exert] to sing this song for free.)\n\nReady chosen character. They can't quest for the rest of this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "ready_chosen",
+    "no_quest": true
+   },
+   "confidence": "high",
+   "source": "(A character with cost 2 or more can [Exert] to sing this song for free.)\n\nReady chosen character. They can't quest for the rest of this turn."
   }
  ],
  "Scream Canister": [
@@ -5017,8 +5076,13 @@
  ],
  "LeFou - Instigator": [
   {
-   "impl": "unimplemented",
-   "text": "[FAN THE FLAMES] When you play this character, ready chosen character. They can't quest for the rest of this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "ready_chosen",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "[FAN THE FLAMES] When you play this character, ready chosen character. They can't quest for the rest of this turn."
   }
  ],
  "Shere Khan - Menacing Predator": [
@@ -5082,8 +5146,13 @@
  ],
  "Mulan - Injured Soldier": [
   {
-   "impl": "unimplemented",
-   "text": "[BATTLE WOUND] This character enters play with 2 damage."
+   "trigger": "static",
+   "effect": {
+    "type": "enters_with_damage",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[BATTLE WOUND] This character enters play with 2 damage."
   }
  ],
  "Mulan - Elite Archer": [

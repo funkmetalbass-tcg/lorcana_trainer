@@ -351,7 +351,20 @@ def _cond_your_turn(g, p, ctx, cond):
     return g.active == p
 
 
+def _cond_all_of(g, p, ctx, cond):
+    """Every sub-condition must hold (Milo Thatch: your turn AND 2+ discards)."""
+    return all(check_condition(g, p, ctx, c) for c in cond.get("all_of") or [])
+
+
+def _cond_classification_banished_this_turn(g, p, ctx, cond):
+    """A character with this classification was banished this turn
+    (Wind-Up Frog ADDED TRACTION). engine.on_banish records the tags."""
+    return ("banished_class", cond.get("name")) in g.turn_flags
+
+
 _CONDITIONS = {
+    "all_of": _cond_all_of,
+    "classification_banished_this_turn": _cond_classification_banished_this_turn,
     "self_damaged": _cond_self_damaged,
     "your_turn": _cond_your_turn,
     "self_at_location": _cond_self_at_location,
@@ -809,8 +822,16 @@ def static_free_discount(g, p, card):
             continue
         if not check_condition(g, p, ctx, e.get("condition")):
             continue
-        total += card.cost if t == "play_free_if" \
-            else e["effect"].get("amount", 1)
+        if t == "play_free_if":
+            total += card.cost
+            continue
+        amount = e["effect"].get("amount", 1)
+        per = e["effect"].get("per")
+        if per == "classification_in_discard":
+            want = e["effect"].get("classification")
+            amount *= sum(1 for c in g.players[p].discard
+                          if want in c.classifications)
+        total += amount
     return min(total, card.cost)
 
 
@@ -857,6 +878,30 @@ def _eff_return_cards_under(g, p, ctx, eff):
     ch.under = []
     g.emit(f"schema: returns {n} card(s) from under "
            f"{ch.card.base_name} to hand")
+
+
+def _eff_mill_self(g, p, ctx, eff):
+    """Put the top N cards of your deck into your discard
+    (Preston Whitmore PRICE OF PROGRESS)."""
+    pl = g.players[p]
+    n = min(eff.get("amount", 1), len(pl.deck))
+    for _ in range(n):
+        pl.discard.append(pl.deck.pop())
+    if n:
+        g.emit(f"schema: mills {n} card(s)")
+
+
+def _eff_ready_chosen(g, p, ctx, eff):
+    """Ready one of your exerted characters, optionally locking it out of
+    questing for the rest of the turn (It's Gonna Be Great!)."""
+    pool = [c for c in g.my_chars(p) if c.exerted]
+    if not pool:
+        return
+    tgt = max(pool, key=lambda c: (g.eff_strength(c), g.eff_lore(c)))
+    tgt.exerted = False
+    g.emit(f"schema: readies {tgt.card.base_name}")
+    if eff.get("no_quest"):
+        g.turn_flags.add(("no_quest", tgt.uid))
 
 
 def _eff_ready_self(g, p, ctx, eff):
@@ -1250,6 +1295,8 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "mill_self": _eff_mill_self,
+    "ready_chosen": _eff_ready_chosen,
     "ready_self": _eff_ready_self,
     "put_top_under_self": _eff_put_top_under_self,
     "opponent_discard_per_card_under": _eff_opponent_discard_per_card_under,
@@ -1310,7 +1357,7 @@ def apply_effect(g, p, ctx, eff):
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist", "static_location_lore",
                            "shift_onto_names", "team_keyword", "team_stat",
-                           "location_aura_stat"):
+                           "location_aura_stat", "enters_with_damage"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -1609,6 +1656,15 @@ def dispatch_challenged_banished(g, defender, attacker):
              ents)
 
 
+def static_enters_damage(card):
+    """Damage a character enters play with (Zeus - Defiant God)."""
+    for e in entries_for(card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") == "enters_with_damage":
+            return eff.get("amount", 0)
+    return 0
+
+
 def static_enters_exerted(card):
     """Does this permanent enter play exerted? (Potato, Vine Pod)"""
     for e in entries_for(card.name, "static"):
@@ -1777,10 +1833,13 @@ def dispatch_challenges(g, attacker):
 
 
 def team_static_keyword(g, ch, kw):
-    """A keyword granted to your OTHER characters by a permanent you control
-    (Prince Phillip - Warden of the Woods SHINING BEACON)."""
-    for src in g.my_chars(ch.owner):
-        if src.uid == ch.uid:
+    """A keyword granted to your OTHER characters by a permanent you control.
+
+    Scans your locations as well as your characters, so a location can grant
+    a keyword to your team (Beast's Castle - Overrun by the Vine).
+    """
+    for src in list(g.my_chars(ch.owner)) + list(g.my_locs(ch.owner)):
+        if getattr(src, "uid", None) == ch.uid:
             continue
         for e in entries_for(src.card.name, "static"):
             eff = e.get("effect", {})

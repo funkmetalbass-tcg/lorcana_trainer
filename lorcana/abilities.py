@@ -392,7 +392,14 @@ def can_challenge_evasive(g, ch):
 
 
 def has_rush(g, ch):
-    return bool(ch.card.kw("Rush"))
+    if ch.card.kw("Rush"):
+        return True
+    from . import schema
+    if schema.static_self_keyword(g, ch, "rush") \
+            or schema.team_static_keyword(g, ch, "rush"):
+        return True
+    return any(e["kind"] == "rush" and e["target"] == ch.uid
+               for e in g.effects)
 
 
 def has_bodyguard(g, ch):
@@ -1985,6 +1992,8 @@ def on_banish(g, ch, cause="damage"):
     g.turn_flags.add(("banished_this_turn",))
     g.turn_flags.add(("banished_name", name))
     g.turn_flags.add(("banished_base", ch.card.base_name))
+    for _cls in ch.card.classifications:
+        g.turn_flags.add(("banished_class", _cls))
     # data-driven "when this character is banished" triggers
     schema.dispatch_banish(g, ch, cause)
     schema.dispatch_leave_play(g, ch)

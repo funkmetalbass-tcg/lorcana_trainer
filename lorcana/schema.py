@@ -15,7 +15,9 @@ dispatch_* at each trigger point; unknown cards simply have no entries.
 Currently implemented (deliberately small -- grow as templates demand):
   triggers:   on_play, on_play_character, on_shift, on_quest, on_banish,
               on_action_damage, on_opposing_challenge,
-              on_chosen_by_opponent, activated, static
+              on_chosen_by_opponent, on_play_location, on_play_action,
+              on_challenged, on_ally_challenged, on_leave_play,
+              activated, static
   conditions: your_other_classification_count, you_have_named, opponent_ahead
   effects:    draw, gain_lore, cost_reduce, stat_mod, deal_damage,
               draw_then_discard, grant_keyword
@@ -269,7 +271,45 @@ def _cond_opposing_damaged_present(g, p, ctx, cond):
         g, p, cond=lambda gg, c: c.damage > 0, notify=False) is not None
 
 
+def _cond_opponent_has_more_lore(g, p, ctx, cond):
+    return g.players[1 - p].lore > g.players[p].lore
+
+
+def _cond_opposing_damaged_in_play(g, p, ctx, cond):
+    """An opposing damaged character is in play. Unlike
+    opposing_damaged_present this does not care about Ward, because it is a
+    static check rather than a choice (The Queen - Evil Ruler)."""
+    return any(c.damage > 0 for c in g.my_chars(1 - p))
+
+
+def _cond_discards_this_turn_at_least(g, p, ctx, cond):
+    """N or more cards were put into your discard this turn (Helga
+    Sinclair). engine.turn_discards already counts banishes and discards."""
+    return g.turn_discards.get(p, 0) >= cond.get("count", 1)
+
+
+def _cond_played_another_character(g, p, ctx, cond):
+    """You played another character this turn (Donald Duck - Distracted
+    Traveler). The engine records this flag after each character resolves."""
+    return ("played_char", p) in g.turn_flags
+
+
+def _cond_named_character_in_play(g, p, ctx, cond):
+    return any(c.card.base_name == cond.get("name") for c in g.my_chars(p))
+
+
+def _cond_opponents_turn(g, p, ctx, cond):
+    """It is not your turn (Yao - Snow Warrior)."""
+    return g.active != p
+
+
 _CONDITIONS = {
+    "opponent_has_more_lore": _cond_opponent_has_more_lore,
+    "opposing_damaged_in_play": _cond_opposing_damaged_in_play,
+    "discards_this_turn_at_least": _cond_discards_this_turn_at_least,
+    "played_another_character": _cond_played_another_character,
+    "named_character_in_play": _cond_named_character_in_play,
+    "opponents_turn": _cond_opponents_turn,
     "discarded_this_turn": _cond_discarded_this_turn,
     "opposing_damaged_present": _cond_opposing_damaged_present,
     "hand_size_at_least": _cond_hand_size_at_least,
@@ -725,7 +765,7 @@ def _eff_draw_then_discard(g, p, ctx, eff):
     n = eff.get("amount", 1)
     pl = g.players[p]
     g.draw(p, n)
-    for _ in range(n):
+    for _ in range(eff.get("discard", n)):
         if not pl.hand:
             break
         card = abilities._worst_hand_card(g, p)
@@ -760,6 +800,84 @@ def _eff_return_cards_under(g, p, ctx, eff):
     ch.under = []
     g.emit(f"schema: returns {n} card(s) from under "
            f"{ch.card.base_name} to hand")
+
+
+def _eff_damage_each(g, p, ctx, eff):
+    """Deal N damage to every opposing character matching a filter. A mass,
+    non-targeted effect, so it bypasses _best_opp_char and Ward on purpose
+    (To Wither A Flower)."""
+    n = eff.get("amount", 1)
+    for c in list(g.my_chars(1 - p)):
+        if c.uid in g.chars and _char_matches(g, c, eff.get("filter")):
+            g.deal_damage(c, n)
+            if g.winner is not None:
+                return
+
+
+def _eff_gain_lore_equal_strength(g, p, ctx, eff):
+    """Gain lore equal to this character's Strength, capped
+    (Mulan - Resourceful Recruit)."""
+    ch = ctx.get("char")
+    if ch is None:
+        return
+    amount = min(g.eff_strength(ch), eff.get("max", 99))
+    if amount > 0:
+        g.gain_lore(p, amount)
+
+
+def _eff_exert_chosen(g, p, ctx, eff):
+    """Exert a chosen opposing character (Boomer - Has the Beak)."""
+    from . import abilities
+    tgt = abilities._best_opp_char(
+        g, p, cond=lambda gg, c: not c.exerted
+        and _char_matches(gg, c, eff.get("filter")))
+    if tgt is None:
+        return
+    tgt.exerted = True
+    g.emit(f"schema: exerts {tgt.card.base_name}(P{tgt.owner})")
+
+
+def _eff_banish_all_locations(g, p, ctx, eff):
+    for loc in list(g.locs.values()):
+        g.banish_loc(loc)
+
+
+def _eff_reveal_hand(g, p, ctx, eff):
+    """Chosen player reveals their hand. The engine has perfect information
+    internally, so this is informational only and has no mechanical effect."""
+    g.emit(f"schema: P{1 - p} reveals their hand "
+           f"({len(g.players[1 - p].hand)} cards)")
+
+
+def _eff_grant_keyword_opposing(g, p, ctx, eff):
+    """Grant a keyword to a chosen opposing character
+    (Stitch - Naughty Experiment)."""
+    from . import abilities
+    tgt = abilities._best_opp_char(g, p)
+    if tgt is None:
+        return
+    until = "eot" if eff.get("duration") == "eot" else p
+    g.effects.append({"kind": eff.get("keyword", "reckless"),
+                      "target": tgt.uid, "amount": 0, "until": until})
+    g.emit(f"schema: {tgt.card.base_name} gains {eff.get('keyword')}")
+
+
+def _eff_buff_your_keyword_chars(g, p, ctx, eff):
+    """Your characters with KEYWORD get +N to a stat this turn
+    (Copper - Champion of the Forest)."""
+    from . import abilities
+    fn = {"evasive": abilities.has_evasive, "ward": abilities.has_ward,
+          "reckless": abilities.has_reckless}.get(eff.get("keyword", "evasive"))
+    if fn is None:
+        return
+    n = 0
+    for c in g.my_chars(p):
+        if fn(g, c):
+            g.effects.append({"kind": eff.get("stat", "lore"),
+                              "target": c.uid,
+                              "amount": eff.get("amount", 1), "until": "eot"})
+            n += 1
+    g.emit(f"schema: buffs {n} character(s)")
 
 
 def _eff_banish_item(g, p, ctx, eff):
@@ -900,6 +1018,13 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "damage_each": _eff_damage_each,
+    "gain_lore_equal_strength": _eff_gain_lore_equal_strength,
+    "exert_chosen": _eff_exert_chosen,
+    "banish_all_locations": _eff_banish_all_locations,
+    "reveal_hand": _eff_reveal_hand,
+    "grant_keyword_opposing": _eff_grant_keyword_opposing,
+    "buff_your_keyword_chars": _eff_buff_your_keyword_chars,
     "banish_item": _eff_banish_item,
     "deal_damage_multi": _eff_deal_damage_multi,
     "grant_resist": _eff_grant_resist,
@@ -935,7 +1060,8 @@ _EFFECTS = {
 
 def apply_effect(g, p, ctx, eff):
     if eff.get("type") in ("play_free_if", "play_cost_reduction",
-                           "shift_alias", "static_no_ready", "static_self_stat",
+                           "shift_alias", "static_no_ready", "enters_exerted",
+                           "static_self_stat",
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist"):
         return          # consumed by the static hooks, not dispatched
@@ -1141,6 +1267,60 @@ def dispatch_action_damage(g, p, victim):
             _run(g, p, {"card": src.card, "char": victim, "source": src}, ents)
         if g.winner is not None:
             return
+
+
+def dispatch_play_type(g, p, card):
+    """'Whenever you play a location / an action' watchers on your own
+    permanents (Ellie Fredricksen, Aladdin - On the Edge of Adventure)."""
+    trig = ("on_play_location" if card.is_location
+            else "on_play_action" if card.is_action else None)
+    if trig is None:
+        return
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        ents = entries_for(src.card.name, trig)
+        if not ents:
+            continue
+        _run(g, p, {"card": src.card,
+                    "char": src if hasattr(src, "damage") else None,
+                    "source": src}, ents)
+        if g.winner is not None:
+            return
+
+
+def dispatch_challenged(g, defender, attacker):
+    """'Whenever this character is challenged' (The Witch) and 'whenever one
+    of your <classification> characters is challenged' (Peter Pan - Created
+    by the Vine) watchers, on the defending side."""
+    p = defender.owner
+    ents = entries_for(defender.card.name, "on_challenged")
+    if ents:
+        _run(g, p, {"card": defender.card, "char": attacker,
+                    "source": defender}, ents)
+    for src in list(g.my_chars(p)):
+        ents = entries_for(src.card.name, "on_ally_challenged")
+        for e in ents:
+            want = e.get("defender_classification")
+            if want and not (defender.card.classifications & set(want)):
+                continue
+            _run(g, p, {"card": src.card, "char": attacker,
+                        "source": src}, [e])
+            if g.winner is not None:
+                return
+
+
+def dispatch_leave_play(g, ch):
+    """'When this character leaves play' -- banished, bounced or decked."""
+    ents = entries_for(ch.card.name, "on_leave_play")
+    if ents:
+        _run(g, ch.owner, {"card": ch.card, "char": ch, "source": ch}, ents)
+
+
+def static_enters_exerted(card):
+    """Does this permanent enter play exerted? (Potato, Vine Pod)"""
+    for e in entries_for(card.name, "static"):
+        if e.get("effect", {}).get("type") == "enters_exerted":
+            return True
+    return False
 
 
 def dispatch_opposing_challenge(g, attacker):

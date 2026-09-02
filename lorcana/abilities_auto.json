@@ -88,8 +88,19 @@
  ],
  "Pluto - Vigilant Traveler": [
   {
-   "impl": "unimplemented",
-   "text": "[BEWARE OF DOG] Whenever this character quests, if you played another character this turn, chosen opposing character gets -1 Strength until the start of your next turn."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": -1,
+    "target": "chosen_opposing",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[BEWARE OF DOG] Whenever this character quests, if you played another character this turn, chosen opposing character gets -1 Strength until the start of your next turn.",
+   "condition": {
+    "type": "played_another_character"
+   }
   }
  ],
  "Chip - Team Player": [
@@ -204,8 +215,16 @@
  ],
  "Mickey Mouse - Experienced Traveler": [
   {
-   "impl": "unimplemented",
-   "text": "[LIGHTING THE WAY] Whenever this character quests, if you played another character this turn, you may draw a card."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[LIGHTING THE WAY] Whenever this character quests, if you played another character this turn, you may draw a card.",
+   "condition": {
+    "type": "played_another_character"
+   }
   }
  ],
  "Mirage - Super Recruiter": [
@@ -313,20 +332,43 @@
  ],
  "Helga Sinclair - No Backup Needed": [
   {
-   "impl": "unimplemented",
-   "text": "[CRISIS MANAGEMENT] If 2 or more cards were put into your discard this turn, you pay 2 Ink less to play this character."
+   "trigger": "static",
+   "condition": {
+    "type": "discards_this_turn_at_least",
+    "count": 2
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[CRISIS MANAGEMENT] If 2 or more cards were put into your discard this turn, you pay 2 Ink less to play this character."
   }
  ],
  "The Witch - Wily Woodcarver": [
   {
-   "impl": "unimplemented",
-   "text": "[UNSATISFIED CUSTOMERS] Whenever this character is challenged, each opponent loses 1 lore."
+   "trigger": "on_challenged",
+   "effect": {
+    "type": "opponent_lose_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[UNSATISFIED CUSTOMERS] Whenever this character is challenged, each opponent loses 1 lore."
   }
  ],
  "The Queen - Evil Ruler": [
   {
-   "impl": "unimplemented",
-   "text": "[UNEQUALED CRUELTY] While an opposing damaged character is in play, this character gets +2 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "opposing_damaged_in_play"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[UNEQUALED CRUELTY] While an opposing damaged character is in play, this character gets +2 Strength."
   }
  ],
  "Lord MacGuffin - Clever Swordsman": [
@@ -351,14 +393,28 @@
  ],
  "Gaetan Moliere - Clever Burrower": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[UNEARTH] Whenever this character quests, you may draw 2 cards, then choose and discard 2 cards."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 2,
+    "discard": 2
+   },
+   "confidence": "medium",
+   "source": "Evasive (Only characters with Evasive can challenge this character.)[UNEARTH] Whenever this character quests, you may draw 2 cards, then choose and discard 2 cards."
   }
  ],
  "Donald Duck - Distracted Traveler": [
   {
-   "impl": "unimplemented",
-   "text": "[BURNING CURIOSITY] Whenever this character quests, if you played another character this turn, each opponent chooses and discards a card."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "opponent_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[BURNING CURIOSITY] Whenever this character quests, if you played another character this turn, each opponent chooses and discards a card.",
+   "condition": {
+    "type": "played_another_character"
+   }
   }
  ],
  "Merida - Gifted Archer": [
@@ -1361,20 +1417,43 @@
  ],
  "Mulan - Resourceful Recruit": [
   {
-   "impl": "unimplemented",
-   "text": "[RIGOROUS TRAINING] Whenever this character quests, gain lore equal to her Strength, to a maximum of 6 lore."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "gain_lore_equal_strength",
+    "max": 6
+   },
+   "confidence": "medium",
+   "source": "[RIGOROUS TRAINING] Whenever this character quests, gain lore equal to her Strength, to a maximum of 6 lore."
   }
  ],
  "Stitch - Naughty Experiment": [
   {
-   "impl": "unimplemented",
-   "text": "I DARE YOU! [Exert] — Chosen opposing character gains Reckless until the start of your next turn. (They can't quest and must challenge if able.)"
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "grant_keyword_opposing",
+    "keyword": "reckless",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "I DARE YOU! [Exert] — Chosen opposing character gains Reckless until the start of your next turn. (They can't quest and must challenge if able.)"
   }
  ],
  "Yao - Snow Warrior": [
   {
-   "impl": "unimplemented",
-   "text": "[OOH, I'M SCARED] During opponents' turns, this character gains Resist +2. (Damage dealt to them is reduced by 2.)"
+   "trigger": "static",
+   "condition": {
+    "type": "opponents_turn"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "resist",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[OOH, I'M SCARED] During opponents' turns, this character gains Resist +2. (Damage dealt to them is reduced by 2.)"
   }
  ],
  "Ling - Snow Warrior": [
@@ -1396,8 +1475,15 @@
  ],
  "Boomer - Has the Beak": [
   {
-   "impl": "unimplemented",
-   "text": "[SPOTTED HIM!] When you play this character, you may exert chosen damaged character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "exert_chosen",
+    "filter": {
+     "damaged": true
+    }
+   },
+   "confidence": "medium",
+   "source": "[SPOTTED HIM!] When you play this character, you may exert chosen damaged character."
   }
  ],
  "Stegmutt - Clumsy Dinosaur": [
@@ -1408,8 +1494,15 @@
  ],
  "Aladdin - On the Edge of Adventure": [
   {
-   "impl": "unimplemented",
-   "text": "[QUICK ON HIS FEET] Whenever you play an action, this character gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
+   "trigger": "on_play_action",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "evasive",
+    "target": "self",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[QUICK ON HIS FEET] Whenever you play an action, this character gains Evasive until the start of your next turn. (Only characters with Evasive can challenge them.)"
   }
  ],
  "Mushu - Sneaky Dragon": [
@@ -1432,20 +1525,40 @@
  ],
  "Copper - Champion of the Forest": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Copper.)[MORE TO EXPLORE] Whenever this character quests, your characters with Evasive get +1 Lore this turn."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "buff_your_keyword_chars",
+    "keyword": "evasive",
+    "amount": 1,
+    "stat": "lore"
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Copper.)[MORE TO EXPLORE] Whenever this character quests, your characters with Evasive get +1 Lore this turn."
   }
  ],
  "Copper - Hound Pup": [
   {
-   "impl": "unimplemented",
-   "text": "[FOUND YA] When you play this character, chosen player reveals their hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "reveal_hand"
+   },
+   "confidence": "medium",
+   "source": "[FOUND YA] When you play this character, chosen player reveals their hand."
   }
  ],
  "Vixey - Forest Friend": [
   {
-   "impl": "unimplemented",
-   "text": "[SHOWIN' UP] If you have a character named Tod in play, you pay 1 Ink less to play this character.\nEvasive (Only characters with Evasive can challenge this character.)"
+   "trigger": "static",
+   "condition": {
+    "type": "named_character_in_play",
+    "name": "Tod"
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[SHOWIN' UP] If you have a character named Tod in play, you pay 1 Ink less to play this character.\nEvasive (Only characters with Evasive can challenge this character.)"
   }
  ],
  "Minnie Mouse - Mrs. Cratchit": [
@@ -1476,8 +1589,22 @@
  ],
  "Mickey Mouse - Snowboard Ace": [
   {
-   "impl": "unimplemented",
-   "text": "[SLIPPERY SLOPE] When you play this character and when he leaves play, each opponent chooses and discards a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "opponent_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[SLIPPERY SLOPE] When you play this character and when he leaves play, each opponent chooses and discards a card."
+  },
+  {
+   "trigger": "on_leave_play",
+   "effect": {
+    "type": "opponent_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[SLIPPERY SLOPE] When you play this character and when he leaves play, each opponent chooses and discards a card."
   }
  ],
  "Tod - Knows All the Tricks": [
@@ -1494,8 +1621,22 @@
  ],
  "Freeze the Vine": [
   {
-   "impl": "unimplemented",
-   "text": "Banish all locations. Draw 2 cards, then choose and discard a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_all_locations"
+   },
+   "confidence": "medium",
+   "source": "Banish all locations. Draw 2 cards, then choose and discard a card."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 2,
+    "discard": 1
+   },
+   "confidence": "medium",
+   "source": "Banish all locations. Draw 2 cards, then choose and discard a card."
   }
  ],
  "Rafiki's Bakora Staff": [
@@ -2283,20 +2424,37 @@
  ],
  "Carl Fredricksen - Loving Husband": [
   {
-   "impl": "unimplemented",
-   "text": "[TAKE MY HAND] When you play this character, you pay 2 Ink less for the next character named Ellie Fredricksen you play this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "cost_reduce",
+    "amount": 2,
+    "filter": "character",
+    "name": "Ellie Fredricksen"
+   },
+   "confidence": "medium",
+   "source": "[TAKE MY HAND] When you play this character, you pay 2 Ink less for the next character named Ellie Fredricksen you play this turn."
   }
  ],
  "Ellie Fredricksen - Loving Wife": [
   {
-   "impl": "unimplemented",
-   "text": "[ADVENTUROUS HEART] Whenever you play a location, gain 1 lore."
+   "trigger": "on_play_location",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[ADVENTUROUS HEART] Whenever you play a location, gain 1 lore."
   }
  ],
  "Buzz Lightyear - Grounded": [
   {
-   "impl": "unimplemented",
-   "text": "[NOT A FLYING TOY] This character can’t gain Evasive."
+   "trigger": "static",
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "cant_gain_evasive"
+   },
+   "confidence": "medium",
+   "source": "[NOT A FLYING TOY] This character can’t gain Evasive."
   }
  ],
  "Buzz Lightyear - Providing Cover": [
@@ -2335,8 +2493,16 @@
  ],
  "Peter Pan - Created by the Vine": [
   {
-   "impl": "unimplemented",
-   "text": "[CLEVER TRICK] Whenever one of your Floodborn characters is challenged, the challenging player chooses and discards a card."
+   "trigger": "on_ally_challenged",
+   "effect": {
+    "type": "opponent_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[CLEVER TRICK] Whenever one of your Floodborn characters is challenged, the challenging player chooses and discards a card.",
+   "defender_classification": [
+    "Floodborn"
+   ]
   }
  ],
  "Posey - Vampire Potato": [
@@ -2365,8 +2531,16 @@
  ],
  "To Wither A Flower": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nDeal 2 damage to each opposing damaged character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "damage_each",
+    "amount": 2,
+    "filter": {
+     "damaged": true
+    }
+   },
+   "confidence": "high",
+   "source": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nDeal 2 damage to each opposing damaged character."
   }
  ],
  "Piercing Attack": [
@@ -2384,14 +2558,26 @@
  ],
  "Scout Ahead": [
   {
-   "impl": "unimplemented",
-   "text": "If an opponent has more lore than you, gain 2 lore."
+   "trigger": "on_play",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 2
+   },
+   "condition": {
+    "type": "opponent_has_more_lore"
+   },
+   "confidence": "medium",
+   "source": "If an opponent has more lore than you, gain 2 lore."
   }
  ],
  "Potato": [
   {
-   "impl": "unimplemented",
-   "text": "[FULL OF POTENTIAL] This item enters play exerted."
+   "trigger": "static",
+   "effect": {
+    "type": "enters_exerted"
+   },
+   "confidence": "medium",
+   "source": "[FULL OF POTENTIAL] This item enters play exerted."
   }
  ],
  "My Adventure Book": [

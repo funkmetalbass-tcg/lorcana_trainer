@@ -829,6 +829,10 @@ class Game:
             self.locs[obj.uid] = obj
         elif card.is_item:
             obj = ItemInPlay(self.next_uid(), card, p, self.turn)
+            from . import schema
+            if schema.static_enters_exerted(card):
+                obj.exerted = True
+                self.emit(f"{card.name} enters play exerted")
             self.items[p].append(obj)
         # actions resolve then discard
         abilities.on_play(self, p, card, obj, params)

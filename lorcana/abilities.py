@@ -353,6 +353,10 @@ def _hunny_count(g, p, exclude_uid=None):
 def has_evasive(g, ch):
     if ch.card.kw("Evasive"):
         return True
+    # NOT A FLYING TOY (Buzz Lightyear - Grounded): printed Evasive would
+    # still count, but this character can never be *granted* Evasive.
+    if schema.static_self_keyword(g, ch, "cant_gain_evasive"):
+        return False
     # Roo ELUSIVE EXPERTISE: gains Evasive while you have another Hunny
     if ch.card.name == "Roo - Hunny Rogue" and _hunny_count(g, ch.owner, ch.uid) >= 1:
         return True
@@ -1599,6 +1603,7 @@ def on_play(g, p, card, obj, params):
             g.emit(f"EASY TARGET discards {target.name}")
 
     # Phase 2: data-driven abilities
+    schema.dispatch_play_type(g, p, card)
     if card.is_action:
         # Mark that an action is resolving so "whenever one of your actions
         # deals damage" watchers can attribute the damage (Merida STEADY AIM).
@@ -1970,6 +1975,7 @@ def on_banish(g, ch, cause="damage"):
     g.turn_flags.add(("banished_base", ch.card.base_name))
     # data-driven "when this character is banished" triggers
     schema.dispatch_banish(g, ch, cause)
+    schema.dispatch_leave_play(g, ch)
     # Belle - Snowfield Strategist WINTER STOCKPILE: whenever one of your
     # characters is banished, you may put that card from your discard into your
     # inkwell facedown and exerted. Belle is deleted from play before this hook
@@ -2136,6 +2142,9 @@ def on_challenge(g, attacker, defender):
     # side (Merida - Gifted Archer FIERCE PROTECTION).
     from . import schema
     schema.dispatch_opposing_challenge(g, attacker)
+    # "Whenever this / one of your X characters is challenged" watchers.
+    if defender is not None:
+        schema.dispatch_challenged(g, defender, attacker)
     # Medallion Weights: whenever the buffed character challenges another
     # character this turn, you may draw a card.
     if any(e["kind"] == "medallion_draw" and e["target"] == attacker.uid

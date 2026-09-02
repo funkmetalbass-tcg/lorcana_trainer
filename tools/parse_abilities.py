@@ -535,6 +535,93 @@ def _c(m):
                      "filter": {"damaged": True}}}
 
 
+
+# --- Phase 12 clauses ------------------------------------------------
+@clause(r"[Dd]eal (\d+) damage to each opposing damaged character\.?")
+def _c(m):
+    return {"type": "damage_each", "amount": int(m.group(1)),
+            "filter": {"damaged": True}}
+
+
+@clause(r"[Gg]ain lore equal to (?:her|his|their|its) Strength, "
+        r"to a maximum of (\d+) lore\.?")
+def _c(m):
+    return {"type": "gain_lore_equal_strength", "max": int(m.group(1))}
+
+
+@clause(r"[Yy]ou may exert chosen damaged character\.?")
+def _c(m):
+    return {"type": "exert_chosen", "filter": {"damaged": True}}
+
+
+@clause(r"[Ee]xert chosen damaged character\.?")
+def _c(m):
+    return {"type": "exert_chosen", "filter": {"damaged": True}}
+
+
+@clause(r"[Bb]anish all locations\.?")
+def _c(m):
+    return {"type": "banish_all_locations"}
+
+
+@clause(r"[Tt]his character gains (Evasive|Ward|Rush|Reckless) "
+        r"until the start of your next turn\.?")
+def _c(m):
+    return {"type": "grant_keyword", "keyword": m.group(1).lower(),
+            "target": "self", "duration": "until_your_next"}
+
+
+@clause(r"[Cc]hosen player reveals their hand\.?")
+def _c(m):
+    return {"type": "reveal_hand"}
+
+
+@clause(r"[Cc]hosen opposing character gains (Reckless|Evasive|Ward|Rush) "
+        r"until the start of your next turn\.?")
+def _c(m):
+    return {"type": "grant_keyword_opposing", "keyword": m.group(1).lower(),
+            "duration": "until_your_next"}
+
+
+@clause(r"[Yy]our characters with (Evasive|Ward|Reckless) get \+(\d+) "
+        r"(Lore|Strength|Willpower) this turn\.?")
+def _c(m):
+    return {"type": "buff_your_keyword_chars", "keyword": m.group(1).lower(),
+            "amount": int(m.group(2)),
+            "stat": {"lore": "lore", "strength": "str",
+                     "willpower": "will"}[m.group(3).lower()]}
+
+
+@clause(r"[Dd]raw (\d+) cards, then choose and discard (\d+) cards\.?")
+def _c(m):
+    return {"type": "draw_then_discard", "amount": int(m.group(1)),
+            "discard": int(m.group(2))}
+
+
+@clause(r"[Dd]raw (\d+) cards, then choose and discard a card\.?")
+def _c(m):
+    return {"type": "draw_then_discard", "amount": int(m.group(1)),
+            "discard": 1}
+
+
+@clause(r"[Tt]he challenging player chooses and discards a card\.?")
+def _c(m):
+    # ctx p is the defender's controller, so "opponent" is the challenger.
+    return {"type": "opponent_discard", "amount": 1}
+
+
+@clause(r"[Ee]ach opponent chooses and discards a card\.?")
+def _c(m):
+    return {"type": "opponent_discard", "amount": 1}
+
+
+@clause(r"[Yy]ou pay (\d+) Ink less for the next character named "
+        r"([A-Za-z' .-]+?) you play this turn\.?")
+def _c(m):
+    return {"type": "cost_reduce", "amount": int(m.group(1)),
+            "filter": "character", "name": m.group(2).strip()}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -653,12 +740,25 @@ _STATIC_SELF = re.compile(
 # "While <cond>, it gains Resist +N." -- a numeric keyword, so it goes through
 # the stat hook rather than the boolean keyword hook.
 _STATIC_RESIST = re.compile(
-    r"While (?P<cond>.+?), (?:this character|she|he|they|it) gains "
+    r"(?:While|During) (?P<cond>.+?), (?:this character|she|he|they|it) gains "
     r"Resist \+(?P<amt>\d+)\.?", re.IGNORECASE)
+
+_CANT_GAIN = re.compile(r"This character can't gain Evasive\.?", re.IGNORECASE)
 
 _NO_READY = re.compile(
     r"If you have (?P<n>\d+) or more cards in your hand, "
     r"(?:this character|she|he|they|it) can't ready\.?", re.IGNORECASE)
+
+_ENTERS_EXERTED = re.compile(
+    r"This (?:item|character|location) enters play exerted\.?", re.IGNORECASE)
+
+_SELF_DISCOUNT_NAMED = re.compile(
+    r"If you have a character named ([A-Za-z' .-]+?) in play, "
+    r"you pay (\d+) Ink less to play this character\.?", re.IGNORECASE)
+
+_SELF_DISCOUNT_DISCARDS = re.compile(
+    r"If (\d+) or more cards were put into your discard this turn, "
+    r"you pay (\d+) Ink less to play this character\.?", re.IGNORECASE)
 
 _SHIFT_ALIAS = re.compile(
     r"This character also counts as being named ([A-Za-z' .-]+?) for Shift\.?",
@@ -671,6 +771,9 @@ _STATIC_CONDS = [
      {"type": "has_card_under"}),
     (re.compile(r"this character has no damage", re.I),
      {"type": "self_undamaged"}),
+    (re.compile(r"an opposing damaged character is in play", re.I),
+     {"type": "opposing_damaged_in_play"}),
+    (re.compile(r"opponents.? turns", re.I), {"type": "opponents_turn"}),
     (re.compile(r"this character has at least one card under it", re.I),
      {"type": "has_card_under"}),
     (re.compile(r"there's a card under (?:him|her|them|it)", re.I),
@@ -695,6 +798,26 @@ def _stat_name(tok):
 def parse_static_self(line):
     """'While <condition>, this character gets +N <stat> [and gains KW].'"""
     line = line.strip()
+    if _ENTERS_EXERTED.fullmatch(line):
+        return [{"trigger": "static", "effect": {"type": "enters_exerted"}}]
+    md = _SELF_DISCOUNT_NAMED.fullmatch(line)
+    if md:
+        return [{"trigger": "static",
+                 "condition": {"type": "named_character_in_play",
+                               "name": md.group(1).strip()},
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(md.group(2))}}]
+    mdd = _SELF_DISCOUNT_DISCARDS.fullmatch(line)
+    if mdd:
+        return [{"trigger": "static",
+                 "condition": {"type": "discards_this_turn_at_least",
+                               "count": int(mdd.group(1))},
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(mdd.group(2))}}]
+    if _CANT_GAIN.fullmatch(line):
+        return [{"trigger": "static",
+                 "effect": {"type": "static_self_keyword",
+                            "keyword": "cant_gain_evasive"}}]
     mn = _NO_READY.fullmatch(line)
     if mn:
         return [{"trigger": "static",
@@ -978,6 +1101,16 @@ _PREAMBLES = [
      "on_opposing_challenge"),
     (re.compile(r"^Whenever an opponent chooses this character for an action "
                 r"or ability,\s*", re.IGNORECASE), "on_chosen_by_opponent"),
+    (re.compile(r"^Whenever you play a location,\s*", re.IGNORECASE),
+     "on_play_location"),
+    (re.compile(r"^Whenever you play an action,\s*", re.IGNORECASE),
+     "on_play_action"),
+    (re.compile(r"^Whenever this character is challenged,\s*", re.IGNORECASE),
+     "on_challenged"),
+    (re.compile(r"^Whenever one of your ([A-Za-z ]+?) characters is "
+                r"challenged,\s*", re.IGNORECASE), "on_ally_challenged"),
+    (re.compile(r"^When you play this character and when he leaves play,\s*",
+                re.IGNORECASE), "on_play_and_leave"),
 ]
 _MAY_PAY = re.compile(r"^you may pay (\d+) Ink to\s*", re.IGNORECASE)
 _MAY = re.compile(r"^you may\s+", re.IGNORECASE)
@@ -1008,6 +1141,12 @@ _TRIG_CONDS = [
     (re.compile(r"^if there's a card under (?:him|her|them|it),\s*",
                 re.IGNORECASE),
      lambda m: {"type": "has_card_under"}),
+    (re.compile(r"^if you played another character this turn,\s*",
+                re.IGNORECASE),
+     lambda m: {"type": "played_another_character"}),
+    (re.compile(r"^[Ii]f an opponent has more lore than you,\s*",
+                re.IGNORECASE),
+     lambda m: {"type": "opponent_has_more_lore"}),
 ]
 
 
@@ -1017,6 +1156,12 @@ def parse_triggered(prose):
         m = rx.match(prose)
         if not m:
             continue
+        extra = {}
+        if trig == "on_ally_challenged":
+            cls = _classes(m.group(1)) if m.groups() else None
+            if cls is None:
+                return None
+            extra["defender_classification"] = cls
         rest = prose[m.end():].strip()
         cond = None
         for crx, build in _TRIG_CONDS:
@@ -1043,7 +1188,7 @@ def parse_triggered(prose):
                     stripped = stripped[0].upper() + stripped[1:]
                 effects = parse_by_clauses(stripped)
         if effects:
-            return trig, cond, cost, effects
+            return trig, cond, cost, effects, extra
     return None
 
 
@@ -1159,11 +1304,17 @@ def _parse_one(prose, desc):
     # Triggered preamble + clause body.
     trig = parse_triggered(prose)
     if trig:
-        trigger, cond, cost, effects = trig
+        trigger, cond, cost, effects, extra = trig
         ents = []
-        for e in effects:
+        # "When you play this character and when he leaves play" is two
+        # triggers sharing one effect (Mickey Mouse - Snowboard Ace).
+        triggers = ["on_play", "on_leave_play"] \
+            if trigger == "on_play_and_leave" else [trigger]
+        for trigger in triggers:
+         for e in effects:
             ent = {"trigger": trigger, "effect": e,
                    "confidence": "medium", "source": _src(desc)}
+            ent.update(extra)
             if cond is None and e.get("type") == "enter_exerted_for":
                 # the exert is paid up front, so only offer it when the
                 # payoff exists (Lord MacGuffin WAIT FOR IT...)
@@ -1176,6 +1327,22 @@ def _parse_one(prose, desc):
         return ents
 
     # Single-sentence bare-imperative (action cards): try clauses directly.
+    for crx, build in _TRIG_CONDS:
+        cm = crx.match(prose)
+        if not cm:
+            continue
+        c = build(cm)
+        if c is None:
+            break
+        rest = prose[cm.end():].strip()
+        if rest and rest[0].islower():
+            rest = rest[0].upper() + rest[1:]
+        effs = parse_by_clauses(rest)
+        if effs:
+            return [{"trigger": "on_play", "effect": e, "condition": c,
+                     "confidence": "medium", "source": _src(desc)}
+                    for e in effs]
+
     single = match_clause(prose)
     if single:
         ent = {"trigger": "on_play", "effect": single,

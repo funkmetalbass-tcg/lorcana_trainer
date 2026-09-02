@@ -565,8 +565,22 @@
  ],
  "Pizza Planet - Spaceport": [
   {
-   "impl": "unimplemented",
-   "text": "[YOU ARE CLEAR TO ENTER] Your Toy characters can move here for free.[HEAVILY GUARDED] Whenever a character is challenged while here, each opponent loses 1 lore."
+   "trigger": "static",
+   "effect": {
+    "type": "free_move_here",
+    "classification": "Toy"
+   },
+   "confidence": "medium",
+   "source": "[YOU ARE CLEAR TO ENTER] Your Toy characters can move here for free.[HEAVILY GUARDED] Whenever a character is challenged while here, each opponent loses 1 lore."
+  },
+  {
+   "trigger": "on_challenged_here",
+   "effect": {
+    "type": "opponent_lose_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[YOU ARE CLEAR TO ENTER] Your Toy characters can move here for free.[HEAVILY GUARDED] Whenever a character is challenged while here, each opponent loses 1 lore."
   }
  ],
  "Lyle Tiberius Rourke - Crystallized Commander": [
@@ -772,8 +786,23 @@
  ],
  "Remote Inklands - Desert Ruins": [
   {
-   "impl": "unimplemented",
-   "text": "[ERODING WINDS] At the start of your turn, put the top card of your deck into your discard.[SUCCESSFUL EXPEDITION] Characters get +2 Strength while here."
+   "trigger": "on_turn_start",
+   "effect": {
+    "type": "mill_self",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[ERODING WINDS] At the start of your turn, put the top card of your deck into your discard.[SUCCESSFUL EXPEDITION] Characters get +2 Strength while here."
+  },
+  {
+   "trigger": "static",
+   "effect": {
+    "type": "location_aura_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[ERODING WINDS] At the start of your turn, put the top card of your deck into your discard.[SUCCESSFUL EXPEDITION] Characters get +2 Strength while here."
   }
  ],
  "Leviathan's Lair - Dangerous Ground": [
@@ -1819,8 +1848,17 @@
  ],
  "Game Preserve - Protected Land": [
   {
-   "impl": "unimplemented",
-   "text": "[EASY TO MISS] While there's a character with Evasive here, this location gains Evasive. (Only characters with Evasive can challenge it.)"
+   "trigger": "static",
+   "condition": {
+    "type": "keyword_character_here",
+    "keyword": "evasive"
+   },
+   "effect": {
+    "type": "static_location_keyword",
+    "keyword": "evasive"
+   },
+   "confidence": "medium",
+   "source": "[EASY TO MISS] While there's a character with Evasive here, this location gains Evasive. (Only characters with Evasive can challenge it.)"
   }
  ],
  "Wreck-it Ralph - Raging Wrecker": [
@@ -1959,8 +1997,13 @@
  ],
  "Beast's Castle - Winter Gardens": [
   {
-   "impl": "unimplemented",
-   "text": "[SNOWBALL STANDOFF] Whenever a character here challenges another character, gain 1 lore."
+   "trigger": "on_challenge_from_here",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[SNOWBALL STANDOFF] Whenever a character here challenges another character, gain 1 lore."
   }
  ],
  "Roo - Little Helper": [
@@ -4116,8 +4159,15 @@
  ],
  "The Bitterwood - Underground Forest": [
   {
-   "impl": "unimplemented",
-   "text": "[GATHER RESOURCES] Once during your turn, whenever you move a character with 5 Strength or more here, you may draw a card."
+   "trigger": "on_move_here",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[GATHER RESOURCES] Once during your turn, whenever you move a character with 5 Strength or more here, you may draw a card.",
+   "once_per_turn": true,
+   "moved_min_strength": 5
   }
  ],
  "Hen Wen - Prophetic Pig": [
@@ -4905,8 +4955,17 @@
  ],
  "Goofy - Set for Adventure": [
   {
-   "impl": "unimplemented",
-   "text": "[FAMILY VACATION] Once during your turn, whenever this character moves to a location, you may move one of your other characters to that location for free. If you do, draw a card."
+   "trigger": "on_move_self",
+   "effect": {
+    "type": "move_other_here",
+    "then": {
+     "type": "draw",
+     "amount": 1
+    }
+   },
+   "confidence": "medium",
+   "source": "[FAMILY VACATION] Once during your turn, whenever this character moves to a location, you may move one of your other characters to that location for free. If you do, draw a card.",
+   "once_per_turn": true
   }
  ],
  "Max Goof - Rebellious Teen": [
@@ -5003,8 +5062,29 @@
  ],
  "Shenzi - Hyena Pack Leader": [
   {
-   "impl": "unimplemented",
-   "text": "[I'LL HANDLE THIS] While this character is at a location, she gets +3 Strength.\nWHAT'S THE HURRY? While this character is at a location, whenever she challenges another character, you may draw a card."
+   "trigger": "static",
+   "condition": {
+    "type": "self_at_location"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 3
+   },
+   "confidence": "medium",
+   "source": "[I'LL HANDLE THIS] While this character is at a location, she gets +3 Strength.\nWHAT'S THE HURRY? While this character is at a location, whenever she challenges another character, you may draw a card."
+  },
+  {
+   "trigger": "on_challenges",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[I'LL HANDLE THIS] While this character is at a location, she gets +3 Strength.\nWHAT'S THE HURRY? While this character is at a location, whenever she challenges another character, you may draw a card.",
+   "_cond": {
+    "type": "self_at_location"
+   }
   }
  ],
  "John Silver - Alien Pirate": [

@@ -849,6 +849,38 @@ def _c(m):
     return {"type": "ready_self", "no_quest": True}
 
 
+
+# --- Cluster C: locations and movement -------------------------------
+@clause(r"[Yy]ou may move one of your other characters to that location for "
+        r"free\. If you do, draw a card\.?")
+def _c(m):
+    return {"type": "move_other_here",
+            "then": {"type": "draw", "amount": 1}}
+
+
+@clause(r"[Yy]ou may move him and one of your other characters to the same "
+        r"location for free\. If you do, the other character gets \+(\d+) "
+        r"Strength this turn\.?")
+def _c(m):
+    return {"type": "move_two_to_location",
+            "buff": {"stat": "str", "amount": int(m.group(1))}}
+
+
+@clause(r"[Pp]ut the top card of your deck under this location facedown\.?")
+def _c(m):
+    return {"type": "put_top_under_source"}
+
+
+@clause(r"[Pp]ut the top card of your deck into your discard\.?")
+def _c(m):
+    return {"type": "mill_self", "amount": 1}
+
+
+@clause(r"[Yy]ou may draw a card\.?")
+def _c(m):
+    return {"type": "draw", "amount": 1}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1020,6 +1052,13 @@ _TEAM_STAT_PLAIN = re.compile(
     r"Your ([A-Za-z ]+?) characters get \+(\d+) (Strength|Lore|Willpower)\.?",
     re.IGNORECASE)
 
+_LOC_KEYWORD = re.compile(
+    r"While there's a character with (?P<kw>Evasive|Ward|Reckless) here, "
+    r"this location gains (?P=kw)\.?", re.IGNORECASE)
+
+_FREE_MOVE = re.compile(
+    r"Your ([A-Za-z ]+?) characters can move here for free\.?", re.IGNORECASE)
+
 _LOC_AURA = re.compile(
     r"Characters get \+(\d+) (Strength|Lore|Willpower)"
     r"(?: and \+(\d+) (Strength|Lore|Willpower))? while here\.?",
@@ -1178,6 +1217,21 @@ def parse_static_self(line):
                             "amount": int(mtp.group(2)),
                             "classification": cls[0],
                             "include_self": True}}]
+    mlk = _LOC_KEYWORD.fullmatch(line)
+    if mlk:
+        return [{"trigger": "static",
+                 "condition": {"type": "keyword_character_here",
+                               "keyword": mlk.group("kw").lower()},
+                 "effect": {"type": "static_location_keyword",
+                            "keyword": mlk.group("kw").lower()}}]
+    mfm = _FREE_MOVE.fullmatch(line)
+    if mfm:
+        cls = _classes(mfm.group(1))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "free_move_here",
+                            "classification": cls[0]}}]
     mla = _LOC_AURA.fullmatch(line)
     if mla:
         out = [{"trigger": "static",
@@ -1582,8 +1636,24 @@ _PREAMBLES = [
                 re.IGNORECASE), "on_card_under_self"),
     (re.compile(r"^Whenever you use the Boost ability of a character,\s*",
                 re.IGNORECASE), "on_boost_used"),
+    (re.compile(r"^While this character is at a location, whenever she "
+                r"challenges another character,\s*", re.IGNORECASE),
+     "on_challenges|atloc"),
     (re.compile(r"^Whenever this character challenges another character,\s*",
                 re.IGNORECASE), "on_challenges"),
+    (re.compile(r"^Once during your turn, whenever this character moves to a "
+                r"location,\s*", re.IGNORECASE), "on_move_self|once"),
+    (re.compile(r"^Whenever you move a character here,\s*", re.IGNORECASE),
+     "on_move_here"),
+    (re.compile(r"^Once during your turn, whenever you move a character with "
+                r"(?P<minstr>\d+) Strength or more here,\s*", re.IGNORECASE),
+     "on_move_here|once|minstr"),
+    (re.compile(r"^Whenever a character here challenges another character,\s*",
+                re.IGNORECASE), "on_challenge_from_here"),
+    (re.compile(r"^Whenever a character is challenged while here,\s*",
+                re.IGNORECASE), "on_challenged_here"),
+    (re.compile(r"^At the start of your turn,\s*", re.IGNORECASE),
+     "on_turn_start"),
     (re.compile(r"^During your turn, whenever this character banishes another "
                 r"character in a challenge,\s*", re.IGNORECASE),
      "on_banishes_in_challenge"),
@@ -1629,6 +1699,8 @@ _TRIG_CONDS = [
     (re.compile(r"^if there's a card under (?:him|her|them|it),\s*",
                 re.IGNORECASE),
      lambda m: {"type": "has_card_under"}),
+    (re.compile(r"^while this character is at a location,\s*", re.IGNORECASE),
+     lambda m: {"type": "self_at_location"}),
     (re.compile(r"^if you played (?:a|another) character this turn,\s*",
                 re.IGNORECASE),
      lambda m: {"type": "played_another_character"}),
@@ -1645,6 +1717,15 @@ def parse_triggered(prose):
         if not m:
             continue
         extra = {}
+        if "|" in trig:
+            parts = trig.split("|")
+            trig = parts[0]
+            if "once" in parts:
+                extra["once_per_turn"] = True
+            if "minstr" in parts and m.groupdict().get("minstr"):
+                extra["moved_min_strength"] = int(m.group("minstr"))
+            if "atloc" in parts:
+                extra["_cond"] = {"type": "self_at_location"}
         if trig == "on_ally_challenged":
             cls = _classes(m.group(1)) if m.groups() else None
             if cls is None:
@@ -1779,7 +1860,10 @@ def _parse_one(prose, desc):
         for e in effects:
             ent = {"trigger": "on_play_character", "effect": e,
                    "confidence": "medium", "source": _src(desc)}
+            _c2 = extra.pop("_cond", None) if extra else None
             ent.update(extra)
+            if _c2 and "condition" not in ent:
+                ent["condition"] = _c2
             if cost:
                 ent["cost"] = cost
                 if cost.get("banish_self") and e.get("type") == "deal_damage":

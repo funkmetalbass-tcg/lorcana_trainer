@@ -2059,6 +2059,8 @@ def on_banish(g, ch, cause="damage"):
 
 def on_move(g, ch, loc, zoo_draw=True):
     p = ch.owner
+    from . import schema
+    schema.dispatch_move(g, ch, loc)
     if loc.card.name == "Zootopia - Police Headquarters":
         flag = ("zoo", loc.uid)
         if zoo_draw and flag not in g.turn_flags and g.active == p and g.players[p].deck:
@@ -2164,6 +2166,9 @@ def on_challenge(g, attacker, defender):
     from . import schema
     schema.dispatch_opposing_challenge(g, attacker)
     schema.dispatch_challenges(g, attacker)
+    # location watchers on either side of the challenge
+    if defender is not None:
+        schema.dispatch_challenge_at_location(g, attacker, defender)
     # "Whenever this / one of your X characters is challenged" watchers.
     if defender is not None:
         schema.dispatch_challenged(g, defender, attacker)

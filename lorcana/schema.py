@@ -384,7 +384,22 @@ def _cond_others_with_strength(g, p, ctx, cond):
     return n >= cond.get("count", 1)
 
 
+def _cond_keyword_character_here(g, p, ctx, cond):
+    """A character with this keyword is at this location (Game Preserve)."""
+    from . import abilities
+    loc = ctx.get("loc")
+    if loc is None:
+        return False
+    fn = {"evasive": abilities.has_evasive, "ward": abilities.has_ward,
+          "reckless": abilities.has_reckless}.get(
+              cond.get("keyword", "evasive").lower())
+    if fn is None:
+        return False
+    return any(c.location == loc.uid and fn(g, c) for c in g.chars.values())
+
+
 _CONDITIONS = {
+    "keyword_character_here": _cond_keyword_character_here,
     "you_have_damaged_character": _cond_you_have_damaged_character,
     "others_with_strength": _cond_others_with_strength,
     "all_of": _cond_all_of,
@@ -904,6 +919,41 @@ def _eff_return_cards_under(g, p, ctx, eff):
            f"{ch.card.base_name} to hand")
 
 
+def _eff_move_other_here(g, p, ctx, eff):
+    """Move one of your other characters to the location in ctx, for free
+    (Goofy - Set for Adventure FAMILY VACATION)."""
+    me = ctx.get("char")
+    loc = ctx.get("loc")
+    if loc is None:
+        return
+    pool = [c for c in g.my_chars(p)
+            if c.location != loc.uid
+            and (me is None or c.uid != me.uid)]
+    if not pool:
+        return
+    buddy = max(pool, key=lambda c: g.eff_lore(c))
+    buddy.location = loc.uid
+    g.emit(f"schema: moves {buddy.card.base_name} to {loc.card.base_name}")
+    if eff.get("then"):
+        apply_effect(g, p, ctx, eff["then"])
+
+
+def _eff_put_top_under_source(g, p, ctx, eff):
+    """Put the top card of your deck facedown under the source permanent
+    (Graveyard of Christmas Future NEW ARRIVAL)."""
+    src = ctx.get("source")
+    pl = g.players[p]
+    if src is None or not pl.deck:
+        return
+    store = getattr(src, "under", None)
+    if store is None:
+        store = getattr(src, "boosted", None)
+    if store is None:
+        return
+    store.append(pl.deck.pop())
+    g.emit(f"schema: puts a card under {src.card.base_name}")
+
+
 def _eff_banish_chosen(g, p, ctx, eff):
     """Banish a chosen opposing character (Dragon Fire)."""
     from . import abilities
@@ -1151,6 +1201,12 @@ def _eff_move_two_to_location(g, p, ctx, eff):
         buddy = max(others, key=lambda c: g.eff_lore(c))
         buddy.location = loc.uid
         moved.append(buddy.card.base_name)
+        buff = eff.get("buff")
+        if buff:
+            g.effects.append({"kind": buff.get("stat", "str"),
+                              "target": buddy.uid,
+                              "amount": buff.get("amount", 1),
+                              "until": "eot"})
     g.emit(f"schema: moves {', '.join(moved)} to {loc.card.base_name}")
 
 
@@ -1370,6 +1426,8 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "move_other_here": _eff_move_other_here,
+    "put_top_under_source": _eff_put_top_under_source,
     "banish_chosen": _eff_banish_chosen,
     "exert_all_opposing": _eff_exert_all_opposing,
     "draw_then_discard_random": _eff_draw_then_discard_random,
@@ -1435,7 +1493,8 @@ def apply_effect(g, p, ctx, eff):
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist", "static_location_lore",
                            "shift_onto_names", "team_keyword", "team_stat",
-                           "location_aura_stat", "enters_with_damage"):
+                           "location_aura_stat", "enters_with_damage",
+                           "static_location_keyword", "free_move_here"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -1447,10 +1506,21 @@ def apply_effect(g, p, ctx, eff):
 # ---------------------------------------------------------------------
 # Dispatchers, called from abilities.py trigger hooks
 # ---------------------------------------------------------------------
+def _once_key(e, ctx):
+    src = ctx.get("source") or ctx.get("char")
+    return ("once", e.get("once_id") or id(e),
+            getattr(src, "uid", None))
+
+
 def _run(g, p, ctx, ents):
     for e in ents:
         if "effect" not in e:
             continue  # e.g. {"impl": "python"} marker entries
+        # "Once during your turn, ..." -- one use per source per turn.
+        if e.get("once_per_turn"):
+            key = _once_key(e, ctx)
+            if key in g.turn_flags:
+                continue
         if not check_condition(g, p, ctx, e.get("condition")):
             continue
         # Optional cost on a triggered ability ("you may pay 2 Ink to ...").
@@ -1479,6 +1549,8 @@ def _run(g, p, ctx, ents):
                     g.banish_char(src, cause="effect")
                 elif src in g.items[p]:
                     g.banish_item(src)
+        if e.get("once_per_turn"):
+            g.turn_flags.add(_once_key(e, ctx))
         apply_effect(g, p, ctx, e["effect"])
         if g.winner is not None:
             return
@@ -1737,6 +1809,80 @@ def dispatch_opponent_song(g, p):
             _run(g, p, {"card": src.card,
                         "char": src if hasattr(src, "damage") else None,
                         "source": src}, ents)
+
+
+def dispatch_move(g, ch, loc):
+    """Movement watchers, fired from abilities.on_move.
+
+    "on_move_self" sits on the moving character (Goofy - Set for Adventure);
+    "on_move_here" sits on the destination location (Graveyard of Christmas
+    Future, The Bitterwood).
+    """
+    p = ch.owner
+    ents = entries_for(ch.card.name, "on_move_self")
+    if ents:
+        _run(g, p, {"card": ch.card, "char": ch, "source": ch, "loc": loc},
+             ents)
+    ents = entries_for(loc.card.name, "on_move_here")
+    for e in ents:
+        minstr = e.get("moved_min_strength")
+        if minstr is not None and g.eff_strength(ch) < minstr:
+            continue
+        _run(g, p, {"card": loc.card, "char": ch, "source": loc, "loc": loc},
+             [e])
+        if g.winner is not None:
+            return
+
+
+def dispatch_challenge_at_location(g, attacker, defender):
+    """Location watchers for challenges happening at that location:
+    "whenever a character here challenges" (Beast's Castle - Winter Gardens)
+    and "whenever a character is challenged while here" (Pizza Planet)."""
+    for loc_uid, trig, who in ((getattr(attacker, "location", None),
+                                "on_challenge_from_here", attacker),
+                               (getattr(defender, "location", None),
+                                "on_challenged_here", defender)):
+        if loc_uid is None:
+            continue
+        loc = g.locs.get(loc_uid)
+        if loc is None:
+            continue
+        ents = entries_for(loc.card.name, trig)
+        if ents:
+            _run(g, loc.owner,
+                 {"card": loc.card, "char": who, "source": loc, "loc": loc},
+                 ents)
+            if g.winner is not None:
+                return
+
+
+def static_location_keyword(g, loc, kw):
+    """A keyword the location itself has right now (Game Preserve)."""
+    for e in entries_for(loc.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "static_location_keyword":
+            continue
+        if eff.get("keyword", "").lower() != kw.lower():
+            continue
+        if check_condition(g, loc.owner, {"card": loc.card, "loc": loc},
+                           e.get("condition")):
+            return True
+    return False
+
+
+def location_free_move_for(g, loc, ch):
+    """Does this character move to this location for free?
+    (Pizza Planet: your Toy characters can move here for free.)"""
+    for e in entries_for(loc.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "free_move_here":
+            continue
+        want = eff.get("classification")
+        if want and want not in ch.card.classifications:
+            continue
+        if ch.owner == loc.owner:
+            return True
+    return False
 
 
 def dispatch_banishes_in_challenge(g, attacker, defender):

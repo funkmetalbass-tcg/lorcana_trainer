@@ -566,8 +566,11 @@ class Game:
         # both choices when the trigger is still available and drawing is possible.
         for ch in self.my_chars(p):
             for loc in self.my_locs(p):
-                if ch.location != loc.uid and loc.card.move_cost is not None \
-                        and pl.ink_ready >= loc.card.move_cost:
+                from . import schema as _schema
+                _free = _schema.location_free_move_for(self, loc, ch)
+                _cost = 0 if _free else loc.card.move_cost
+                if ch.location != loc.uid and _cost is not None \
+                        and pl.ink_ready >= _cost:
                     if loc.card.name == "Zootopia - Police Headquarters" \
                             and ("zoo", loc.uid) not in self.turn_flags \
                             and pl.deck:
@@ -592,8 +595,14 @@ class Game:
         if bg:
             char_targets = bg
         out = [("char", c.uid) for c in char_targets]
+        from . import schema
         for loc in self.my_locs(opp):
             if any(e["kind"] == "no_challenge" and e["target"] == loc.uid for e in self.effects):
+                continue
+            # A location may itself gain Evasive (Game Preserve - Protected
+            # Land), which restricts who can challenge it.
+            if schema.static_location_keyword(self, loc, "evasive") \
+                    and not self.can_challenge_evasive(attacker):
                 continue
             out.append(("loc", loc.uid))
         return out
@@ -717,7 +726,9 @@ class Game:
             ch = self.chars[action[1]]
             loc = self.locs[action[2]]
             choice = action[3] if len(action) > 3 else None
-            self.pay_ink(p, loc.card.move_cost)
+            from . import schema as _schema
+            if not _schema.location_free_move_for(self, loc, ch):
+                self.pay_ink(p, loc.card.move_cost)
             ch.location = loc.uid
             self.emit(f"{ch.card.base_name} moves to {loc.card.base_name}")
             abilities.on_move(self, ch, loc, zoo_draw=(choice != "zoo_skip"))

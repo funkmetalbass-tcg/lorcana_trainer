@@ -398,7 +398,20 @@ def _cond_keyword_character_here(g, p, ctx, cond):
     return any(c.location == loc.uid and fn(g, c) for c in g.chars.values())
 
 
+def _cond_put_card_under_this_turn(g, p, ctx, cond):
+    """You put a card under something this turn. "self" scopes it to this
+    character (Willie the Giant, Lady Tremaine); otherwise any of yours
+    (Mulan - Standing Her Ground)."""
+    if cond.get("scope") == "self":
+        ch = ctx.get("char") or ctx.get("source")
+        if ch is None:
+            return False
+        return ("under_this_turn", ch.uid) in g.turn_flags
+    return ("under_this_turn", p) in g.turn_flags
+
+
 _CONDITIONS = {
+    "put_card_under_this_turn": _cond_put_card_under_this_turn,
     "keyword_character_here": _cond_keyword_character_here,
     "you_have_damaged_character": _cond_you_have_damaged_character,
     "others_with_strength": _cond_others_with_strength,
@@ -919,6 +932,19 @@ def _eff_return_cards_under(g, p, ctx, eff):
            f"{ch.card.base_name} to hand")
 
 
+def _eff_draw_per_card_under(g, p, ctx, eff):
+    """Draw one card for each card that was under the character in ctx
+    (Donald Duck - Fred Honeywell WELL WISHES)."""
+    ch = ctx.get("char")
+    if ch is None:
+        return
+    n = len(getattr(ch, "boosted", [])) + len(getattr(ch, "under", []))
+    if n:
+        g.draw(p, n)
+        g.emit(f"schema: draws {n} for cards under "
+               f"{ch.card.base_name}")
+
+
 def _eff_move_other_here(g, p, ctx, eff):
     """Move one of your other characters to the location in ctx, for free
     (Goofy - Set for Adventure FAMILY VACATION)."""
@@ -1426,6 +1452,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "draw_per_card_under": _eff_draw_per_card_under,
     "move_other_here": _eff_move_other_here,
     "put_top_under_source": _eff_put_top_under_source,
     "banish_chosen": _eff_banish_chosen,
@@ -1494,7 +1521,8 @@ def apply_effect(g, p, ctx, eff):
                            "static_location_resist", "static_location_lore",
                            "shift_onto_names", "team_keyword", "team_stat",
                            "location_aura_stat", "enters_with_damage",
-                           "static_location_keyword", "free_move_here"):
+                           "static_location_keyword", "free_move_here",
+                           "no_quest_or_challenge_unless"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -1754,11 +1782,15 @@ def dispatch_challenged(g, defender, attacker):
     if ents:
         _run(g, p, {"card": defender.card, "char": attacker,
                     "source": defender}, ents)
-    for src in list(g.my_chars(p)):
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
         ents = entries_for(src.card.name, "on_ally_challenged")
         for e in ents:
             want = e.get("defender_classification")
             if want and not (defender.card.classifications & set(want)):
+                continue
+            if e.get("defender_has_card_under") and not (
+                    getattr(defender, "boosted", None)
+                    or getattr(defender, "under", None)):
                 continue
             _run(g, p, {"card": src.card, "char": attacker,
                         "source": src}, [e])
@@ -1985,8 +2017,13 @@ def static_self_stat(g, ch, stat):
             continue
         if eff.get("type") == "static_self_stat" and eff.get("stat") != stat:
             continue
-        if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
-                           e.get("condition")):
+        if not check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                               e.get("condition")):
+            continue
+        if eff.get("per") == "cards_under":
+            total += eff.get("amount", 0) * (len(getattr(ch, "boosted", []))
+                                             + len(getattr(ch, "under", [])))
+        else:
             total += eff.get("amount", 0)
     return total
 
@@ -2049,6 +2086,44 @@ def location_aura_stat(g, ch, stat):
         if eff.get("type") == "location_aura_stat" and eff.get("stat") == stat:
             total += eff.get("amount", 0)
     return total
+
+
+def note_card_under(g, p, obj):
+    """Record that a card was put under a permanent this turn. Read by
+    put_card_under_this_turn; kept separate from the watcher dispatch so it
+    also fires for non-Boost sources."""
+    g.turn_flags.add(("under_this_turn", p))
+    uid = getattr(obj, "uid", None)
+    if uid is not None:
+        g.turn_flags.add(("under_this_turn", uid))
+
+
+def dispatch_ally_banished(g, ch):
+    """'Whenever one of your OTHER characters is banished' watchers
+    (Donald Duck - Fred Honeywell WELL WISHES). ctx["char"] is the banished
+    character, so effects can scale on what was under it."""
+    p = ch.owner
+    for src in list(g.my_chars(p)):
+        if src.uid == ch.uid:
+            continue
+        ents = entries_for(src.card.name, "on_ally_banished")
+        if ents:
+            _run(g, p, {"card": src.card, "char": ch, "source": src}, ents)
+            if g.winner is not None:
+                return
+
+
+def blocks_quest_challenge(g, ch):
+    """Static restrictions on questing/challenging (Willie the Giant: can't
+    do either unless you put a card under him this turn)."""
+    for e in entries_for(ch.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "no_quest_or_challenge_unless":
+            continue
+        if not check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                               e.get("condition")):
+            return True
+    return False
 
 
 def dispatch_card_under(g, p, obj, via_boost):

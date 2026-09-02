@@ -739,6 +739,9 @@ def _c(m):
             "target": "chosen_character", "duration": "eot"}
 
 
+_DRAIN_AND_GAIN = re.compile(
+    r"[Ee]ach opponent loses (\d+) lore and you gain (\d+) lore\.?")
+
 _STAT_AND_KEYWORD = re.compile(
     r"[Cc]hosen character gets \+(\d+) Strength and gains "
     r"(Evasive|Ward|Rush|Reckless) until the start of your next turn\.?")
@@ -881,6 +884,18 @@ def _c(m):
     return {"type": "draw", "amount": 1}
 
 
+
+# --- Cluster D: cards under permanents -------------------------------
+@clause(r"[Yy]ou may draw a card for each card that was under (?:him|her|them|it)\.?")
+def _c(m):
+    return {"type": "draw_per_card_under"}
+
+
+@clause(r"[Gg]ain (\d+) lore\.?")
+def _c(m):
+    return {"type": "gain_lore", "amount": int(m.group(1))}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -994,6 +1009,21 @@ _SELF_DISCOUNT = re.compile(
 # is unambiguously a Strength bonus.
 _STAT_SYMBOL = "str"
 
+_STATIC_TRIPLE = re.compile(
+    r"(?:While|As long as|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
+    r"gets \+(?P<a1>\d+) (?P<s1>\{\}|Strength|Lore|Willpower), "
+    r"\+(?P<a2>\d+) (?P<s2>\{\}|Strength|Lore|Willpower), and "
+    r"\+(?P<a3>\d+) (?P<s3>\{\}|Strength|Lore|Willpower)\.?",
+    re.IGNORECASE)
+
+_STATIC_PER_UNDER = re.compile(
+    r"This character gets \+(\d+) (Strength|Lore|Willpower) for each card "
+    r"under (?:him|her|them|it)\.?", re.IGNORECASE)
+
+_NO_QUEST_UNLESS = re.compile(
+    r"This character can't quest or challenge unless you put a card under "
+    r"(?:him|her|them|it) this turn\.?", re.IGNORECASE)
+
 _STATIC_SELF = re.compile(
     r"(?:While|As long as|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
     r"gets \+(?P<amt>\d+) (?P<stat>\{\}|Strength|Lore|Willpower)"
@@ -1102,6 +1132,8 @@ _STATIC_CONDS = [
     (re.compile(r"this character has no damage", re.I),
      {"type": "self_undamaged"}),
     (re.compile(r"this character has damage", re.I), {"type": "self_damaged"}),
+    (re.compile(r"this character has a card under (?:him|her|them|it)", re.I),
+     {"type": "has_card_under"}),
     (re.compile(r"you have a ([A-Za-z ]+?) character in play", re.I), None),
     (re.compile(r"you have a character with (Singer|Evasive|Ward|Support|Reckless) in play",
                 re.I), None),
@@ -1307,6 +1339,28 @@ def parse_static_self(line):
     if ma:
         return [{"trigger": "static",
                  "effect": {"type": "shift_alias", "name": ma.group(1).strip()}}]
+    mt3 = _STATIC_TRIPLE.fullmatch(line)
+    if mt3:
+        c = _static_cond(mt3.group("cond"))
+        if c is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "static_self_stat",
+                            "stat": _stat_name(mt3.group("s%d" % i)),
+                            "amount": int(mt3.group("a%d" % i))}}
+                for i in (1, 2, 3)]
+    mpu = _STATIC_PER_UNDER.fullmatch(line)
+    if mpu:
+        return [{"trigger": "static",
+                 "effect": {"type": "static_self_stat",
+                            "stat": _stat_name(mpu.group(2)),
+                            "amount": int(mpu.group(1)),
+                            "per": "cards_under"}}]
+    if _NO_QUEST_UNLESS.fullmatch(line):
+        return [{"trigger": "static",
+                 "condition": {"type": "put_card_under_this_turn",
+                               "scope": "self"},
+                 "effect": {"type": "no_quest_or_challenge_unless"}}]
     mr = _STATIC_RESIST.fullmatch(line)
     if mr:
         c = _static_cond(mr.group("cond"))
@@ -1448,6 +1502,10 @@ def parse_modal(text):
 def parse_by_clauses(prose):
     """Split into sentences; require EVERY sentence to match a clause.
     Returns list of effect dicts, or None."""
+    mdg = _DRAIN_AND_GAIN.fullmatch(prose.strip())
+    if mdg:
+        return [{"type": "opponent_lose_lore", "amount": int(mdg.group(1))},
+                {"type": "gain_lore", "amount": int(mdg.group(2))}]
     msk = _STAT_AND_KEYWORD.fullmatch(prose.strip())
     if msk:
         return [{"type": "stat_mod", "stat": "str",
@@ -1639,8 +1697,16 @@ _PREAMBLES = [
     (re.compile(r"^While this character is at a location, whenever she "
                 r"challenges another character,\s*", re.IGNORECASE),
      "on_challenges|atloc"),
+    (re.compile(r"^Whenever he challenges another character,\s*",
+                re.IGNORECASE), "on_challenges"),
     (re.compile(r"^Whenever this character challenges another character,\s*",
                 re.IGNORECASE), "on_challenges"),
+    (re.compile(r"^During opponents.? turns, whenever one of your other "
+                r"characters is banished,\s*", re.IGNORECASE),
+     "on_ally_banished|oppturn"),
+    (re.compile(r"^Whenever one of your characters or locations with a card "
+                r"under them is challenged,\s*", re.IGNORECASE),
+     "on_ally_challenged|hasunder"),
     (re.compile(r"^Once during your turn, whenever this character moves to a "
                 r"location,\s*", re.IGNORECASE), "on_move_self|once"),
     (re.compile(r"^Whenever you move a character here,\s*", re.IGNORECASE),
@@ -1701,6 +1767,8 @@ _TRIG_CONDS = [
      lambda m: {"type": "has_card_under"}),
     (re.compile(r"^while this character is at a location,\s*", re.IGNORECASE),
      lambda m: {"type": "self_at_location"}),
+    (re.compile(r"^if there's a card under this character,\s*", re.IGNORECASE),
+     lambda m: {"type": "has_card_under"}),
     (re.compile(r"^if you played (?:a|another) character this turn,\s*",
                 re.IGNORECASE),
      lambda m: {"type": "played_another_character"}),
@@ -1725,8 +1793,13 @@ def parse_triggered(prose):
             if "minstr" in parts and m.groupdict().get("minstr"):
                 extra["moved_min_strength"] = int(m.group("minstr"))
             if "atloc" in parts:
-                extra["_cond"] = {"type": "self_at_location"}
-        if trig == "on_ally_challenged":
+                extra["condition"] = {"type": "self_at_location"}
+            if "oppturn" in parts:
+                extra["condition"] = {"type": "opponents_turn"}
+            if "hasunder" in parts:
+                extra["defender_has_card_under"] = True
+        if trig == "on_ally_challenged" and not extra.get(
+                "defender_has_card_under"):
             cls = _classes(m.group(1)) if m.groups() else None
             if cls is None:
                 return None
@@ -1860,10 +1933,7 @@ def _parse_one(prose, desc):
         for e in effects:
             ent = {"trigger": "on_play_character", "effect": e,
                    "confidence": "medium", "source": _src(desc)}
-            _c2 = extra.pop("_cond", None) if extra else None
             ent.update(extra)
-            if _c2 and "condition" not in ent:
-                ent["condition"] = _c2
             if cost:
                 ent["cost"] = cost
                 if cost.get("banish_self") and e.get("type") == "deal_damage":

@@ -1997,6 +1997,7 @@ def on_banish(g, ch, cause="damage"):
     # data-driven "when this character is banished" triggers
     schema.dispatch_banish(g, ch, cause)
     schema.dispatch_leave_play(g, ch)
+    schema.dispatch_ally_banished(g, ch)
     # Belle - Snowfield Strategist WINTER STOCKPILE: whenever one of your
     # characters is banished, you may put that card from your discard into your
     # inkwell facedown and exerted. Belle is deleted from play before this hook
@@ -2297,6 +2298,7 @@ def on_item_banished(g, item):
 def on_boost(g, p, obj):
     """Called after a card is put facedown under a character/location."""
     from . import schema
+    schema.note_card_under(g, p, obj)
     schema.dispatch_card_under(g, p, obj, via_boost=True)
     # Cheshire Cat IT'S LOADS OF FUN: move up to 2 damage from chosen
     # character to chosen opposing character.

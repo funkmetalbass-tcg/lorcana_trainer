@@ -1439,8 +1439,15 @@
  ],
  "Genie - Magical Researcher": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[INCREASING WISDOM] This character gets +1 Lore for each card under him."
+   "trigger": "static",
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1,
+    "per": "cards_under"
+   },
+   "confidence": "medium",
+   "source": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[INCREASING WISDOM] This character gets +1 Lore for each card under him."
   }
  ],
  "Anna - Soothing Sister": [
@@ -1745,8 +1752,23 @@
  ],
  "Donald Duck - Fred Honeywell": [
   {
-   "impl": "unimplemented",
-   "text": "[SPIRIT OF GIVING] Whenever you use the Boost ability of a character, you may put the top card of your deck under them facedown.[WELL WISHES] During opponents’ turns, whenever one of your other characters is banished, you may draw a card for each card that was under them."
+   "trigger": "on_boost_used",
+   "effect": {
+    "type": "put_top_under_self"
+   },
+   "confidence": "medium",
+   "source": "[SPIRIT OF GIVING] Whenever you use the Boost ability of a character, you may put the top card of your deck under them facedown.[WELL WISHES] During opponents’ turns, whenever one of your other characters is banished, you may draw a card for each card that was under them."
+  },
+  {
+   "trigger": "on_ally_banished",
+   "effect": {
+    "type": "draw_per_card_under"
+   },
+   "confidence": "medium",
+   "source": "[SPIRIT OF GIVING] Whenever you use the Boost ability of a character, you may put the top card of your deck under them facedown.[WELL WISHES] During opponents’ turns, whenever one of your other characters is banished, you may draw a card for each card that was under them.",
+   "condition": {
+    "type": "opponents_turn"
+   }
   }
  ],
  "Freeze the Vine": [
@@ -1910,8 +1932,22 @@
  ],
  "Negaduck - Public Enemy Number One": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink[STICKY FINGERS] Whenever this character challenges another character, each opponent loses 1 lore and you gain 1 lore."
+   "trigger": "on_challenges",
+   "effect": {
+    "type": "opponent_lose_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink[STICKY FINGERS] Whenever this character challenges another character, each opponent loses 1 lore and you gain 1 lore."
+  },
+  {
+   "trigger": "on_challenges",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink[STICKY FINGERS] Whenever this character challenges another character, each opponent loses 1 lore and you gain 1 lore."
   }
  ],
  "Goofy - Marley's Clumsy Spirit": [
@@ -1953,8 +1989,16 @@
  ],
  "Willie the Giant - Ghost of Christmas Present": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 3 Ink (Once during your turn, you may pay 3 Ink to put the top card of your deck facedown under this character.)[THE FOOD OF GENEROSITY] This character can’t quest or challenge unless you put a card under him this turn."
+   "trigger": "static",
+   "condition": {
+    "type": "put_card_under_this_turn",
+    "scope": "self"
+   },
+   "effect": {
+    "type": "no_quest_or_challenge_unless"
+   },
+   "confidence": "medium",
+   "source": "Boost 3 Ink (Once during your turn, you may pay 3 Ink to put the top card of your deck facedown under this character.)[THE FOOD OF GENEROSITY] This character can’t quest or challenge unless you put a card under him this turn."
   }
  ],
  "Nani's Payback": [
@@ -3954,8 +3998,22 @@
  ],
  "Blessed Bagpipes": [
   {
-   "impl": "unimplemented",
-   "text": "[MCDUCK HEIRLOOM] When you play this item, you may put the top card of your deck facedown under one of your characters or locations with Boost.[BATTLE ANTHEM] Whenever one of your characters or locations with a card under them is challenged, gain 1 lore."
+   "trigger": "on_play",
+   "effect": {
+    "type": "put_top_under_boosted"
+   },
+   "confidence": "medium",
+   "source": "[MCDUCK HEIRLOOM] When you play this item, you may put the top card of your deck facedown under one of your characters or locations with Boost.[BATTLE ANTHEM] Whenever one of your characters or locations with a card under them is challenged, gain 1 lore."
+  },
+  {
+   "trigger": "on_ally_challenged",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[MCDUCK HEIRLOOM] When you play this item, you may put the top card of your deck facedown under one of your characters or locations with Boost.[BATTLE ANTHEM] Whenever one of your characters or locations with a card under them is challenged, gain 1 lore.",
+   "defender_has_card_under": true
   }
  ],
  "White Agony Plains - Golden Lagoon": [
@@ -4002,8 +4060,28 @@
  ],
  "Beast - Aggressive Lord": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[THAT'S MINE] Whenever he challenges another character, if there's a card under this character, each opponent loses 1 lore and you gain 1 lore."
+   "trigger": "on_challenges",
+   "effect": {
+    "type": "opponent_lose_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[THAT'S MINE] Whenever he challenges another character, if there's a card under this character, each opponent loses 1 lore and you gain 1 lore.",
+   "condition": {
+    "type": "has_card_under"
+   }
+  },
+  {
+   "trigger": "on_challenges",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Boost 2 Ink (Once during your turn, you may pay 2 Ink to put the top card of your deck facedown under this character.)[THAT'S MINE] Whenever he challenges another character, if there's a card under this character, each opponent loses 1 lore and you gain 1 lore.",
+   "condition": {
+    "type": "has_card_under"
+   }
   }
  ],
  "Bronx - Ferocious Beast": [
@@ -5082,7 +5160,7 @@
    },
    "confidence": "medium",
    "source": "[I'LL HANDLE THIS] While this character is at a location, she gets +3 Strength.\nWHAT'S THE HURRY? While this character is at a location, whenever she challenges another character, you may draw a card.",
-   "_cond": {
+   "condition": {
     "type": "self_at_location"
    }
   }
@@ -5283,8 +5361,43 @@
  ],
  "Mickey Mouse - Brave Little Prince": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink\nEvasive[CROWNING ACHIEVEMENT] While this character has a card under him, he gets +3 Strength, +3 Willpower, and +3 Lore."
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 3
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink\nEvasive[CROWNING ACHIEVEMENT] While this character has a card under him, he gets +3 Strength, +3 Willpower, and +3 Lore."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "will",
+    "amount": 3
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink\nEvasive[CROWNING ACHIEVEMENT] While this character has a card under him, he gets +3 Strength, +3 Willpower, and +3 Lore."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "has_card_under"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 3
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink\nEvasive[CROWNING ACHIEVEMENT] While this character has a card under him, he gets +3 Strength, +3 Willpower, and +3 Lore."
   }
  ],
  "Roxanne - Powerline Fan": [

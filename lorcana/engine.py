@@ -510,6 +510,9 @@ class Game:
         # once per character.
         no_quest = {e["target"] for e in self.effects if e["kind"] == "no_quest"}
         for ch in self.my_chars(p):
+            from . import schema as _sch
+            if _sch.blocks_quest_challenge(self, ch):
+                continue
             if not ch.exerted and self.is_dry(ch) and not abilities.has_reckless(self, ch) \
                     and ("no_quest", ch.uid) not in self.turn_flags \
                     and ch.uid not in no_quest \
@@ -581,6 +584,9 @@ class Game:
         return acts
 
     def challenge_targets(self, attacker):
+        from . import schema
+        if schema.blocks_quest_challenge(self, attacker):
+            return []
         p = attacker.owner
         opp = 1 - p
         char_targets = []

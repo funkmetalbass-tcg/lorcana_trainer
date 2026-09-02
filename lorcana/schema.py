@@ -323,7 +323,29 @@ def _cond_permanent_with_card_under(g, p, ctx, cond):
     return False
 
 
+def _cond_self_at_location(g, p, ctx, cond):
+    """This character is at a location (Shenzi I'LL HANDLE THIS)."""
+    ch = ctx.get("char")
+    return ch is not None and ch.location is not None
+
+
+def _cond_being_challenged(g, p, ctx, cond):
+    """This character is the defender in the challenge being resolved
+    (Enchantress TRUE FORM). engine._challenge sets challenge_ctx."""
+    ch = ctx.get("char")
+    cc = getattr(g, "challenge_ctx", None)
+    return ch is not None and cc is not None and cc[1] == ch.uid
+
+
+def _cond_self_exerted(g, p, ctx, cond):
+    ch = ctx.get("char")
+    return ch is not None and ch.exerted
+
+
 _CONDITIONS = {
+    "self_at_location": _cond_self_at_location,
+    "being_challenged": _cond_being_challenged,
+    "self_exerted": _cond_self_exerted,
     "character_here": _cond_character_here,
     "permanent_with_card_under": _cond_permanent_with_card_under,
     "opponent_has_more_lore": _cond_opponent_has_more_lore,
@@ -521,6 +543,8 @@ def _card_matches(card, filt):
     if ct == "item" and not card.is_item:
         return False
     if ct == "action" and not card.is_action:
+        return False
+    if ct == "song" and not getattr(card, "is_song", False):
         return False
     if ct == "non_character" and card.is_character:
         return False
@@ -822,6 +846,36 @@ def _eff_return_cards_under(g, p, ctx, eff):
     ch.under = []
     g.emit(f"schema: returns {n} card(s) from under "
            f"{ch.card.base_name} to hand")
+
+
+def _eff_buff_all_yours(g, p, ctx, eff):
+    """All your characters get +N to a stat this turn (So Be It!)."""
+    n = 0
+    for c in g.my_chars(p):
+        g.effects.append({"kind": eff.get("stat", "str"), "target": c.uid,
+                          "amount": eff.get("amount", 1), "until": "eot"})
+        n += 1
+    g.emit(f"schema: buffs {n} of your characters")
+
+
+def _eff_debuff_all_opposing(g, p, ctx, eff):
+    """Every opposing character gets -N to a stat (Trust In Me). A mass,
+    non-targeted effect, so it bypasses Ward on purpose."""
+    until = "eot" if eff.get("duration") == "eot" else p
+    for c in g.my_chars(1 - p):
+        g.effects.append({"kind": eff.get("stat", "str"), "target": c.uid,
+                          "amount": -abs(eff.get("amount", 1)),
+                          "until": until})
+
+
+def _eff_banish_target(g, p, ctx, eff):
+    """Banish the character carried in ctx (the challenger, for
+    Kuzco NO TOUCHY!)."""
+    tgt = ctx.get("char")
+    if tgt is None or tgt.uid not in g.chars:
+        return
+    g.emit(f"schema: banishes {tgt.card.base_name}(P{tgt.owner})")
+    g.banish_char(tgt, cause="effect")
 
 
 def _eff_choose_one(g, p, ctx, eff):
@@ -1143,6 +1197,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "buff_all_yours": _eff_buff_all_yours,
+    "debuff_all_opposing": _eff_debuff_all_opposing,
+    "banish_target": _eff_banish_target,
     "choose_one": _eff_choose_one,
     "damage_conditional": _eff_damage_conditional,
     "banish_same_name": _eff_banish_same_name,
@@ -1195,7 +1252,7 @@ def apply_effect(g, p, ctx, eff):
                            "static_self_stat",
                            "static_self_lore", "static_self_keyword",
                            "static_location_resist", "static_location_lore",
-                           "shift_onto_names"):
+                           "shift_onto_names", "team_keyword", "team_stat"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -1454,10 +1511,35 @@ def static_location_lore(g, loc):
         eff = e.get("effect", {})
         if eff.get("type") != "static_location_lore":
             continue
-        if check_condition(g, loc.owner, {"card": loc.card, "loc": loc},
-                           e.get("condition")):
+        if not check_condition(g, loc.owner, {"card": loc.card, "loc": loc},
+                               e.get("condition")):
+            continue
+        if eff.get("per") == "character_here":
+            total += eff.get("amount", 0) * sum(
+                1 for c in g.chars.values() if c.location == loc.uid)
+        else:
             total += eff.get("amount", 0)
     return total
+
+
+def dispatch_turn_start(g, p):
+    """'At the start of your turn' triggers on your permanents."""
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        ents = entries_for(src.card.name, "on_turn_start")
+        if ents:
+            _run(g, p, {"card": src.card,
+                        "char": src if hasattr(src, "damage") else None,
+                        "source": src}, ents)
+
+
+def dispatch_opponent_song(g, p):
+    """'Whenever an opponent plays a song' watchers on p's permanents."""
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        ents = entries_for(src.card.name, "on_opponent_song")
+        if ents:
+            _run(g, p, {"card": src.card,
+                        "char": src if hasattr(src, "damage") else None,
+                        "source": src}, ents)
 
 
 def dispatch_challenged_banished(g, defender, attacker):
@@ -1588,6 +1670,48 @@ def shift_aliases(card):
         if eff.get("type") == "shift_alias" and eff.get("name"):
             out.append(eff["name"])
     return out
+
+
+def team_static_keyword(g, ch, kw):
+    """A keyword granted to your OTHER characters by a permanent you control
+    (Prince Phillip - Warden of the Woods SHINING BEACON)."""
+    for src in g.my_chars(ch.owner):
+        if src.uid == ch.uid:
+            continue
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "team_keyword":
+                continue
+            if eff.get("keyword", "").lower() != kw.lower():
+                continue
+            want = eff.get("classification")
+            if want and want not in ch.card.classifications:
+                continue
+            if check_condition(g, src.owner,
+                               {"card": src.card, "char": src},
+                               e.get("condition")):
+                return True
+    return False
+
+
+def team_static_stat(g, ch, stat):
+    """A stat bonus granted to your OTHER characters (Genie - Of the Lamp)."""
+    total = 0
+    for src in g.my_chars(ch.owner):
+        if src.uid == ch.uid:
+            continue
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "team_stat" or eff.get("stat") != stat:
+                continue
+            want = eff.get("classification")
+            if want and want not in ch.card.classifications:
+                continue
+            if check_condition(g, src.owner,
+                               {"card": src.card, "char": src},
+                               e.get("condition")):
+                total += eff.get("amount", 0)
+    return total
 
 
 def static_self_keyword(g, ch, kw):

@@ -127,6 +127,7 @@ def boost_cost(card):
 def strength(g, ch):
     s = ch.card.strength or 0
     s += schema.static_self_stat(g, ch, "str")
+    s += schema.team_static_stat(g, ch, "str")
     name = ch.card.name
     # MAGICAL MIX: +1 for each different ink type among your characters
     if name == "Winnie The Pooh & Piglet - Hunny Mages":
@@ -407,7 +408,8 @@ def has_ward(g, ch):
         if c.card.name == "Aurora - Dreaming Guardian" and c.uid != ch.uid:
             return True
     from . import schema
-    if schema.static_self_keyword(g, ch, "ward"):
+    if schema.static_self_keyword(g, ch, "ward") \
+            or schema.team_static_keyword(g, ch, "ward"):
         return True
     return _has_ward_base(g, ch)
 
@@ -1609,6 +1611,9 @@ def on_play(g, p, card, obj, params):
 
     # Phase 2: data-driven abilities
     schema.dispatch_play_type(g, p, card)
+    if getattr(card, "is_song", False):
+        # "Whenever an opponent plays a song" watchers (Signed Contract).
+        schema.dispatch_opponent_song(g, 1 - p)
     if card.is_action:
         # Mark that an action is resolving so "whenever one of your actions
         # deals damage" watchers can attribute the damage (Merida STEADY AIM).

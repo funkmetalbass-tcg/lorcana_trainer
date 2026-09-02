@@ -148,6 +148,7 @@ class Game:
         self.turn_flags = set()  # cleared at start of every turn
         self.cards_played = [0, 0]   # cards played this turn, per player
         self.action_ctx = None       # (player, card) while an action resolves
+        self.challenge_ctx = None    # (attacker_uid, defender_uid) mid-challenge
         self._in_chosen_trigger = False
         self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
@@ -169,6 +170,7 @@ class Game:
         g.effects = [dict(e) for e in self.effects]
         g.cards_played = list(self.cards_played)
         g.action_ctx = self.action_ctx
+        g.challenge_ctx = self.challenge_ctx
         g._in_chosen_trigger = self._in_chosen_trigger
         g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)
@@ -279,6 +281,9 @@ class Game:
         # Ready step
         self.players[p].ink_ready = self.players[p].ink_total
         from . import schema
+        # "At the start of your turn" triggers, after ink is available so an
+        # effect with a cost can actually pay it.
+        schema.dispatch_turn_start(self, p)
         for ch in self.my_chars(p):
             if any(e["kind"] == "no_ready" and e["target"] == ch.uid
                    for e in self.effects):
@@ -722,6 +727,14 @@ class Game:
 
     def _challenge(self, attacker, kind, uid):
         attacker.exerted = True
+        # "While being challenged" statics (Enchantress TRUE FORM) read this.
+        self.challenge_ctx = (attacker.uid, uid)
+        try:
+            return self._challenge_inner(attacker, kind, uid)
+        finally:
+            self.challenge_ctx = None
+
+    def _challenge_inner(self, attacker, kind, uid):
         # Dale SPIKE SUIT: your characters deal challenge damage with their
         # Willpower instead of their Strength (abilities.challenge_damage).
         atk = abilities.challenge_damage(self, attacker) \

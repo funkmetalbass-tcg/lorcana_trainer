@@ -674,6 +674,62 @@ def _c(m):
     return {"type": "opponent_discard", "amount": 1}
 
 
+
+# --- Phase 14 clauses ------------------------------------------------
+@clause(r"[Tt]his character gets \+(\d+) Strength this turn\.?")
+def _c(m):
+    return {"type": "stat_mod", "stat": "str", "amount": int(m.group(1)),
+            "target": "self", "duration": "eot"}
+
+
+@clause(r"[Ee]ach of your characters gets \+(\d+) Strength this turn\.?")
+def _c(m):
+    return {"type": "buff_all_yours", "stat": "str", "amount": int(m.group(1))}
+
+
+@clause(r"[Yy]ou may banish chosen item\.?")
+def _c(m):
+    return {"type": "banish_item"}
+
+
+@clause(r"[Ee]ach opposing character gets \-(\d+) until the start of your "
+        r"next turn\.?")
+def _c(m):
+    # The stat glyph is stripped by clean-up; every printed card with this
+    # wording is a Strength debuff.
+    return {"type": "debuff_all_opposing", "stat": "str",
+            "amount": int(m.group(1)), "duration": "until_your_next"}
+
+
+@clause(r"[Ee]ach opponent chooses and discards (\d+) cards\.?")
+def _c(m):
+    return {"type": "opponent_discard", "amount": int(m.group(1))}
+
+
+@clause(r"[Yy]ou may banish the challenging character\.?")
+def _c(m):
+    return {"type": "banish_target"}
+
+
+@clause(r"[Cc]hosen opposing character gains (Reckless|Evasive|Ward|Rush) "
+        r"during their next turn\.?")
+def _c(m):
+    return {"type": "grant_keyword_opposing", "keyword": m.group(1).lower(),
+            "duration": "until_your_next"}
+
+
+@clause(r"[Rr]eturn a song card with cost (\d+) or less from your discard "
+        r"to your hand\.?")
+def _c(m):
+    return {"type": "return_from_discard",
+            "filter": {"card_type": "song", "max_cost": int(m.group(1))}}
+
+
+@clause(r"[Ee]ach player may draw a card\.?")
+def _c(m):
+    return {"type": "each_player_draw", "amount": 1}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -814,6 +870,17 @@ _LOC_LORE = re.compile(
     r"While you have a character here, this location gets \+(\d+) Lore\.?",
     re.IGNORECASE)
 
+_TEAM_WARD = re.compile(
+    r"Your other ([A-Za-z ]+?) characters gain Ward\.?", re.IGNORECASE)
+
+_TEAM_STAT = re.compile(
+    r"While this character is exerted, your other characters get "
+    r"\+(\d+) (Strength|Lore|Willpower)\.?", re.IGNORECASE)
+
+_LOC_LORE_PER = re.compile(
+    r"This location gets \+(\d+) Lore for each character here\.?",
+    re.IGNORECASE)
+
 _STATIC_WARD = re.compile(
     r"While you have a character or location in play with a card under them, "
     r"(?:this character|she|he|they|it) gains Ward\.?", re.IGNORECASE)
@@ -843,6 +910,9 @@ _STATIC_CONDS = [
     (re.compile(r"an opposing damaged character is in play", re.I),
      {"type": "opposing_damaged_in_play"}),
     (re.compile(r"opponents.? turns", re.I), {"type": "opponents_turn"}),
+    (re.compile(r"being challenged", re.I), {"type": "being_challenged"}),
+    (re.compile(r"this character is at a location", re.I),
+     {"type": "self_at_location"}),
     (re.compile(r"this character has at least one card under it", re.I),
      {"type": "has_card_under"}),
     (re.compile(r"there's a card under (?:him|her|them|it)", re.I),
@@ -867,6 +937,27 @@ def _stat_name(tok):
 def parse_static_self(line):
     """'While <condition>, this character gets +N <stat> [and gains KW].'"""
     line = line.strip()
+    mt = _TEAM_WARD.fullmatch(line)
+    if mt:
+        cls = _classes(mt.group(1))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "team_keyword", "keyword": "ward",
+                            "classification": cls[0]}}]
+    mts = _TEAM_STAT.fullmatch(line)
+    if mts:
+        return [{"trigger": "static",
+                 "condition": {"type": "self_exerted"},
+                 "effect": {"type": "team_stat",
+                            "stat": _stat_name(mts.group(2)),
+                            "amount": int(mts.group(1))}}]
+    mlp = _LOC_LORE_PER.fullmatch(line)
+    if mlp:
+        return [{"trigger": "static",
+                 "effect": {"type": "static_location_lore",
+                            "amount": int(mlp.group(1)),
+                            "per": "character_here"}}]
     ml = _LOC_LORE.fullmatch(line)
     if ml:
         return [{"trigger": "static",
@@ -1217,6 +1308,12 @@ _PREAMBLES = [
      "on_play_location"),
     (re.compile(r"^Whenever you play an action,\s*", re.IGNORECASE),
      "on_play_action"),
+    (re.compile(r"^At the start of your turn,\s*", re.IGNORECASE),
+     "on_turn_start"),
+    (re.compile(r"^Whenever an opponent plays a song,\s*", re.IGNORECASE),
+     "on_opponent_song"),
+    (re.compile(r"^When you play this character and whenever he quests,\s*",
+                re.IGNORECASE), "on_play_and_quest"),
     (re.compile(r"^When this character is challenged and banished,\s*",
                 re.IGNORECASE), "on_challenged_banished"),
     (re.compile(r"^Whenever this character is challenged,\s*", re.IGNORECASE),
@@ -1423,7 +1520,9 @@ def _parse_one(prose, desc):
         # "When you play this character and when he leaves play" is two
         # triggers sharing one effect (Mickey Mouse - Snowboard Ace).
         triggers = ["on_play", "on_leave_play"] \
-            if trigger == "on_play_and_leave" else [trigger]
+            if trigger == "on_play_and_leave" else \
+            ["on_play", "on_quest"] if trigger == "on_play_and_quest" \
+            else [trigger]
         for trigger in triggers:
          for e in effects:
             ent = {"trigger": trigger, "effect": e,

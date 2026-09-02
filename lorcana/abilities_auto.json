@@ -3592,8 +3592,19 @@
  ],
  "Akela - Forest Runner": [
   {
-   "impl": "unimplemented",
-   "text": "[AHEAD OF THE PACK 1] Ink — This character gets +1 Strength this turn."
+   "trigger": "activated",
+   "cost": {
+    "ink": 1
+   },
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 1,
+    "target": "self",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[AHEAD OF THE PACK 1] Ink — This character gets +1 Strength this turn."
   }
  ],
  "Little John - Impermanent Outlaw": [
@@ -3610,14 +3621,44 @@
  ],
  "So Be It!": [
   {
-   "impl": "unimplemented",
-   "text": "Each of your characters gets +1 Strength this turn. You may banish chosen item."
+   "trigger": "on_play",
+   "effect": {
+    "type": "buff_all_yours",
+    "stat": "str",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Each of your characters gets +1 Strength this turn. You may banish chosen item."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_item"
+   },
+   "confidence": "medium",
+   "source": "Each of your characters gets +1 Strength this turn. You may banish chosen item."
   }
  ],
  "Trust In Me": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 6 or more can [Exert] to sing this song for free.)\nChoose one:\n- Each opposing character gets -1 until the start of your next turn.\n- Each opponent chooses and discards 2 cards."
+   "trigger": "on_play",
+   "effect": {
+    "type": "choose_one",
+    "options": [
+     {
+      "type": "debuff_all_opposing",
+      "stat": "str",
+      "amount": 1,
+      "duration": "until_your_next"
+     },
+     {
+      "type": "opponent_discard",
+      "amount": 2
+     }
+    ]
+   },
+   "confidence": "medium",
+   "source": "(A character with cost 6 or more can [Exert] to sing this song for free.)\nChoose one:\n- Each opposing character gets -1 until the start of your next turn.\n- Each opponent chooses and discards 2 cards."
   }
  ],
  "Potion of Malice": [
@@ -3699,8 +3740,14 @@
  ],
  "White Agony Plains - Golden Lagoon": [
   {
-   "impl": "unimplemented",
-   "text": "[PURE LIQUID GOLD] This location gets +1 Lore for each character here."
+   "trigger": "static",
+   "effect": {
+    "type": "static_location_lore",
+    "amount": 1,
+    "per": "character_here"
+   },
+   "confidence": "medium",
+   "source": "[PURE LIQUID GOLD] This location gets +1 Lore for each character here."
   }
  ],
  "Ares - God of War": [
@@ -4594,14 +4641,24 @@
  ],
  "Kuzco - Temperamental Emperor": [
   {
-   "impl": "unimplemented",
-   "text": "Ward (Opponents can't choose this character except to challenge.)[NO TOUCHY!] When this character is challenged and banished, you may banish the challenging character."
+   "trigger": "on_challenged_banished",
+   "effect": {
+    "type": "banish_target"
+   },
+   "confidence": "medium",
+   "source": "Ward (Opponents can't choose this character except to challenge.)[NO TOUCHY!] When this character is challenged and banished, you may banish the challenging character."
   }
  ],
  "Prince Phillip - Warden of the Woods": [
   {
-   "impl": "unimplemented",
-   "text": "[SHINING BEACON] Your other Hero characters gain Ward. (Opponents can’t choose them except to challenge.)"
+   "trigger": "static",
+   "effect": {
+    "type": "team_keyword",
+    "keyword": "ward",
+    "classification": "Hero"
+   },
+   "confidence": "medium",
+   "source": "[SHINING BEACON] Your other Hero characters gain Ward. (Opponents can’t choose them except to challenge.)"
   }
  ],
  "Prince Phillip - Vanquisher of Foes": [
@@ -4626,14 +4683,34 @@
  ],
  "Max Goof - Rebellious Teen": [
   {
-   "impl": "unimplemented",
-   "text": "[PERSONAL SOUNDTRACK] When you play this character, you may pay 1 Ink to return a song card with cost 3 or less from your discard to your hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_from_discard",
+    "filter": {
+     "card_type": "song",
+     "max_cost": 3
+    }
+   },
+   "confidence": "medium",
+   "source": "[PERSONAL SOUNDTRACK] When you play this character, you may pay 1 Ink to return a song card with cost 3 or less from your discard to your hand.",
+   "cost": {
+    "ink": 1
+   }
   }
  ],
  "Genie - Of the Lamp": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive[LET'S MAKE SOME MAGIC] While this character is exerted, your other characters get +2 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "self_exerted"
+   },
+   "effect": {
+    "type": "team_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Evasive[LET'S MAKE SOME MAGIC] While this character is exerted, your other characters get +2 Strength."
   }
  ],
  "Megara - Pulling the Strings": [
@@ -4652,20 +4729,42 @@
  ],
  "Enchantress - Unexpected Judge": [
   {
-   "impl": "unimplemented",
-   "text": "[TRUE FORM] While being challenged, this character gets +2 Strength."
+   "trigger": "static",
+   "condition": {
+    "type": "being_challenged"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[TRUE FORM] While being challenged, this character gets +2 Strength."
   }
  ],
  "Donald Duck - Sleepwalker": [
   {
-   "impl": "unimplemented",
-   "text": "[STARTLED AWAKE] Whenever you play an action, this character gets +2 Strength this turn."
+   "trigger": "on_play_action",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 2,
+    "target": "self",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[STARTLED AWAKE] Whenever you play an action, this character gets +2 Strength this turn."
   }
  ],
  "Donald Duck - Perfect Gentleman": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Donald Duck.)[ALLOW ME] At the start of your turn, each player may draw a card."
+   "trigger": "on_turn_start",
+   "effect": {
+    "type": "each_player_draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Shift 3 Ink (You may pay 3 Ink to play this on top of one of your characters named Donald Duck.)[ALLOW ME] At the start of your turn, each player may draw a card."
   }
  ],
  "Heihei - Bumbling Rooster": [
@@ -4682,8 +4781,24 @@
  ],
  "John Silver - Alien Pirate": [
   {
-   "impl": "unimplemented",
-   "text": "[PICK YOUR FIGHTS] When you play this character and whenever he quests, chosen opposing character gains Reckless during their next turn. (They can't quest and must challenge if able.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_keyword_opposing",
+    "keyword": "reckless",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[PICK YOUR FIGHTS] When you play this character and whenever he quests, chosen opposing character gains Reckless during their next turn. (They can't quest and must challenge if able.)"
+  },
+  {
+   "trigger": "on_quest",
+   "effect": {
+    "type": "grant_keyword_opposing",
+    "keyword": "reckless",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[PICK YOUR FIGHTS] When you play this character and whenever he quests, chosen opposing character gains Reckless during their next turn. (They can't quest and must challenge if able.)"
   }
  ],
  "Wildcat - Mechanic": [
@@ -4769,8 +4884,13 @@
  ],
  "Signed Contract": [
   {
-   "impl": "unimplemented",
-   "text": "[FINE PRINT] Whenever an opponent plays a song, you may draw a card."
+   "trigger": "on_opponent_song",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[FINE PRINT] Whenever an opponent plays a song, you may draw a card."
   }
  ],
  "Hidden Cove - Tranquil Haven": [

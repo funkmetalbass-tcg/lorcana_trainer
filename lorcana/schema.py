@@ -890,6 +890,10 @@ def static_free_discount(g, p, card):
             want = e["effect"].get("classification")
             amount *= sum(1 for c in g.players[p].discard
                           if want in c.classifications)
+        elif per == "card_type_in_discard":
+            want = {"card_type": e["effect"].get("card_type")}
+            amount *= sum(1 for c in g.players[p].discard
+                          if _card_matches(c, want))
         total += amount
     return min(total, card.cost)
 
@@ -937,6 +941,53 @@ def _eff_return_cards_under(g, p, ctx, eff):
     ch.under = []
     g.emit(f"schema: returns {n} card(s) from under "
            f"{ch.card.base_name} to hand")
+
+
+def _eff_discard_to_bottom(g, p, ctx, eff):
+    """Put cards from your discard on the bottom of your deck. "count" caps
+    how many; omit it (or pass "all") to move every match. Returns nothing,
+    but records whether it moved the full amount so a follow-on effect can be
+    gated (Roller Bob only gets Rush if he actually moved 2)."""
+    pl = g.players[p]
+    filt = eff.get("filter")
+    pool = [c for c in pl.discard if _card_matches(c, filt)]
+    n = len(pool) if eff.get("count") in (None, "all") else eff["count"]
+    if eff.get("require_full") and len(pool) < n:
+        ctx["_moved_full"] = False
+        return
+    moved = pool[:n]
+    for c in moved:
+        pl.discard.remove(c)
+        pl.deck.insert(0, c)          # bottom of deck is the front
+    ctx["_moved_full"] = len(moved) >= n and n > 0
+    if moved:
+        g.emit(f"schema: puts {len(moved)} card(s) from discard "
+               f"on the bottom of the deck")
+
+
+def _eff_then_if_moved(g, p, ctx, eff):
+    """Run an inner effect only if the preceding discard_to_bottom moved its
+    full amount."""
+    if ctx.get("_moved_full"):
+        apply_effect(g, p, ctx, eff["then"])
+
+
+def _eff_discard_hand_then_return(g, p, ctx, eff):
+    """Discard your hand, then return a card from your discard to your hand
+    (Hercules - Young Rescuer HEROIC SACRIFICE). Only worth doing when the
+    hand is small, so it is skipped above a threshold."""
+    pl = g.players[p]
+    if len(pl.hand) > eff.get("max_hand", 2):
+        return
+    n = len(pl.hand)
+    pl.discard.extend(pl.hand)
+    pl.hand.clear()
+    g.emit(f"schema: discards {n} card(s) from hand")
+    if pl.discard:
+        pick = max(pl.discard, key=lambda c: c.cost)
+        pl.discard.remove(pick)
+        pl.hand.append(pick)
+        g.emit(f"schema: returns {pick.name} to hand")
 
 
 def _eff_opponent_banish_own(g, p, ctx, eff):
@@ -1159,6 +1210,26 @@ def _eff_choose_one(g, p, ctx, eff):
     opts = eff.get("options") or []
     if not opts:
         return
+    # An option whose own condition fails is not a legal choice
+    # (Firefly Swarm's second mode needs 2+ cards discarded this turn).
+    opts = [o for o in opts
+            if check_condition(g, p, ctx, o.get("condition"))]
+    if not opts:
+        return
+    # Drop options that could not do anything: a targeted mode whose filter
+    # matches no opposing character is a wasted choice, and picking it would
+    # make the card look weaker than it is.
+    def _actionable(o):
+        if o.get("type") not in ("banish_chosen", "exert_chosen",
+                                 "deal_damage"):
+            return True
+        from . import abilities
+        return abilities._best_opp_char(
+            g, p, cond=lambda gg, c: _char_matches(gg, c, o.get("filter")),
+            notify=False) is not None
+    live = [o for o in opts if _actionable(o)]
+    if live:
+        opts = live
     pick = None
     for o in opts:
         t = o.get("type")
@@ -1473,6 +1544,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "discard_to_bottom": _eff_discard_to_bottom,
+    "then_if_moved": _eff_then_if_moved,
+    "discard_hand_then_return": _eff_discard_hand_then_return,
     "opponent_banish_own": _eff_opponent_banish_own,
     "draw_per_card_under": _eff_draw_per_card_under,
     "move_other_here": _eff_move_other_here,

@@ -781,6 +781,11 @@ def _c(m):
 
 
 # --- Phase 16 clauses ------------------------------------------------
+@clause(r"[Pp]ut the top (\d+) cards of your deck into your discard\.?")
+def _c(m):
+    return {"type": "mill_self", "amount": int(m.group(1))}
+
+
 @clause(r"[Yy]ou may put the top (\d+) cards of your deck into your discard\.?")
 def _c(m):
     return {"type": "mill_self", "amount": int(m.group(1))}
@@ -931,6 +936,46 @@ def _c(m):
 def _c(m):
     return {"type": "grant_keyword", "keyword": m.group(1).lower(),
             "target": "best_quester", "duration": "until_your_next"}
+
+
+
+# --- Cluster E: discard-pile recursion --------------------------------
+@clause(r"[Yy]ou may return an? (action|character|item) card with cost (\d+) "
+        r"or less from your discard to your hand\.?")
+def _c(m):
+    return {"type": "return_from_discard",
+            "filter": {"card_type": m.group(1).lower(),
+                       "max_cost": int(m.group(2))}}
+
+
+@clause(r"[Rr]eturn an? (action|character|item) card with cost (\d+) "
+        r"or less from your discard to your hand\.?")
+def _c(m):
+    return {"type": "return_from_discard",
+            "filter": {"card_type": m.group(1).lower(),
+                       "max_cost": int(m.group(2))}}
+
+
+@clause(r"[Pp]ut all ([A-Za-z ]+?) character cards from your discard on the "
+        r"bottom of your deck in any order\.?")
+def _c(m):
+    cls = _CLASS_CANON.get(m.group(1).strip().lower())
+    if cls is None:
+        return None
+    return {"type": "discard_to_bottom", "count": "all",
+            "filter": {"card_type": "character", "classification": cls}}
+
+
+@clause(r"[Yy]ou may discard your hand\. If you do, return a card from your "
+        r"discard to your hand\.?")
+def _c(m):
+    return {"type": "discard_hand_then_return"}
+
+
+@clause(r"[Bb]anish chosen character with (\d+) Strength or less\.?")
+def _c(m):
+    return {"type": "banish_chosen",
+            "filter": {"max_strength": int(m.group(1))}}
 
 
 def match_clause(text):
@@ -1107,6 +1152,21 @@ _TEAM_KEYWORD = re.compile(
     r"Your (?:other )?([A-Za-z ]+?) characters gain "
     r"(Ward|Rush|Evasive|Reckless|Support)\.?", re.IGNORECASE)
 
+_BOTTOM_FOR_PAYOFF = re.compile(
+    r"[Yy]ou may put (\d+) (action|character|item) cards from your discard on "
+    r"the bottom of your deck to give this character "
+    r"(Rush|Evasive|Ward|Reckless) this turn\.?", re.IGNORECASE)
+
+# same shape, but the payoff is a full clause rather than a keyword
+_BOTTOM_THEN_CLAUSE = re.compile(
+    r"[Yy]ou may put (\d+) (action|character|item) cards from your discard on "
+    r"the bottom of your deck in any order\. If you do, (?P<rest>.+)$",
+    re.IGNORECASE)
+
+_DISCOUNT_PER_TYPE = re.compile(
+    r"For each (action|character|item) card in your discard, you pay (\d+) "
+    r"Ink less to play this character\.?", re.IGNORECASE)
+
 _DISCOUNT_PER_DISCARD = re.compile(
     r"For each ([A-Za-z ]+?) character card in your discard, you pay (\d+) "
     r"Ink less to play this character\.?", re.IGNORECASE)
@@ -1257,6 +1317,13 @@ def parse_static_self(line):
                  "effect": {"type": "team_keyword",
                             "keyword": mtk.group(2).lower(),
                             "classification": cls[0]}}]
+    mdt = _DISCOUNT_PER_TYPE.fullmatch(line)
+    if mdt:
+        return [{"trigger": "static",
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(mdt.group(2)),
+                            "per": "card_type_in_discard",
+                            "card_type": mdt.group(1).lower()}}]
     mdd = _DISCOUNT_PER_DISCARD.fullmatch(line)
     if mdd:
         cls = _classes(mdd.group(1))
@@ -1529,11 +1596,24 @@ def parse_modal(text):
         return None
     opts = []
     for part in parts:
+        cond = None
+        for crx, build in _TRIG_CONDS:
+            cm = crx.match(part)
+            if cm:
+                c = build(cm)
+                if c is None:
+                    return None
+                cond = c
+                part = part[cm.end():].strip()
+                break
         if part and part[0].islower():
             part = part[0].upper() + part[1:]
         e = match_clause(part)
         if e is None:
             return None        # all-or-nothing, as everywhere else
+        if cond:
+            e = dict(e)
+            e["condition"] = cond
         opts.append(e)
     return {"type": "choose_one", "options": opts}
 
@@ -1541,6 +1621,26 @@ def parse_modal(text):
 def parse_by_clauses(prose):
     """Split into sentences; require EVERY sentence to match a clause.
     Returns list of effect dicts, or None."""
+    mbc = _BOTTOM_THEN_CLAUSE.fullmatch(prose.strip())
+    if mbc:
+        rest = mbc.group("rest").strip()
+        if rest and rest[0].islower():
+            rest = rest[0].upper() + rest[1:]
+        inner = match_clause(rest)
+        if inner:
+            return [{"type": "discard_to_bottom", "count": int(mbc.group(1)),
+                     "require_full": True,
+                     "filter": {"card_type": mbc.group(2).lower()}},
+                    {"type": "then_if_moved", "then": inner}]
+    mbp = _BOTTOM_FOR_PAYOFF.fullmatch(prose.strip())
+    if mbp:
+        return [{"type": "discard_to_bottom", "count": int(mbp.group(1)),
+                 "require_full": True,
+                 "filter": {"card_type": mbp.group(2).lower()}},
+                {"type": "then_if_moved",
+                 "then": {"type": "grant_keyword",
+                          "keyword": mbp.group(3).lower(),
+                          "target": "self", "duration": "eot"}}]
     mdg = _DRAIN_AND_GAIN.fullmatch(prose.strip())
     if mdg:
         return [{"type": "opponent_lose_lore", "amount": int(mdg.group(1))},
@@ -1827,6 +1927,10 @@ _TRIG_CONDS = [
      lambda m: {"type": "self_at_location"}),
     (re.compile(r"^if there's a card under this character,\s*", re.IGNORECASE),
      lambda m: {"type": "has_card_under"}),
+    (re.compile(r"^[Ii]f (\d+) or more(?: other)? cards were put into your "
+                r"discard this turn,\s*", re.IGNORECASE),
+     lambda m: {"type": "discards_this_turn_at_least",
+                "count": int(m.group(1))}),
     (re.compile(r"^if you played (?:a|another) character this turn,\s*",
                 re.IGNORECASE),
      lambda m: {"type": "played_another_character"}),

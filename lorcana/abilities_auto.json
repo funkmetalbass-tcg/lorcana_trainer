@@ -443,8 +443,28 @@
  ],
  "Buzz Lightyear - Jungle Ranger": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink[TAKE CHARGE] When you play this character, you may return an action card with cost 7 or less from your discard to your hand.[ADVANCED TRAINING] Whenever you play an action, chosen character gets +1 Lore this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_from_discard",
+    "filter": {
+     "card_type": "action",
+     "max_cost": 7
+    }
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink[TAKE CHARGE] When you play this character, you may return an action card with cost 7 or less from your discard to your hand.[ADVANCED TRAINING] Whenever you play an action, chosen character gets +1 Lore this turn."
+  },
+  {
+   "trigger": "on_play_action",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "lore",
+    "amount": 1,
+    "target": "chosen_character",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink[TAKE CHARGE] When you play this character, you may return an action card with cost 7 or less from your discard to your hand.[ADVANCED TRAINING] Whenever you play an action, chosen character gets +1 Lore this turn."
   }
  ],
  "Helga Sinclair - Prepared for Anything": [
@@ -585,8 +605,25 @@
  ],
  "Lyle Tiberius Rourke - Crystallized Commander": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Lyle Tiberius Rourke.)[PLAN'S CHANGED] When you play this character, put the top 2 cards of your deck into your discard. Then, you may return an action card with cost 4 or less from your discard to your hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "mill_self",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Lyle Tiberius Rourke.)[PLAN'S CHANGED] When you play this character, put the top 2 cards of your deck into your discard. Then, you may return an action card with cost 4 or less from your discard to your hand."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "return_from_discard",
+    "filter": {
+     "card_type": "action",
+     "max_cost": 4
+    }
+   },
+   "confidence": "medium",
+   "source": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Lyle Tiberius Rourke.)[PLAN'S CHANGED] When you play this character, put the top 2 cards of your deck into your discard. Then, you may return an action card with cost 4 or less from your discard to your hand."
   }
  ],
  "Milo Thatch - Courageous Explorer": [
@@ -669,8 +706,31 @@
  ],
  "Roller Bob - Sid's Toy": [
   {
-   "impl": "unimplemented",
-   "text": "[TIME TO MOVE] When you play this character, you may put 2 character cards from your discard on the bottom of your deck to give this character Rush this turn. (They can challenge the turn they're played.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "discard_to_bottom",
+    "count": 2,
+    "require_full": true,
+    "filter": {
+     "card_type": "character"
+    }
+   },
+   "confidence": "medium",
+   "source": "[TIME TO MOVE] When you play this character, you may put 2 character cards from your discard on the bottom of your deck to give this character Rush this turn. (They can challenge the turn they're played.)"
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "then_if_moved",
+    "then": {
+     "type": "grant_keyword",
+     "keyword": "rush",
+     "target": "self",
+     "duration": "eot"
+    }
+   },
+   "confidence": "medium",
+   "source": "[TIME TO MOVE] When you play this character, you may put 2 character cards from your discard on the bottom of your deck to give this character Rush this turn. (They can challenge the turn they're played.)"
   }
  ],
  "Hand-in-the-Box - Sid's Toy": [
@@ -702,8 +762,28 @@
  ],
  "Bouncing Ducky - Sid's Toy": [
   {
-   "impl": "unimplemented",
-   "text": "[REJECTED TOYS] For each Toy character card in your discard, you pay 1 Ink less to play this character.[REPURPOSED] When you play this character, put all Toy character cards from your discard on the bottom of your deck in any order."
+   "trigger": "static",
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1,
+    "per": "classification_in_discard",
+    "classification": "Toy"
+   },
+   "confidence": "medium",
+   "source": "[REJECTED TOYS] For each Toy character card in your discard, you pay 1 Ink less to play this character.[REPURPOSED] When you play this character, put all Toy character cards from your discard on the bottom of your deck in any order."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "discard_to_bottom",
+    "count": "all",
+    "filter": {
+     "card_type": "character",
+     "classification": "Toy"
+    }
+   },
+   "confidence": "medium",
+   "source": "[REJECTED TOYS] For each Toy character card in your discard, you pay 1 Ink less to play this character.[REPURPOSED] When you play this character, put all Toy character cards from your discard on the bottom of your deck in any order."
   }
  ],
  "Queen of Hearts - Impatient Traveler": [
@@ -724,8 +804,12 @@
  ],
  "Hercules - Young Rescuer": [
   {
-   "impl": "unimplemented",
-   "text": "[HEROIC SACRIFICE] When you play this character, you may discard your hand. If you do, return a card from your discard to your hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "discard_hand_then_return"
+   },
+   "confidence": "medium",
+   "source": "[HEROIC SACRIFICE] When you play this character, you may discard your hand. If you do, return a card from your discard to your hand."
   }
  ],
  "Vincenzo Santorini - On the Run": [
@@ -797,8 +881,27 @@
  ],
  "Firefly Swarm": [
   {
-   "impl": "unimplemented",
-   "text": "Choose one:\n• Banish chosen character with 2 Strength or less.\n• If 2 or more other cards were put into your discard this turn, banish chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "choose_one",
+    "options": [
+     {
+      "type": "banish_chosen",
+      "filter": {
+       "max_strength": 2
+      }
+     },
+     {
+      "type": "banish_chosen",
+      "condition": {
+       "type": "discards_this_turn_at_least",
+       "count": 2
+      }
+     }
+    ]
+   },
+   "confidence": "medium",
+   "source": "Choose one:\n• Banish chosen character with 2 Strength or less.\n• If 2 or more other cards were put into your discard this turn, banish chosen character."
   }
  ],
  "Hero Work": [
@@ -1654,8 +1757,41 @@
  ],
  "Stegmutt - Clumsy Dinosaur": [
   {
-   "impl": "unimplemented",
-   "text": "[WAKE OF DESTRUCTION] For each item card in your discard, you pay 1 Ink less to play this character.[COLLATERAL DAMAGE] When you play this character, you may put 3 item cards from your discard on the bottom of your deck in any order. If you do, deal 3 damage to chosen character."
+   "trigger": "static",
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1,
+    "per": "card_type_in_discard",
+    "card_type": "item"
+   },
+   "confidence": "medium",
+   "source": "[WAKE OF DESTRUCTION] For each item card in your discard, you pay 1 Ink less to play this character.[COLLATERAL DAMAGE] When you play this character, you may put 3 item cards from your discard on the bottom of your deck in any order. If you do, deal 3 damage to chosen character."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "discard_to_bottom",
+    "count": 3,
+    "require_full": true,
+    "filter": {
+     "card_type": "item"
+    }
+   },
+   "confidence": "medium",
+   "source": "[WAKE OF DESTRUCTION] For each item card in your discard, you pay 1 Ink less to play this character.[COLLATERAL DAMAGE] When you play this character, you may put 3 item cards from your discard on the bottom of your deck in any order. If you do, deal 3 damage to chosen character."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "then_if_moved",
+    "then": {
+     "type": "deal_damage",
+     "amount": 3,
+     "target": "chosen_opposing"
+    }
+   },
+   "confidence": "medium",
+   "source": "[WAKE OF DESTRUCTION] For each item card in your discard, you pay 1 Ink less to play this character.[COLLATERAL DAMAGE] When you play this character, you may put 3 item cards from your discard on the bottom of your deck in any order. If you do, deal 3 damage to chosen character."
   }
  ],
  "Aladdin - On the Edge of Adventure": [
@@ -2026,8 +2162,24 @@
  ],
  "Olaf - Snowman of Action": [
   {
-   "impl": "unimplemented",
-   "text": "[ABOUT TIME!] For each action card in your discard, you pay 1 Ink less to play this character.[CHAOTIC COLLISION] When you play this character, each opponent loses 2 lore."
+   "trigger": "static",
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1,
+    "per": "card_type_in_discard",
+    "card_type": "action"
+   },
+   "confidence": "medium",
+   "source": "[ABOUT TIME!] For each action card in your discard, you pay 1 Ink less to play this character.[CHAOTIC COLLISION] When you play this character, each opponent loses 2 lore."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "opponent_lose_lore",
+    "amount": 2
+   },
+   "confidence": "high",
+   "source": "[ABOUT TIME!] For each action card in your discard, you pay 1 Ink less to play this character.[CHAOTIC COLLISION] When you play this character, each opponent loses 2 lore."
   }
  ],
  "Scrooge McDuck - Ebenezer Scrooge": [

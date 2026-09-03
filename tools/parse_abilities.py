@@ -1087,6 +1087,14 @@ def _c(m):
     return _grant(m.group(1), m.group(2), duration="until_your_next")
 
 
+
+@clause(r"[Ee]ach player draws (\d+) cards and gains (\d+) lore\.?")
+def _c(m):
+    return {"type": "sequence", "effects": [
+        {"type": "each_player_draw", "amount": int(m.group(1))},
+        {"type": "each_player_gain_lore", "amount": int(m.group(2))}]}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1226,8 +1234,10 @@ _STATIC_SELF = re.compile(
 # "While <cond>, it gains Resist +N." -- a numeric keyword, so it goes through
 # the stat hook rather than the boolean keyword hook.
 _STATIC_GAINS_KW = re.compile(
-    r"(?:While|As long as|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
-    r"gains (?P<kw>Rush|Evasive|Ward|Reckless|Support)\.?", re.IGNORECASE)
+    r"(?:While|As long as|During|If) (?P<cond>.+?), "
+    r"(?:this character|she|he|they|it) "
+    r"gains (?P<kw>Rush|Evasive|Ward|Reckless|Support)(?: this turn)?\.?",
+    re.IGNORECASE)
 
 _STATIC_RESIST = re.compile(
     r"(?:While|During) (?P<cond>.+?), (?:this character|she|he|they|it) gains "
@@ -1347,6 +1357,8 @@ _STATIC_CONDS = [
      {"type": "has_card_under"}),
     (re.compile(r"a character was banished this turn", re.I),
      {"type": "character_banished_this_turn"}),
+    (re.compile(r"you've played a song this turn", re.I),
+     {"type": "song_played_this_turn"}),
     (re.compile(r"you have a ([A-Za-z ]+?) character in play", re.I), None),
     (re.compile(r"you have a character with (Singer|Evasive|Ward|Support|Reckless) in play",
                 re.I), None),
@@ -2024,6 +2036,8 @@ _PREAMBLES = [
      "on_banishes_in_challenge"),
     (re.compile(r"^Whenever an opponent plays a song,\s*", re.IGNORECASE),
      "on_opponent_song"),
+    (re.compile(r"^Whenever you play a song,\s*", re.IGNORECASE),
+     "on_song_played"),
     (re.compile(r"^When you play this character and whenever he quests,\s*",
                 re.IGNORECASE), "on_play_and_quest"),
     (re.compile(r"^When this character is challenged and banished,\s*",

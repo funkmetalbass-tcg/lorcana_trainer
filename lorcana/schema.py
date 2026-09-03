@@ -422,7 +422,13 @@ def _cond_opponent_more_inkwell(g, p, ctx, cond):
     return g.players[1 - p].ink_total > g.players[p].ink_total
 
 
+def _cond_song_played_this_turn(g, p, ctx, cond):
+    """You played a song this turn (Powerline - Musical Superstar)."""
+    return ("song_played", p) in g.turn_flags
+
+
 _CONDITIONS = {
+    "song_played_this_turn": _cond_song_played_this_turn,
     "opponent_more_inkwell": _cond_opponent_more_inkwell,
     "character_banished_this_turn": _cond_character_banished_this_turn,
     "put_card_under_this_turn": _cond_put_card_under_this_turn,
@@ -1548,6 +1554,15 @@ def _eff_enter_exerted_for(g, p, ctx, eff):
         apply_effect(g, p, ctx, inner)
 
 
+def _eff_each_player_gain_lore(g, p, ctx, eff):
+    """Each player gains N lore, the active player first (I2I)."""
+    n = eff.get("amount", 1)
+    for who in (p, 1 - p):
+        g.gain_lore(who, n)
+        if g.winner is not None:
+            return
+
+
 def _eff_each_player_draw(g, p, ctx, eff):
     """Each player draws N, active player first (Miriam Mendelsohn)."""
     n = eff.get("amount", 1)
@@ -1631,6 +1646,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "each_player_gain_lore": _eff_each_player_gain_lore,
     "sequence": _eff_sequence,
     "put_top_into_inkwell": _eff_put_top_into_inkwell,
     "exert_all_inkwell": _eff_exert_all_inkwell,
@@ -2017,6 +2033,20 @@ def dispatch_turn_start(g, p):
             _run(g, p, {"card": src.card,
                         "char": src if hasattr(src, "damage") else None,
                         "source": src}, ents)
+
+
+def dispatch_own_song(g, p):
+    """'Whenever you play a song' watchers on your own permanents
+    (P.J. Pete - Caught Up in the Music). The mirror of
+    dispatch_opponent_song."""
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        ents = entries_for(src.card.name, "on_song_played")
+        if ents:
+            _run(g, p, {"card": src.card,
+                        "char": src if hasattr(src, "damage") else None,
+                        "source": src}, ents)
+            if g.winner is not None:
+                return
 
 
 def dispatch_opponent_song(g, p):

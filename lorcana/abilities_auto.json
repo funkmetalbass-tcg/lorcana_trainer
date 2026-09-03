@@ -5275,8 +5275,16 @@
  ],
  "Ursula's Shell Necklace": [
   {
-   "impl": "unimplemented",
-   "text": "[NOW, SING!] Whenever you play a song, you may pay 1 Ink to draw a card."
+   "trigger": "on_song_played",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[NOW, SING!] Whenever you play a song, you may pay 1 Ink to draw a card.",
+   "cost": {
+    "ink": 1
+   }
   }
  ],
  "Atlantica - Concert Hall": [
@@ -5953,14 +5961,30 @@
  ],
  "P.J. Pete - Caught Up in the Music": [
   {
-   "impl": "unimplemented",
-   "text": "[SHOUT OUT LOUD!] Whenever you play a song, this character gets +2 Strength this turn."
+   "trigger": "on_song_played",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 2,
+    "target": "self",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[SHOUT OUT LOUD!] Whenever you play a song, this character gets +2 Strength this turn."
   }
  ],
  "Powerline - Musical Superstar": [
   {
-   "impl": "unimplemented",
-   "text": "[ELECTRIC MOVE] If you've played a song this turn, this character gains Rush this turn. (They can challenge the turn they're played.)"
+   "trigger": "static",
+   "condition": {
+    "type": "song_played_this_turn"
+   },
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "rush"
+   },
+   "confidence": "medium",
+   "source": "[ELECTRIC MOVE] If you've played a song this turn, this character gains Rush this turn. (They can challenge the turn they're played.)"
   }
  ],
  "Sisu - Emboldened Warrior": [
@@ -6128,8 +6152,12 @@
  ],
  "Mama Odie - Mystical Maven": [
   {
-   "impl": "unimplemented",
-   "text": "[THIS GOING TO BE GOOD] Whenever you play a song, you may put the top card of your deck into your inkwell facedown and exerted."
+   "trigger": "on_song_played",
+   "effect": {
+    "type": "put_top_into_inkwell"
+   },
+   "confidence": "medium",
+   "source": "[THIS GOING TO BE GOOD] Whenever you play a song, you may put the top card of your deck into your inkwell facedown and exerted."
   }
  ],
  "Jasmine - Heir of Agrabah": [
@@ -6350,8 +6378,17 @@
  ],
  "Ariel - Sonic Warrior": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Ariel.)[AMPLIFIED VOICE] Whenever you play a song, you may pay 2 Ink to deal 3 damage to chosen character."
+   "trigger": "on_song_played",
+   "effect": {
+    "type": "deal_damage",
+    "amount": 3,
+    "target": "chosen_opposing"
+   },
+   "confidence": "medium",
+   "source": "Shift 4 Ink (You may pay 4 Ink to play this on top of one of your characters named Ariel.)[AMPLIFIED VOICE] Whenever you play a song, you may pay 2 Ink to deal 3 damage to chosen character.",
+   "cost": {
+    "ink": 2
+   }
   }
  ],
  "Smash": [

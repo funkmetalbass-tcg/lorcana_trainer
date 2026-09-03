@@ -1641,8 +1641,13 @@ def on_play(g, p, card, obj, params):
     # Phase 2: data-driven abilities
     schema.dispatch_play_type(g, p, card)
     if getattr(card, "is_song", False):
+        # Recorded before the watchers run, so a watcher that reads
+        # "you've played a song this turn" sees this song too.
+        g.turn_flags.add(("song_played", p))
         # "Whenever an opponent plays a song" watchers (Signed Contract).
         schema.dispatch_opponent_song(g, 1 - p)
+        # ...and the same on your own side (P.J. Pete).
+        schema.dispatch_own_song(g, p)
     if card.is_action:
         # Mark that an action is resolving so "whenever one of your actions
         # deals damage" watchers can attribute the damage (Merida STEADY AIM).

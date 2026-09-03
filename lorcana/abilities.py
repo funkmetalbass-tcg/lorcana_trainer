@@ -3039,6 +3039,13 @@ def play_param_options(g, p, card):
     name = card.name
     opts = []
 
+    # Modal "choose one" abilities become distinct play actions so MCTS can
+    # search the modes instead of a heuristic picking for it.
+    from . import schema
+    modes = schema.modal_options(g, p, name, "on_play")
+    if modes is not None and len(modes) > 1:
+        return [(("mode", m),) for m in modes]
+
     if card.is_character and can_enter_exerted(card):
         opts.append((("exerted", False),))
         opts.append((("exerted", True),))

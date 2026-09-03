@@ -1248,6 +1248,33 @@ def _eff_banish_target(g, p, ctx, eff):
     g.banish_char(tgt, cause="effect")
 
 
+def modal_options(g, p, card_name, trigger="on_play"):
+    """Legal mode indices for a card's modal ability, or None if it has none.
+
+    Only modes that could actually do something are offered: an unusable mode
+    is not a real decision and would only dilute the search.
+    """
+    for e in entries_for(card_name, trigger):
+        opts = (e.get("effect") or {}).get("options")
+        if not opts:
+            continue
+        live = [i for i, o in enumerate(opts)
+                if check_condition(g, p, {}, o.get("condition"))
+                and _option_actionable(g, p, o)]
+        return live or [0]
+    return None
+
+
+def _option_actionable(g, p, o):
+    """Could this option affect anything right now?"""
+    if o.get("type") not in ("banish_chosen", "exert_chosen", "deal_damage"):
+        return True
+    from . import abilities
+    return abilities._best_opp_char(
+        g, p, cond=lambda gg, c: _char_matches(gg, c, o.get("filter")),
+        notify=False) is not None
+
+
 def _eff_choose_one(g, p, ctx, eff):
     """Modal "choose one" (Baloo ROLL WITH IT, Tod - Playful Kit).
 
@@ -1279,6 +1306,17 @@ def _eff_choose_one(g, p, ctx, eff):
     live = [o for o in opts if _actionable(o)]
     if live:
         opts = live
+    # If the player declared a mode when choosing the action, honour it --
+    # that is the whole point of putting the choice in the action space.
+    mode = (ctx.get("params") or {}).get("mode")
+    if mode is not None:
+        allopts = eff.get("options") or []
+        if 0 <= mode < len(allopts):
+            chosen = allopts[mode]
+            if check_condition(g, p, ctx, chosen.get("condition")):
+                g.emit(f"schema: chooses mode {mode} ({chosen.get('type')})")
+                apply_effect(g, p, ctx, chosen)
+                return
     pick = None
     for o in opts:
         t = o.get("type")

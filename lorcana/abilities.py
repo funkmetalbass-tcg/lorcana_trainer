@@ -2882,6 +2882,8 @@ def start_of_turn(g, p):
 
 
 def end_of_turn(g, p):
+    from . import schema
+    schema.dispatch_turn_end(g, p)
     # Cinderella - Dream Come True WHATEVER YOU WISH FOR: at end of your turn,
     # if you played a Princess character this turn, you may put a card from
     # hand into your inkwell facedown to draw a card. Heuristic: always, using

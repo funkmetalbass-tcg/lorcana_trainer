@@ -1095,6 +1095,25 @@ def _c(m):
         {"type": "each_player_gain_lore", "amount": int(m.group(2))}]}
 
 
+
+@clause(r"[Ee]ach opponent loses lore equal to the damage on chosen character "
+        r"of yours, to a maximum of (\d+) lore each\.?")
+def _c(m):
+    return {"type": "opponent_lose_lore_per_damage", "max": int(m.group(1))}
+
+
+@clause(r"[Dd]raw cards equal to the damage on chosen character of yours, "
+        r"then banish them\.?")
+def _c(m):
+    return {"type": "draw_per_damage_then_banish"}
+
+
+@clause(r"[Ee]ach opponent loses (\d+) lore\. Draw a card for each 1 lore "
+        r"lost this way\.?")
+def _c(m):
+    return {"type": "drain_then_draw_per_lore", "amount": int(m.group(1))}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1999,6 +2018,8 @@ _PREAMBLES = [
      "on_play_action"),
     (re.compile(r"^At the start of your turn,\s*", re.IGNORECASE),
      "on_turn_start"),
+    (re.compile(r"^At the end of your turn,\s*", re.IGNORECASE),
+     "on_turn_end"),
     (re.compile(r"^Whenever you put a card under this character,\s*",
                 re.IGNORECASE), "on_card_under_self"),
     (re.compile(r"^Whenever you use the Boost ability of a character,\s*",
@@ -2120,6 +2141,12 @@ _TRIG_CONDS = [
     (re.compile(r"^[Ii]f an opponent has more lore than you,\s*",
                 re.IGNORECASE),
      lambda m: {"type": "opponent_has_more_lore"}),
+    (re.compile(r"^if an opponent has (\d+) lore,\s*", re.IGNORECASE),
+     lambda m: {"type": "opponent_lore_at_most", "amount": int(m.group(1))}),
+    (re.compile(r"^if an opponent has (\d+) or more ready characters in play,"
+                r"\s*", re.IGNORECASE),
+     lambda m: {"type": "opponent_ready_characters",
+                "count": int(m.group(1))}),
 ]
 
 
@@ -2185,7 +2212,8 @@ def parse_triggered(prose):
                 rest = rest[0].upper() + rest[1:]
         effects = parse_by_clauses(rest)
         if effects is None:
-            stripped = _MAY.sub("", rest)
+            stripped = re.sub(r"^you\s+", "", _MAY.sub("", rest),
+                              flags=re.IGNORECASE)
             if stripped != rest:
                 if stripped and stripped[0].islower():
                     stripped = stripped[0].upper() + stripped[1:]

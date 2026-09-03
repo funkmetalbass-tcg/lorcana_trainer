@@ -427,7 +427,19 @@ def _cond_song_played_this_turn(g, p, ctx, cond):
     return ("song_played", p) in g.turn_flags
 
 
+def _cond_opponent_lore_at_most(g, p, ctx, cond):
+    return g.players[1 - p].lore <= cond.get("amount", 0)
+
+
+def _cond_opponent_ready_characters(g, p, ctx, cond):
+    """The opponent has N or more ready (unexerted) characters in play."""
+    n = sum(1 for c in g.my_chars(1 - p) if not c.exerted)
+    return n >= cond.get("count", 1)
+
+
 _CONDITIONS = {
+    "opponent_lore_at_most": _cond_opponent_lore_at_most,
+    "opponent_ready_characters": _cond_opponent_ready_characters,
     "song_played_this_turn": _cond_song_played_this_turn,
     "opponent_more_inkwell": _cond_opponent_more_inkwell,
     "character_banished_this_turn": _cond_character_banished_this_turn,
@@ -1554,6 +1566,44 @@ def _eff_enter_exerted_for(g, p, ctx, eff):
         apply_effect(g, p, ctx, inner)
 
 
+def _eff_opponent_lose_lore_per_damage(g, p, ctx, eff):
+    """Each opponent loses lore equal to the damage on one of your damaged
+    characters, capped (Nani's Payback)."""
+    pool = [c for c in g.my_chars(p) if c.damage > 0]
+    if not pool:
+        return
+    src = max(pool, key=lambda c: c.damage)
+    n = min(src.damage, eff.get("max", 99))
+    if n:
+        apply_effect(g, p, ctx, {"type": "opponent_lose_lore", "amount": n})
+
+
+def _eff_draw_per_damage_then_banish(g, p, ctx, eff):
+    """Draw cards equal to the damage on one of your characters, then banish
+    it (Dinner Bell). Chooses the most damaged body, since it is the one
+    closest to being lost anyway."""
+    pool = [c for c in g.my_chars(p) if c.damage > 0]
+    if not pool:
+        return
+    src = max(pool, key=lambda c: c.damage)
+    n = src.damage
+    g.draw(p, n)
+    g.emit(f"schema: draws {n} then banishes {src.card.base_name}")
+    g.banish_char(src, cause="effect")
+
+
+def _eff_drain_then_draw_per_lore(g, p, ctx, eff):
+    """Each opponent loses N lore; draw one card per lore actually lost
+    (Scrooge McDuck). An opponent already at 0 loses nothing, so no card."""
+    want = eff.get("amount", 1)
+    before = g.players[1 - p].lore
+    apply_effect(g, p, ctx, {"type": "opponent_lose_lore", "amount": want})
+    lost = before - g.players[1 - p].lore
+    if lost > 0:
+        g.draw(p, lost)
+        g.emit(f"schema: draws {lost} for lore lost")
+
+
 def _eff_each_player_gain_lore(g, p, ctx, eff):
     """Each player gains N lore, the active player first (I2I)."""
     n = eff.get("amount", 1)
@@ -1646,6 +1696,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "opponent_lose_lore_per_damage": _eff_opponent_lose_lore_per_damage,
+    "draw_per_damage_then_banish": _eff_draw_per_damage_then_banish,
+    "drain_then_draw_per_lore": _eff_drain_then_draw_per_lore,
     "each_player_gain_lore": _eff_each_player_gain_lore,
     "sequence": _eff_sequence,
     "put_top_into_inkwell": _eff_put_top_into_inkwell,
@@ -2024,6 +2077,18 @@ def static_location_lore(g, loc):
         else:
             total += eff.get("amount", 0)
     return total
+
+
+def dispatch_turn_end(g, p):
+    """'At the end of your turn' triggers on your permanents."""
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        ents = entries_for(src.card.name, "on_turn_end")
+        if ents:
+            _run(g, p, {"card": src.card,
+                        "char": src if hasattr(src, "damage") else None,
+                        "source": src}, ents)
+            if g.winner is not None:
+                return
 
 
 def dispatch_turn_start(g, p):

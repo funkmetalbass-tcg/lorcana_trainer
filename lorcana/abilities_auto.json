@@ -2259,8 +2259,26 @@
  ],
  "Scrooge McDuck - Ebenezer Scrooge": [
   {
-   "impl": "unimplemented",
-   "text": "[PAYMENT DUE] Whenever this character quests, each opponent loses 1 lore. Draw a card for each 1 lore lost this way.[FORECLOSURE] At the end of your turn, if an opponent has 0 lore, you gain 1 lore."
+   "trigger": "on_quest",
+   "effect": {
+    "type": "drain_then_draw_per_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[PAYMENT DUE] Whenever this character quests, each opponent loses 1 lore. Draw a card for each 1 lore lost this way.[FORECLOSURE] At the end of your turn, if an opponent has 0 lore, you gain 1 lore."
+  },
+  {
+   "trigger": "on_turn_end",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[PAYMENT DUE] Whenever this character quests, each opponent loses 1 lore. Draw a card for each 1 lore lost this way.[FORECLOSURE] At the end of your turn, if an opponent has 0 lore, you gain 1 lore.",
+   "condition": {
+    "type": "opponent_lore_at_most",
+    "amount": 0
+   }
   }
  ],
  "Willie the Giant - Ghost of Christmas Present": [
@@ -2279,8 +2297,22 @@
  ],
  "Nani's Payback": [
   {
-   "impl": "unimplemented",
-   "text": "Each opponent loses lore equal to the damage on chosen character of yours, to a maximum of 4 lore each. Draw a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "opponent_lose_lore_per_damage",
+    "max": 4
+   },
+   "confidence": "medium",
+   "source": "Each opponent loses lore equal to the damage on chosen character of yours, to a maximum of 4 lore each. Draw a card."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Each opponent loses lore equal to the damage on chosen character of yours, to a maximum of 4 lore each. Draw a card."
   }
  ],
  "Force of a Great Typhoon": [
@@ -6112,8 +6144,16 @@
  ],
  "Dinner Bell": [
   {
-   "impl": "unimplemented",
-   "text": "YOU KNOW WHAT HAPPENS [Exert], 2 Ink — Draw cards equal to the damage on chosen character of yours, then banish them."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 2
+   },
+   "effect": {
+    "type": "draw_per_damage_then_banish"
+   },
+   "confidence": "medium",
+   "source": "YOU KNOW WHAT HAPPENS [Exert], 2 Ink — Draw cards equal to the damage on chosen character of yours, then banish them."
   }
  ],
  "Anna - True-Hearted": [

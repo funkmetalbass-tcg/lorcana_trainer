@@ -181,6 +181,11 @@ def strength(g, ch):
     for e in g.effects:
         if e["kind"] == "str" and e["target"] == ch.uid:
             s += e["amount"]
+    # FOREVER STRONG (Elisa Maza - Transformed Gargoyle): Strength may not be
+    # reduced below the printed value. Applied last so it clamps every source
+    # of reduction, but never caps a bonus.
+    if s < (ch.card.strength or 0) and schema.strength_floor(g, ch):
+        s = ch.card.strength or 0
     return s
 
 

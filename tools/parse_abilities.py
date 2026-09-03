@@ -1216,6 +1216,14 @@ _STATIC_TRIPLE = re.compile(
     r"\+(?P<a3>\d+) (?P<s3>\{\}|Strength|Lore|Willpower)\.?",
     re.IGNORECASE)
 
+_STATIC_PER_OPPHAND = re.compile(
+    r"This character gets \+(\d+) (Strength|Lore|Willpower) for each card in "
+    r"opponents'? hands\.?", re.IGNORECASE)
+
+_STRENGTH_FLOOR = re.compile(
+    r"Your characters'? Strength can't be reduced below their printed "
+    r"value\.?", re.IGNORECASE)
+
 _STATIC_PER_UNDER = re.compile(
     r"This character gets \+(\d+) (Strength|Lore|Willpower) for each card "
     r"under (?:him|her|them|it)\.?", re.IGNORECASE)
@@ -1357,6 +1365,8 @@ _STATIC_CONDS = [
      {"type": "has_card_under"}),
     (re.compile(r"a character was banished this turn", re.I),
      {"type": "character_banished_this_turn"}),
+    (re.compile(r"you have (\d+) or more other characters in play with "
+                r"(\d+) Strength or more", re.I), None),
     (re.compile(r"you've played a song this turn", re.I),
      {"type": "song_played_this_turn"}),
     (re.compile(r"you have a ([A-Za-z ]+?) character in play", re.I), None),
@@ -1406,6 +1416,11 @@ def _static_cond(text):
                       re.IGNORECASE)
     if mk:
         return {"type": "you_have_keyword", "keyword": mk.group(1).lower()}
+    mo = re.fullmatch(r"you have (\d+) or more other characters in play with "
+                      r"(\d+) Strength or more", text, re.IGNORECASE)
+    if mo:
+        return {"type": "others_with_strength", "count": int(mo.group(1)),
+                "strength": int(mo.group(2))}
     md = _DISCARD_COUNT.fullmatch(text)
     if md:
         return {"type": "discards_this_turn_at_least",
@@ -1581,6 +1596,16 @@ def parse_static_self(line):
                             "stat": _stat_name(mt3.group("s%d" % i)),
                             "amount": int(mt3.group("a%d" % i))}}
                 for i in (1, 2, 3)]
+    mph = _STATIC_PER_OPPHAND.fullmatch(line)
+    if mph:
+        return [{"trigger": "static",
+                 "effect": {"type": "static_self_stat",
+                            "stat": _stat_name(mph.group(2)),
+                            "amount": int(mph.group(1)),
+                            "per": "cards_in_opponent_hands"}}]
+    if _STRENGTH_FLOOR.fullmatch(line):
+        return [{"trigger": "static",
+                 "effect": {"type": "team_strength_floor"}}]
     mpu = _STATIC_PER_UNDER.fullmatch(line)
     if mpu:
         return [{"trigger": "static",

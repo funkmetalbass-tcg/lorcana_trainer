@@ -1724,7 +1724,8 @@ def apply_effect(g, p, ctx, eff):
                            "shift_onto_names", "team_keyword", "team_stat",
                            "location_aura_stat", "enters_with_damage",
                            "static_location_keyword", "free_move_here",
-                           "no_quest_or_challenge_unless"):
+                           "no_quest_or_challenge_unless",
+                           "team_strength_floor"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -2236,12 +2237,31 @@ def static_self_stat(g, ch, stat):
         if not check_condition(g, ch.owner, {"card": ch.card, "char": ch},
                                e.get("condition")):
             continue
-        if eff.get("per") == "cards_under":
+        if eff.get("per") == "cards_in_opponent_hands":
+            total += eff.get("amount", 0) * len(g.players[1 - ch.owner].hand)
+        elif eff.get("per") == "cards_under":
             total += eff.get("amount", 0) * (len(getattr(ch, "boosted", []))
                                              + len(getattr(ch, "under", [])))
         else:
             total += eff.get("amount", 0)
     return total
+
+
+def strength_floor(g, ch):
+    """Does a permanent you control stop this character's Strength being
+    reduced below its printed value (Elisa Maza - Transformed Gargoyle)?"""
+    for src in list(g.my_chars(ch.owner)) + list(g.items[ch.owner]) \
+            + list(g.my_locs(ch.owner)):
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "team_strength_floor":
+                continue
+            if check_condition(g, src.owner,
+                               {"card": src.card,
+                                "char": src if hasattr(src, "damage") else None},
+                               e.get("condition")):
+                return True
+    return False
 
 
 def static_no_ready(g, ch):

@@ -1778,7 +1778,10 @@ def apply_effect(g, p, ctx, eff):
                            "location_aura_stat", "enters_with_damage",
                            "static_location_keyword", "free_move_here",
                            "no_quest_or_challenge_unless",
-                           "team_strength_floor"):
+                           "team_strength_floor",
+                           "classification_cant_quest",
+                           "opposing_items_cant_ready",
+                           "no_challenge_damage"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -2442,6 +2445,41 @@ def dispatch_location_banished(g, loc):
     if ents:
         _run(g, loc.owner,
              {"card": loc.card, "loc": loc, "source": loc}, ents)
+
+
+def blocks_quest_by_classification(g, ch):
+    """A permanent in play stopping characters of a classification from
+    questing (Hans - Brazen Manipulator: King and Queen characters can't
+    quest). Applies to both sides, as printed."""
+    for src in list(g.chars.values()):
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "classification_cant_quest":
+                continue
+            if ch.card.classifications & set(eff.get("any_of") or []):
+                return True
+    return False
+
+
+def blocks_item_ready(g, item, owner):
+    """An opposing permanent stopping this player's items readying
+    (Vincenzo Santorini - On the Run)."""
+    for src in list(g.my_chars(1 - owner)):
+        for e in entries_for(src.card.name, "static"):
+            if e.get("effect", {}).get("type") == "opposing_items_cant_ready":
+                return True
+    return False
+
+
+def takes_no_challenge_damage(g, ch):
+    """Immunity to challenge damage (Mulan - Standing Her Ground)."""
+    for e in entries_for(ch.card.name, "static"):
+        if e.get("effect", {}).get("type") != "no_challenge_damage":
+            continue
+        if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                           e.get("condition")):
+            return True
+    return False
 
 
 def blocks_quest_challenge(g, ch):

@@ -149,6 +149,7 @@ class Game:
         self.cards_played = [0, 0]   # cards played this turn, per player
         self.action_ctx = None       # (player, card) while an action resolves
         self.challenge_ctx = None    # (attacker_uid, defender_uid) mid-challenge
+        self._in_challenge_damage = False
         self._in_chosen_trigger = False
         self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
@@ -171,6 +172,7 @@ class Game:
         g.cards_played = list(self.cards_played)
         g.action_ctx = self.action_ctx
         g.challenge_ctx = self.challenge_ctx
+        g._in_challenge_damage = self._in_challenge_damage
         g._in_chosen_trigger = self._in_chosen_trigger
         g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)
@@ -296,6 +298,8 @@ class Game:
                 continue
             ch.exerted = False
         for it in self.items[p]:
+            if schema.blocks_item_ready(self, it, p):
+                continue
             it.exerted = False
         # expire "until start of [p]'s next turn" effects
         self.effects = [e for e in self.effects if e.get("until") != p]
@@ -344,6 +348,11 @@ class Game:
             self.winner = p
 
     def deal_damage(self, ch, amount, apply_resist=True, challenge=False):
+        from . import schema as _sch
+        if getattr(self, "_in_challenge_damage", False) \
+                and _sch.takes_no_challenge_damage(self, ch):
+            self.emit(f"{ch.card.base_name} takes no damage from challenges")
+            return
         if amount <= 0:
             return
         # replacement / prevention effects (Lilo EXTRA LAYERS, Hercules EVER
@@ -514,6 +523,8 @@ class Game:
         for ch in self.my_chars(p):
             from . import schema as _sch
             if _sch.blocks_quest_challenge(self, ch):
+                continue
+            if _sch.blocks_quest_by_classification(self, ch):
                 continue
             if not ch.exerted and self.is_dry(ch) and not abilities.has_reckless(self, ch) \
                     and ("no_quest", ch.uid) not in self.turn_flags \
@@ -754,6 +765,13 @@ class Game:
             self.challenge_ctx = None
 
     def _challenge_inner(self, attacker, kind, uid):
+        self._in_challenge_damage = True
+        try:
+            return self._challenge_damage(attacker, kind, uid)
+        finally:
+            self._in_challenge_damage = False
+
+    def _challenge_damage(self, attacker, kind, uid):
         # Dale SPIKE SUIT: your characters deal challenge damage with their
         # Willpower instead of their Strength (abilities.challenge_damage).
         atk = abilities.challenge_damage(self, attacker) \

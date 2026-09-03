@@ -824,8 +824,12 @@
  ],
  "Vincenzo Santorini - On the Run": [
   {
-   "impl": "unimplemented",
-   "text": "Evasive (Only characters with Evasive can challenge this character.)[NEUTRALIZE] Opposing items can't ready at the start of their players' turns."
+   "trigger": "static",
+   "effect": {
+    "type": "opposing_items_cant_ready"
+   },
+   "confidence": "medium",
+   "source": "Evasive (Only characters with Evasive can challenge this character.)[NEUTRALIZE] Opposing items can't ready at the start of their players' turns."
   }
  ],
  "The Leviathan - Guardian of Atlantis": [
@@ -4539,8 +4543,29 @@
  ],
  "Hans - Brazen Manipulator": [
   {
-   "impl": "unimplemented",
-   "text": "[JOSTLING FOR POWER] King and Queen characters can't quest.[GROWING INFLUENCE] At the start of your turn, if an opponent has 2 or more ready characters in play, gain 2 lore."
+   "trigger": "static",
+   "effect": {
+    "type": "classification_cant_quest",
+    "any_of": [
+     "King",
+     "Queen"
+    ]
+   },
+   "confidence": "medium",
+   "source": "[JOSTLING FOR POWER] King and Queen characters can't quest.[GROWING INFLUENCE] At the start of your turn, if an opponent has 2 or more ready characters in play, gain 2 lore."
+  },
+  {
+   "trigger": "on_turn_start",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[JOSTLING FOR POWER] King and Queen characters can't quest.[GROWING INFLUENCE] At the start of your turn, if an opponent has 2 or more ready characters in play, gain 2 lore.",
+   "condition": {
+    "type": "opponent_ready_characters",
+    "count": 2
+   }
   }
  ],
  "Goliath - Guardian of Castle Wyvern": [

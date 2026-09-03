@@ -1270,6 +1270,18 @@ _STATIC_RESIST = re.compile(
     r"(?:While|During) (?P<cond>.+?), (?:this character|she|he|they|it) gains "
     r"Resist \+(?P<amt>\d+)\.?", re.IGNORECASE)
 
+_CLS_CANT_QUEST = re.compile(
+    r"([A-Za-z ]+?) and ([A-Za-z ]+?) characters can't quest\.?",
+    re.IGNORECASE)
+
+_OPP_ITEMS_NO_READY = re.compile(
+    r"Opposing items can't ready at the start of their players'? turns\.?",
+    re.IGNORECASE)
+
+_NO_CHALLENGE_DAMAGE = re.compile(
+    r"(?:While|During|If) (?P<cond>.+?), (?:this character|she|he|they|it) "
+    r"takes no damage from challenges\.?", re.IGNORECASE)
+
 _NO_READY_PLAIN = re.compile(
     r"This character can't ready at the start of your turn\.?",
     re.IGNORECASE)
@@ -1388,6 +1400,9 @@ _STATIC_CONDS = [
                 r"(\d+) Strength or more", re.I), None),
     (re.compile(r"you've played a song this turn", re.I),
      {"type": "song_played_this_turn"}),
+    (re.compile(r"(?:if )?you've put a card under one of your characters or "
+                r"locations this turn", re.I),
+     {"type": "put_card_under_this_turn"}),
     (re.compile(r"you have a ([A-Za-z ]+?) character in play", re.I), None),
     (re.compile(r"you have a character with (Singer|Evasive|Ward|Support|Reckless) in play",
                 re.I), None),
@@ -1593,6 +1608,17 @@ def parse_static_self(line):
         return [{"trigger": "static",
                  "effect": {"type": "static_self_keyword",
                             "keyword": "cant_gain_evasive"}}]
+    mcq = _CLS_CANT_QUEST.fullmatch(line)
+    if mcq:
+        cls = _classes(mcq.group(1), mcq.group(2))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "classification_cant_quest",
+                            "any_of": cls}}]
+    if _OPP_ITEMS_NO_READY.fullmatch(line):
+        return [{"trigger": "static",
+                 "effect": {"type": "opposing_items_cant_ready"}}]
     if _NO_READY_PLAIN.fullmatch(line):
         return [{"trigger": "static", "effect": {"type": "static_no_ready"}}]
     mn = _NO_READY.fullmatch(line)

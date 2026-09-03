@@ -2323,14 +2323,42 @@ def dispatch_card_under(g, p, obj, via_boost):
             _run(g, p, {"card": src.card, "char": obj, "source": src}, ents)
 
 
-def dispatch_challenges(g, attacker):
+def dispatch_ally_challenges(g, attacker, defender):
+    """'Whenever one of your characters challenges another character'
+    watchers on your own board (Shere Khan - Menacing Predator, Queen of
+    Hearts - Sensing Weakness, Goliath - Guardian of Castle Wyvern).
+
+    ctx["char"] is the defender, so effects can read what was challenged.
+    """
+    p = attacker.owner
+    for src in list(g.my_chars(p)):
+        ents = entries_for(src.card.name, "on_ally_challenges")
+        for e in ents:
+            want = e.get("attacker_classification")
+            if want and want not in attacker.card.classifications:
+                continue
+            _run(g, p, {"card": src.card, "char": defender, "source": src},
+                 [e])
+            if g.winner is not None:
+                return
+
+
+def dispatch_challenges(g, attacker, defender=None):
     """'Whenever this character challenges another character'
     (Captain Hook - Conniving Pirate)."""
     ents = entries_for(attacker.card.name, "on_challenges")
-    if ents:
+    for e in ents:
+        # "challenges a character with N Strength or less" gates on the
+        # defender (Brom Bones - Burly Bully).
+        cap = e.get("defender_max_strength")
+        if cap is not None:
+            if defender is None or g.eff_strength(defender) > cap:
+                continue
         _run(g, attacker.owner,
-             {"card": attacker.card, "char": attacker, "source": attacker},
-             ents)
+             {"card": attacker.card, "char": attacker, "source": attacker,
+              "defender": defender}, [e])
+        if g.winner is not None:
+            return
 
 
 def team_static_keyword(g, ch, kw):

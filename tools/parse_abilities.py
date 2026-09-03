@@ -1971,6 +1971,14 @@ _PREAMBLES = [
      "on_challenges|atloc"),
     (re.compile(r"^Whenever he challenges another character,\s*",
                 re.IGNORECASE), "on_challenges"),
+    (re.compile(r"^Whenever this character challenges a character with "
+                r"(?P<cap>\d+) Strength or less,\s*", re.IGNORECASE),
+     "on_challenges|cap"),
+    (re.compile(r"^Whenever one of your (?P<cls>[A-Za-z ]+?) characters "
+                r"challenges another character,\s*", re.IGNORECASE),
+     "on_ally_challenges|acls"),
+    (re.compile(r"^Whenever one of your characters challenges another "
+                r"character,\s*", re.IGNORECASE), "on_ally_challenges"),
     (re.compile(r"^Whenever this character challenges another character,\s*",
                 re.IGNORECASE), "on_challenges"),
     (re.compile(r"^During opponents.? turns, whenever one of your other "
@@ -2105,6 +2113,13 @@ def parse_triggered(prose):
                 extra["banished_classification"] = _cl[0]
             if "hasunder" in parts:
                 extra["defender_has_card_under"] = True
+            if "cap" in parts and m.groupdict().get("cap"):
+                extra["defender_max_strength"] = int(m.group("cap"))
+            if "acls" in parts and m.groupdict().get("cls"):
+                _ac = _classes(m.group("cls"))
+                if _ac is None:
+                    return None
+                extra["attacker_classification"] = _ac[0]
         if trig == "on_ally_challenged" and not extra.get(
                 "defender_has_card_under"):
             cls = _classes(m.group(1)) if m.groups() else None

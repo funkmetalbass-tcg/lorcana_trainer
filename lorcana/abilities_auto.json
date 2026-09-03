@@ -4492,8 +4492,26 @@
  ],
  "Goliath - Guardian of Castle Wyvern": [
   {
-   "impl": "unimplemented",
-   "text": "[BE CAREFUL, ALL OF YOU] Whenever one of your Gargoyle characters challenges another character, gain 1 lore.[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
+   "trigger": "on_ally_challenges",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[BE CAREFUL, ALL OF YOU] Whenever one of your Gargoyle characters challenges another character, gain 1 lore.[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready.",
+   "attacker_classification": "Gargoyle"
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "hand_size_at_least",
+    "count": 3
+   },
+   "effect": {
+    "type": "static_no_ready"
+   },
+   "confidence": "medium",
+   "source": "[BE CAREFUL, ALL OF YOU] Whenever one of your Gargoyle characters challenges another character, gain 1 lore.[STONE BY DAY] If you have 3 or more cards in your hand, this character can't ready."
   }
  ],
  "Brooklyn - Second in Command": [
@@ -4562,8 +4580,14 @@
  ],
  "Brom Bones - Burly Bully": [
   {
-   "impl": "unimplemented",
-   "text": "[ROUGH AND TUMBLE] Whenever this character challenges a character with 2 Strength or less, each opponent loses 1 lore."
+   "trigger": "on_challenges",
+   "effect": {
+    "type": "opponent_lose_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[ROUGH AND TUMBLE] Whenever this character challenges a character with 2 Strength or less, each opponent loses 1 lore.",
+   "defender_max_strength": 2
   }
  ],
  "Shere Khan - Fierce and Furious": [
@@ -5820,8 +5844,13 @@
  ],
  "Shere Khan - Menacing Predator": [
   {
-   "impl": "unimplemented",
-   "text": "[DON'T INSULT MY INTELLIGENCE] Whenever one of your characters challenges another character, gain 1 lore."
+   "trigger": "on_ally_challenges",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[DON'T INSULT MY INTELLIGENCE] Whenever one of your characters challenges another character, gain 1 lore."
   }
  ],
  "Maui - Whale": [
@@ -5937,8 +5966,13 @@
  ],
  "Queen of Hearts - Sensing Weakness": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 2 Ink (You may pay 2 Ink to play this on top of one of your characters named Queen of Hearts.)[LET THE GAME BEGIN] Whenever one of your characters challenges another character, you may draw a card."
+   "trigger": "on_ally_challenges",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Shift 2 Ink (You may pay 2 Ink to play this on top of one of your characters named Queen of Hearts.)[LET THE GAME BEGIN] Whenever one of your characters challenges another character, you may draw a card."
   }
  ],
  "Rapunzel - Letting Down Her Hair": [

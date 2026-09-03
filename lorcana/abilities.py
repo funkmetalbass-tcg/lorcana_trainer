@@ -2169,7 +2169,8 @@ def on_challenge(g, attacker, defender):
     # side (Merida - Gifted Archer FIERCE PROTECTION).
     from . import schema
     schema.dispatch_opposing_challenge(g, attacker)
-    schema.dispatch_challenges(g, attacker)
+    schema.dispatch_challenges(g, attacker, defender)
+    schema.dispatch_ally_challenges(g, attacker, defender)
     # location watchers on either side of the challenge
     if defender is not None:
         schema.dispatch_challenge_at_location(g, attacker, defender)

@@ -33,7 +33,12 @@ _PATTERNS = {
     "Resist":        re.compile(r"\bResist\b\s*\+?(\d+)"),
     "Challenger":    re.compile(r"\bChallenger\b\s*\+?(\d+)"),
     "Singer":        re.compile(r"\bSinger\b\s*(\d+)"),
-    "Shift":         re.compile(r"\bShift\b\s*(\d+)\s*(?:Ink)?"),
+    # The optional "Temporary [Classification] " prefix is consumed as part of
+    # the keyword; otherwise "Temporary" is left behind as an unparseable
+    # fragment and the whole card is rejected (the Red Panda cycle).
+    "Shift":         re.compile(
+        r"(?:\bTemporary(?:\s+[A-Z][A-Za-z]*(?:\s+[A-Z][A-Za-z]*)?)?\s+)?"
+        r"\bShift\b\s*(\d+)\s*(?:Ink)?"),
     "Sing Together": re.compile(r"\bSing Together\b\s*(\d+)"),
 }
 

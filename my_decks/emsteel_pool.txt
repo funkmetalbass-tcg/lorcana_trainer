@@ -198,3 +198,142 @@
 1 The Queen - Evil Ruler
 1 RC - Remote-Controlled Car
 1 Alien - True Believer
+1 Merida - Defiant Daughter
+1 Buzz Lightyear - Space Ranger
+1 Lyle Tiberius Rourke - Adventurer for Hire
+1 Joshua Sweet - Field Surgeon
+1 Buzz's Arm
+1 Merida's Bow
+1 Pizza Planet - Spaceport
+1 Hamish, Hubert & Harris - Troublemaking Triplets
+1 Lenny - Toy Binoculars
+1 Peter Pan - Searching Far and Wide
+1 Buzz Lightyear - On the Way
+1 The Huntsman - On the Queen's Orders
+1 Sabotage
+1 Gyro-Evac
+1 Helga Sinclair - No Backup Needed
+1 Gaetan Moliere - Clever Burrower
+1 Elinor - Renowned Diplomat
+1 The Queen - Devious Disguise
+1 Strange Things
+1 The Claw
+1 Tod - Nimble Fox
+1 The Witch - Wily Woodcarver
+1 Lord MacGuffin - Clever Swordsman
+1 Donald Duck - Distracted Traveler
+1 Merida - Gifted Archer
+1 Cruella De Vil - Judgmental Traveler
+1 Helga Sinclair - Prepared for Anything
+1 Milo Thatch - Getting His Hands Dirty
+1 Buzz Lightyear - Jungle Ranger
+1 The Family Scattered
+1 Stitch - Naughty Experiment
+1 Copper - Hound Pup
+1 Tod - All Alone
+1 Mulan - Resourceful Recruit
+1 Minnie Mouse - Spinning Skater
+1 Dinky - Has the Brains
+1 Squeaks - Cozy Caterpillar
+1 White Rabbit - Late Again
+1 Strike A Good Match
+1 Snowball Fight
+1 Rafiki's Bakora Staff
+1 Ling - Snow Warrior
+1 Boomer - Has the Beak
+1 Aladdin - On the Edge of Adventure
+1 Vixey - Forest Friend
+1 Snow Fort
+1 Retro Evolution Device
+1 Game Preserve - Protected Land
+1 Big Mama - Clever and Calming
+1 Yao - Snow Warrior
+1 Goofy - Ghost of Jacob Marley
+1 Tod - Playful Kit
+1 Donald Duck - Fred Honeywell
+1 Freeze the Vine
+1 Education or Elimination
+1 Battering Ram
+1 Chernabog - Unnatural Force
+1 Mushu - Sneaky Dragon
+1 Copper - Champion of the Forest
+1 Minnie Mouse - Mrs. Cratchit
+1 Mickey Mouse - Snowboard Ace
+1 Chien-Po - Snow Warrior
+1 Tod - Knows All the Tricks
+1 Stegmutt - Clumsy Dinosaur
+1 Big Nose - Lovesick Poet
+1 Webby Vanderquack - Mystery Enthusiast
+1 Finnick - Tiny Terror
+1 Flynn Rider - Spectral Scoundrel
+1 Chomp!
+1 Cursed Merfolk - Ursula's Handiwork
+1 Bobby Zimuruski - Spray Cheese Kid
+1 Pegasus - Gift for Hercules
+1 Improvise
+1 Hidden Cove - Tranquil Haven
+1 Baloo - Laid-Back Bear
+1 Emily Quackfaster - Level-Headed Librarian
+1 Scrooge McDuck - S.H.U.S.H. Agent
+1 So Be It!
+1 Enigmatic Inkcaster
+1 Blessed Bagpipes
+1 White Agony Plains - Golden Lagoon
+1 Goofy - Set for Adventure
+1 Megara - Pulling the Strings
+1 Enchantress - Unexpected Judge
+1 Ursula - Deceiver
+1 Aladdin - Prince Ali
+1 Sudden Chill
+1 Make the Potion
+1 Family Fishing Pole
+1 Signed Contract
+1 Flotsam - Slippery as an Eel
+1 Kaa - Suspicious Serpent
+1 Megara - Secret Keeper
+1 Goldie O'Gilt - Cunning Prospector
+1 Akela - Forest Runner
+1 Malicious, Mean, and Scary
+1 Potion of Malice
+1 Inscrutable Map
+1 Max Goof - Rebellious Teen
+1 Mickey Mouse - Steamboat Pilot
+1 Donald Duck - Sleepwalker
+1 Heihei - Bumbling Rooster
+1 Wildcat - Mechanic
+1 Stand Out
+1 Mother Knows Best
+1 Flintheart Glomgold - Scheming Billionaire
+1 Bellwether - Master Manipulator
+1 Launchpad - Exceptional Pilot
+1 Webby Vanderquack - Junior Prospector
+1 Prince Phillip - Warden of the Woods
+1 Genie - Of the Lamp
+1 Donald Duck - Perfect Gentleman
+1 Shenzi - Hyena Pack Leader
+1 Tinker Bell - Most Helpful
+1 Daisy Duck - Secret Agent
+2 Hook Hand - Unexpectedly Friendly
+1 Penumbra - Moon Alien
+1 Genie - Of the Lamp
+1 Goofy - Emerald Champion
+1 Baloo - Carefree Bear
+1 Kuzco - Temperamental Emperor
+1 Virana - Fang Chief
+1 Scar - Finally King
+1 Jasmine - Fearless Princess
+1 Little John - Impermanent Outlaw
+1 Vladimir - Ceramic Unicorn Fan
+1 Shere Khan - Fearsome Tiger
+1 Trust In Me
+1 Robin Hood - Daydreamer
+1 Max Goof - Chart Topper
+1 John Silver - Alien Pirate
+1 Jetsam - Opportunistic Eel
+1 Kaa - Secretive Snake
+1 Under the Sea
+1 Prince Phillip - Vanquisher of Foes
+1 Jafar - Royal Vizier
+1 Eeyore - Overstuffed Donkey
+1 Ariel - Determined Mermaid
+1 Smash

@@ -3275,8 +3275,13 @@
  ],
  "Ming Lee - Giant Red Panda": [
   {
-   "impl": "unimplemented",
-   "text": "Temporary Shift 7 {} (You may pay 7 Ink to play this on top of one of your characters named Ming Lee. At the end of your turn, remove all damage from this character and return only this card to your hand.)\n[PATH OF DESTRUCTION] Whenever this character challenges another character, ready her. She can’t quest for the rest of this turn."
+   "trigger": "on_challenges",
+   "effect": {
+    "type": "ready_self",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "Temporary Shift 7 {} (You may pay 7 Ink to play this on top of one of your characters named Ming Lee. At the end of your turn, remove all damage from this character and return only this card to your hand.)\n[PATH OF DESTRUCTION] Whenever this character challenges another character, ready her. She can’t quest for the rest of this turn."
   }
  ],
  "Captain Hook - Conniving Pirate": [

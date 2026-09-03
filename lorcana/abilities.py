@@ -90,9 +90,26 @@ def temporary_shift_cost(card):
     global _TEMP_RE
     if _TEMP_RE is None:
         import re as _re
-        _TEMP_RE = _re.compile(r"\bTemporary Shift\s+(\d+)")
+        _TEMP_RE = _re.compile(
+            r"\bTemporary(?:\s+[A-Z][A-Za-z]*(?:\s+[A-Z][A-Za-z]*)?)?"
+            r"\s+Shift\s+(\d+)")
     m = _TEMP_RE.search(keywords.clean_text(card.text))
     return int(m.group(1)) if m else None
+
+
+_TEMP_CLS_RE = None
+
+
+def temporary_shift_classification(card):
+    """The classification named by a "Temporary <Class> Shift N" variant, or
+    None for the plain same-name form."""
+    global _TEMP_CLS_RE
+    if _TEMP_CLS_RE is None:
+        import re as _re
+        _TEMP_CLS_RE = _re.compile(
+            r"\bTemporary\s+([A-Z][A-Za-z]*(?:\s+[A-Z][A-Za-z]*)?)\s+Shift\s+\d+")
+    m = _TEMP_CLS_RE.search(keywords.clean_text(card.text))
+    return m.group(1) if m else None
 
 
 @_memo_by_card
@@ -3151,8 +3168,13 @@ def play_param_options(g, p, card):
                         opts.append((("shift", a.uid), ("duo_other", b.uid)))
     # Temporary Shift N: shift onto a same-named character; reverts at EOT.
     elif temporary_shift_cost(card) is not None:
+        # "Temporary Red Panda Shift 2" shifts onto any character with that
+        # classification; the plain form shifts onto a same-named character.
+        want = temporary_shift_classification(card)
         for c in g.my_chars(p):
-            if c.card.base_name == card.base_name:
+            ok = (want in c.card.classifications) if want \
+                else (c.card.base_name == card.base_name)
+            if ok:
                 opts.append((("shift", c.uid), ("temporary", True)))
     return opts
 

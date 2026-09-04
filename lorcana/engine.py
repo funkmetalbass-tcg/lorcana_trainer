@@ -448,6 +448,9 @@ class Game:
 
     # ---------- cost computation ----------
     def play_cost(self, p, card):
+        from . import schema as _sch
+        if _sch.alt_cost_available(self, p, card) is not None:
+            return 0
         cost = card.cost
         cost -= abilities.static_discount(self, p, card)
         for d in self.discounts:
@@ -855,6 +858,10 @@ class Game:
             self.pay_ink(p, paid)
         if card in pl.hand:
             pl.hand.remove(card)
+        from . import schema as _sch2
+        _alt = _sch2.alt_cost_available(self, p, card)
+        if _alt is not None:
+            _sch2.pay_alt_cost(self, p, card, _alt)
         self.cards_played[p] += 1
         self.emit(f"P{p} plays {card.name}" + (" (shift)" if shift_uid else "") +
                   (f" paying {paid}" if not free else " (free)"))

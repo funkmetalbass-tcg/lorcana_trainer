@@ -745,8 +745,17 @@
  ],
  "Hand-in-the-Box - Sid's Toy": [
   {
-   "impl": "unimplemented",
-   "text": "[SPRING-LOADED] You may put a Toy character card from your discard on the bottom of your deck to play this character for free."
+   "trigger": "static",
+   "effect": {
+    "type": "play_free_via_bottom",
+    "count": 1,
+    "filter": {
+     "card_type": "character",
+     "classification": "Toy"
+    }
+   },
+   "confidence": "medium",
+   "source": "[SPRING-LOADED] You may put a Toy character card from your discard on the bottom of your deck to play this character for free."
   }
  ],
  "Daisy Duck - Trendy Traveler": [
@@ -2396,8 +2405,16 @@
  ],
  "Kristoff's Lute": [
   {
-   "impl": "unimplemented",
-   "text": "MOMENT OF INSPIRATION [Exert], 2 Ink — Reveal the top card of your deck. You may play it as if it were in your hand. Otherwise, put it in your discard."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 2
+   },
+   "effect": {
+    "type": "reveal_top_play_or_discard"
+   },
+   "confidence": "medium",
+   "source": "MOMENT OF INSPIRATION [Exert], 2 Ink — Reveal the top card of your deck. You may play it as if it were in your hand. Otherwise, put it in your discard."
   }
  ],
  "Graveyard of Christmas Future - Lonely Resting Place": [

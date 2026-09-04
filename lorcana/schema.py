@@ -905,6 +905,30 @@ def _eff_opponent_scatter(g, p, ctx, eff):
         g.emit(f"schema: {c.card.base_name}(P{opp}) -> {dest}")
 
 
+def alt_cost_available(g, p, card):
+    """Is an alternate 'put a card from your discard on the bottom to play
+    this for free' cost payable right now (Hand-in-the-Box)?"""
+    for e in entries_for(card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "play_free_via_bottom":
+            continue
+        pool = [c for c in g.players[p].discard
+                if _card_matches(c, eff.get("filter"))]
+        if len(pool) >= eff.get("count", 1):
+            return eff
+    return None
+
+
+def pay_alt_cost(g, p, card, eff):
+    pl = g.players[p]
+    pool = [c for c in pl.discard if _card_matches(c, eff.get("filter"))]
+    for c in pool[:eff.get("count", 1)]:
+        pl.discard.remove(c)
+        pl.deck.insert(0, c)
+    g.emit(f"schema: bottoms {eff.get('count', 1)} card(s) to play "
+           f"{card.name} free")
+
+
 def static_free_discount(g, p, card):
     """Conditional self-discounts on playing this card, expressed as static
     entries so the existing play_cost / static_discount path handles them.
@@ -1568,6 +1592,58 @@ def _eff_enter_exerted_for(g, p, ctx, eff):
         apply_effect(g, p, ctx, inner)
 
 
+def _eff_reveal_top_play_or_discard(g, p, ctx, eff):
+    """Reveal the top card; play it as if in hand if affordable, otherwise
+    put it in the discard (Kristoff's Lute)."""
+    pl = g.players[p]
+    if not pl.deck:
+        return
+    card = pl.deck[-1]
+    filt = eff.get("filter")
+    if (filt is None or _card_matches(card, filt)) \
+            and g.play_cost(p, card) <= pl.ink_ready:
+        pl.deck.pop()
+        g.emit(f"schema: reveals {card.name} and plays it")
+        g._play_card(p, card, {})
+        return
+    pl.deck.pop()
+    pl.discard.append(card)
+    g.emit(f"schema: reveals {card.name} and discards it")
+
+
+def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
+    """Play a matching card from your discard for free, then put it on the
+    bottom of your deck instead of back in the discard
+    (Lady Tremaine EXPEDIENT SCHEMES)."""
+    pl = g.players[p]
+    pool = [c for c in pl.discard if _card_matches(c, eff.get("filter"))]
+    if not pool:
+        return
+    pick = max(pool, key=lambda c: c.cost)
+    pl.discard.remove(pick)
+    g.emit(f"schema: plays {pick.name} from discard (free)")
+    g._play_card(p, pick, {}, free=True)
+    # actions resolve into the discard; move it to the bottom instead
+    if pick in pl.discard:
+        pl.discard.remove(pick)
+        pl.deck.insert(0, pick)
+
+
+def _eff_play_same_name_free(g, p, ctx, eff):
+    """Play a character from hand sharing a name with the one just banished
+    (Vine Pod REGENERATE). ctx['banished_name'] is set by the cost."""
+    want = ctx.get("banished_name")
+    if not want:
+        return
+    pl = g.players[p]
+    pool = [c for c in pl.hand if c.is_character and c.base_name == want]
+    if not pool:
+        return
+    pick = max(pool, key=lambda c: c.cost)
+    g.emit(f"schema: plays {pick.name} for free")
+    g._play_card(p, pick, {}, free=True)
+
+
 def _eff_reveal_hand_discard_type(g, p, ctx, eff):
     """Chosen opponent reveals their hand and discards a card of a type you
     pick (Goldie O'Gilt CLAIM JUMPER). We choose, so take the best one."""
@@ -1796,6 +1872,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "reveal_top_play_or_discard": _eff_reveal_top_play_or_discard,
+    "play_from_discard_then_bottom": _eff_play_from_discard_then_bottom,
+    "play_same_name_free": _eff_play_same_name_free,
     "reveal_hand_discard_type": _eff_reveal_hand_discard_type,
     "discard_to_bottom_for_lore": _eff_discard_to_bottom_for_lore,
     "dig_reveal_to_hand": _eff_dig_reveal_to_hand,
@@ -1887,7 +1966,8 @@ def apply_effect(g, p, ctx, eff):
                            "team_strength_floor",
                            "classification_cant_quest",
                            "opposing_items_cant_ready",
-                           "no_challenge_damage", "move_cost_reduction"):
+                           "no_challenge_damage", "move_cost_reduction",
+                           "play_free_via_bottom"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -2080,6 +2160,7 @@ def _pay_activation_cost(g, p, obj, entry, ctx):
             # cheapest body; record its cost for cost-relative effects
             victim = min(others, key=lambda c: (g.eff_lore(c), c.card.cost))
             ctx["banished_cost"] = victim.card.cost
+            ctx["banished_name"] = victim.card.base_name
             g.emit(f"schema: banishes own {victim.card.base_name} (cost)")
             g.banish_char(victim, cause="effect")
     if cost.get("self_damage"):

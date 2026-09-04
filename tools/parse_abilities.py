@@ -1171,6 +1171,19 @@ def _c(m):
             "then": {"type": "gain_lore", "amount": int(m.group(2))}}
 
 
+
+@clause(r"[Rr]eveal the top card of your deck\. You may play it as if it were "
+        r"in your hand\. Otherwise, put it in your discard\.?")
+def _c(m):
+    return {"type": "reveal_top_play_or_discard"}
+
+
+@clause(r"[Yy]ou may play a character with the same name as that character "
+        r"for free\.?")
+def _c(m):
+    return {"type": "play_same_name_free"}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1338,6 +1351,10 @@ _OPP_ITEMS_NO_READY = re.compile(
 _NO_CHALLENGE_DAMAGE = re.compile(
     r"(?:While|During|If) (?P<cond>.+?), (?:this character|she|he|they|it) "
     r"takes no damage from challenges\.?", re.IGNORECASE)
+
+_ALT_BOTTOM_COST = re.compile(
+    r"You may put an? ([A-Za-z ]+?) character card from your discard on the "
+    r"bottom of your deck to play this character for free\.?", re.IGNORECASE)
 
 _MOVE_DISCOUNT = re.compile(
     r"Once during your turn, you may pay (\d+) Ink less to move this "
@@ -1669,6 +1686,15 @@ def parse_static_self(line):
         return [{"trigger": "static",
                  "effect": {"type": "static_self_keyword",
                             "keyword": "cant_gain_evasive"}}]
+    mab = _ALT_BOTTOM_COST.fullmatch(line)
+    if mab:
+        cls = _CLASS_CANON.get(mab.group(1).strip().lower())
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "play_free_via_bottom", "count": 1,
+                            "filter": {"card_type": "character",
+                                       "classification": cls}}}]
     mmd = _MOVE_DISCOUNT.fullmatch(line)
     if mmd:
         return [{"trigger": "static", "uses_per_turn": 1,

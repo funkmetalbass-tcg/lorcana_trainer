@@ -1626,6 +1626,8 @@ def _eff_conditional_discard(g, p, ctx, eff):
     if not check_condition(g, p, ctx, eff.get("condition")):
         return
     pl = g.players[p]
+    if not pl.hand:
+        return
     card = abilities._worst_hand_card(g, p)
     if card is None:
         return

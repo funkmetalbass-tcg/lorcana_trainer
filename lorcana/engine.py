@@ -492,6 +492,9 @@ class Game:
                         disc_seen.add(card.name)
         # plays
         for card in pl.hand:
+            from . import schema as _sch3
+            if _sch3.blocks_opponent_play(self, p, card):
+                continue
             key = ("play", card.name)
             if key in seen_names:
                 continue

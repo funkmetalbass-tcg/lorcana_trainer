@@ -445,7 +445,19 @@ def _cond_banished_in_challenge(g, p, ctx, cond):
     return any(("chal_banish", who) in g.turn_flags for who in (0, 1))
 
 
+def _cond_hand_empty(g, p, ctx, cond):
+    return not g.players[p].hand
+
+
+def _cond_no_named_character(g, p, ctx, cond):
+    """You do NOT control a character with this name (Launchpad's 'unless')."""
+    return not any(c.card.base_name == cond.get("name")
+                   for c in g.my_chars(p))
+
+
 _CONDITIONS = {
+    "hand_empty": _cond_hand_empty,
+    "no_named_character": _cond_no_named_character,
     "banished_in_challenge_this_turn": _cond_banished_in_challenge,
     "opponent_lore_at_most": _cond_opponent_lore_at_most,
     "opponent_ready_characters": _cond_opponent_ready_characters,
@@ -1601,6 +1613,39 @@ def _eff_enter_exerted_for(g, p, ctx, eff):
         apply_effect(g, p, ctx, inner)
 
 
+def _eff_conditional_discard(g, p, ctx, eff):
+    """Discard a card only when the condition holds (Launchpad: discard
+    *unless* you control Darkwing Duck)."""
+    from . import abilities
+    if not check_condition(g, p, ctx, eff.get("condition")):
+        return
+    pl = g.players[p]
+    card = abilities._worst_hand_card(g, p)
+    if card is None:
+        return
+    pl.hand.remove(card)
+    pl.discard.append(card)
+    g.emit(f"schema: discards {card.name}")
+
+
+def _eff_discard_to_damage(g, p, ctx, eff):
+    """Discard a card as a cost to deal damage (David Xanatos). Skipped when
+    the hand is empty, so the damage is never free."""
+    from . import abilities
+    pl = g.players[p]
+    if not pl.hand:
+        return
+    card = abilities._worst_hand_card(g, p)
+    if card is None:
+        return
+    pl.hand.remove(card)
+    pl.discard.append(card)
+    g.emit(f"schema: discards {card.name} to deal damage")
+    apply_effect(g, p, ctx, {"type": "deal_damage",
+                             "amount": eff.get("amount", 1),
+                             "target": "chosen_opposing"})
+
+
 def _eff_cant_challenge(g, p, ctx, eff):
     """Up to N chosen opposing characters can't challenge during their next
     turn. Recorded as a timed effect keyed to the *victim's* next turn, so it
@@ -1900,6 +1945,8 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "conditional_discard": _eff_conditional_discard,
+    "discard_to_damage": _eff_discard_to_damage,
     "cant_challenge": _eff_cant_challenge,
     "reveal_top_play_or_discard": _eff_reveal_top_play_or_discard,
     "play_from_discard_then_bottom": _eff_play_from_discard_then_bottom,
@@ -1996,7 +2043,7 @@ def apply_effect(g, p, ctx, eff):
                            "classification_cant_quest",
                            "opposing_items_cant_ready",
                            "no_challenge_damage", "move_cost_reduction",
-                           "play_free_via_bottom"):
+                           "play_free_via_bottom", "opponent_cant_play"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -2706,6 +2753,26 @@ def note_move_discount_used(g, ch):
         used = g.use_counts = {}
     key = ("move_disc", ch.uid)
     used[key] = used.get(key, 0) + 1
+
+
+def blocks_opponent_play(g, p, card):
+    """Is player p forbidden from playing this card by an opposing static
+    (Gizmoduck FAIL-SAFE)?"""
+    for src in list(g.my_chars(1 - p)):
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "opponent_cant_play":
+                continue
+            ct = eff.get("card_type")
+            if ct and not _card_matches(card, {"card_type": ct}):
+                continue
+            if card.cost < eff.get("min_cost", 0):
+                continue
+            if check_condition(g, src.owner,
+                               {"card": src.card, "char": src},
+                               e.get("condition")):
+                return True
+    return False
 
 
 def blocks_item_ready(g, item, owner):

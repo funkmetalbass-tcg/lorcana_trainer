@@ -1197,6 +1197,37 @@ def _c(m):
     return {"type": "cant_challenge", "count": 1}
 
 
+
+@clause(r"[Cc]hoose and discard a card unless you have a character named "
+        r"([A-Za-z' .-]+?) in play\.?")
+def _c(m):
+    return {"type": "conditional_discard",
+            "condition": {"type": "no_named_character",
+                          "name": m.group(1).strip()}}
+
+
+@clause(r"[Dd]raw a card, then choose and discard a card unless you have a "
+        r"character named ([A-Za-z' .-]+?) in play\.?")
+def _c(m):
+    return {"type": "sequence", "effects": [
+        {"type": "draw", "amount": 1},
+        {"type": "conditional_discard",
+         "condition": {"type": "no_named_character",
+                       "name": m.group(1).strip()}}]}
+
+
+@clause(r"[Yy]ou may pay (\d+) Ink to draw a card, then choose and discard "
+        r"a card\.?")
+def _c(m):
+    return {"type": "draw_then_discard", "amount": 1}
+
+
+@clause(r"[Yy]ou may choose and discard a card to deal (\d+) damage to "
+        r"chosen character\.?")
+def _c(m):
+    return {"type": "discard_to_damage", "amount": int(m.group(1))}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1373,6 +1404,10 @@ _MOVE_DISCOUNT = re.compile(
     r"Once during your turn, you may pay (\d+) Ink less to move this "
     r"character to a location\.?", re.IGNORECASE)
 
+_OPP_CANT_PLAY = re.compile(
+    r"While you have no cards in your hand, opponents can't play "
+    r"(actions|items|characters) with cost (\d+) or more\.?", re.IGNORECASE)
+
 _NO_READY_PLAIN = re.compile(
     r"This character can't ready at the start of your turn\.?",
     re.IGNORECASE)
@@ -1506,6 +1541,8 @@ _STATIC_CONDS = [
                 r"(\d+) Strength or more", re.I), None),
     (re.compile(r"you've played a song this turn", re.I),
      {"type": "song_played_this_turn"}),
+    (re.compile(r"you have no cards in your hand", re.I),
+     {"type": "hand_empty"}),
     (re.compile(r"(?:if )?you've put a card under one of your characters or "
                 r"locations this turn", re.I),
      {"type": "put_card_under_this_turn"}),
@@ -1751,6 +1788,13 @@ def parse_static_self(line):
                  "effect": {"type": "play_free_via_bottom", "count": 1,
                             "filter": {"card_type": "character",
                                        "classification": cls}}}]
+    mop = _OPP_CANT_PLAY.fullmatch(line)
+    if mop:
+        return [{"trigger": "static",
+                 "condition": {"type": "hand_empty"},
+                 "effect": {"type": "opponent_cant_play",
+                            "card_type": mop.group(1).lower().rstrip("s"),
+                            "min_cost": int(mop.group(2))}}]
     mmd = _MOVE_DISCOUNT.fullmatch(line)
     if mmd:
         return [{"trigger": "static", "uses_per_turn": 1,
@@ -2341,6 +2385,8 @@ _TRIG_CONDS = [
     (re.compile(r"^[Ii]f a character was banished in a challenge this turn,"
                 r"\s*", re.IGNORECASE),
      lambda m: {"type": "banished_in_challenge_this_turn"}),
+    (re.compile(r"^[Ii]f you have no cards in your hand,\s*", re.IGNORECASE),
+     lambda m: {"type": "hand_empty"}),
     (re.compile(r"^if an opponent has (\d+) lore,\s*", re.IGNORECASE),
      lambda m: {"type": "opponent_lore_at_most", "amount": int(m.group(1))}),
     (re.compile(r"^if an opponent has (\d+) or more ready characters in play,"

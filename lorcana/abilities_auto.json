@@ -1400,8 +1400,17 @@
  ],
  "Gizmoduck - Duckburg Defender": [
   {
-   "impl": "unimplemented",
-   "text": "Resist +1 (Damage dealt to this character is reduced by 1.)[FAIL-SAFE] While you have no cards in your hand, opponents can't play actions with cost 4 or more."
+   "trigger": "static",
+   "condition": {
+    "type": "hand_empty"
+   },
+   "effect": {
+    "type": "opponent_cant_play",
+    "card_type": "action",
+    "min_cost": 4
+   },
+   "confidence": "medium",
+   "source": "Resist +1 (Damage dealt to this character is reduced by 1.)[FAIL-SAFE] While you have no cards in your hand, opponents can't play actions with cost 4 or more."
   }
  ],
  "Fergus - Outpost Builder": [
@@ -2605,8 +2614,28 @@
  ],
  "Launchpad - Trusty Sidekick": [
   {
-   "impl": "unimplemented",
-   "text": "WHAT DID YOU NEED? [Exert] — Draw a card. Then, choose and discard a card unless you have a character named Darkwing Duck in play."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "sequence",
+    "effects": [
+     {
+      "type": "draw",
+      "amount": 1
+     },
+     {
+      "type": "conditional_discard",
+      "condition": {
+       "type": "no_named_character",
+       "name": "Darkwing Duck"
+      }
+     }
+    ]
+   },
+   "confidence": "medium",
+   "source": "WHAT DID YOU NEED? [Exert] — Draw a card. Then, choose and discard a card unless you have a character named Darkwing Duck in play."
   }
  ],
  "Donald Duck - Along for the Ride": [
@@ -3730,8 +3759,17 @@
  ],
  "Megavolt - Electrical Menace": [
   {
-   "impl": "unimplemented",
-   "text": "[FORCE FIELD] While you have no cards in your hand, this character gains Resist +2. (Damage dealt to them is reduced by 2.)"
+   "trigger": "static",
+   "condition": {
+    "type": "hand_empty"
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "resist",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[FORCE FIELD] While you have no cards in your hand, this character gains Resist +2. (Damage dealt to them is reduced by 2.)"
   }
  ],
  "Darkwing Duck - Shadowy Superhero": [
@@ -5234,8 +5272,13 @@
  ],
  "David Xanatos - Steel Clan Leader": [
   {
-   "impl": "unimplemented",
-   "text": "[MINOR INCONVENIENCE] When you play this character, you may choose and discard a card to deal 2 damage to chosen character."
+   "trigger": "on_play",
+   "effect": {
+    "type": "discard_to_damage",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[MINOR INCONVENIENCE] When you play this character, you may choose and discard a card to deal 2 damage to chosen character."
   }
  ],
  "Chief Bogo - Calling the Shots": [
@@ -6726,8 +6769,20 @@
  ],
  "Beast's Mirror": [
   {
-   "impl": "unimplemented",
-   "text": "SHOW ME [Exert], 3 Ink — If you have no cards in your hand, draw a card."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 3
+   },
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "condition": {
+    "type": "hand_empty"
+   },
+   "confidence": "medium",
+   "source": "SHOW ME [Exert], 3 Ink — If you have no cards in your hand, draw a card."
   }
  ],
  "Maui's Place of Exile - Hidden Island": [

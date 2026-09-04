@@ -2208,9 +2208,19 @@ def can_activate(g, p, obj, entry):
     """
     cost = entry.get("cost") or {}
     pl = g.players[p]
-    ctx = {"card": obj.card, "char": obj if _obj_is_char(obj) else None}
+    ctx = {"card": obj.card, "char": obj if _obj_is_char(obj) else None,
+           "source": obj}
     if not check_condition(g, p, ctx, entry.get("condition")):
         return False
+    # dispatch_activated resolves the entry directly rather than through
+    # _run, so the per-turn limit has to be enforced here or the ability
+    # could be activated repeatedly.
+    limit = entry.get("uses_per_turn") or (1 if entry.get("once_per_turn")
+                                           else 0)
+    if limit:
+        used = getattr(g, "use_counts", None) or {}
+        if used.get(_once_key(entry, ctx), 0) >= limit:
+            return False
     if cost.get("exert", False):
         if getattr(obj, "exerted", False):
             return False
@@ -2280,9 +2290,18 @@ def dispatch_activated(g, p, obj, index):
     if index >= len(ents):
         return
     entry = ents[index]
-    ctx = {"card": obj.card, "char": obj if _obj_is_char(obj) else None}
+    ctx = {"card": obj.card, "char": obj if _obj_is_char(obj) else None,
+           "source": obj}
     if not _pay_activation_cost(g, p, obj, entry, ctx):
         return
+    limit = entry.get("uses_per_turn") or (1 if entry.get("once_per_turn")
+                                           else 0)
+    if limit:
+        used = getattr(g, "use_counts", None)
+        if used is None:
+            used = g.use_counts = {}
+        key = _once_key(entry, ctx)
+        used[key] = used.get(key, 0) + 1
     if check_condition(g, p, ctx, entry.get("condition")):
         apply_effect(g, p, ctx, entry["effect"])
 
@@ -2561,6 +2580,25 @@ def dispatch_banish(g, ch, cause="damage"):
     ents = entries_for(ch.card.name, "on_banish")
     if ents:
         _run(g, ch.owner, {"card": ch.card, "char": ch, "source": ch}, ents)
+
+
+def dispatch_ally_quest(g, quester):
+    """'Whenever one of your <classification> characters quests' watchers on
+    your own board. ctx["char"] is the quester, so effects can read it."""
+    p = quester.owner
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        ents = entries_for(src.card.name, "on_ally_quest")
+        for e in ents:
+            want = e.get("quester_classification")
+            if want and want not in quester.card.classifications:
+                continue
+            if not e.get("include_self") \
+                    and getattr(src, "uid", None) == quester.uid:
+                continue
+            _run(g, p, {"card": src.card, "char": quester, "source": src},
+                 [e])
+            if g.winner is not None:
+                return
 
 
 def dispatch_quest(g, ch):

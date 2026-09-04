@@ -3733,8 +3733,14 @@
  ],
  "Aladdin - Created by the Vine": [
   {
-   "impl": "unimplemented",
-   "text": "[THE VINE PROVIDES] Whenever one of your Floodborn characters quests, you may draw a card, then choose and discard a card."
+   "trigger": "on_ally_quest",
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[THE VINE PROVIDES] Whenever one of your Floodborn characters quests, you may draw a card, then choose and discard a card.",
+   "quester_classification": "Floodborn"
   }
  ],
  "Willie The Giant - Created by the Vine": [
@@ -3812,8 +3818,17 @@
  ],
  "Kronk - Meat Hut Cook": [
   {
-   "impl": "unimplemented",
-   "text": "Resist +1 (Damage dealt to this character is reduced by 1.)[PICKUP!] Once during your turn, you may pay 1 Ink to draw a card, then choose and discard a card."
+   "trigger": "activated",
+   "effect": {
+    "type": "draw_then_discard",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Resist +1 (Damage dealt to this character is reduced by 1.)[PICKUP!] Once during your turn, you may pay 1 Ink to draw a card, then choose and discard a card.",
+   "once_per_turn": true,
+   "cost": {
+    "ink": 1
+   }
   }
  ],
  "Mulan - Created by the Vine": [
@@ -5444,8 +5459,21 @@
  ],
  "Pongo - Determined Father": [
   {
-   "impl": "unimplemented",
-   "text": "[TWILIGHT BARK] Once during your turn, you may pay 2 Ink to reveal the top card of your deck. If it's a character card, put it into your hand. Otherwise, put it on the bottom of your deck."
+   "trigger": "activated",
+   "effect": {
+    "type": "look_at_top",
+    "count": 1,
+    "destination": "hand",
+    "filter": {
+     "card_type": "character"
+    }
+   },
+   "confidence": "medium",
+   "source": "[TWILIGHT BARK] Once during your turn, you may pay 2 Ink to reveal the top card of your deck. If it's a character card, put it into your hand. Otherwise, put it on the bottom of your deck.",
+   "once_per_turn": true,
+   "cost": {
+    "ink": 2
+   }
   }
  ],
  "Stitch - Rock Star": [

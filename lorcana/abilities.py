@@ -1988,6 +1988,8 @@ def on_quest(g, ch, sh_banish=False, choice=None):
 
     # Phase 2: data-driven abilities
     schema.dispatch_quest(g, ch)
+    # "whenever one of your <classification> characters quests" watchers
+    schema.dispatch_ally_quest(g, ch)
 
     # Mickey SECRET PATH: your OTHER characters questing while he is exerted
     for m in g.my_chars(g_p):

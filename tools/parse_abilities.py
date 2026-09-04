@@ -2235,6 +2235,10 @@ _PREAMBLES = [
     (re.compile(r"^When you play this (?:character|item|location),\s*",
                 re.IGNORECASE), "on_play"),
     (re.compile(r"^When you shift this character,\s*", re.IGNORECASE), "on_shift"),
+    (re.compile(r"^Whenever one of your (?P<qcls>[A-Za-z ]+?) characters "
+                r"quests,\s*", re.IGNORECASE), "on_ally_quest|qcls"),
+    (re.compile(r"^Once during your turn, you may pay (?P<ink>\d+) Ink to\s*",
+                re.IGNORECASE), "activated|payink|once"),
     (re.compile(r"^Whenever this character quests,\s*", re.IGNORECASE), "on_quest"),
     (re.compile(r"^Whenever one of your actions deals damage to an opposing "
                 r"character,\s*", re.IGNORECASE), "on_action_damage"),
@@ -2410,6 +2414,13 @@ def parse_triggered(prose):
                 extra["once_per_turn"] = True
             if "twice" in parts:
                 extra["uses_per_turn"] = 2
+            if "qcls" in parts and m.groupdict().get("qcls"):
+                _qc = _classes(m.group("qcls"))
+                if _qc is None:
+                    return None
+                extra["quester_classification"] = _qc[0]
+            if "payink" in parts and m.groupdict().get("ink"):
+                extra["cost"] = {"ink": int(m.group("ink"))}
             if "minstr" in parts and m.groupdict().get("minstr"):
                 extra["moved_min_strength"] = int(m.group("minstr"))
             if "atloc" in parts:

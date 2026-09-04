@@ -1566,6 +1566,63 @@ def _eff_enter_exerted_for(g, p, ctx, eff):
         apply_effect(g, p, ctx, inner)
 
 
+def _eff_banish_own_to_draw(g, p, ctx, eff):
+    """Banish one of your characters to draw; draw more if it had a card
+    under it (Time to Go!). Spends the least valuable body."""
+    pool = list(g.my_chars(p))
+    if not pool:
+        return
+    victim = min(pool, key=lambda c: (g.eff_lore(c), g.eff_strength(c),
+                                      c.card.cost))
+    boosted = bool(getattr(victim, "boosted", None)
+                   or getattr(victim, "under", None))
+    n = eff.get("bonus_amount", eff.get("amount", 1)) if boosted \
+        else eff.get("amount", 1)
+    g.emit(f"schema: banishes {victim.card.base_name} to draw {n}")
+    g.banish_char(victim, cause="effect")
+    g.draw(p, n)
+
+
+def _eff_banish_own_then(g, p, ctx, eff):
+    """Banish another of your characters; if you do, run a follow-on effect
+    (Sid Phillips PLAYTIME'S OVER)."""
+    me = ctx.get("char")
+    pool = [c for c in g.my_chars(p)
+            if me is None or c.uid != me.uid]
+    if not pool:
+        return
+    victim = min(pool, key=lambda c: (g.eff_lore(c), g.eff_strength(c),
+                                      c.card.cost))
+    g.emit(f"schema: banishes own {victim.card.base_name}")
+    g.banish_char(victim, cause="effect")
+    if eff.get("then") and g.winner is None:
+        apply_effect(g, p, ctx, eff["then"])
+
+
+def _eff_banish_up_to_total_strength(g, p, ctx, eff):
+    """Banish any number of chosen opposing characters whose total Strength
+    is at most N (The Leviathan). Greedy: take the strongest that still
+    fits, which maximises what is removed."""
+    from . import abilities
+    budget = eff.get("total", 0)
+    taken = []
+    while True:
+        cand = [c for c in g.my_chars(1 - p)
+                if not abilities.has_ward(g, c)
+                and c.uid not in [t.uid for t in taken]
+                and g.eff_strength(c) <= budget]
+        if not cand:
+            break
+        pick = max(cand, key=lambda c: g.eff_strength(c))
+        budget -= g.eff_strength(pick)
+        taken.append(pick)
+    for c in taken:
+        g.emit(f"schema: banishes {c.card.base_name}(P{c.owner})")
+        g.banish_char(c, cause="effect")
+        if g.winner is not None:
+            return
+
+
 def _eff_opponent_lose_lore_per_damage(g, p, ctx, eff):
     """Each opponent loses lore equal to the damage on one of your damaged
     characters, capped (Nani's Payback)."""
@@ -1696,6 +1753,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "banish_own_to_draw": _eff_banish_own_to_draw,
+    "banish_own_then": _eff_banish_own_then,
+    "banish_up_to_total_strength": _eff_banish_up_to_total_strength,
     "opponent_lose_lore_per_damage": _eff_opponent_lose_lore_per_damage,
     "draw_per_damage_then_banish": _eff_draw_per_damage_then_banish,
     "drain_then_draw_per_lore": _eff_drain_then_draw_per_lore,
@@ -1781,7 +1841,7 @@ def apply_effect(g, p, ctx, eff):
                            "team_strength_floor",
                            "classification_cant_quest",
                            "opposing_items_cant_ready",
-                           "no_challenge_damage"):
+                           "no_challenge_damage", "move_cost_reduction"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
     if fn is None:
@@ -1804,9 +1864,13 @@ def _run(g, p, ctx, ents):
         if "effect" not in e:
             continue  # e.g. {"impl": "python"} marker entries
         # "Once during your turn, ..." -- one use per source per turn.
-        if e.get("once_per_turn"):
+        limit = e.get("uses_per_turn") or (1 if e.get("once_per_turn") else 0)
+        if limit:
             key = _once_key(e, ctx)
-            if key in g.turn_flags:
+            used = getattr(g, "use_counts", None)
+            if used is None:
+                used = g.use_counts = {}
+            if used.get(key, 0) >= limit:
                 continue
         if not check_condition(g, p, ctx, e.get("condition")):
             continue
@@ -1836,8 +1900,9 @@ def _run(g, p, ctx, ents):
                     g.banish_char(src, cause="effect")
                 elif src in g.items[p]:
                     g.banish_item(src)
-        if e.get("once_per_turn"):
-            g.turn_flags.add(_once_key(e, ctx))
+        if limit:
+            key = _once_key(e, ctx)
+            g.use_counts[key] = g.use_counts.get(key, 0) + 1
         apply_effect(g, p, ctx, e["effect"])
         if g.winner is not None:
             return
@@ -2461,6 +2526,32 @@ def blocks_quest_by_classification(g, ch):
     return False
 
 
+def move_discount(g, ch):
+    """Ink discount on moving this character to a location
+    (Raksha - Fearless Mother). Limited uses are tracked like any other
+    n-times-per-turn entry."""
+    total = 0
+    for e in entries_for(ch.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "move_cost_reduction":
+            continue
+        limit = e.get("uses_per_turn") or 1
+        key = ("move_disc", ch.uid)
+        used = getattr(g, "use_counts", None) or {}
+        if used.get(key, 0) >= limit:
+            continue
+        total += eff.get("amount", 1)
+    return total
+
+
+def note_move_discount_used(g, ch):
+    used = getattr(g, "use_counts", None)
+    if used is None:
+        used = g.use_counts = {}
+    key = ("move_disc", ch.uid)
+    used[key] = used.get(key, 0) + 1
+
+
 def blocks_item_ready(g, item, owner):
     """An opposing permanent stopping this player's items readying
     (Vincenzo Santorini - On the Run)."""
@@ -2504,6 +2595,16 @@ def dispatch_card_under(g, p, obj, via_boost):
         _run(g, p, {"card": obj.card,
                     "char": obj if hasattr(obj, "damage") else None,
                     "source": obj}, ents)
+    # watchers that fire on any card going under one of your permanents,
+    # not only on a Boost activation (Ares - God of War)
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        if getattr(src, "uid", None) == getattr(obj, "uid", None):
+            continue
+        ents = entries_for(src.card.name, "on_any_card_under")
+        if ents:
+            _run(g, p, {"card": src.card, "char": obj, "source": src}, ents)
+            if g.winner is not None:
+                return
     if not via_boost:
         return
     for src in list(g.my_chars(p)) + list(g.items[p]):

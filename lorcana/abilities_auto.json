@@ -834,14 +834,44 @@
  ],
  "The Leviathan - Guardian of Atlantis": [
   {
-   "impl": "unimplemented",
-   "text": "[IT'S A MACHINE!] When you play this character, if 2 or more cards were put into your discard this turn, you may banish any number of chosen opposing characters with total Strength 10 or less."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_up_to_total_strength",
+    "total": 10
+   },
+   "confidence": "medium",
+   "source": "[IT'S A MACHINE!] When you play this character, if 2 or more cards were put into your discard this turn, you may banish any number of chosen opposing characters with total Strength 10 or less.",
+   "condition": {
+    "type": "discards_this_turn_at_least",
+    "count": 2
+   }
   }
  ],
  "Sid Phillips - Toy Surgeon": [
   {
-   "impl": "unimplemented",
-   "text": "[PLAYTIME'S OVER] When you play this character, you may banish another chosen character of yours. If you do, each opponent chooses and banishes one of their characters.[DOUBLE PRIZES!] During your turn, whenever a Toy character is banished, gain 2 lore."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_own_then",
+    "then": {
+     "type": "opponent_banish_own"
+    }
+   },
+   "confidence": "medium",
+   "source": "[PLAYTIME'S OVER] When you play this character, you may banish another chosen character of yours. If you do, each opponent chooses and banishes one of their characters.[DOUBLE PRIZES!] During your turn, whenever a Toy character is banished, gain 2 lore."
+  },
+  {
+   "trigger": "on_ally_banished",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[PLAYTIME'S OVER] When you play this character, you may banish another chosen character of yours. If you do, each opponent chooses and banishes one of their characters.[DOUBLE PRIZES!] During your turn, whenever a Toy character is banished, gain 2 lore.",
+   "condition": {
+    "type": "your_turn"
+   },
+   "include_self": true,
+   "banished_classification": "Toy"
   }
  ],
  "Pterodactyl Janie Doll - Sid's Toy": [
@@ -1994,8 +2024,13 @@
  ],
  "Tod - Knows All the Tricks": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 5 Ink\nEvasive[IMPRESSIVE LEAPS] Twice during your turn, whenever this character is chosen for an action or an item’s ability, you may ready him."
+   "trigger": "on_chosen_by_opponent",
+   "effect": {
+    "type": "ready_self"
+   },
+   "confidence": "medium",
+   "source": "Shift 5 Ink\nEvasive[IMPRESSIVE LEAPS] Twice during your turn, whenever this character is chosen for an action or an item’s ability, you may ready him.",
+   "uses_per_turn": 2
   }
  ],
  "Donald Duck - Fred Honeywell": [
@@ -4425,14 +4460,26 @@
  ],
  "Ares - God of War": [
   {
-   "impl": "unimplemented",
-   "text": "Reckless (This character can't quest and must challenge each turn if able.) CALL TO BATTLE Once during your turn, whenever you put a card under one of your characters or locations, you may ready chosen character. If you do, that character can't quest for the rest of this turn."
+   "trigger": "on_any_card_under",
+   "effect": {
+    "type": "ready_chosen",
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "Reckless (This character can't quest and must challenge each turn if able.) CALL TO BATTLE Once during your turn, whenever you put a card under one of your characters or locations, you may ready chosen character. If you do, that character can't quest for the rest of this turn.",
+   "once_per_turn": true
   }
  ],
  "Raksha - Fearless Mother": [
   {
-   "impl": "unimplemented",
-   "text": "[ON PATROL] Once during your turn, you may pay 1 Ink less to move this character to a location."
+   "trigger": "static",
+   "uses_per_turn": 1,
+   "effect": {
+    "type": "move_cost_reduction",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[ON PATROL] Once during your turn, you may pay 1 Ink less to move this character to a location."
   }
  ],
  "Rama - Vigilant Father": [
@@ -4702,8 +4749,14 @@
  ],
  "Time to Go!": [
   {
-   "impl": "unimplemented",
-   "text": "Banish chosen character of yours to draw 2 cards. If that character had a card under them, draw 3 cards instead."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_own_to_draw",
+    "amount": 2,
+    "bonus_amount": 3
+   },
+   "confidence": "high",
+   "source": "Banish chosen character of yours to draw 2 cards. If that character had a card under them, draw 3 cards instead."
   }
  ],
  "Ghostly Tale": [

@@ -150,6 +150,7 @@ class Game:
         self.action_ctx = None       # (player, card) while an action resolves
         self.challenge_ctx = None    # (attacker_uid, defender_uid) mid-challenge
         self._in_challenge_damage = False
+        self.use_counts = {}         # n-times-per-turn ability usage
         self._in_chosen_trigger = False
         self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
@@ -173,6 +174,7 @@ class Game:
         g.action_ctx = self.action_ctx
         g.challenge_ctx = self.challenge_ctx
         g._in_challenge_damage = self._in_challenge_damage
+        g.use_counts = dict(self.use_counts)
         g._in_chosen_trigger = self._in_chosen_trigger
         g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)
@@ -278,6 +280,7 @@ class Game:
         self.turn += 1
         p = self.active
         self.turn_flags = set()
+        self.use_counts = {}
         self.cards_played = [0, 0]
         self.turn_discards = {0: 0, 1: 0}
         # Ready step
@@ -585,6 +588,8 @@ class Game:
                 from . import schema as _schema
                 _free = _schema.location_free_move_for(self, loc, ch)
                 _cost = 0 if _free else loc.card.move_cost
+                if _cost:
+                    _cost = max(0, _cost - _schema.move_discount(self, ch))
                 if ch.location != loc.uid and _cost is not None \
                         and pl.ink_ready >= _cost:
                     if loc.card.name == "Zootopia - Police Headquarters" \
@@ -747,7 +752,10 @@ class Game:
             choice = action[3] if len(action) > 3 else None
             from . import schema as _schema
             if not _schema.location_free_move_for(self, loc, ch):
-                self.pay_ink(p, loc.card.move_cost)
+                _d = _schema.move_discount(self, ch)
+                if _d:
+                    _schema.note_move_discount_used(self, ch)
+                self.pay_ink(p, max(0, loc.card.move_cost - _d))
             ch.location = loc.uid
             self.emit(f"{ch.card.base_name} moves to {loc.card.base_name}")
             abilities.on_move(self, ch, loc, zoo_draw=(choice != "zoo_skip"))

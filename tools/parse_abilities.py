@@ -806,6 +806,12 @@ def _c(m):
     return {"type": "mill_self", "amount": int(m.group(1))}
 
 
+@clause(r"[Rr]eady chosen character\. If you do, that character can't quest "
+        r"for the rest of this turn\.?")
+def _c(m):
+    return {"type": "ready_chosen", "no_quest": True}
+
+
 @clause(r"[Rr]eady chosen character\. They can't quest for the rest of "
         r"this turn\.?")
 def _c(m):
@@ -1114,6 +1120,33 @@ def _c(m):
     return {"type": "drain_then_draw_per_lore", "amount": int(m.group(1))}
 
 
+
+@clause(r"[Yy]ou may ready him\.?|[Yy]ou may ready her\.?|"
+        r"[Yy]ou may ready them\.?")
+def _c(m):
+    return {"type": "ready_self"}
+
+
+@clause(r"[Bb]anish chosen character of yours to draw (\d+) cards\. If that "
+        r"character had a card under them, draw (\d+) cards instead\.?")
+def _c(m):
+    return {"type": "banish_own_to_draw", "amount": int(m.group(1)),
+            "bonus_amount": int(m.group(2))}
+
+
+@clause(r"[Yy]ou may banish another chosen character of yours\. If you do, "
+        r"each opponent chooses and banishes one of their characters\.?")
+def _c(m):
+    return {"type": "banish_own_then",
+            "then": {"type": "opponent_banish_own"}}
+
+
+@clause(r"[Yy]ou may banish any number of chosen opposing characters with "
+        r"total Strength (\d+) or less\.?")
+def _c(m):
+    return {"type": "banish_up_to_total_strength", "total": int(m.group(1))}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1281,6 +1314,10 @@ _OPP_ITEMS_NO_READY = re.compile(
 _NO_CHALLENGE_DAMAGE = re.compile(
     r"(?:While|During|If) (?P<cond>.+?), (?:this character|she|he|they|it) "
     r"takes no damage from challenges\.?", re.IGNORECASE)
+
+_MOVE_DISCOUNT = re.compile(
+    r"Once during your turn, you may pay (\d+) Ink less to move this "
+    r"character to a location\.?", re.IGNORECASE)
 
 _NO_READY_PLAIN = re.compile(
     r"This character can't ready at the start of your turn\.?",
@@ -1608,6 +1645,11 @@ def parse_static_self(line):
         return [{"trigger": "static",
                  "effect": {"type": "static_self_keyword",
                             "keyword": "cant_gain_evasive"}}]
+    mmd = _MOVE_DISCOUNT.fullmatch(line)
+    if mmd:
+        return [{"trigger": "static", "uses_per_turn": 1,
+                 "effect": {"type": "move_cost_reduction",
+                            "amount": int(mmd.group(1))}}]
     mcq = _CLS_CANT_QUEST.fullmatch(line)
     if mcq:
         cls = _classes(mcq.group(1), mcq.group(2))
@@ -2092,6 +2134,12 @@ _PREAMBLES = [
      "on_ally_challenged|hasunder"),
     (re.compile(r"^Once during your turn, whenever this character moves to a "
                 r"location,\s*", re.IGNORECASE), "on_move_self|once"),
+    (re.compile(r"^Once during your turn, whenever you put a card under one "
+                r"of your characters or locations,\s*", re.IGNORECASE),
+     "on_any_card_under|once"),
+    (re.compile(r"^Twice during your turn, whenever this character is chosen "
+                r"for an action or an item's ability,\s*", re.IGNORECASE),
+     "on_chosen_by_opponent|twice"),
     (re.compile(r"^Whenever you move a character here,\s*", re.IGNORECASE),
      "on_move_here"),
     (re.compile(r"^Once during your turn, whenever you move a character with "
@@ -2188,6 +2236,8 @@ def parse_triggered(prose):
             trig = parts[0]
             if "once" in parts:
                 extra["once_per_turn"] = True
+            if "twice" in parts:
+                extra["uses_per_turn"] = 2
             if "minstr" in parts and m.groupdict().get("minstr"):
                 extra["moved_min_strength"] = int(m.group("minstr"))
             if "atloc" in parts:

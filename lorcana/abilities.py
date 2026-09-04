@@ -255,6 +255,7 @@ def lore(g, ch):
 def resist(g, ch):
     from . import schema
     r = schema.static_self_resist(g, ch)
+    r += schema.team_static_keyword_amount(g, ch, "resist") or 0
     kwv = ch.card.kw("Resist")
     if isinstance(kwv, int):
         r += kwv  # printed Resist +N (generic, Phase 1)
@@ -339,7 +340,8 @@ def can_challenge_ready(g, attacker, defender):
 
 
 def challenger_bonus(g, ch):
-    b = 0
+    from . import schema
+    b = schema.team_static_keyword_amount(g, ch, "challenger") or 0
     kwv = ch.card.kw("Challenger")
     if isinstance(kwv, int):
         b += kwv  # printed Challenger +N (generic, Phase 1)
@@ -428,7 +430,10 @@ def has_rush(g, ch):
 
 
 def has_bodyguard(g, ch):
-    return bool(ch.card.kw("Bodyguard"))
+    if ch.card.kw("Bodyguard"):
+        return True
+    from . import schema
+    return schema.team_static_keyword(g, ch, "bodyguard")
 
 
 def _is_emerald(card):

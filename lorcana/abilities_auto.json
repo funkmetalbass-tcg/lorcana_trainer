@@ -2457,8 +2457,16 @@
  ],
  "Honker Muddlefoot - Timid Genius": [
   {
-   "impl": "unimplemented",
-   "text": "[BE CAREFUL!] Your characters named Darkwing Duck gain Resist +1. (Damage dealt to them is reduced by 1.)"
+   "trigger": "static",
+   "effect": {
+    "type": "team_keyword",
+    "keyword": "resist",
+    "amount": 1,
+    "name": "Darkwing Duck",
+    "include_self": true
+   },
+   "confidence": "medium",
+   "source": "[BE CAREFUL!] Your characters named Darkwing Duck gain Resist +1. (Damage dealt to them is reduced by 1.)"
   }
  ],
  "Jiminy Cricket - Ghost of Christmas Past": [
@@ -2935,8 +2943,16 @@
  ],
  "Pete - Created by the Vine": [
   {
-   "impl": "unimplemented",
-   "text": "[THORNY OVERGROWTH] Your Floodborn characters gain Challenger +1. (They get +1 {} while challenging.)"
+   "trigger": "static",
+   "effect": {
+    "type": "team_keyword",
+    "keyword": "challenger",
+    "amount": 1,
+    "classification": "Floodborn",
+    "include_self": true
+   },
+   "confidence": "medium",
+   "source": "[THORNY OVERGROWTH] Your Floodborn characters gain Challenger +1. (They get +1 {} while challenging.)"
   }
  ],
  "Grandma Wu - Wise Grandmother": [
@@ -3657,8 +3673,16 @@
  ],
  "Willie The Giant - Created by the Vine": [
   {
-   "impl": "unimplemented",
-   "text": "[DEFEND THE STALK] Your Floodborn characters gain Resist +1. (Damage dealt to them is reduced by 1.)"
+   "trigger": "static",
+   "effect": {
+    "type": "team_keyword",
+    "keyword": "resist",
+    "amount": 1,
+    "classification": "Floodborn",
+    "include_self": true
+   },
+   "confidence": "medium",
+   "source": "[DEFEND THE STALK] Your Floodborn characters gain Resist +1. (Damage dealt to them is reduced by 1.)"
   }
  ],
  "Sprout - Experiment 509": [
@@ -3733,8 +3757,16 @@
  ],
  "Diablo - Protecting His Mistress": [
   {
-   "impl": "unimplemented",
-   "text": "[FLURRY OF FEATHERS] Your characters named Maleficent gain Resist +1. (Damage dealt to them is reduced by 1.)"
+   "trigger": "static",
+   "effect": {
+    "type": "team_keyword",
+    "keyword": "resist",
+    "amount": 1,
+    "name": "Maleficent",
+    "include_self": true
+   },
+   "confidence": "medium",
+   "source": "[FLURRY OF FEATHERS] Your characters named Maleficent gain Resist +1. (Damage dealt to them is reduced by 1.)"
   }
  ],
  "Scar - Created by the Vine": [

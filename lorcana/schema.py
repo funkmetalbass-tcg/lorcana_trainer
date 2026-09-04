@@ -2781,13 +2781,27 @@ def dispatch_challenges(g, attacker, defender=None):
 
 
 def team_static_keyword(g, ch, kw):
-    """A keyword granted to your OTHER characters by a permanent you control.
+    """Is this keyword granted to this character by a permanent you control?
+    Boolean form, for keywords with no numeric value."""
+    return team_static_keyword_amount(g, ch, kw) is not None
+
+
+def team_static_keyword_amount(g, ch, kw):
+    """The summed value of a granted numeric keyword (Resist +N,
+    Challenger +N), or None when nothing grants it.
+
+    Returns a value rather than a bool because resist() and
+    challenger_bonus() sum by amount -- a boolean grant would resolve to +0
+    and the card would look implemented while doing nothing.
 
     Scans your locations as well as your characters, so a location can grant
     a keyword to your team (Beast's Castle - Overrun by the Vine).
     """
+    total = None
     for src in list(g.my_chars(ch.owner)) + list(g.my_locs(ch.owner)):
-        if getattr(src, "uid", None) == ch.uid:
+        if getattr(src, "uid", None) == ch.uid \
+                and not any(e.get("effect", {}).get("include_self")
+                            for e in entries_for(src.card.name, "static")):
             continue
         for e in entries_for(src.card.name, "static"):
             eff = e.get("effect", {})
@@ -2798,11 +2812,16 @@ def team_static_keyword(g, ch, kw):
             want = eff.get("classification")
             if want and want not in ch.card.classifications:
                 continue
+            name = eff.get("name")
+            if name and ch.card.base_name != name:
+                continue
+            if eff.get("exerted_only") and not ch.exerted:
+                continue
             if check_condition(g, src.owner,
                                {"card": src.card, "char": src},
                                e.get("condition")):
-                return True
-    return False
+                total = (total or 0) + eff.get("amount", 0)
+    return total
 
 
 def team_static_stat(g, ch, stat):

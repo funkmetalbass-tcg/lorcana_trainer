@@ -1391,7 +1391,22 @@ _ENTERS_DAMAGE = re.compile(
 # (Beast's Castle - Overrun by the Vine).
 _TEAM_KEYWORD = re.compile(
     r"Your (?:other )?([A-Za-z ]+?) characters gain "
-    r"(Ward|Rush|Evasive|Reckless|Support)\.?", re.IGNORECASE)
+    r"(Ward|Rush|Evasive|Reckless|Support|Bodyguard)\.?", re.IGNORECASE)
+
+# numeric variants: "Your Floodborn characters gain Resist +2."
+_TEAM_KEYWORD_N = re.compile(
+    r"Your (?P<other>other )?(?P<cls>[A-Za-z ]+?) characters gain "
+    r"(?P<kw>Resist|Challenger) \+(?P<amt>\d+)\.?", re.IGNORECASE)
+
+# "Your characters named X gain Resist +1."
+_TEAM_KEYWORD_NAMED = re.compile(
+    r"Your characters named ([A-Za-z' .-]+?) gain "
+    r"(Resist|Challenger) \+(\d+)\.?", re.IGNORECASE)
+
+# "Your other exerted Floodborn characters gain Bodyguard."
+_TEAM_KEYWORD_EXERTED = re.compile(
+    r"Your other exerted ([A-Za-z ]+?) characters gain "
+    r"(Ward|Rush|Evasive|Bodyguard|Reckless)\.?", re.IGNORECASE)
 
 _BOTTOM_FOR_PAYOFF = re.compile(
     r"[Yy]ou may put (\d+) (action|character|item) cards from your discard on "
@@ -1561,6 +1576,34 @@ def parse_static_self(line):
         return [{"trigger": "static",
                  "effect": {"type": "enters_with_damage",
                             "amount": int(med.group(1))}}]
+    mkn = _TEAM_KEYWORD_NAMED.fullmatch(line)
+    if mkn:
+        return [{"trigger": "static",
+                 "effect": {"type": "team_keyword",
+                            "keyword": mkn.group(2).lower(),
+                            "amount": int(mkn.group(3)),
+                            "name": mkn.group(1).strip(),
+                            "include_self": True}}]
+    mke = _TEAM_KEYWORD_EXERTED.fullmatch(line)
+    if mke:
+        cls = _classes(mke.group(1))
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "team_keyword",
+                            "keyword": mke.group(2).lower(),
+                            "classification": cls[0],
+                            "exerted_only": True}}]
+    mkn2 = _TEAM_KEYWORD_N.fullmatch(line)
+    if mkn2:
+        cls = _classes(mkn2.group("cls"))
+        if cls is None:
+            return None
+        e = {"type": "team_keyword", "keyword": mkn2.group("kw").lower(),
+             "amount": int(mkn2.group("amt")), "classification": cls[0]}
+        if not mkn2.group("other"):
+            e["include_self"] = True
+        return [{"trigger": "static", "effect": e}]
     mtk = _TEAM_KEYWORD.fullmatch(line)
     if mtk:
         cls = _classes(mtk.group(1))

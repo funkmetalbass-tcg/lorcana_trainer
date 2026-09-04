@@ -1147,6 +1147,30 @@ def _c(m):
     return {"type": "banish_up_to_total_strength", "total": int(m.group(1))}
 
 
+
+@clause(r"[Ll]ook at the top (\d+) cards of your deck\. You may reveal a "
+        r"(location|character|item|action) card and put it into your hand\. "
+        r"Put the rest on the bottom of your deck in any order\.?")
+def _c(m):
+    return {"type": "dig_reveal_to_hand", "count": int(m.group(1)),
+            "filter": {"card_type": m.group(2).lower()}}
+
+
+@clause(r"[Cc]hosen opponent reveals their hand and discards a "
+        r"(location|character|item|action) card of your choice\.?")
+def _c(m):
+    return {"type": "reveal_hand_discard_type",
+            "filter": {"card_type": m.group(1).lower()}}
+
+
+@clause(r"[Yy]ou may put a (location|character|item|action) card from chosen "
+        r"player's discard on the bottom of their deck to gain (\d+) lore\.?")
+def _c(m):
+    return {"type": "discard_to_bottom_for_lore",
+            "filter": {"card_type": m.group(1).lower()},
+            "then": {"type": "gain_lore", "amount": int(m.group(2))}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()

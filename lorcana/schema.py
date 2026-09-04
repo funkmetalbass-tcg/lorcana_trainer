@@ -666,6 +666,8 @@ def _card_matches(card, filt):
         return False
     if ct == "song" and not getattr(card, "is_song", False):
         return False
+    if ct == "location" and not card.is_location:
+        return False
     if ct == "non_character" and card.is_character:
         return False
     if filt.get("max_cost") is not None and card.cost > filt["max_cost"]:
@@ -1566,6 +1568,47 @@ def _eff_enter_exerted_for(g, p, ctx, eff):
         apply_effect(g, p, ctx, inner)
 
 
+def _eff_reveal_hand_discard_type(g, p, ctx, eff):
+    """Chosen opponent reveals their hand and discards a card of a type you
+    pick (Goldie O'Gilt CLAIM JUMPER). We choose, so take the best one."""
+    opp = 1 - p
+    pl = g.players[opp]
+    pool = [c for c in pl.hand if _card_matches(c, eff.get("filter"))]
+    if not pool:
+        return
+    pick = max(pool, key=lambda c: c.cost)
+    pl.hand.remove(pick)
+    pl.discard.append(pick)
+    g.emit(f"schema: P{opp} reveals and discards {pick.name}")
+
+
+def _eff_discard_to_bottom_for_lore(g, p, ctx, eff):
+    """Put a matching card from a player's discard on the bottom of their
+    deck to gain lore (Goldie O'Gilt STRIKE GOLD). Targets the opponent's
+    discard, since removing their recursion is worth more than ours."""
+    for who in (1 - p, p):
+        pl = g.players[who]
+        pool = [c for c in pl.discard if _card_matches(c, eff.get("filter"))]
+        if not pool:
+            continue
+        pick = max(pool, key=lambda c: c.cost)
+        pl.discard.remove(pick)
+        pl.deck.insert(0, pick)
+        g.emit(f"schema: bottoms {pick.name} from P{who}'s discard")
+        if eff.get("then"):
+            apply_effect(g, p, ctx, eff["then"])
+        return
+
+
+def _eff_dig_reveal_to_hand(g, p, ctx, eff):
+    """Look at the top N, reveal one matching card to hand, bottom the rest
+    (Amazu's Inkcaster). A filtered variant of look_at_top."""
+    apply_effect(g, p, ctx, {"type": "look_at_top",
+                             "count": eff.get("count", 4),
+                             "destination": "hand",
+                             "filter": eff.get("filter")})
+
+
 def _eff_banish_own_to_draw(g, p, ctx, eff):
     """Banish one of your characters to draw; draw more if it had a card
     under it (Time to Go!). Spends the least valuable body."""
@@ -1753,6 +1796,9 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "reveal_hand_discard_type": _eff_reveal_hand_discard_type,
+    "discard_to_bottom_for_lore": _eff_discard_to_bottom_for_lore,
+    "dig_reveal_to_hand": _eff_dig_reveal_to_hand,
     "banish_own_to_draw": _eff_banish_own_to_draw,
     "banish_own_then": _eff_banish_own_then,
     "banish_up_to_total_strength": _eff_banish_up_to_total_strength,

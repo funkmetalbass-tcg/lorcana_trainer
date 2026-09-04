@@ -437,7 +437,16 @@ def _cond_opponent_ready_characters(g, p, ctx, cond):
     return n >= cond.get("count", 1)
 
 
+def _cond_banished_in_challenge(g, p, ctx, cond):
+    """A character was banished in a challenge this turn. "opposing" scopes
+    it to the other player's characters (Card Advantage, Chief)."""
+    if cond.get("side") == "opposing":
+        return ("chal_banish", 1 - p) in g.turn_flags
+    return any(("chal_banish", who) in g.turn_flags for who in (0, 1))
+
+
 _CONDITIONS = {
+    "banished_in_challenge_this_turn": _cond_banished_in_challenge,
     "opponent_lore_at_most": _cond_opponent_lore_at_most,
     "opponent_ready_characters": _cond_opponent_ready_characters,
     "song_played_this_turn": _cond_song_played_this_turn,
@@ -1592,6 +1601,25 @@ def _eff_enter_exerted_for(g, p, ctx, eff):
         apply_effect(g, p, ctx, inner)
 
 
+def _eff_cant_challenge(g, p, ctx, eff):
+    """Up to N chosen opposing characters can't challenge during their next
+    turn. Recorded as a timed effect keyed to the *victim's* next turn, so it
+    survives our turn and lapses at the start of theirs."""
+    from . import abilities
+    picked = []
+    for _ in range(eff.get("count", 1)):
+        tgt = abilities._best_opp_char(
+            g, p, cond=lambda gg, c: c.uid not in [x.uid for x in picked])
+        if tgt is None:
+            break
+        picked.append(tgt)
+        g.effects.append({"kind": "no_challenge", "target": tgt.uid,
+                          "amount": 0, "until": 1 - p})
+    if picked:
+        g.emit("schema: " + ", ".join(c.card.base_name for c in picked)
+               + " can't challenge next turn")
+
+
 def _eff_reveal_top_play_or_discard(g, p, ctx, eff):
     """Reveal the top card; play it as if in hand if affordable, otherwise
     put it in the discard (Kristoff's Lute)."""
@@ -1872,6 +1900,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "cant_challenge": _eff_cant_challenge,
     "reveal_top_play_or_discard": _eff_reveal_top_play_or_discard,
     "play_from_discard_then_bottom": _eff_play_from_discard_then_bottom,
     "play_same_name_free": _eff_play_same_name_free,

@@ -1184,6 +1184,19 @@ def _c(m):
     return {"type": "play_same_name_free"}
 
 
+
+@clause(r"[Uu]p to (\d+) chosen opposing characters can't challenge during "
+        r"their next turn\.?")
+def _c(m):
+    return {"type": "cant_challenge", "count": int(m.group(1))}
+
+
+@clause(r"[Cc]hosen (?:opposing )?character can't challenge during their "
+        r"next turn\.?")
+def _c(m):
+    return {"type": "cant_challenge", "count": 1}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1906,6 +1919,19 @@ def parse_activated(desc):
             if cd:
                 cond = {"type": "discarded_this_turn"}
                 body = body[cd.end():].strip()
+            else:
+                # fall back to the shared triggered-condition table so an
+                # activated ability can use any condition a trigger can
+                for crx, build in _TRIG_CONDS:
+                    cm2 = crx.match(body)
+                    if not cm2:
+                        continue
+                    c2 = build(cm2)
+                    if c2 is None:
+                        return None
+                    cond = c2
+                    body = body[cm2.end():].strip()
+                    break
             if body and body[0].islower():
                 body = body[0].upper() + body[1:]
         body = re.sub(r"\s*\{\}\s*", " ", body).strip()
@@ -2308,6 +2334,13 @@ _TRIG_CONDS = [
     (re.compile(r"^[Ii]f an opponent has more lore than you,\s*",
                 re.IGNORECASE),
      lambda m: {"type": "opponent_has_more_lore"}),
+    (re.compile(r"^[Ii]f an opposing character was banished in a challenge "
+                r"this turn,\s*", re.IGNORECASE),
+     lambda m: {"type": "banished_in_challenge_this_turn",
+                "side": "opposing"}),
+    (re.compile(r"^[Ii]f a character was banished in a challenge this turn,"
+                r"\s*", re.IGNORECASE),
+     lambda m: {"type": "banished_in_challenge_this_turn"}),
     (re.compile(r"^if an opponent has (\d+) lore,\s*", re.IGNORECASE),
      lambda m: {"type": "opponent_lore_at_most", "amount": int(m.group(1))}),
     (re.compile(r"^if an opponent has (\d+) or more ready characters in play,"

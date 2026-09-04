@@ -2965,6 +2965,10 @@ def on_challenge_banish(g, attacker, defender, atk_dies, def_dies):
     """Reactions to a challenge's banish outcome (fires on trades too)."""
     from . import schema
     if def_dies and defender is not None:
+        g.turn_flags.add(("chal_banish", defender.owner))
+    if atk_dies and attacker is not None:
+        g.turn_flags.add(("chal_banish", attacker.owner))
+    if def_dies and defender is not None:
         schema.dispatch_challenged_banished(g, defender, attacker)
         # "Whenever this character banishes another character in a challenge"
         # (Raya - Headstrong), from the attacker's side.

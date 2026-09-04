@@ -605,6 +605,9 @@ class Game:
         return acts
 
     def challenge_targets(self, attacker):
+        if any(e["kind"] == "no_challenge" and e["target"] == attacker.uid
+               for e in self.effects):
+            return []
         from . import schema
         if schema.blocks_quest_challenge(self, attacker):
             return []

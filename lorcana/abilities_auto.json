@@ -1441,8 +1441,17 @@
  ],
  "Card Advantage": [
   {
-   "impl": "unimplemented",
-   "text": "If an opposing character was banished in a challenge this turn, draw 2 cards."
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 2
+   },
+   "condition": {
+    "type": "banished_in_challenge_this_turn",
+    "side": "opposing"
+   },
+   "confidence": "medium",
+   "source": "If an opposing character was banished in a challenge this turn, draw 2 cards."
   }
  ],
  "Plunger Crossbow": [
@@ -2612,8 +2621,20 @@
  ],
  "Chief - Seasoned Tracker": [
   {
-   "impl": "unimplemented",
-   "text": "GOOD RIDDANCE [Exert] — If an opposing character was banished in a challenge this turn, draw a card."
+   "trigger": "activated",
+   "cost": {
+    "exert": true
+   },
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "condition": {
+    "type": "banished_in_challenge_this_turn",
+    "side": "opposing"
+   },
+   "confidence": "medium",
+   "source": "GOOD RIDDANCE [Exert] — If an opposing character was banished in a challenge this turn, draw a card."
   }
  ],
  "Duke Weaselton - Surly Crook": [
@@ -2645,8 +2666,24 @@
  ],
  "Dr. Hamsterviel - Infamous Scientist": [
   {
-   "impl": "unimplemented",
-   "text": "[CONTROLLED VARIABLES] For each Alien character card in your discard, you pay 1 Ink less to play this character.[AWESTRUCK] When you play this character, chosen opposing character can’t challenge during their next turn."
+   "trigger": "static",
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 1,
+    "per": "classification_in_discard",
+    "classification": "Alien"
+   },
+   "confidence": "medium",
+   "source": "[CONTROLLED VARIABLES] For each Alien character card in your discard, you pay 1 Ink less to play this character.[AWESTRUCK] When you play this character, chosen opposing character can’t challenge during their next turn."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "cant_challenge",
+    "count": 1
+   },
+   "confidence": "medium",
+   "source": "[CONTROLLED VARIABLES] For each Alien character card in your discard, you pay 1 Ink less to play this character.[AWESTRUCK] When you play this character, chosen opposing character can’t challenge during their next turn."
   }
  ],
  "Angela - Night Warrior": [
@@ -3799,8 +3836,13 @@
  ],
  "Cower Before Me!": [
   {
-   "impl": "unimplemented",
-   "text": "Up to 2 chosen opposing characters can't challenge during their next turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "cant_challenge",
+    "count": 2
+   },
+   "confidence": "high",
+   "source": "Up to 2 chosen opposing characters can't challenge during their next turn."
   }
  ],
  "Attack Of The Vine!": [
@@ -3835,8 +3877,20 @@
  ],
  "Absorbing Bloom": [
   {
-   "impl": "unimplemented",
-   "text": "METAMORPHOSIS {}, 1{} - If a character was banished in a challenge this turn, draw a card."
+   "trigger": "activated",
+   "cost": {
+    "exert": true,
+    "ink": 1
+   },
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "condition": {
+    "type": "banished_in_challenge_this_turn"
+   },
+   "confidence": "medium",
+   "source": "METAMORPHOSIS {}, 1{} - If a character was banished in a challenge this turn, draw a card."
   }
  ],
  "Vine Entrance - Ominous Passageway": [
@@ -5277,8 +5331,22 @@
  ],
  "Putting It All Together": [
   {
-   "impl": "unimplemented",
-   "text": "Chosen opposing character can't challenge during their next turn. Draw a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "cant_challenge",
+    "count": 1
+   },
+   "confidence": "medium",
+   "source": "Chosen opposing character can't challenge during their next turn. Draw a card."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Chosen opposing character can't challenge during their next turn. Draw a card."
   }
  ],
  "The Game's Afoot!": [

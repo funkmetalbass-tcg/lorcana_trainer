@@ -1256,7 +1256,10 @@ def _eff_put_top_under_self(g, p, ctx, eff):
     pl = g.players[p]
     if tgt is None or not pl.deck:
         return
-    tgt.boosted.append(pl.deck.pop())
+    pile = _under_pile(tgt)
+    if pile is None:
+        return
+    pile.append(pl.deck.pop())
     g.emit(f"schema: puts a card under {tgt.card.base_name}")
 
 
@@ -1440,7 +1443,10 @@ def _eff_put_top_under_boosted(g, p, ctx, eff):
     if not targets:
         return
     tgt = max(targets, key=lambda o: o.card.cost)
-    tgt.boosted.append(pl.deck.pop())
+    pile = _under_pile(tgt)
+    if pile is None:
+        return
+    pile.append(pl.deck.pop())
     g.emit(f"schema: puts a card under {tgt.card.base_name}")
 
 
@@ -2098,7 +2104,7 @@ def _run(g, p, ctx, ents):
                 pl.discard.append(card)
                 g.emit(f"schema: discards {card.name} (cost)")
             if cost.get("banish_self"):
-                if hasattr(src, "damage"):
+                if _obj_is_char(src):
                     g.banish_char(src, cause="effect")
                 elif src in g.items[p]:
                     g.banish_item(src)
@@ -2129,7 +2135,7 @@ def dispatch_play_character(g, p, card, obj):
         ents = entries_for(src.card.name, "on_play_character")
         if not ents:
             continue
-        is_self = hasattr(src, "damage") and obj is not None \
+        is_self = _obj_is_char(src) and obj is not None \
             and src.uid == obj.uid
         for e in ents:
             # "another character" watchers skip their own arrival; "this or
@@ -2172,7 +2178,24 @@ def activated_entries(card_name):
 
 
 def _obj_is_char(obj):
-    return hasattr(obj, "damage")
+    """True only for CharInPlay. LocInPlay also carries .damage, so testing
+    for that misidentifies locations as characters; .boosted is unique to
+    characters."""
+    return hasattr(obj, "boosted")
+
+
+def _under_pile(obj):
+    """The list of facedown cards under a permanent. Characters keep Boost
+    cards in .boosted; items and locations use .under."""
+    pile = getattr(obj, "boosted", None)
+    if pile is None:
+        pile = getattr(obj, "under", None)
+    return pile
+
+
+def _cards_under(obj):
+    return len(getattr(obj, "boosted", None) or []) \
+        + len(getattr(obj, "under", None) or [])
 
 
 def can_activate(g, p, obj, entry):
@@ -2294,7 +2317,7 @@ def dispatch_play_type(g, p, card):
         if not ents:
             continue
         _run(g, p, {"card": src.card,
-                    "char": src if hasattr(src, "damage") else None,
+                    "char": src if _obj_is_char(src) else None,
                     "source": src}, ents)
         if g.winner is not None:
             return
@@ -2356,7 +2379,7 @@ def dispatch_turn_end(g, p):
         ents = entries_for(src.card.name, "on_turn_end")
         if ents:
             _run(g, p, {"card": src.card,
-                        "char": src if hasattr(src, "damage") else None,
+                        "char": src if _obj_is_char(src) else None,
                         "source": src}, ents)
             if g.winner is not None:
                 return
@@ -2368,7 +2391,7 @@ def dispatch_turn_start(g, p):
         ents = entries_for(src.card.name, "on_turn_start")
         if ents:
             _run(g, p, {"card": src.card,
-                        "char": src if hasattr(src, "damage") else None,
+                        "char": src if _obj_is_char(src) else None,
                         "source": src}, ents)
 
 
@@ -2380,7 +2403,7 @@ def dispatch_own_song(g, p):
         ents = entries_for(src.card.name, "on_song_played")
         if ents:
             _run(g, p, {"card": src.card,
-                        "char": src if hasattr(src, "damage") else None,
+                        "char": src if _obj_is_char(src) else None,
                         "source": src}, ents)
             if g.winner is not None:
                 return
@@ -2392,7 +2415,7 @@ def dispatch_opponent_song(g, p):
         ents = entries_for(src.card.name, "on_opponent_song")
         if ents:
             _run(g, p, {"card": src.card,
-                        "char": src if hasattr(src, "damage") else None,
+                        "char": src if _obj_is_char(src) else None,
                         "source": src}, ents)
 
 
@@ -2594,7 +2617,7 @@ def strength_floor(g, ch):
                 continue
             if check_condition(g, src.owner,
                                {"card": src.card,
-                                "char": src if hasattr(src, "damage") else None},
+                                "char": src if _obj_is_char(src) else None},
                                e.get("condition")):
                 return True
     return False
@@ -2816,7 +2839,7 @@ def dispatch_card_under(g, p, obj, via_boost):
     ents = entries_for(obj.card.name, "on_card_under_self")
     if ents:
         _run(g, p, {"card": obj.card,
-                    "char": obj if hasattr(obj, "damage") else None,
+                    "char": obj if _obj_is_char(obj) else None,
                     "source": obj}, ents)
     # watchers that fire on any card going under one of your permanents,
     # not only on a Boost activation (Ares - God of War)

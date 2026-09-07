@@ -154,6 +154,7 @@ class Game:
         self._in_discard_trigger = False
         self.singers = []            # uids of characters singing right now
         self.attachments = {}        # item uid -> location uid
+        self.banish_strength = {}    # char uid -> Strength it had in play
         self._in_chosen_trigger = False
         self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
@@ -181,6 +182,7 @@ class Game:
         g._in_discard_trigger = self._in_discard_trigger
         g.singers = list(self.singers)
         g.attachments = dict(self.attachments)
+        g.banish_strength = dict(self.banish_strength)
         g._in_chosen_trigger = self._in_chosen_trigger
         g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)
@@ -400,6 +402,9 @@ class Game:
             return
         if abilities.replace_banish(self, ch):
             return
+        # Capture the Strength it had *in play*, before removal empties its
+        # buffs and before any on-banish effect runs (Wreck-it Ralph).
+        self.banish_strength[ch.uid] = self.eff_strength(ch)
         del self.chars[ch.uid]
         self.players[ch.owner].discard.append(ch.card)
         self.players[ch.owner].discard.extend(ch.under)

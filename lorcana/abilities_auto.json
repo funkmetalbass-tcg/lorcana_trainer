@@ -2236,8 +2236,23 @@
  ],
  "Wreck-it Ralph - Raging Wrecker": [
   {
-   "impl": "unimplemented",
-   "text": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[POWERED UP] This character gets +1 Strength for each card under him.\nWHO'S COMIN' WITH ME? When this character is banished, banish all characters with Strength equal to or less than the Strength he had in play."
+   "trigger": "static",
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 1,
+    "per": "cards_under"
+   },
+   "confidence": "medium",
+   "source": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[POWERED UP] This character gets +1 Strength for each card under him.\nWHO'S COMIN' WITH ME? When this character is banished, banish all characters with Strength equal to or less than the Strength he had in play."
+  },
+  {
+   "trigger": "on_banish",
+   "effect": {
+    "type": "banish_up_to_source_strength"
+   },
+   "confidence": "medium",
+   "source": "Boost 1 Ink (Once during your turn, you may pay 1 Ink to put the top card of your deck facedown under this character.)[POWERED UP] This character gets +1 Strength for each card under him.\nWHO'S COMIN' WITH ME? When this character is banished, banish all characters with Strength equal to or less than the Strength he had in play."
   }
  ],
  "Mulan - Ready for Battle": [

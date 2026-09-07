@@ -1337,6 +1337,13 @@ def _c(m):
             "then": {"type": "gain_lore", "amount": int(m.group(2))}}
 
 
+
+@clause(r"[Bb]anish all characters with Strength equal to or less than the "
+        r"Strength (?:he|she|they|it) had in play\.?")
+def _c(m):
+    return {"type": "banish_up_to_source_strength"}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()

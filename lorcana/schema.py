@@ -1750,6 +1750,36 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
         pl.deck.insert(0, pick)
 
 
+def _eff_banish_up_to_source_strength(g, p, ctx, eff):
+    """Banish every character whose Strength is at most the Strength the
+    source had in play (Wreck-it Ralph WHO'S COMIN' WITH ME?).
+
+    The threshold comes from g.banish_strength, recorded by banish_char
+    before the character was removed -- reading it afterwards would miss the
+    buffs it had while in play.
+    """
+    src = ctx.get("char") or ctx.get("source")
+    if src is None:
+        return
+    threshold = getattr(g, "banish_strength", {}).get(
+        getattr(src, "uid", None))
+    if threshold is None:
+        # only a character has a Strength to compare against
+        if not _obj_is_char(src):
+            return
+        threshold = g.eff_strength(src)
+    doomed = [c for c in list(g.chars.values())
+              if g.eff_strength(c) <= threshold]
+    if not doomed:
+        return
+    g.emit(f"schema: banishes {len(doomed)} character(s) "
+           f"with Strength <= {threshold}")
+    for c in doomed:
+        g.banish_char(c, cause="effect")
+        if g.winner is not None:
+            return
+
+
 def _eff_move_damage_to_other_location(g, p, ctx, eff):
     """Move damage counters from this location to another one
     (Carl's House - Flying High). Runs a follow-on only if damage actually
@@ -2175,6 +2205,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "banish_up_to_source_strength": _eff_banish_up_to_source_strength,
     "move_damage_to_other_location": _eff_move_damage_to_other_location,
     "attach_to_location": _eff_attach_to_location,
     "ready_singers": _eff_ready_singers,

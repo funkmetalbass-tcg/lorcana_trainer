@@ -10245,7 +10245,7 @@
     "Willpower": "4",
     "Lore Value": "1"
   },
-  "HeiHei - Persistent Presence": {
+  "Heihei - Persistent Presence": {
     "Rarity": "Uncommon",
     "Description": "<strong>[HE'S BACK!]</strong> When this character is banished in a challenge, return this card to your hand.",
     "Cost Ink": "2",
@@ -21609,7 +21609,7 @@
     "Willpower": "4",
     "Lore Value": "1"
   },
-  "HeiHei - Protective Rooster": {
+  "Heihei - Protective Rooster": {
     "Rarity": "Common",
     "Description": "<strong>Bodyguard</strong> <em>(This character may enter play exerted. An opposing character who challenges one of your characters must choose one with <strong>Bodyguard</strong> if able.)</em>",
     "Cost Ink": "5",
@@ -23158,7 +23158,7 @@
     "Willpower": "3",
     "Lore Value": "0"
   },
-  "HeiHei - Accidental Explorer": {
+  "Heihei - Accidental Explorer": {
     "Rarity": "Uncommon",
     "Description": "<strong>[MINDLESS WANDERING]</strong> Once per turn, when this character moves to a location, each opponent loses 1 lore.",
     "Cost Ink": "2",
@@ -23237,7 +23237,7 @@
   },
   "Maui - Soaring Demigod": {
     "Rarity": "Uncommon",
-    "Description": "Reckless <em>(This character can't quest and must challenge each turn if able.)</em><strong>[IN MA BELLY]</strong> Whenever a character of yours named HeiHei quests, this character gets +1 Lore and loses Reckless this turn.",
+    "Description": "Reckless <em>(This character can't quest and must challenge each turn if able.)</em><strong>[IN MA BELLY]</strong> Whenever a character of yours named Heihei quests, this character gets +1 Lore and loses Reckless this turn.",
     "Cost Ink": "3",
     "Character Version": "Soaring Demigod",
     "InkwellIcononCard": "No",
@@ -24373,7 +24373,7 @@
     "Willpower": "2",
     "Lore Value": "1"
   },
-  "HeiHei - Boat Snack": {
+  "Heihei - Boat Snack": {
     "Rarity": "Common",
     "Description": "<strong>Support</strong> <em>(Whenever this character quests, you may add their Strength to another chosen character's Strength this turn.)</em>",
     "Cost Ink": "1",
@@ -27484,7 +27484,7 @@
     "Willpower": "3",
     "Lore Value": "1"
   },
-  "HeiHei - Bumbling Rooster": {
+  "Heihei - Bumbling Rooster": {
     "Rarity": "Uncommon",
     "Description": "<strong>[FATTEN YOU UP]</strong> When you play this character, if an opponent has more cards in their inkwell than you, you may put the top card of your deck into your inkwell facedown and exerted.",
     "Cost Ink": "3",

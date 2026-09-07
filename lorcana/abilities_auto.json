@@ -2001,8 +2001,16 @@
  ],
  "Minnie Mouse - Mrs. Cratchit": [
   {
-   "impl": "unimplemented",
-   "text": "Ward (Opponents can't choose this character except to challenge.)[A MOTHER'S LOVE] When you play this character, you may put the top card of your deck facedown under one of your characters or locations with Boost. If you do, draw a card."
+   "trigger": "on_play",
+   "effect": {
+    "type": "put_top_under_boosted",
+    "then": {
+     "type": "draw",
+     "amount": 1
+    }
+   },
+   "confidence": "medium",
+   "source": "Ward (Opponents can't choose this character except to challenge.)[A MOTHER'S LOVE] When you play this character, you may put the top card of your deck facedown under one of your characters or locations with Boost. If you do, draw a card."
   }
  ],
  "White Rabbit - Late Again": [
@@ -3282,8 +3290,15 @@
  ],
  "Mother Gothel - Evil as Ever": [
   {
-   "impl": "unimplemented",
-   "text": "[MUMMY'S BACK] During your turn, when you discard this card, you may play this character from your discard. (You pay all costs.)"
+   "trigger": "on_discard_self",
+   "effect": {
+    "type": "play_self_from_discard"
+   },
+   "confidence": "medium",
+   "source": "[MUMMY'S BACK] During your turn, when you discard this card, you may play this character from your discard. (You pay all costs.)",
+   "condition": {
+    "type": "your_turn"
+   }
   }
  ],
  "Carl Fredricksen & Russell - Intrepid Explorers": [

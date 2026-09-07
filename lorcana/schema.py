@@ -1475,6 +1475,8 @@ def _eff_put_top_under_boosted(g, p, ctx, eff):
     if pile is None:
         return
     pile.append(pl.deck.pop())
+    if eff.get("then"):
+        apply_effect(g, p, ctx, eff["then"])
     g.emit(f"schema: puts a card under {tgt.card.base_name}")
 
 
@@ -1736,6 +1738,21 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
     if pick in pl.discard:
         pl.discard.remove(pick)
         pl.deck.insert(0, pick)
+
+
+def _eff_play_self_from_discard(g, p, ctx, eff):
+    """Play the card in ctx from your discard (Mother Gothel MUMMY'S BACK).
+    Costs are paid normally unless the entry says otherwise."""
+    card = ctx.get("card")
+    pl = g.players[p]
+    if card is None or card not in pl.discard:
+        return
+    free = bool(eff.get("free"))
+    if not free and g.play_cost(p, card) > pl.ink_ready:
+        return
+    pl.discard.remove(card)
+    g.emit(f"schema: plays {card.name} from discard")
+    g._play_card(p, card, {}, free=free)
 
 
 def _eff_mirror_damage(g, p, ctx, eff):
@@ -2089,6 +2106,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "play_self_from_discard": _eff_play_self_from_discard,
     "mirror_damage": _eff_mirror_damage,
     "shuffle_reveal_play": _eff_shuffle_reveal_play,
     "return_self_to_hand": _eff_return_self_to_hand,
@@ -2536,6 +2554,27 @@ def static_location_lore(g, loc):
         else:
             total += eff.get("amount", 0)
     return total
+
+
+def dispatch_discard(g, p, card):
+    # Playing a card from inside discard_card is re-entrant: the played card
+    # may itself discard something. Guard against recursion.
+    if getattr(g, "_in_discard_trigger", False):
+        return
+    g._in_discard_trigger = True
+    try:
+        _dispatch_discard_inner(g, p, card)
+    finally:
+        g._in_discard_trigger = False
+
+
+def _dispatch_discard_inner(g, p, card):
+    """'When you discard this card' triggers, on the card just discarded
+    (Mother Gothel - Evil as Ever). ctx["card"] is that card; there is no
+    permanent, since it is in the discard pile."""
+    ents = entries_for(card.name, "on_discard_self")
+    if ents:
+        _run(g, p, {"card": card, "char": None, "source": None}, ents)
 
 
 def dispatch_turn_end(g, p):

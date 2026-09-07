@@ -2293,6 +2293,8 @@ def _bottom_from_discard(g, chooser, target_player, why):
 
 def on_discard(g, p, card):
     """Fired when a card goes from hand to discard."""
+    from . import schema as _sch
+    _sch.dispatch_discard(g, p, card)
     # Rapunzel & Flynn Rider FRESH START: during your turn, whenever you
     # discard a character card (with R&F in play), you may play that character
     # from your discard, paying all costs. Recorded as a turn flag; exposed as

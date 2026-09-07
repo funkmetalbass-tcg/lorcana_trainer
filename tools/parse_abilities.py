@@ -1300,6 +1300,19 @@ def _c(m):
             "filter": {"card_type": m.group(1).lower()}}
 
 
+
+@clause(r"[Yy]ou may play this character from your discard\.?")
+def _c(m):
+    return {"type": "play_self_from_discard"}
+
+
+@clause(r"[Yy]ou may put the top card of your deck facedown under one of your "
+        r"characters or locations with Boost\. If you do, draw a card\.?")
+def _c(m):
+    return {"type": "put_top_under_boosted",
+            "then": {"type": "draw", "amount": 1}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -2434,6 +2447,8 @@ _PREAMBLES = [
      "on_turn_start"),
     (re.compile(r"^At the end of your turn,\s*", re.IGNORECASE),
      "on_turn_end"),
+    (re.compile(r"^During your turn, when you discard this card,\s*",
+                re.IGNORECASE), "on_discard_self|yourturn"),
     (re.compile(r"^Whenever you put a card under this character,\s*",
                 re.IGNORECASE), "on_card_under_self"),
     (re.compile(r"^Whenever you use the Boost ability of a character,\s*",

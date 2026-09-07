@@ -1740,6 +1740,25 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
         pl.deck.insert(0, pick)
 
 
+def _eff_ready_singers(g, p, ctx, eff):
+    """Ready the characters that sang this song, when enough of them did
+    (I2I). Reads g.singers, which sing_together populates."""
+    uids = list(getattr(g, "singers", []) or [])
+    if len(uids) < eff.get("min_singers", 1):
+        return
+    n = 0
+    for uid in uids:
+        ch = g.chars.get(uid)
+        if ch is None:
+            continue
+        ch.exerted = False
+        n += 1
+        if eff.get("no_quest"):
+            g.turn_flags.add(("no_quest", uid))
+    if n:
+        g.emit(f"schema: readies {n} singer(s)")
+
+
 def _eff_play_self_from_discard(g, p, ctx, eff):
     """Play the card in ctx from your discard (Mother Gothel MUMMY'S BACK).
     Costs are paid normally unless the entry says otherwise."""
@@ -2106,6 +2125,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "ready_singers": _eff_ready_singers,
     "play_self_from_discard": _eff_play_self_from_discard,
     "mirror_damage": _eff_mirror_damage,
     "shuffle_reveal_play": _eff_shuffle_reveal_play,

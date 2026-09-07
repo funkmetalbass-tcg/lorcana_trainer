@@ -6716,8 +6716,32 @@
  ],
  "I2I": [
   {
-   "impl": "unimplemented",
-   "text": "Sing Together 9\nEach player draws 2 cards and gains 2 lore. If 2 or more characters sang this song, ready them. They can't quest for the rest of this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "each_player_draw",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Sing Together 9\nEach player draws 2 cards and gains 2 lore. If 2 or more characters sang this song, ready them. They can't quest for the rest of this turn."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "each_player_gain_lore",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Sing Together 9\nEach player draws 2 cards and gains 2 lore. If 2 or more characters sang this song, ready them. They can't quest for the rest of this turn."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "ready_singers",
+    "min_singers": 2,
+    "no_quest": true
+   },
+   "confidence": "medium",
+   "source": "Sing Together 9\nEach player draws 2 cards and gains 2 lore. If 2 or more characters sang this song, ready them. They can't quest for the rest of this turn."
   }
  ],
  "You Can Fly!": [

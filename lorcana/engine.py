@@ -152,6 +152,7 @@ class Game:
         self._in_challenge_damage = False
         self.use_counts = {}         # n-times-per-turn ability usage
         self._in_discard_trigger = False
+        self.singers = []            # uids of characters singing right now
         self._in_chosen_trigger = False
         self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
@@ -177,6 +178,7 @@ class Game:
         g._in_challenge_damage = self._in_challenge_damage
         g.use_counts = dict(self.use_counts)
         g._in_discard_trigger = self._in_discard_trigger
+        g.singers = list(self.singers)
         g._in_chosen_trigger = self._in_chosen_trigger
         g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)
@@ -713,7 +715,13 @@ class Game:
             for c in chosen:
                 c.exerted = True
             self.emit(f"Sing Together: {[c.card.base_name for c in chosen]} sing {card.name}")
-            self._play_card(p, card, {}, free=True, sung=True)
+            # Expose who sang so the song's own effect can act on them (I2I
+            # readies them). Cleared afterwards so it never leaks.
+            self.singers = [c.uid for c in chosen]
+            try:
+                self._play_card(p, card, {}, free=True, sung=True)
+            finally:
+                self.singers = []
             return
 
         if kind == "quest":

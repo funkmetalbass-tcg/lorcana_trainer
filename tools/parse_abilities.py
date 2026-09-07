@@ -770,6 +770,13 @@ _DRAIN_AND_GAIN = re.compile(
     r"[Ee]ach opponent loses (\d+) lore and you gain (\d+) lore\.?")
 
 # the same effect with the clauses the other way round (Grandma Wu)
+# I2I: three sentences that must be read together -- the quest-lock rider is
+# its own sentence and would be dropped if the clauses were split.
+_SING_READY = re.compile(
+    r"[Ee]ach player draws (\d+) cards and gains (\d+) lore\. "
+    r"If (\d+) or more characters sang this song, ready them\. "
+    r"They can't quest for the rest of this turn\.?")
+
 _GAIN_AND_DRAIN = re.compile(
     r"[Yy]ou gain (\d+) lore and each opponent loses (\d+) lore\.?")
 
@@ -2282,6 +2289,12 @@ def parse_by_clauses(prose):
     if mtk:
         return [_grant(mtk.group(1), None),
                 _grant(mtk.group(2), mtk.group(3))]
+    msr = _SING_READY.fullmatch(prose.strip())
+    if msr:
+        return [{"type": "each_player_draw", "amount": int(msr.group(1))},
+                {"type": "each_player_gain_lore", "amount": int(msr.group(2))},
+                {"type": "ready_singers", "min_singers": int(msr.group(3)),
+                 "no_quest": True}]
     mgd = _GAIN_AND_DRAIN.fullmatch(prose.strip())
     if mgd:
         return [{"type": "gain_lore", "amount": int(mgd.group(1))},

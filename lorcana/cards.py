@@ -41,8 +41,12 @@ class Card:
         self.placeholder = raw.get("_PLACEHOLDER", False)
         # Precomputed: legal_actions() tests is_song for every card in hand at
         # every node of the search, and it never changes after load.
+        # Reminder text is the usual marker, but some songs are printed
+        # without it (I2I has only "Sing Together 9"). The Song
+        # classification is authoritative.
         self._is_song = (self.card_type == "Action"
-                         and "sing this song" in self.text.lower())
+                         and ("sing this song" in self.text.lower()
+                              or "Song" in self.classifications))
         # Phase 1: printed keywords parsed once at load
         desc = raw.get("Description", "") or ""
         self.keywords = parse_printed_keywords(desc)

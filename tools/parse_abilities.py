@@ -1327,6 +1327,16 @@ def _c(m):
     return {"type": "attach_to_location", "keyword": m.group(1).lower()}
 
 
+
+@clause(r"[Mm]ove (\d+) damage counters? from here to another location for "
+        r"free\. If you do, gain (\d+) lore\.?")
+def _c(m):
+    return {"type": "move_damage_to_other_location",
+            "amount": int(m.group(1)),
+            "requires": "can_move_damage_here",
+            "then": {"type": "gain_lore", "amount": int(m.group(2))}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -2498,6 +2508,8 @@ _PREAMBLES = [
                 r"quests,\s*", re.IGNORECASE), "on_ally_quest|qcls"),
     (re.compile(r"^Once during your turn, you may pay (?P<ink>\d+) Ink to\s*",
                 re.IGNORECASE), "activated|payink|once"),
+    (re.compile(r"^Once during your turn, you may\s+", re.IGNORECASE),
+     "activated|once"),
     (re.compile(r"^Whenever this character quests,\s*", re.IGNORECASE), "on_quest"),
     (re.compile(r"^Whenever one of your actions deals damage to an opposing "
                 r"character,\s*", re.IGNORECASE), "on_action_damage"),
@@ -2883,6 +2895,9 @@ def _parse_one(prose, desc):
             else [trigger]
         for trigger in triggers:
          for e in effects:
+            _req = e.pop("requires", None) if isinstance(e, dict) else None
+            if _req and cond is None:
+                cond = {"type": _req}
             ent = {"trigger": trigger, "effect": e,
                    "confidence": "medium", "source": _src(desc)}
             ent.update(extra)

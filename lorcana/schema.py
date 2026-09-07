@@ -456,6 +456,15 @@ def _cond_banished_in_challenge(g, p, ctx, cond):
     return any(("chal_banish", who) in g.turn_flags for who in (0, 1))
 
 
+def _cond_can_move_damage_here(g, p, ctx, cond):
+    """This location has damage and there is somewhere to move it to.
+    Without this the ability is offered every turn as a dead action."""
+    src = ctx.get("loc") or ctx.get("source")
+    if src is None or getattr(src, "damage", 0) <= 0:
+        return False
+    return any(l.uid != src.uid for l in g.locs.values())
+
+
 def _cond_hand_empty(g, p, ctx, cond):
     return not g.players[p].hand
 
@@ -467,6 +476,7 @@ def _cond_no_named_character(g, p, ctx, cond):
 
 
 _CONDITIONS = {
+    "can_move_damage_here": _cond_can_move_damage_here,
     "you_have_character_with_strength": _cond_you_have_char_with_strength,
     "hand_empty": _cond_hand_empty,
     "no_named_character": _cond_no_named_character,
@@ -1740,6 +1750,30 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
         pl.deck.insert(0, pick)
 
 
+def _eff_move_damage_to_other_location(g, p, ctx, eff):
+    """Move damage counters from this location to another one
+    (Carl's House - Flying High). Runs a follow-on only if damage actually
+    moved, so "If you do" is honoured."""
+    src = ctx.get("loc") or ctx.get("source")
+    if src is None or getattr(src, "damage", 0) <= 0:
+        return
+    others = [l for l in g.locs.values() if l.uid != src.uid]
+    if not others:
+        return
+    # dump it on an opposing location when there is one, otherwise the
+    # least valuable of ours
+    opposing = [l for l in others if l.owner != p]
+    target = (max(opposing, key=lambda l: l.card.cost) if opposing
+              else min(others, key=lambda l: l.card.cost))
+    n = min(eff.get("amount", 1), src.damage)
+    src.damage -= n
+    target.damage += n
+    g.emit(f"schema: moves {n} damage from {src.card.base_name} "
+           f"to {target.card.base_name}")
+    if eff.get("then"):
+        apply_effect(g, p, ctx, eff["then"])
+
+
 def _eff_attach_to_location(g, p, ctx, eff):
     """Attach the source item to one of your locations (Bunch Of Balloons).
     The attachment lives on the game, since ItemInPlay uses __slots__ and
@@ -2141,6 +2175,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "move_damage_to_other_location": _eff_move_damage_to_other_location,
     "attach_to_location": _eff_attach_to_location,
     "ready_singers": _eff_ready_singers,
     "play_self_from_discard": _eff_play_self_from_discard,

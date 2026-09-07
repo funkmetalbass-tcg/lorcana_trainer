@@ -3773,8 +3773,21 @@
  ],
  "Carl's House - Flying High": [
   {
-   "impl": "unimplemented",
-   "text": "[MOVING DAY] Once during your turn, you may move 1 damage counter from here to another location for free. If you do, gain 1 lore."
+   "trigger": "activated",
+   "effect": {
+    "type": "move_damage_to_other_location",
+    "amount": 1,
+    "then": {
+     "type": "gain_lore",
+     "amount": 1
+    }
+   },
+   "confidence": "medium",
+   "source": "[MOVING DAY] Once during your turn, you may move 1 damage counter from here to another location for free. If you do, gain 1 lore.",
+   "once_per_turn": true,
+   "condition": {
+    "type": "can_move_damage_here"
+   }
   }
  ],
  "Dug - Good Boy": [

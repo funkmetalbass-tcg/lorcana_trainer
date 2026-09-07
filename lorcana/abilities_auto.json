@@ -3193,8 +3193,35 @@
  ],
  "Buzz Lightyear - Providing Cover": [
   {
-   "impl": "unimplemented",
-   "text": "[ACTION FIGURE] When you play this character, choose one of the following. If you have another Toy character in play, choose both instead:\n• You may return an action card with cost 2 or less from your discard to your hand.\n• You may play an action with cost 2 or less for free."
+   "trigger": "on_play",
+   "effect": {
+    "type": "choose_one",
+    "options": [
+     {
+      "type": "return_from_discard",
+      "filter": {
+       "card_type": "action",
+       "max_cost": 2
+      }
+     },
+     {
+      "type": "play_from_hand_free",
+      "max_cost": 2,
+      "filter": {
+       "card_type": "action"
+      }
+     }
+    ],
+    "both_if": {
+     "type": "you_have_classification",
+     "any_of": [
+      "Toy"
+     ],
+     "exclude_self": true
+    }
+   },
+   "confidence": "medium",
+   "source": "[ACTION FIGURE] When you play this character, choose one of the following. If you have another Toy character in play, choose both instead:\n• You may return an action card with cost 2 or less from your discard to your hand.\n• You may play an action with cost 2 or less for free."
   }
  ],
  "Russell - Senior Wilderness Explorer": [

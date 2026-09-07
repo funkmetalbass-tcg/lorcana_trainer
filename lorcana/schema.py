@@ -229,9 +229,11 @@ def _cond_you_have_classification(g, p, ctx, cond):
     """
     want = cond.get("any_of") or [cond.get("name")]
     want = {w for w in want if w}
+    me = ctx.get("char") if cond.get("exclude_self") else None
     # granted classifications count too (Chief Bogo DEPUTIZE)
     return any(any(has_classification(g, c, w) for w in want)
-               for c in g.my_chars(p))
+               for c in g.my_chars(p)
+               if me is None or c.uid != getattr(me, "uid", None))
 
 
 def _cond_first_turn_on_the_draw(g, p, ctx, cond):
@@ -1333,9 +1335,14 @@ def modal_options(g, p, card_name, trigger="on_play"):
     is not a real decision and would only dilute the search.
     """
     for e in entries_for(card_name, trigger):
-        opts = (e.get("effect") or {}).get("options")
+        eff = e.get("effect") or {}
+        opts = eff.get("options")
         if not opts:
             continue
+        # "choose both instead" is not a decision, so do not branch on it
+        if eff.get("both_if") is not None \
+                and check_condition(g, p, {}, eff["both_if"]):
+            return [0]
         live = [i for i, o in enumerate(opts)
                 if check_condition(g, p, {}, o.get("condition"))
                 and _option_actionable(g, p, o)]
@@ -1363,6 +1370,17 @@ def _eff_choose_one(g, p, ctx, eff):
     """
     opts = eff.get("options") or []
     if not opts:
+        return
+    # "choose both instead" (Buzz Lightyear - Providing Cover): when the
+    # upgrade condition holds this stops being a choice at all.
+    if eff.get("both_if") is not None \
+            and check_condition(g, p, ctx, eff["both_if"]):
+        for o in opts:
+            if check_condition(g, p, ctx, o.get("condition")):
+                apply_effect(g, p, ctx, o)
+                if g.winner is not None:
+                    return
+        g.emit("schema: chooses both modes")
         return
     # An option whose own condition fails is not a legal choice
     # (Firefly Swarm's second mode needs 2+ cards discarded this turn).

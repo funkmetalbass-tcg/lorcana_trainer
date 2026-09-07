@@ -1292,6 +1292,14 @@ def _c(m):
     return {"type": "mirror_damage", "count": int(m.group(1))}
 
 
+
+@clause(r"[Yy]ou may play an (action|item|character) with cost (\d+) or less "
+        r"for free\.?")
+def _c(m):
+    return {"type": "play_from_hand_free", "max_cost": int(m.group(2)),
+            "filter": {"card_type": m.group(1).lower()}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1492,6 +1500,12 @@ _NO_READY = re.compile(
 # Modal abilities: "choose one:" followed by bullet options. The bullet glyph
 # varies across the export, so accept the common ones.
 _MODAL = re.compile(r"^choose one:?\s*(?P<rest>.+)$", re.IGNORECASE)
+
+# "choose one of the following. If <cond>, choose both instead: <bullets>"
+_MODAL_BOTH = re.compile(
+    r"^choose one of the following\. If you have another (?P<cls>[A-Za-z ]+?) "
+    r"character in play, choose both instead:?\s*(?P<rest>.+)$",
+    re.IGNORECASE)
 _BULLET = re.compile(r"\s*[\u2022*\-\u2013]\s+")
 
 _SHIFT_ONTO = re.compile(
@@ -2153,7 +2167,16 @@ _THEN = re.compile(r"^Then,?\s+", re.IGNORECASE)
 
 def parse_modal(text):
     """"choose one: <a> <b>" -> a single choose_one effect."""
-    m = _MODAL.match(text.strip())
+    both = None
+    m = _MODAL_BOTH.match(text.strip())
+    if m:
+        cls = _classes(m.group("cls"))
+        if cls is None:
+            return None
+        both = {"type": "you_have_classification", "any_of": cls,
+                "exclude_self": True}
+    else:
+        m = _MODAL.match(text.strip())
     if not m:
         return None
     parts = [x.strip() for x in _BULLET.split(m.group("rest")) if x.strip()]
@@ -2180,7 +2203,10 @@ def parse_modal(text):
             e = dict(e)
             e["condition"] = cond
         opts.append(e)
-    return {"type": "choose_one", "options": opts}
+    out = {"type": "choose_one", "options": opts}
+    if both is not None:
+        out["both_if"] = both
+    return out
 
 
 def parse_by_clauses(prose):

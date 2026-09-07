@@ -2449,6 +2449,8 @@ _PREAMBLES = [
      "on_turn_end"),
     (re.compile(r"^During your turn, when you discard this card,\s*",
                 re.IGNORECASE), "on_discard_self|yourturn"),
+    (re.compile(r"^Whenever you pay (?P<paid>\d+) Ink or less to play a card,"
+                r"\s*", re.IGNORECASE), "on_cheap_play|maxpaid"),
     (re.compile(r"^Whenever you put a card under this character,\s*",
                 re.IGNORECASE), "on_card_under_self"),
     (re.compile(r"^Whenever you use the Boost ability of a character,\s*",
@@ -2630,6 +2632,8 @@ def parse_triggered(prose):
                 extra["condition"] = {"type": "opponents_turn"}
             if "yourturn" in parts:
                 extra["condition"] = {"type": "your_turn"}
+            if "maxpaid" in parts and m.groupdict().get("paid"):
+                extra["max_paid"] = int(m.group("paid"))
             if "self" in parts:
                 extra["include_self"] = True
             if "cls" in parts and m.groupdict().get("cls"):

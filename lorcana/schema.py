@@ -2556,6 +2556,23 @@ def static_location_lore(g, loc):
     return total
 
 
+def dispatch_cheap_play(g, p, card, paid):
+    """'Whenever you pay N Ink or less to play a card' watchers
+    (Babyhead TIGHTEN THE BOLTS). "paid" is the ink actually spent, so a
+    discount or a free play counts."""
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        ents = entries_for(src.card.name, "on_cheap_play")
+        for e in ents:
+            cap = e.get("max_paid")
+            if cap is not None and paid > cap:
+                continue
+            _run(g, p, {"card": src.card,
+                        "char": src if _obj_is_char(src) else None,
+                        "source": src}, [e])
+            if g.winner is not None:
+                return
+
+
 def dispatch_discard(g, p, card):
     # Playing a card from inside discard_card is re-entrant: the played card
     # may itself discard something. Guard against recursion.

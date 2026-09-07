@@ -133,6 +133,10 @@ def residual_prose(text):
     printed = parse_printed_keywords(text)
     for kw in printed:
         t = _PATTERNS[kw].sub("", t, count=1)
+    # The stat/ink glyph is not ability text. It survives keyword removal
+    # (Temporary Shift leaves one behind), and a residual of "{}" alone made
+    # the coverage gate report a keyword-only card as unimplemented.
+    t = re.sub(r"\{\}", " ", t)
     t = re.sub(r"[\s,.;:+\-]+", " ", t).strip()
     return t
 

@@ -775,8 +775,29 @@
  ],
  "Babyhead - Leader of Sid's Toys": [
   {
-   "impl": "unimplemented",
-   "text": "[TIGHTEN THE BOLTS] Whenever you pay 2 Ink or less to play a card, chosen character gets +2 Strength this turn.[REPLACEMENT PARTS] During your turn, whenever one of your other characters is banished, draw a card."
+   "trigger": "on_cheap_play",
+   "effect": {
+    "type": "stat_mod",
+    "stat": "str",
+    "amount": 2,
+    "target": "chosen_character",
+    "duration": "eot"
+   },
+   "confidence": "medium",
+   "source": "[TIGHTEN THE BOLTS] Whenever you pay 2 Ink or less to play a card, chosen character gets +2 Strength this turn.[REPLACEMENT PARTS] During your turn, whenever one of your other characters is banished, draw a card.",
+   "max_paid": 2
+  },
+  {
+   "trigger": "on_ally_banished",
+   "effect": {
+    "type": "draw",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[TIGHTEN THE BOLTS] Whenever you pay 2 Ink or less to play a card, chosen character gets +2 Strength this turn.[REPLACEMENT PARTS] During your turn, whenever one of your other characters is banished, draw a card.",
+   "condition": {
+    "type": "your_turn"
+   }
   }
  ],
  "Bouncing Ducky - Sid's Toy": [

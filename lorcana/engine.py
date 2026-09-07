@@ -892,6 +892,9 @@ class Game:
         if _alt is not None:
             _sch2.pay_alt_cost(self, p, card, _alt)
         self.cards_played[p] += 1
+        # "whenever you pay N Ink or less to play a card" (Babyhead). A free
+        # play counts as paying 0.
+        _sch2.dispatch_cheap_play(self, p, card, 0 if free else paid)
         self.emit(f"P{p} plays {card.name}" + (" (shift)" if shift_uid else "") +
                   (f" paying {paid}" if not free else " (free)"))
 

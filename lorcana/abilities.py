@@ -246,6 +246,9 @@ def lore(g, ch):
         l += 4
     # schema-driven static self-lore (e.g. "While you have X, +N Lore")
     l += schema.static_self_lore(g, ch)
+    # team-granted Lore (Donald Duck - Ruby Champion POWERFUL REWARD). This
+    # was wired into strength() and willpower() but not lore().
+    l += schema.team_static_stat(g, ch, "lore")
     for e in g.effects:
         if e["kind"] == "lore" and e["target"] == ch.uid:
             l += e["amount"]

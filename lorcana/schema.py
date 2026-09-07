@@ -229,7 +229,9 @@ def _cond_you_have_classification(g, p, ctx, cond):
     """
     want = cond.get("any_of") or [cond.get("name")]
     want = {w for w in want if w}
-    return any(c.card.classifications & want for c in g.my_chars(p))
+    # granted classifications count too (Chief Bogo DEPUTIZE)
+    return any(any(has_classification(g, c, w) for w in want)
+               for c in g.my_chars(p))
 
 
 def _cond_first_turn_on_the_draw(g, p, ctx, cond):
@@ -370,6 +372,13 @@ def _cond_classification_banished_this_turn(g, p, ctx, cond):
     return ("banished_class", cond.get("name")) in g.turn_flags
 
 
+def _cond_you_have_char_with_strength(g, p, ctx, cond):
+    """You control a character with Strength >= N (Mulan - Ready for Battle
+    FIGHTING SPIRIT)."""
+    n = cond.get("strength", 1)
+    return any(g.eff_strength(c) >= n for c in g.my_chars(p))
+
+
 def _cond_you_have_damaged_character(g, p, ctx, cond):
     return any(c.damage > 0 for c in g.my_chars(p))
 
@@ -456,6 +465,7 @@ def _cond_no_named_character(g, p, ctx, cond):
 
 
 _CONDITIONS = {
+    "you_have_character_with_strength": _cond_you_have_char_with_strength,
     "hand_empty": _cond_hand_empty,
     "no_named_character": _cond_no_named_character,
     "banished_in_challenge_this_turn": _cond_banished_in_challenge,
@@ -1710,6 +1720,114 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
         pl.deck.insert(0, pick)
 
 
+def _eff_mirror_damage(g, p, ctx, eff):
+    """Deal the damage just dealt to up to N other chosen characters
+    (Mulan - Elite Archer). The amount comes from ctx, so it tracks whatever
+    was actually dealt rather than a fixed number."""
+    from . import abilities
+    amount = ctx.get("damage_amount", 0)
+    if amount <= 0:
+        return
+    already = ctx.get("char")
+    picked = []
+    for _ in range(eff.get("count", 1)):
+        tgt = abilities._best_opp_char(
+            g, p, cond=lambda gg, c: c.uid not in [x.uid for x in picked]
+            and (already is None or c.uid != already.uid))
+        if tgt is None:
+            break
+        picked.append(tgt)
+    for c in picked:
+        g.deal_damage(c, amount)
+        if g.winner is not None:
+            return
+
+
+def _eff_shuffle_reveal_play(g, p, ctx, eff):
+    """Shuffle, reveal the top card, play it free if it matches; otherwise
+    bottom it and run a consolation effect (Prophetic Vision)."""
+    pl = g.players[p]
+    g.rng.shuffle(pl.deck)
+    if not pl.deck:
+        return
+    card = pl.deck[-1]
+    if _card_matches(card, eff.get("filter")):
+        pl.deck.pop()
+        g.emit(f"schema: reveals {card.name} and plays it free")
+        g._play_card(p, card, {}, free=True)
+        return
+    pl.deck.pop()
+    pl.deck.insert(0, card)
+    g.emit(f"schema: reveals {card.name} and bottoms it")
+    if eff.get("otherwise"):
+        apply_effect(g, p, ctx, eff["otherwise"])
+
+
+def _eff_return_self_to_hand(g, p, ctx, eff):
+    """Return the source permanent to its owner's hand."""
+    src = ctx.get("source")
+    if src is None:
+        return
+    if src in g.items[p]:
+        g.items[p].remove(src)
+    elif getattr(src, "uid", None) in g.locs:
+        g.locs.pop(src.uid, None)
+    else:
+        return
+    g.players[p].hand.append(src.card)
+    g.emit(f"schema: returns {src.card.base_name} to hand")
+
+
+def _eff_return_own_exerted_for_lore(g, p, ctx, eff):
+    """Return one of your exerted characters to hand to gain lore
+    (Family Fishing Pole). Picks the least valuable exerted body."""
+    pool = [c for c in g.my_chars(p) if c.exerted]
+    if not pool:
+        return
+    tgt = min(pool, key=lambda c: (g.eff_lore(c), c.card.cost))
+    g.chars.pop(tgt.uid, None)
+    g.players[p].hand.append(tgt.card)
+    g.emit(f"schema: returns {tgt.card.base_name} to hand")
+    if eff.get("lore"):
+        g.gain_lore(p, eff["lore"])
+
+
+def _eff_banish_own_record_name(g, p, ctx, eff):
+    """Banish one of your characters and remember its name, so a follow-on
+    effect can match it (Vine Pod REGENERATE)."""
+    me = ctx.get("char") or ctx.get("source")
+    pool = [c for c in g.my_chars(p)
+            if getattr(me, "uid", None) != c.uid]
+    if not pool:
+        return
+    victim = min(pool, key=lambda c: (g.eff_lore(c), g.eff_strength(c),
+                                      c.card.cost))
+    ctx["banished_name"] = victim.card.base_name
+    g.emit(f"schema: banishes own {victim.card.base_name}")
+    g.banish_char(victim, cause="effect")
+
+
+def _eff_cards_under_to_hand(g, p, ctx, eff):
+    """Put every card from under this permanent into your hand, then
+    optionally banish the permanent (Graveyard of Christmas Future)."""
+    src = ctx.get("source") or ctx.get("loc")
+    if src is None:
+        return
+    pile = _under_pile(src)
+    if not pile:
+        return
+    n = len(pile)
+    g.players[p].hand.extend(pile)
+    pile.clear()
+    g.emit(f"schema: returns {n} card(s) from under "
+           f"{src.card.base_name} to hand")
+    if eff.get("then_banish"):
+        if src in list(g.locs.values()):
+            g.banish_loc(src)
+        elif src in g.items[p]:
+            g.banish_item(src)
+
+
 def _eff_play_same_name_free(g, p, ctx, eff):
     """Play a character from hand sharing a name with the one just banished
     (Vine Pod REGENERATE). ctx['banished_name'] is set by the cost."""
@@ -1953,6 +2071,12 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "mirror_damage": _eff_mirror_damage,
+    "shuffle_reveal_play": _eff_shuffle_reveal_play,
+    "return_self_to_hand": _eff_return_self_to_hand,
+    "return_own_exerted_for_lore": _eff_return_own_exerted_for_lore,
+    "banish_own_record_name": _eff_banish_own_record_name,
+    "cards_under_to_hand": _eff_cards_under_to_hand,
     "conditional_discard": _eff_conditional_discard,
     "discard_to_damage": _eff_discard_to_damage,
     "cant_challenge": _eff_cant_challenge,
@@ -2050,7 +2174,9 @@ def apply_effect(g, p, ctx, eff):
                            "team_strength_floor",
                            "classification_cant_quest",
                            "opposing_items_cant_ready",
-                           "no_challenge_damage", "move_cost_reduction",
+                           "no_challenge_damage", "no_damage",
+                           "grant_classification", "hand_all_inkable",
+                           "move_cost_reduction",
                            "play_free_via_bottom", "opponent_cant_play"):
         return          # consumed by the static hooks, not dispatched
     fn = _EFFECTS.get(eff.get("type"))
@@ -2848,6 +2974,18 @@ def blocks_item_ready(g, item, owner):
     return False
 
 
+def takes_no_damage(g, ch):
+    """Blanket immunity to being dealt damage (Chief Bogo MY JURISDICTION).
+    Broader than takes_no_challenge_damage, and checked in deal_damage."""
+    for e in entries_for(ch.card.name, "static"):
+        if e.get("effect", {}).get("type") != "no_damage":
+            continue
+        if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                           e.get("condition")):
+            return True
+    return False
+
+
 def takes_no_challenge_damage(g, ch):
     """Immunity to challenge damage (Mulan - Standing Her Ground)."""
     for e in entries_for(ch.card.name, "static"):
@@ -2983,6 +3121,64 @@ def team_static_keyword_amount(g, ch, kw):
     return total
 
 
+def all_cards_inkable(g, p):
+    """Does a permanent you control make every card in your hand inkable
+    (Madam Mim - Hummingbird JUST HOW I LIKE IT)?"""
+    for src in list(g.my_chars(p)) + list(g.items[p]) + list(g.my_locs(p)):
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "hand_all_inkable":
+                continue
+            if check_condition(g, p,
+                               {"card": src.card,
+                                "char": src if _obj_is_char(src) else None},
+                               e.get("condition")):
+                return True
+    return False
+
+
+def dispatch_challenge_damage_dealt(g, attacker, defender, amount):
+    """'Whenever this character deals damage to another character in a
+    challenge' watchers on the attacker (Mulan - Elite Archer TRIPLE SHOT).
+    ctx["char"] is the character that was hit; the amount is passed through
+    so an effect can mirror it."""
+    if amount <= 0:
+        return
+    ents = entries_for(attacker.card.name, "on_challenge_damage_dealt")
+    if not ents:
+        return
+    _run(g, attacker.owner,
+         {"card": attacker.card, "char": defender, "source": attacker,
+          "damage_amount": amount}, ents)
+
+
+def granted_classifications(g, ch):
+    """Classifications this character gains from a permanent you control
+    (Chief Bogo DEPUTIZE)."""
+    out = set()
+    for src in list(g.my_chars(ch.owner)) + list(g.items[ch.owner]) \
+            + list(g.my_locs(ch.owner)):
+        if getattr(src, "uid", None) == ch.uid:
+            continue
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "grant_classification":
+                continue
+            if check_condition(g, src.owner,
+                               {"card": src.card,
+                                "char": src if _obj_is_char(src) else None},
+                               e.get("condition")):
+                out.add(eff.get("name"))
+    return out
+
+
+def has_classification(g, ch, name):
+    """Printed or granted. Conditions that read classifications should use
+    this rather than card.classifications directly."""
+    return name in ch.card.classifications \
+        or name in granted_classifications(g, ch)
+
+
 def team_static_stat(g, ch, stat):
     """A stat bonus granted to your OTHER characters (Genie - Of the Lamp)."""
     total = 0
@@ -2994,7 +3190,13 @@ def team_static_stat(g, ch, stat):
             if src.uid == ch.uid and not eff.get("include_self"):
                 continue
             want = eff.get("classification")
-            if want and want not in ch.card.classifications:
+            if want and not has_classification(g, ch, want):
+                continue
+            ink = eff.get("ink")
+            if ink and ch.card.ink_type != ink:
+                continue
+            minstr = eff.get("min_strength")
+            if minstr is not None and g.eff_strength(ch) < minstr:
                 continue
             if check_condition(g, src.owner,
                                {"card": src.card, "char": src},

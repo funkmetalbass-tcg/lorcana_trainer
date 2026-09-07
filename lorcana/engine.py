@@ -351,6 +351,10 @@ class Game:
             self.winner = p
 
     def deal_damage(self, ch, amount, apply_resist=True, challenge=False):
+        from . import schema as _sch5
+        if _sch5.takes_no_damage(self, ch):
+            self.emit(f"{ch.card.base_name} can't be dealt damage")
+            return
         from . import schema as _sch
         if getattr(self, "_in_challenge_damage", False) \
                 and _sch.takes_no_challenge_damage(self, ch):
@@ -478,8 +482,11 @@ class Game:
         seen_names = set()
         # ink (once per turn)
         if "inked" not in self.turn_flags:
+            from . import schema as _sch6
+            _any_inkable = _sch6.all_cards_inkable(self, p)
             for card in pl.hand:
-                if card.inkable and ("ink", card.name) not in seen_names:
+                if (card.inkable or _any_inkable) \
+                        and ("ink", card.name) not in seen_names:
                     acts.append(("ink", card.name))
                     seen_names.add(("ink", card.name))
             # Moana - Curious Explorer ANCESTRAL LEGACY: you may ink inkable
@@ -825,8 +832,22 @@ class Game:
         # no damage from this challenge.
         if abilities.attacker_takes_no_challenge_damage(self, attacker, defender):
             dmg_to_atk = 0
+        # Schema-driven immunity (Mulan - Standing Her Ground). Applied here
+        # rather than in deal_damage: challenge damage is dealt to both sides
+        # simultaneously and only then resolved into banishes, so routing it
+        # through deal_damage would change the outcome of trades.
+        from . import schema as _sch4
+        if _sch4.takes_no_challenge_damage(self, defender) \
+                or _sch4.takes_no_damage(self, defender):
+            dmg_to_def = 0
+        if _sch4.takes_no_challenge_damage(self, attacker) \
+                or _sch4.takes_no_damage(self, attacker):
+            dmg_to_atk = 0
         defender.damage += dmg_to_def
         attacker.damage += dmg_to_atk
+        if dmg_to_def > 0:
+            _sch4.dispatch_challenge_damage_dealt(self, attacker, defender,
+                                                  dmg_to_def)
         def_dies = defender.damage >= self.eff_willpower(defender)
         atk_dies = attacker.damage >= self.eff_willpower(attacker)
         # EVEN THE SCORE / PUNY PIRATE! fire on the challenge outcome itself,

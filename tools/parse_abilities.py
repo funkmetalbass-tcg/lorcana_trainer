@@ -693,6 +693,12 @@ def _c(m):
 
 
 # --- Phase 14 clauses ------------------------------------------------
+@clause(r"(?:[Ss]he|[Hh]e|[Tt]hey|[Ii]t) gets \+(\d+) Strength this turn\.?")
+def _c(m):
+    return {"type": "stat_mod", "stat": "str", "amount": int(m.group(1)),
+            "target": "self", "duration": "eot"}
+
+
 @clause(r"[Tt]his character gets \+(\d+) Strength this turn\.?")
 def _c(m):
     return {"type": "stat_mod", "stat": "str", "amount": int(m.group(1)),
@@ -762,6 +768,10 @@ _TWO_KEYWORDS = re.compile(
 
 _DRAIN_AND_GAIN = re.compile(
     r"[Ee]ach opponent loses (\d+) lore and you gain (\d+) lore\.?")
+
+# the same effect with the clauses the other way round (Grandma Wu)
+_GAIN_AND_DRAIN = re.compile(
+    r"[Yy]ou gain (\d+) lore and each opponent loses (\d+) lore\.?")
 
 _STAT_AND_KEYWORD = re.compile(
     r"[Cc]hosen character gets \+(\d+) Strength and gains "
@@ -1228,6 +1238,60 @@ def _c(m):
     return {"type": "discard_to_damage", "amount": int(m.group(1))}
 
 
+
+@clause(r"[Bb]anish chosen character of yours\. You may play a character with "
+        r"the same name as that character for free\.?")
+def _c(m):
+    return {"type": "sequence", "effects": [
+        {"type": "banish_own_record_name"},
+        {"type": "play_same_name_free"}]}
+
+
+@clause(r"[Yy]ou may put all cards from under this location into your hand\. "
+        r"If you do, banish this location\.?")
+def _c(m):
+    return {"type": "cards_under_to_hand", "then_banish": True}
+
+
+@clause(r"[Pp]lay an action with cost (\d+) or less from your discard "
+        r"for free, then put that action card on the bottom of your deck "
+        r"instead of into your discard\.?")
+def _c(m):
+    return {"type": "play_from_discard_then_bottom",
+            "filter": {"card_type": "action", "max_cost": int(m.group(1))}}
+
+
+
+@clause(r"[Ss]huffle your deck, then reveal the top card\. If it's an "
+        r"(action|character|item) card, you may play it for free\. Otherwise, "
+        r"put it on the bottom of your deck, then each opponent loses (\d+) "
+        r"lore and you gain (\d+) lore\.?")
+def _c(m):
+    return {"type": "shuffle_reveal_play",
+            "filter": {"card_type": m.group(1).lower()},
+            "otherwise": {"type": "sequence", "effects": [
+                {"type": "opponent_lose_lore", "amount": int(m.group(2))},
+                {"type": "gain_lore", "amount": int(m.group(3))}]}}
+
+
+@clause(r"[Rr]eturn this item to your hand\.?")
+def _c(m):
+    return {"type": "return_self_to_hand"}
+
+
+@clause(r"[Rr]eturn chosen exerted character of yours to your hand to gain "
+        r"(\d+) lore\.?")
+def _c(m):
+    return {"type": "return_own_exerted_for_lore", "lore": int(m.group(1))}
+
+
+
+@clause(r"[Dd]eal the same amount of damage to up to (\d+) other chosen "
+        r"characters\.?")
+def _c(m):
+    return {"type": "mirror_damage", "count": int(m.group(1))}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1392,6 +1456,13 @@ _OPP_ITEMS_NO_READY = re.compile(
     r"Opposing items can't ready at the start of their players'? turns\.?",
     re.IGNORECASE)
 
+_ALL_INKABLE = re.compile(
+    r"All cards in your hand count as having\.?", re.IGNORECASE)
+
+_NO_DAMAGE = re.compile(
+    r"(?:While|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
+    r"can't be dealt damage\.?", re.IGNORECASE)
+
 _NO_CHALLENGE_DAMAGE = re.compile(
     r"(?:While|During|If) (?P<cond>.+?), (?:this character|she|he|they|it) "
     r"takes no damage from challenges\.?", re.IGNORECASE)
@@ -1467,6 +1538,15 @@ _BOTTOM_THEN_CLAUSE = re.compile(
     r"the bottom of your deck in any order\. If you do, (?P<rest>.+)$",
     re.IGNORECASE)
 
+_DISCOUNT_IF_DAMAGED = re.compile(
+    r"If you have a character in play with damage, you pay (\d+) Ink less "
+    r"to play this character\.?", re.IGNORECASE)
+
+# the stat glyph is stripped, so this reads "with 5 or more"
+_DISCOUNT_IF_STRENGTH = re.compile(
+    r"If you have a character in play with (\d+) or more, you pay (\d+) Ink "
+    r"less to play this character\.?", re.IGNORECASE)
+
 _DISCOUNT_PER_TYPE = re.compile(
     r"For each (action|character|item) card in your discard, you pay (\d+) "
     r"Ink less to play this character\.?", re.IGNORECASE)
@@ -1478,6 +1558,16 @@ _DISCOUNT_PER_DISCARD = re.compile(
 _DISCOUNT_IF_BANISHED = re.compile(
     r"If one of your ([A-Za-z ]+?) characters was banished this turn, "
     r"you pay (\d+) Ink less to play this character\.?", re.IGNORECASE)
+
+# "Your other Ruby characters get +1 Strength." -- filtered by ink colour
+_TEAM_STAT_INK = re.compile(
+    r"Your (?P<other>other )?(?P<ink>Amber|Amethyst|Emerald|Ruby|Sapphire|Steel) "
+    r"characters(?: with (?P<minstr>\d+) Strength or more)? get "
+    r"\+(?P<amt>\d+) (?P<stat>Strength|Lore|Willpower)\.?", re.IGNORECASE)
+
+_GRANT_CLASS = re.compile(
+    r"Your other characters gain the ([A-Za-z ]+?) classification\.?",
+    re.IGNORECASE)
 
 _TEAM_STAT_PLAIN = re.compile(
     r"Your ([A-Za-z ]+?) characters get \+(\d+) (Strength|Lore|Willpower)\.?",
@@ -1663,6 +1753,19 @@ def parse_static_self(line):
                  "effect": {"type": "team_keyword",
                             "keyword": mtk.group(2).lower(),
                             "classification": cls[0]}}]
+    mdmg = _DISCOUNT_IF_DAMAGED.fullmatch(line)
+    if mdmg:
+        return [{"trigger": "static",
+                 "condition": {"type": "you_have_damaged_character"},
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(mdmg.group(1))}}]
+    mstr = _DISCOUNT_IF_STRENGTH.fullmatch(line)
+    if mstr:
+        return [{"trigger": "static",
+                 "condition": {"type": "you_have_character_with_strength",
+                               "strength": int(mstr.group(1))},
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(mstr.group(2))}}]
     mdt = _DISCOUNT_PER_TYPE.fullmatch(line)
     if mdt:
         return [{"trigger": "static",
@@ -1690,6 +1793,23 @@ def parse_static_self(line):
                                "name": cls[0]},
                  "effect": {"type": "play_cost_reduction",
                             "amount": int(mdb.group(2))}}]
+    mti = _TEAM_STAT_INK.fullmatch(line)
+    if mti:
+        e = {"type": "team_stat", "stat": _stat_name(mti.group("stat")),
+             "amount": int(mti.group("amt")),
+             "ink": mti.group("ink").capitalize()}
+        if mti.group("minstr"):
+            e["min_strength"] = int(mti.group("minstr"))
+        if not mti.group("other"):
+            e["include_self"] = True
+        return [{"trigger": "static", "effect": e}]
+    mgc = _GRANT_CLASS.fullmatch(line)
+    if mgc:
+        cls = _CLASS_CANON.get(mgc.group(1).strip().lower())
+        if cls is None:
+            return None
+        return [{"trigger": "static",
+                 "effect": {"type": "grant_classification", "name": cls}}]
     mtp = _TEAM_STAT_PLAIN.fullmatch(line)
     if mtp:
         cls = _classes(mtp.group(1))
@@ -1811,6 +1931,25 @@ def parse_static_self(line):
     if _OPP_ITEMS_NO_READY.fullmatch(line):
         return [{"trigger": "static",
                  "effect": {"type": "opposing_items_cant_ready"}}]
+    _norm = re.sub(r"\s+", " ", re.sub(r"\s*\{\}\s*", " ", line))
+    _norm = re.sub(r"\s+([.,])", r"\1", _norm).strip()
+    if _ALL_INKABLE.fullmatch(_norm):
+        return [{"trigger": "static",
+                 "effect": {"type": "hand_all_inkable"}}]
+    mnn = _NO_DAMAGE.fullmatch(line)
+    if mnn:
+        c = _static_cond(mnn.group("cond"))
+        if c is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "no_damage"}}]
+    mnd = _NO_CHALLENGE_DAMAGE.fullmatch(line)
+    if mnd:
+        c = _static_cond(mnd.group("cond"))
+        if c is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "no_challenge_damage"}}]
     if _NO_READY_PLAIN.fullmatch(line):
         return [{"trigger": "static", "effect": {"type": "static_no_ready"}}]
     mn = _NO_READY.fullmatch(line)
@@ -1926,7 +2065,17 @@ def ability_lines(desc):
     # the export runs together with no separator (Merida's Bow).
     text = _LABEL_SPLIT.sub("\n", text)
     text = _LABEL_COST.sub(r"\1 Ink", text)
-    return [l.strip() for l in re.split(r"\n", text) if l.strip()]
+    out = []
+    for l in re.split(r"\n", text):
+        l = l.strip()
+        # Drop glyph-only leftovers ("{}", stray punctuation). These are the
+        # residue of a keyword line the keyword layer already consumed --
+        # Temporary Shift leaves one -- and are not ability text. Keeping
+        # them made the all-or-nothing rule reject the whole card.
+        if not l or not re.sub(r"[{}\s.,;:]", "", l):
+            continue
+        out.append(l)
+    return out
 
 
 def parse_activated(desc):
@@ -2061,6 +2210,10 @@ def parse_by_clauses(prose):
     if mtk:
         return [_grant(mtk.group(1), None),
                 _grant(mtk.group(2), mtk.group(3))]
+    mgd = _GAIN_AND_DRAIN.fullmatch(prose.strip())
+    if mgd:
+        return [{"type": "gain_lore", "amount": int(mgd.group(1))},
+                {"type": "opponent_lose_lore", "amount": int(mgd.group(2))}]
     mdg = _DRAIN_AND_GAIN.fullmatch(prose.strip())
     if mdg:
         return [{"type": "opponent_lose_lore", "amount": int(mdg.group(1))},
@@ -2321,6 +2474,9 @@ _PREAMBLES = [
     (re.compile(r"^During your turn, whenever this character banishes another "
                 r"character in a challenge,\s*", re.IGNORECASE),
      "on_banishes_in_challenge"),
+    (re.compile(r"^During your turn, whenever this character deals damage to "
+                r"another character in a challenge,\s*", re.IGNORECASE),
+     "on_challenge_damage_dealt|yourturn"),
     (re.compile(r"^Whenever an opponent plays a song,\s*", re.IGNORECASE),
      "on_opponent_song"),
     (re.compile(r"^Whenever you play a song,\s*", re.IGNORECASE),
@@ -2360,7 +2516,8 @@ _TRIG_CONDS = [
                 r"character is in play,\s*", re.IGNORECASE),
      lambda m: {"type": "classification_in_play",
                 "any_of": _classes(m.group("a"), m.group("b"))}),
-    (re.compile(r"^if you used Shift to play it,\s*", re.IGNORECASE),
+    (re.compile(r"^if you used Shift to play (?:it|her|him|them),\s*",
+                re.IGNORECASE),
      lambda m: {"type": "played_via_shift"}),
     (re.compile(r"^if there's a card under (?:him|her|them|it),\s*",
                 re.IGNORECASE),
@@ -2369,6 +2526,9 @@ _TRIG_CONDS = [
      lambda m: {"type": "self_at_location"}),
     (re.compile(r"^if there's a card under this character,\s*", re.IGNORECASE),
      lambda m: {"type": "has_card_under"}),
+    (re.compile(r"^if you've put a card under (?:her|him|them|it) this turn,"
+                r"\s*", re.IGNORECASE),
+     lambda m: {"type": "put_card_under_this_turn", "scope": "self"}),
     (re.compile(r"^if an opponent has more cards in their inkwell than you,"
                 r"\s*", re.IGNORECASE),
      lambda m: {"type": "opponent_more_inkwell"}),
@@ -2502,6 +2662,11 @@ def parse_card(name, raw):
     # Multi-ability cards: one segment per printed ability. Each must parse on
     # its own or the whole card is left as a gap, so a card never ends up with
     # only half of its text implemented.
+    # Everything was keyword text (Temporary Shift leaves only a glyph
+    # behind); there is no ability to implement.
+    if not prose and not ability_lines(desc):
+        return None
+
     segs = ability_lines(desc)
     if len(segs) > 1:
         out = []

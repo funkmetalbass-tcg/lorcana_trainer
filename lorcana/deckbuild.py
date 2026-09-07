@@ -363,7 +363,8 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
     db = CardDB(db_path)
     pool = load_pool(pool_path, db, ink_pair)
     by_name = {c.name: c for c in pool}
-    workers = workers or os.cpu_count() or 1
+#    workers = workers or os.cpu_count() or 1
+    workers = workers or 6# or 1
 
     cap = pool_capacity(pool)
     print(f"Pool: {len(pool)} unique legal cards (capacity {cap} >= {DECK_SIZE} required)")

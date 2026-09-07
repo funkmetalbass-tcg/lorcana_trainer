@@ -3255,8 +3255,26 @@
  ],
  "Russell - Senior Wilderness Explorer": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 3 {} (You may pay 3 Ink to play this on top of one of your characters named Russell.)[BASE CAMP] Your characters at locations get +1{}.[GOOD LEADERSHIP] Whenever one of your characters with 4{} or more quests, gain 1 lore."
+   "trigger": "static",
+   "effect": {
+    "type": "team_stat",
+    "stat": "str",
+    "amount": 1,
+    "at_location": true,
+    "include_self": true
+   },
+   "confidence": "medium",
+   "source": "Shift 3 {} (You may pay 3 Ink to play this on top of one of your characters named Russell.)[BASE CAMP] Your characters at locations get +1{}.[GOOD LEADERSHIP] Whenever one of your characters with 4{} or more quests, gain 1 lore."
+  },
+  {
+   "trigger": "on_ally_quest",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Shift 3 {} (You may pay 3 Ink to play this on top of one of your characters named Russell.)[BASE CAMP] Your characters at locations get +1{}.[GOOD LEADERSHIP] Whenever one of your characters with 4{} or more quests, gain 1 lore.",
+   "quester_min_strength": 4
   }
  ],
  "Russell - Junior Wilderness Explorer": [
@@ -3324,8 +3342,23 @@
  ],
  "Carl Fredricksen & Russell - Intrepid Explorers": [
   {
-   "impl": "unimplemented",
-   "text": "Shift 4 {}[OUTDOOR SKILLS] While this character is at a location, all characters at that location get +1 {} and gain Evasive."
+   "trigger": "static",
+   "effect": {
+    "type": "colocated_aura_stat",
+    "stat": "str",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Shift 4 {}[OUTDOOR SKILLS] While this character is at a location, all characters at that location get +1 {} and gain Evasive."
+  },
+  {
+   "trigger": "static",
+   "effect": {
+    "type": "colocated_aura_keyword",
+    "keyword": "evasive"
+   },
+   "confidence": "medium",
+   "source": "Shift 4 {}[OUTDOOR SKILLS] While this character is at a location, all characters at that location get +1 {} and gain Evasive."
   }
  ],
  "To Wither A Flower": [

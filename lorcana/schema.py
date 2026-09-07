@@ -2212,6 +2212,7 @@ def apply_effect(g, p, ctx, eff):
                            "opposing_items_cant_ready",
                            "no_challenge_damage", "no_damage",
                            "grant_classification", "hand_all_inkable",
+                           "colocated_aura_stat", "colocated_aura_keyword",
                            "move_cost_reduction",
                            "play_free_via_bottom", "opponent_cant_play"):
         return          # consumed by the static hooks, not dispatched
@@ -2794,6 +2795,9 @@ def dispatch_ally_quest(g, quester):
             want = e.get("quester_classification")
             if want and want not in quester.card.classifications:
                 continue
+            minstr = e.get("quester_min_strength")
+            if minstr is not None and g.eff_strength(quester) < minstr:
+                continue
             if not e.get("include_self") \
                     and getattr(src, "uid", None) == quester.uid:
                 continue
@@ -2904,6 +2908,41 @@ def shift_aliases(card):
         if eff.get("type") == "shift_alias" and eff.get("name"):
             out.append(eff["name"])
     return out
+
+
+def colocated_aura_stat(g, ch, stat):
+    """Stat granted by a character standing at the same location
+    (Carl Fredricksen & Russell OUTDOOR SKILLS). Applies to both sides --
+    "all characters at that location" is not restricted to yours."""
+    if ch.location is None:
+        return 0
+    total = 0
+    for src in g.chars.values():
+        if src.location != ch.location:
+            continue
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "colocated_aura_stat":
+                continue
+            if eff.get("stat") != stat:
+                continue
+            total += eff.get("amount", 0)
+    return total
+
+
+def colocated_aura_keyword(g, ch, kw):
+    """Keyword granted by a character at the same location, both sides."""
+    if ch.location is None:
+        return False
+    for src in g.chars.values():
+        if src.location != ch.location:
+            continue
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") == "colocated_aura_keyword" \
+                    and eff.get("keyword", "").lower() == kw.lower():
+                return True
+    return False
 
 
 def location_aura_stat(g, ch, stat):
@@ -3271,6 +3310,8 @@ def team_static_stat(g, ch, stat):
                 continue
             minstr = eff.get("min_strength")
             if minstr is not None and g.eff_strength(ch) < minstr:
+                continue
+            if eff.get("at_location") and ch.location is None:
                 continue
             if check_condition(g, src.owner,
                                {"card": src.card, "char": src},

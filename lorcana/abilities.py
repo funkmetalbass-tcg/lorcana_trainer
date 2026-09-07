@@ -146,6 +146,7 @@ def strength(g, ch):
     s += schema.static_self_stat(g, ch, "str")
     s += schema.team_static_stat(g, ch, "str")
     s += schema.location_aura_stat(g, ch, "str")
+    s += schema.colocated_aura_stat(g, ch, "str")
     name = ch.card.name
     # MAGICAL MIX: +1 for each different ink type among your characters
     if name == "Winnie The Pooh & Piglet - Hunny Mages":
@@ -381,6 +382,9 @@ def _hunny_count(g, p, exclude_uid=None):
 
 
 def has_evasive(g, ch):
+    from . import schema as _s
+    if _s.colocated_aura_keyword(g, ch, "evasive"):
+        return True
     if ch.card.kw("Evasive"):
         return True
     # NOT A FLYING TOY (Buzz Lightyear - Grounded): printed Evasive would

@@ -1587,6 +1587,20 @@ _DISCOUNT_IF_BANISHED = re.compile(
     r"you pay (\d+) Ink less to play this character\.?", re.IGNORECASE)
 
 # "Your other Ruby characters get +1 Strength." -- filtered by ink colour
+# "Your characters at locations get +1 Strength." (the glyph is stripped, so
+# the stat name may be absent)
+_TEAM_STAT_ATLOC = re.compile(
+    r"Your characters at locations get \+(\d+)\s*(?:\{\})?\s*"
+    r"(Strength|Lore|Willpower)?\.?",
+    re.IGNORECASE)
+
+# "While this character is at a location, all characters at that location
+# get +1 Strength and gain Evasive."
+_COLOCATED_AURA = re.compile(
+    r"While this character is at a location, all characters at that location "
+    r"get \+(?P<amt>\d+)\s*(?:\{\})?\s*(?P<stat>Strength|Lore|Willpower)?"
+    r"(?: and gain (?P<kw>Evasive|Ward|Rush|Reckless))?\.?", re.IGNORECASE)
+
 _TEAM_STAT_INK = re.compile(
     r"Your (?P<other>other )?(?P<ink>Amber|Amethyst|Emerald|Ruby|Sapphire|Steel) "
     r"characters(?: with (?P<minstr>\d+) Strength or more)? get "
@@ -1820,6 +1834,25 @@ def parse_static_self(line):
                                "name": cls[0]},
                  "effect": {"type": "play_cost_reduction",
                             "amount": int(mdb.group(2))}}]
+    mal = _TEAM_STAT_ATLOC.fullmatch(line)
+    if mal:
+        return [{"trigger": "static",
+                 "effect": {"type": "team_stat",
+                            "stat": _stat_name(mal.group(2) or "Strength"),
+                            "amount": int(mal.group(1)),
+                            "at_location": True,
+                            "include_self": True}}]
+    mca = _COLOCATED_AURA.fullmatch(line)
+    if mca:
+        out = [{"trigger": "static",
+                "effect": {"type": "colocated_aura_stat",
+                           "stat": _stat_name(mca.group("stat") or "Strength"),
+                           "amount": int(mca.group("amt"))}}]
+        if mca.group("kw"):
+            out.append({"trigger": "static",
+                        "effect": {"type": "colocated_aura_keyword",
+                                   "keyword": mca.group("kw").lower()}})
+        return out
     mti = _TEAM_STAT_INK.fullmatch(line)
     if mti:
         e = {"type": "team_stat", "stat": _stat_name(mti.group("stat")),
@@ -2427,6 +2460,8 @@ _PREAMBLES = [
     (re.compile(r"^When you play this (?:character|item|location),\s*",
                 re.IGNORECASE), "on_play"),
     (re.compile(r"^When you shift this character,\s*", re.IGNORECASE), "on_shift"),
+    (re.compile(r"^Whenever one of your characters with (?P<qstr>\d+) or more "
+                r"quests,\s*", re.IGNORECASE), "on_ally_quest|qstr"),
     (re.compile(r"^Whenever one of your (?P<qcls>[A-Za-z ]+?) characters "
                 r"quests,\s*", re.IGNORECASE), "on_ally_quest|qcls"),
     (re.compile(r"^Once during your turn, you may pay (?P<ink>\d+) Ink to\s*",
@@ -2617,6 +2652,8 @@ def parse_triggered(prose):
                 extra["once_per_turn"] = True
             if "twice" in parts:
                 extra["uses_per_turn"] = 2
+            if "qstr" in parts and m.groupdict().get("qstr"):
+                extra["quester_min_strength"] = int(m.group("qstr"))
             if "qcls" in parts and m.groupdict().get("qcls"):
                 _qc = _classes(m.group("qcls"))
                 if _qc is None:

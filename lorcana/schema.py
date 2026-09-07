@@ -1740,6 +1740,22 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
         pl.deck.insert(0, pick)
 
 
+def _eff_attach_to_location(g, p, ctx, eff):
+    """Attach the source item to one of your locations (Bunch Of Balloons).
+    The attachment lives on the game, since ItemInPlay uses __slots__ and
+    cannot carry an extra field."""
+    src = ctx.get("source")
+    locs = list(g.my_locs(p))
+    if src is None or not locs:
+        return
+    # the most valuable location to protect
+    loc = max(locs, key=lambda l: (g.loc_lore(l), l.card.cost))
+    if not hasattr(g, "attachments"):
+        g.attachments = {}
+    g.attachments[src.uid] = loc.uid
+    g.emit(f"schema: {src.card.base_name} attaches to {loc.card.base_name}")
+
+
 def _eff_ready_singers(g, p, ctx, eff):
     """Ready the characters that sang this song, when enough of them did
     (I2I). Reads g.singers, which sing_together populates."""
@@ -2125,6 +2141,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "attach_to_location": _eff_attach_to_location,
     "ready_singers": _eff_ready_singers,
     "play_self_from_discard": _eff_play_self_from_discard,
     "mirror_damage": _eff_mirror_damage,
@@ -2233,6 +2250,7 @@ def apply_effect(g, p, ctx, eff):
                            "no_challenge_damage", "no_damage",
                            "grant_classification", "hand_all_inkable",
                            "colocated_aura_stat", "colocated_aura_keyword",
+                           "attached_location_keyword",
                            "move_cost_reduction",
                            "play_free_via_bottom", "opponent_cant_play"):
         return          # consumed by the static hooks, not dispatched
@@ -2304,7 +2322,7 @@ def _run(g, p, ctx, ents):
 def dispatch_play(g, p, card, obj, params):
     ents = entries_for(card.name, "on_play")
     if ents:
-        _run(g, p, {"card": card, "params": params,
+        _run(g, p, {"card": card, "params": params, "source": obj,
                     "char": obj if card.is_character else None}, ents)
     if params and params.get("shift"):
         dispatch_shift(g, p, card, obj, params)
@@ -2707,7 +2725,25 @@ def dispatch_challenge_at_location(g, attacker, defender):
 
 
 def static_location_keyword(g, loc, kw):
-    """A keyword the location itself has right now (Game Preserve)."""
+    """A keyword the location itself has right now.
+
+    Two sources: the location's own static (Game Preserve), and an item
+    attached to it while that item remains in play (Bunch Of Balloons).
+    """
+    for item_uid, loc_uid in list(getattr(g, "attachments", {}).items()):
+        if loc_uid != loc.uid:
+            continue
+        item = next((i for pl in (0, 1) for i in g.items[pl]
+                     if i.uid == item_uid), None)
+        if item is None:
+            # the item left play; the grant goes with it
+            g.attachments.pop(item_uid, None)
+            continue
+        for e in entries_for(item.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") == "attached_location_keyword" \
+                    and eff.get("keyword", "").lower() == kw.lower():
+                return True
     for e in entries_for(loc.card.name, "static"):
         eff = e.get("effect", {})
         if eff.get("type") != "static_location_keyword":

@@ -153,6 +153,7 @@ class Game:
         self.use_counts = {}         # n-times-per-turn ability usage
         self._in_discard_trigger = False
         self.singers = []            # uids of characters singing right now
+        self.attachments = {}        # item uid -> location uid
         self._in_chosen_trigger = False
         self._in_action_watcher = False
         self.turn_discards = {0: 0, 1: 0}   # cards -> discard this turn (Milo)
@@ -179,6 +180,7 @@ class Game:
         g.use_counts = dict(self.use_counts)
         g._in_discard_trigger = self._in_discard_trigger
         g.singers = list(self.singers)
+        g.attachments = dict(self.attachments)
         g._in_chosen_trigger = self._in_chosen_trigger
         g._in_action_watcher = self._in_action_watcher
         g.turn_flags = set(self.turn_flags)

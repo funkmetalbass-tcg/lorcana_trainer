@@ -3743,8 +3743,32 @@
  ],
  "Bunch Of Balloons": [
   {
-   "impl": "unimplemented",
-   "text": "[FLOAT AWAY] When you play this item, choose a location of yours. While this item is in play, that location gains Evasive. (Only characters with Evasive can challenge it.)\n\nOUT OF SIGHT 3{} - Return this item to your hand."
+   "trigger": "on_play",
+   "effect": {
+    "type": "attach_to_location"
+   },
+   "confidence": "medium",
+   "source": "[FLOAT AWAY] When you play this item, choose a location of yours. While this item is in play, that location gains Evasive. (Only characters with Evasive can challenge it.)\n\nOUT OF SIGHT 3{} - Return this item to your hand."
+  },
+  {
+   "trigger": "static",
+   "effect": {
+    "type": "attached_location_keyword",
+    "keyword": "evasive"
+   },
+   "confidence": "medium",
+   "source": "[FLOAT AWAY] When you play this item, choose a location of yours. While this item is in play, that location gains Evasive. (Only characters with Evasive can challenge it.)\n\nOUT OF SIGHT 3{} - Return this item to your hand."
+  },
+  {
+   "trigger": "activated",
+   "cost": {
+    "ink": 3
+   },
+   "effect": {
+    "type": "return_self_to_hand"
+   },
+   "confidence": "medium",
+   "source": "[FLOAT AWAY] When you play this item, choose a location of yours. While this item is in play, that location gains Evasive. (Only characters with Evasive can challenge it.)\n\nOUT OF SIGHT 3{} - Return this item to your hand."
   }
  ],
  "Carl's House - Flying High": [

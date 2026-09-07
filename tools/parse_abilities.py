@@ -1320,6 +1320,13 @@ def _c(m):
             "then": {"type": "draw", "amount": 1}}
 
 
+
+@clause(r"[Cc]hoose a location of yours\. While this item is in play, that "
+        r"location gains (Evasive|Ward|Resist)\.?")
+def _c(m):
+    return {"type": "attach_to_location", "keyword": m.group(1).lower()}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1348,7 +1355,7 @@ def match_clause(text):
 # ---------------------------------------------------------------------
 _ACT_HEAD = re.compile(
     r"^\s*(?:[A-Z][A-Z0-9'\u2019 !,&.?-]{2,45}?\s+)?"       # optional ALLCAPS name
-    r"((?:\[Exert\]|\{\}|\bexert\b|\d+\s*Ink|Banish this [a-z]+)"   # first cost token
+    r"((?:\[Exert\]|\d+\s*\{\}|\{\}|\bexert\b|\d+\s*Ink|Banish this [a-z]+)"   # first cost token
     r"(?:\s*,\s*[^\u2014]{1,45}?)*)"                          # further cost tokens
     r"\s*\u2014\s*(.+)$")                                    # separator + effect
 
@@ -1603,6 +1610,11 @@ _TEAM_STAT_ATLOC = re.compile(
 
 # "While this character is at a location, all characters at that location
 # get +1 Strength and gain Evasive."
+_ATTACHED_LOC_KW = re.compile(
+    r"When you play this item, choose a location of yours\. While this item "
+    r"is in play, that location gains (?P<kw>Evasive|Ward|Resist)\.?",
+    re.IGNORECASE)
+
 _COLOCATED_AURA = re.compile(
     r"While this character is at a location, all characters at that location "
     r"get \+(?P<amt>\d+)\s*(?:\{\})?\s*(?P<stat>Strength|Lore|Willpower)?"
@@ -1849,6 +1861,13 @@ def parse_static_self(line):
                             "amount": int(mal.group(1)),
                             "at_location": True,
                             "include_self": True}}]
+    mak = _ATTACHED_LOC_KW.fullmatch(line)
+    if mak:
+        return [{"trigger": "on_play",
+                 "effect": {"type": "attach_to_location"}},
+                {"trigger": "static",
+                 "effect": {"type": "attached_location_keyword",
+                            "keyword": mak.group("kw").lower()}}]
     mca = _COLOCATED_AURA.fullmatch(line)
     if mca:
         out = [{"trigger": "static",

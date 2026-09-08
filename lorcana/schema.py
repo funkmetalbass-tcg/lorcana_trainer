@@ -1750,6 +1750,27 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
         pl.deck.insert(0, pick)
 
 
+def _eff_ready_chosen_then_grant(g, p, ctx, eff):
+    """Ready a chosen character, lock it out of questing, and hang a one-shot
+    triggered ability on that same character (Next Stop, Olympus)."""
+    pool = [c for c in g.my_chars(p) if c.exerted]
+    if not pool:
+        pool = list(g.my_chars(p))
+    if not pool:
+        return
+    tgt = max(pool, key=lambda c: (g.eff_strength(c), g.eff_lore(c)))
+    if tgt.exerted:
+        tgt.exerted = False
+        g.emit(f"schema: readies {tgt.card.base_name}")
+    if eff.get("no_quest"):
+        g.turn_flags.add(("no_quest", tgt.uid))
+    grant = dict(eff.get("grant") or {})
+    if grant:
+        grant["target_uid"] = tgt.uid
+        grant["once"] = True
+        apply_effect(g, p, ctx, dict(grant, type="grant_triggered_ability"))
+
+
 def _eff_grant_triggered_ability(g, p, ctx, eff):
     """Grant a triggered ability to your characters for a duration
     (Hero Work). Stored as a timed entry in g.effects, so the existing
@@ -1760,6 +1781,8 @@ def _eff_grant_triggered_ability(g, p, ctx, eff):
         "amount": 0,
         "owner": p,
         "classification": eff.get("classification"),
+        "granted_target": eff.get("target_uid"),
+        "granted_once": bool(eff.get("once")),
         "granted_trigger": eff.get("trigger"),
         "granted_effect": eff.get("effect"),
         "until": "eot" if eff.get("duration", "eot") == "eot" else p,
@@ -1779,11 +1802,22 @@ def granted_entries(g, ch, trigger):
             continue
         if e.get("granted_trigger") != trigger:
             continue
+        tgt = e.get("granted_target")
+        if tgt is not None and tgt != ch.uid:
+            continue
         want = e.get("classification")
         if want and not has_classification(g, ch, want):
             continue
-        out.append({"trigger": trigger, "effect": e.get("granted_effect")})
+        out.append({"trigger": trigger, "effect": e.get("granted_effect"),
+                    "_granted": e})
     return out
+
+
+def consume_granted(g, entry):
+    """Drop a one-shot granted ability after it fires."""
+    src = entry.get("_granted") if isinstance(entry, dict) else None
+    if src is not None and src.get("granted_once") and src in g.effects:
+        g.effects.remove(src)
 
 
 def _eff_banish_up_to_source_strength(g, p, ctx, eff):
@@ -2241,6 +2275,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "ready_chosen_then_grant": _eff_ready_chosen_then_grant,
     "grant_triggered_ability": _eff_grant_triggered_ability,
     "banish_up_to_source_strength": _eff_banish_up_to_source_strength,
     "move_damage_to_other_location": _eff_move_damage_to_other_location,
@@ -3346,6 +3381,7 @@ def dispatch_challenges(g, attacker, defender=None):
         _run(g, attacker.owner,
              {"card": attacker.card, "char": attacker, "source": attacker,
               "defender": defender}, [e])
+        consume_granted(g, e)
         if g.winner is not None:
             return
 

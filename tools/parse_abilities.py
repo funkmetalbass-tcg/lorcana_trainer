@@ -1366,6 +1366,17 @@ def _c(m):
                 {"type": "gain_lore", "amount": int(m.group(3))}]}}
 
 
+
+@clause(r"[Rr]eady chosen character\. They can't quest for the rest of this "
+        r"turn\. The next time they challenge a character this turn, gain "
+        r"(\d+) lore\.?")
+def _c(m):
+    return {"type": "ready_chosen_then_grant", "no_quest": True,
+            "grant": {"trigger": "on_challenges",
+                      "effect": {"type": "gain_lore",
+                                 "amount": int(m.group(1))}}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1623,6 +1634,10 @@ _DISCOUNT_IF_DAMAGED = re.compile(
     r"to play this character\.?", re.IGNORECASE)
 
 # the stat glyph is stripped, so this reads "with 5 or more"
+_DISCOUNT_IF_STRENGTH_ACTION = re.compile(
+    r"(?:Action )?If you have a character with (\d+) Strength or more in "
+    r"play, you pay (\d+) Ink less to play this action\.?", re.IGNORECASE)
+
 _DISCOUNT_IF_STRENGTH = re.compile(
     r"If you have a character in play with (\d+) or more, you pay (\d+) Ink "
     r"less to play this character\.?", re.IGNORECASE)
@@ -1858,6 +1873,13 @@ def parse_static_self(line):
                  "condition": {"type": "you_have_damaged_character"},
                  "effect": {"type": "play_cost_reduction",
                             "amount": int(mdmg.group(1))}}]
+    msa = _DISCOUNT_IF_STRENGTH_ACTION.fullmatch(line)
+    if msa:
+        return [{"trigger": "static",
+                 "condition": {"type": "you_have_character_with_strength",
+                               "strength": int(msa.group(1))},
+                 "effect": {"type": "play_cost_reduction",
+                            "amount": int(msa.group(2))}}]
     mstr = _DISCOUNT_IF_STRENGTH.fullmatch(line)
     if mstr:
         return [{"trigger": "static",

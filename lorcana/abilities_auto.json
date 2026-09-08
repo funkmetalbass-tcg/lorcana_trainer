@@ -5248,8 +5248,33 @@
  ],
  "Next Stop, Olympus": [
   {
-   "impl": "unimplemented",
-   "text": "Action If you have a character with 5 Strength or more in play, you pay 2 Ink less to play this action.\nReady chosen character. They can't quest for the rest of this turn. The next time they challenge a character this turn, gain 1 lore."
+   "trigger": "static",
+   "condition": {
+    "type": "you_have_character_with_strength",
+    "strength": 5
+   },
+   "effect": {
+    "type": "play_cost_reduction",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "Action If you have a character with 5 Strength or more in play, you pay 2 Ink less to play this action.\nReady chosen character. They can't quest for the rest of this turn. The next time they challenge a character this turn, gain 1 lore."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "ready_chosen_then_grant",
+    "no_quest": true,
+    "grant": {
+     "trigger": "on_challenges",
+     "effect": {
+      "type": "gain_lore",
+      "amount": 1
+     }
+    }
+   },
+   "confidence": "high",
+   "source": "Action If you have a character with 5 Strength or more in play, you pay 2 Ink less to play this action.\nReady chosen character. They can't quest for the rest of this turn. The next time they challenge a character this turn, gain 1 lore."
   }
  ],
  "Time to Go!": [

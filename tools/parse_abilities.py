@@ -1344,6 +1344,28 @@ def _c(m):
     return {"type": "banish_up_to_source_strength"}
 
 
+
+@clause(r"[Yy]our characters get \+(\d+) Strength this turn\.?")
+def _c(m):
+    return {"type": "buff_all_yours", "stat": "str",
+            "amount": int(m.group(1))}
+
+
+@clause(r"[Yy]our ([A-Za-z ]+?) characters gain \"Whenever this character "
+        r"challenges another character, each opponent loses (\d+) lore and "
+        r"you gain (\d+) lore\" this turn\.?")
+def _c(m):
+    cls = _CLASS_CANON.get(m.group(1).strip().lower())
+    if cls is None:
+        return None
+    return {"type": "grant_triggered_ability",
+            "classification": cls,
+            "trigger": "on_challenges",
+            "effect": {"type": "sequence", "effects": [
+                {"type": "opponent_lose_lore", "amount": int(m.group(2))},
+                {"type": "gain_lore", "amount": int(m.group(3))}]}}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()

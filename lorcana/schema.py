@@ -1750,6 +1750,42 @@ def _eff_play_from_discard_then_bottom(g, p, ctx, eff):
         pl.deck.insert(0, pick)
 
 
+def _eff_grant_triggered_ability(g, p, ctx, eff):
+    """Grant a triggered ability to your characters for a duration
+    (Hero Work). Stored as a timed entry in g.effects, so the existing
+    end-of-turn sweep expires it with everything else."""
+    g.effects.append({
+        "kind": "granted_trigger",
+        "target": None,
+        "amount": 0,
+        "owner": p,
+        "classification": eff.get("classification"),
+        "granted_trigger": eff.get("trigger"),
+        "granted_effect": eff.get("effect"),
+        "until": "eot" if eff.get("duration", "eot") == "eot" else p,
+    })
+    g.emit(f"schema: grants a {eff.get('trigger')} ability to "
+           f"{eff.get('classification') or 'your'} characters")
+
+
+def granted_entries(g, ch, trigger):
+    """Schema-style entries granted to this character by an effect in play,
+    in the same shape entries_for returns."""
+    out = []
+    for e in g.effects:
+        if e.get("kind") != "granted_trigger":
+            continue
+        if e.get("owner") != ch.owner:
+            continue
+        if e.get("granted_trigger") != trigger:
+            continue
+        want = e.get("classification")
+        if want and not has_classification(g, ch, want):
+            continue
+        out.append({"trigger": trigger, "effect": e.get("granted_effect")})
+    return out
+
+
 def _eff_banish_up_to_source_strength(g, p, ctx, eff):
     """Banish every character whose Strength is at most the Strength the
     source had in play (Wreck-it Ralph WHO'S COMIN' WITH ME?).
@@ -2205,6 +2241,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "grant_triggered_ability": _eff_grant_triggered_ability,
     "banish_up_to_source_strength": _eff_banish_up_to_source_strength,
     "move_damage_to_other_location": _eff_move_damage_to_other_location,
     "attach_to_location": _eff_attach_to_location,
@@ -3297,7 +3334,8 @@ def dispatch_ally_challenges(g, attacker, defender):
 def dispatch_challenges(g, attacker, defender=None):
     """'Whenever this character challenges another character'
     (Captain Hook - Conniving Pirate)."""
-    ents = entries_for(attacker.card.name, "on_challenges")
+    ents = list(entries_for(attacker.card.name, "on_challenges")) \
+        + granted_entries(g, attacker, "on_challenges")
     for e in ents:
         # "challenges a character with N Strength or less" gates on the
         # defender (Brom Bones - Burly Bully).

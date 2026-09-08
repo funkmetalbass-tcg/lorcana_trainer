@@ -980,8 +980,37 @@
  ],
  "Hero Work": [
   {
-   "impl": "unimplemented",
-   "text": "Your characters get +1 Strength this turn. Your Hero characters gain \"Whenever this character challenges another character, each opponent loses 1 lore and you gain 1 lore\" this turn."
+   "trigger": "on_play",
+   "effect": {
+    "type": "buff_all_yours",
+    "stat": "str",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "Your characters get +1 Strength this turn. Your Hero characters gain \"Whenever this character challenges another character, each opponent loses 1 lore and you gain 1 lore\" this turn."
+  },
+  {
+   "trigger": "on_play",
+   "effect": {
+    "type": "grant_triggered_ability",
+    "classification": "Hero",
+    "trigger": "on_challenges",
+    "effect": {
+     "type": "sequence",
+     "effects": [
+      {
+       "type": "opponent_lose_lore",
+       "amount": 1
+      },
+      {
+       "type": "gain_lore",
+       "amount": 1
+      }
+     ]
+    }
+   },
+   "confidence": "medium",
+   "source": "Your characters get +1 Strength this turn. Your Hero characters gain \"Whenever this character challenges another character, each opponent loses 1 lore and you gain 1 lore\" this turn."
   }
  ],
  "Dangerous Plan": [

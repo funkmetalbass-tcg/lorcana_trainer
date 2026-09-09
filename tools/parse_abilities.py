@@ -1377,6 +1377,30 @@ def _c(m):
                                  "amount": int(m.group(1))}}}
 
 
+
+@clause(r"[Bb]anish all items\.?")
+def _c(m):
+    return {"type": "banish_all_items"}
+
+
+@clause(r"[Tt]his character may enter play exerted to give chosen character "
+        r"(Challenger|Resist) \+(\d+) this turn\.?")
+def _c(m):
+    return {"type": "enter_exerted_for",
+            "then": {"type": "grant_keyword", "keyword": m.group(1).lower(),
+                     "amount": int(m.group(2)), "target": "best_quester",
+                     "duration": "eot"}}
+
+
+
+@clause(r"[Tt]his character gains (Resist|Challenger) \+(\d+) until the start "
+        r"of your next turn\.?")
+def _c(m):
+    return {"type": "grant_keyword", "keyword": m.group(1).lower(),
+            "amount": int(m.group(2)), "target": "self",
+            "duration": "until_your_next"}
+
+
 def match_clause(text):
     """Effect dict for a single clause, or None."""
     text = text.strip()
@@ -1490,6 +1514,19 @@ _SELF_DISCOUNT = re.compile(
 # Grandma Wu, whose Challenger reminder text reads "gets +2 {}" -- Challenger
 # is unambiguously a Strength bonus.
 _STAT_SYMBOL = "str"
+
+_STATIC_PAIR = re.compile(
+    r"(?:While|As long as|During|If) (?P<cond>.+?), "
+    r"(?:this character|she|he|they|it) gets "
+    r"\+(?P<a1>\d+)\s*(?:\{\})?\s*(?P<s1>Strength|Lore|Willpower) and "
+    r"\+(?P<a2>\d+)\s*(?:\{\})?\s*(?P<s2>Strength|Lore|Willpower)\.?",
+    re.IGNORECASE)
+
+# "While <cond>, this character gains Challenger +N."
+_STATIC_KW_N = re.compile(
+    r"(?:While|As long as|During|If) (?P<cond>.+?), "
+    r"(?:this character|she|he|they|it) gains "
+    r"(?P<kw>Challenger|Resist) \+(?P<amt>\d+)\.?", re.IGNORECASE)
 
 _STATIC_TRIPLE = re.compile(
     r"(?:While|As long as|During) (?P<cond>.+?), (?:this character|she|he|they|it) "
@@ -2109,6 +2146,25 @@ def parse_static_self(line):
     if ma:
         return [{"trigger": "static",
                  "effect": {"type": "shift_alias", "name": ma.group(1).strip()}}]
+    mkn = _STATIC_KW_N.fullmatch(line)
+    if mkn:
+        c = _static_cond(mkn.group("cond"))
+        if c is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "static_self_keyword",
+                            "keyword": mkn.group("kw").lower(),
+                            "amount": int(mkn.group("amt"))}}]
+    mp2 = _STATIC_PAIR.fullmatch(line)
+    if mp2:
+        c = _static_cond(mp2.group("cond"))
+        if c is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "static_self_stat",
+                            "stat": _stat_name(mp2.group("s%d" % i)),
+                            "amount": int(mp2.group("a%d" % i))}}
+                for i in (1, 2)]
     mt3 = _STATIC_TRIPLE.fullmatch(line)
     if mt3:
         c = _static_cond(mt3.group("cond"))
@@ -2420,7 +2476,7 @@ def parse_by_clauses(prose):
 
 _WATCH_PLAY_CHAR = re.compile(
     r"^Whenever you play "
-    r"(?:a|another|this or another(?:\s+(?P<cls>[A-Za-z ]+?))?) "
+    r"(?:a|another|this or another)(?:\s+(?P<cls>[A-Za-z ]+?))? "
     r"character(?: with (?P<minstr>\d+) Strength or more)?,\s*"
     r"(?P<rest>.+)$", re.IGNORECASE)
 _MAY_PAY_BANISH = re.compile(

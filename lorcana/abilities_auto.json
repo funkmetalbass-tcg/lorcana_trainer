@@ -1388,8 +1388,19 @@
  ],
  "Lord Dingwall - Bullheaded": [
   {
-   "impl": "unimplemented",
-   "text": "[FIGHTIN' TALK] This character may enter play exerted to give chosen character Challenger +3 this turn. (They get +3 Strength while challenging.)"
+   "trigger": "on_play",
+   "effect": {
+    "type": "enter_exerted_for",
+    "then": {
+     "type": "grant_keyword",
+     "keyword": "challenger",
+     "amount": 3,
+     "target": "best_quester",
+     "duration": "eot"
+    }
+   },
+   "confidence": "high",
+   "source": "[FIGHTIN' TALK] This character may enter play exerted to give chosen character Challenger +3 this turn. (They get +3 Strength while challenging.)"
   }
  ],
  "Fat Cat - Criminal Businessman": [
@@ -1416,8 +1427,8 @@
     "type": "has_card_under"
    },
    "effect": {
-    "type": "static_self_stat",
-    "stat": "resist",
+    "type": "static_self_keyword",
+    "keyword": "resist",
     "amount": 2
    },
    "confidence": "medium",
@@ -1899,8 +1910,8 @@
     "type": "opponents_turn"
    },
    "effect": {
-    "type": "static_self_stat",
-    "stat": "resist",
+    "type": "static_self_keyword",
+    "keyword": "resist",
     "amount": 2
    },
    "confidence": "medium",
@@ -2796,8 +2807,18 @@
  ],
  "Stitch - High Badness Level": [
   {
-   "impl": "unimplemented",
-   "text": "[AMPED UP] While you have a character named Lilo in play, this character gains Challenger +3. (They get +3 Strength while challenging.)"
+   "trigger": "static",
+   "condition": {
+    "type": "named_character_in_play",
+    "name": "Lilo"
+   },
+   "effect": {
+    "type": "static_self_keyword",
+    "keyword": "challenger",
+    "amount": 3
+   },
+   "confidence": "medium",
+   "source": "[AMPED UP] While you have a character named Lilo in play, this character gains Challenger +3. (They get +3 Strength while challenging.)"
   }
  ],
  "Dr. Hamsterviel - Infamous Scientist": [
@@ -4031,8 +4052,8 @@
     "type": "hand_empty"
    },
    "effect": {
-    "type": "static_self_stat",
-    "stat": "resist",
+    "type": "static_self_keyword",
+    "keyword": "resist",
     "amount": 2
    },
    "confidence": "medium",
@@ -5568,8 +5589,19 @@
  ],
  "Basil - Tenacious Mouse": [
   {
-   "impl": "unimplemented",
-   "text": "[HOLD YOUR GROUND] Whenever you play another Detective character, this character gains Resist +1 until the start of your next turn. (Damage dealt to them is reduced by 1.)"
+   "trigger": "on_play_character",
+   "effect": {
+    "type": "grant_keyword",
+    "keyword": "resist",
+    "amount": 1,
+    "target": "self",
+    "duration": "until_your_next"
+   },
+   "confidence": "medium",
+   "source": "[HOLD YOUR GROUND] Whenever you play another Detective character, this character gains Resist +1 until the start of your next turn. (Damage dealt to them is reduced by 1.)",
+   "played_classification": [
+    "Detective"
+   ]
   }
  ],
  "Hudson - Determined Reader": [
@@ -7035,8 +7067,28 @@
  ],
  "Philoctetes - No-Nonsense Instructor": [
   {
-   "impl": "unimplemented",
-   "text": "[YOU GOTTA STAY FOCUSED] Your Hero characters gain Challenger +1. (They get +1 Strength while challenging.)[SHAMELESS PROMOTER] Whenever you play a Hero character, gain 1 lore."
+   "trigger": "static",
+   "effect": {
+    "type": "team_keyword",
+    "keyword": "challenger",
+    "amount": 1,
+    "classification": "Hero",
+    "include_self": true
+   },
+   "confidence": "medium",
+   "source": "[YOU GOTTA STAY FOCUSED] Your Hero characters gain Challenger +1. (They get +1 Strength while challenging.)[SHAMELESS PROMOTER] Whenever you play a Hero character, gain 1 lore."
+  },
+  {
+   "trigger": "on_play_character",
+   "effect": {
+    "type": "gain_lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[YOU GOTTA STAY FOCUSED] Your Hero characters gain Challenger +1. (They get +1 Strength while challenging.)[SHAMELESS PROMOTER] Whenever you play a Hero character, gain 1 lore.",
+   "played_classification": [
+    "Hero"
+   ]
   }
  ],
  "Mickey Mouse - Trumpeter": [
@@ -7200,8 +7252,12 @@
  ],
  "I Find 'Em, I Flatten 'Em": [
   {
-   "impl": "unimplemented",
-   "text": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nBanish all items."
+   "trigger": "on_play",
+   "effect": {
+    "type": "banish_all_items"
+   },
+   "confidence": "high",
+   "source": "(A character with cost 4 or more can [Exert] to sing this song for free.)\nBanish all items."
   }
  ],
  "Fire the Cannons!": [

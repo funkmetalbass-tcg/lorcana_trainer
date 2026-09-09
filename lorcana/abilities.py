@@ -260,6 +260,7 @@ def resist(g, ch):
     from . import schema
     r = schema.static_self_resist(g, ch)
     r += schema.team_static_keyword_amount(g, ch, "resist") or 0
+    r += schema.static_self_keyword_amount(g, ch, "resist") or 0
     kwv = ch.card.kw("Resist")
     if isinstance(kwv, int):
         r += kwv  # printed Resist +N (generic, Phase 1)
@@ -345,7 +346,8 @@ def can_challenge_ready(g, attacker, defender):
 
 def challenger_bonus(g, ch):
     from . import schema
-    b = schema.team_static_keyword_amount(g, ch, "challenger") or 0
+    b = (schema.team_static_keyword_amount(g, ch, "challenger") or 0) \
+        + (schema.static_self_keyword_amount(g, ch, "challenger") or 0)
     kwv = ch.card.kw("Challenger")
     if isinstance(kwv, int):
         b += kwv  # printed Challenger +N (generic, Phase 1)

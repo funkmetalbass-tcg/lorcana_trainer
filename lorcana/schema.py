@@ -571,6 +571,13 @@ def _eff_cost_reduce(g, p, ctx, eff):
 def _resolve_target(g, p, ctx, spec):
     """Map a target spec string to a CharInPlay (or None)."""
     if spec in (None, "self"):
+        # In a watcher, ctx["char"] is the card that triggered it and
+        # ctx["source"] is the permanent whose ability this is. "self" means
+        # the ability's owner, so prefer source when the two differ
+        # (Basil - Tenacious Mouse buffs himself, not the Detective played).
+        src = ctx.get("source")
+        if src is not None and _obj_is_char(src):
+            return src
         return ctx.get("char")
     if spec == "chosen_opposing":
         return abilities._best_opp_char(g, p)
@@ -1771,6 +1778,16 @@ def _eff_ready_chosen_then_grant(g, p, ctx, eff):
         apply_effect(g, p, ctx, dict(grant, type="grant_triggered_ability"))
 
 
+def _eff_banish_all_items(g, p, ctx, eff):
+    """Banish every item in play, both sides (I Find 'Em, I Flatten 'Em)."""
+    n = 0
+    for who in (0, 1):
+        for it in list(g.items[who]):
+            g.banish_item(it)
+            n += 1
+    g.emit(f"schema: banishes {n} item(s)")
+
+
 def _eff_grant_triggered_ability(g, p, ctx, eff):
     """Grant a triggered ability to your characters for a duration
     (Hero Work). Stored as a timed entry in g.effects, so the existing
@@ -2275,6 +2292,7 @@ def _eff_reveal_and_play(g, p, ctx, eff):
 
 
 _EFFECTS = {
+    "banish_all_items": _eff_banish_all_items,
     "ready_chosen_then_grant": _eff_ready_chosen_then_grant,
     "grant_triggered_ability": _eff_grant_triggered_ability,
     "banish_up_to_source_strength": _eff_banish_up_to_source_strength,
@@ -3513,6 +3531,22 @@ def team_static_stat(g, ch, stat):
                                {"card": src.card, "char": src},
                                e.get("condition")):
                 total += eff.get("amount", 0)
+    return total
+
+
+def static_self_keyword_amount(g, ch, kw):
+    """Summed value of a numeric keyword granted by this character's own
+    statics (Stitch gains Challenger +3 while a Lilo is in play), or None."""
+    total = None
+    for e in entries_for(ch.card.name, "static"):
+        eff = e.get("effect", {})
+        if eff.get("type") != "static_self_keyword":
+            continue
+        if eff.get("keyword", "").lower() != kw.lower():
+            continue
+        if check_condition(g, ch.owner, {"card": ch.card, "char": ch},
+                           e.get("condition")):
+            total = (total or 0) + eff.get("amount", 0)
     return total
 
 

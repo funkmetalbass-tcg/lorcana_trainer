@@ -42,6 +42,15 @@ DECK_SIZE = 60
 MAX_COPIES = 4
 MAX_INKS = 2
 
+# Cards every genome must contain, at the given minimum copy count. Enforced in
+# repair(), which is the single chokepoint all genomes pass through (random,
+# seeded, crossover, mutate all end by calling it). The name must match the DB
+# card name EXACTLY or the force silently does nothing.
+FORCE = {
+    "Powerline - World's Greatest Rock Star": 2,
+}
+_FORCE_WARNED = {}   # warn-once per missing/illegal forced card
+
 
 # =====================================================================
 # Pool loading
@@ -119,6 +128,25 @@ def repair(g, pool, rng, ink_pair=None):
             f"pool too small: {len(legal)} legal cards x {MAX_COPIES} copies "
             f"= {len(legal)*MAX_COPIES} < {DECK_SIZE} required")
 
+    # --- forced minimums: guarantee required cards at their floor ---
+    # Applied after ink-legality so a forced card must be a legal pool card that
+    # survives the ink filter; a forced card absent from `legal` is skipped
+    # (with a one-time warning) rather than silently reintroduced as illegal.
+    forced = {}
+    for name, floor in FORCE.items():
+        if name in by_name and any(c.name == name for c in legal):
+            fl = min(MAX_COPIES, max(1, floor))
+            forced[name] = fl
+            g[name] = max(g.get(name, 0), fl)
+        elif name in by_name and not _FORCE_WARNED.get(name):
+            print(f"WARNING: forced card {name!r} is not ink-legal for this "
+                  f"pool/inks; not forcing it.")
+            _FORCE_WARNED[name] = True
+        elif name not in by_name and not _FORCE_WARNED.get(name):
+            print(f"WARNING: forced card {name!r} not found in pool; "
+                  f"not forcing it.")
+            _FORCE_WARNED[name] = True
+
     # --- size: add or remove copies until exactly 60 ---
     size = genome_size(g)
     guard = 0
@@ -133,7 +161,8 @@ def repair(g, pool, rng, ink_pair=None):
         size += 1
     while size > DECK_SIZE and guard < 20000:
         guard += 1
-        cands = [n for n, k in g.items() if k > 0]
+        # never trim a forced card below its floor
+        cands = [n for n, k in g.items() if k > forced.get(n, 0)]
         if not cands:
             break
         pick = rng.choice(cands)

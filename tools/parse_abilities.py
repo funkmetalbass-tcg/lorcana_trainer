@@ -1515,6 +1515,18 @@ _SELF_DISCOUNT = re.compile(
 # is unambiguously a Strength bonus.
 _STAT_SYMBOL = "str"
 
+_PROTECT_CHALLENGE = re.compile(
+    r"(?:While|As long as|During) (?P<cond>.+?), your (?P<cls>[A-Za-z ]+?) "
+    r"characters can't be challenged\.?", re.IGNORECASE)
+
+_MUST_BE_CHOSEN = re.compile(
+    r"Opponents must choose this character for actions and abilities if "
+    r"able\.?", re.IGNORECASE)
+
+_CHALLENGE_LIMIT = re.compile(
+    r"Each turn, only (?:one|(?P<n>\d+)) characters? can challenge\.?",
+    re.IGNORECASE)
+
 _STATIC_PAIR = re.compile(
     r"(?:While|As long as|During|If) (?P<cond>.+?), "
     r"(?:this character|she|he|they|it) gets "
@@ -1774,6 +1786,7 @@ _STATIC_CONDS = [
     (re.compile(r"this character has no damage", re.I),
      {"type": "self_undamaged"}),
     (re.compile(r"this character has damage", re.I), {"type": "self_damaged"}),
+    (re.compile(r"this character is exerted", re.I), {"type": "self_exerted"}),
     (re.compile(r"this character has a card under (?:him|her|them|it)", re.I),
      {"type": "has_card_under"}),
     (re.compile(r"a character was banished this turn", re.I),
@@ -2146,6 +2159,23 @@ def parse_static_self(line):
     if ma:
         return [{"trigger": "static",
                  "effect": {"type": "shift_alias", "name": ma.group(1).strip()}}]
+    mpc = _PROTECT_CHALLENGE.fullmatch(line)
+    if mpc:
+        c = _static_cond(mpc.group("cond"))
+        cls = _classes(mpc.group("cls"))
+        if c is None or cls is None:
+            return None
+        return [{"trigger": "static", "condition": c,
+                 "effect": {"type": "protect_from_challenge",
+                            "classification": cls[0]}}]
+    if _MUST_BE_CHOSEN.fullmatch(line):
+        return [{"trigger": "static",
+                 "effect": {"type": "must_be_chosen"}}]
+    mcl = _CHALLENGE_LIMIT.fullmatch(line)
+    if mcl:
+        return [{"trigger": "static",
+                 "effect": {"type": "challenge_limit",
+                            "count": int(mcl.group("n") or 1)}}]
     mkn = _STATIC_KW_N.fullmatch(line)
     if mkn:
         c = _static_cond(mkn.group("cond"))

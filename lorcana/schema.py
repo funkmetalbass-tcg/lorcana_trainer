@@ -2406,6 +2406,8 @@ def apply_effect(g, p, ctx, eff):
                            "no_challenge_damage", "no_damage",
                            "grant_classification", "hand_all_inkable",
                            "colocated_aura_stat", "colocated_aura_keyword",
+                           "protect_from_challenge", "must_be_chosen",
+                           "challenge_limit",
                            "attached_location_keyword",
                            "move_cost_reduction",
                            "play_free_via_bottom", "opponent_cant_play"):
@@ -3227,6 +3229,56 @@ def dispatch_location_banished(g, loc):
     if ents:
         _run(g, loc.owner,
              {"card": loc.card, "loc": loc, "source": loc}, ents)
+
+
+def cannot_be_challenged(g, defender):
+    """Is this character protected from being challenged by a permanent its
+    controller has in play (Diablo - Stone Servant VILLAINOUS BOND)?"""
+    for src in list(g.my_chars(defender.owner)) + list(g.items[defender.owner]):
+        for e in entries_for(src.card.name, "static"):
+            eff = e.get("effect", {})
+            if eff.get("type") != "protect_from_challenge":
+                continue
+            want = eff.get("classification")
+            if want and not has_classification(g, defender, want):
+                continue
+            if check_condition(g, src.owner,
+                               {"card": src.card,
+                                "char": src if _obj_is_char(src) else None},
+                               e.get("condition")):
+                return True
+    return False
+
+
+def must_be_chosen(g, p):
+    """A character an opponent must target if able
+    (John Smith - Undaunted Protector). Returns the character or None."""
+    for src in g.my_chars(1 - p):
+        for e in entries_for(src.card.name, "static"):
+            if e.get("effect", {}).get("type") != "must_be_chosen":
+                continue
+            if check_condition(g, src.owner,
+                               {"card": src.card, "char": src},
+                               e.get("condition")):
+                return src
+    return None
+
+
+def challenge_limit(g, p):
+    """Cap on how many of your characters may challenge this turn
+    (Prince Charming - Protector of the Realm). None = no cap. The static
+    applies to both players, as printed."""
+    for owner in (0, 1):
+        for src in g.my_chars(owner):
+            for e in entries_for(src.card.name, "static"):
+                eff = e.get("effect", {})
+                if eff.get("type") != "challenge_limit":
+                    continue
+                if check_condition(g, owner,
+                                   {"card": src.card, "char": src},
+                                   e.get("condition")):
+                    return eff.get("count", 1)
+    return None
 
 
 def blocks_quest_by_classification(g, ch):

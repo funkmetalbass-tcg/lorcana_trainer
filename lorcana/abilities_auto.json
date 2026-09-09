@@ -1482,8 +1482,48 @@
  ],
  "Diablo - Stone Servant": [
   {
-   "impl": "unimplemented",
-   "text": "[CRUEL INTENT] While you have a Villain character in play, this character gets +2 Strength and +1 Lore.[VILLAINOUS BOND] While this character is exerted, your Villain characters can't be challenged."
+   "trigger": "static",
+   "condition": {
+    "type": "you_have_classification",
+    "any_of": [
+     "Villain"
+    ]
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "str",
+    "amount": 2
+   },
+   "confidence": "medium",
+   "source": "[CRUEL INTENT] While you have a Villain character in play, this character gets +2 Strength and +1 Lore.[VILLAINOUS BOND] While this character is exerted, your Villain characters can't be challenged."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "you_have_classification",
+    "any_of": [
+     "Villain"
+    ]
+   },
+   "effect": {
+    "type": "static_self_stat",
+    "stat": "lore",
+    "amount": 1
+   },
+   "confidence": "medium",
+   "source": "[CRUEL INTENT] While you have a Villain character in play, this character gets +2 Strength and +1 Lore.[VILLAINOUS BOND] While this character is exerted, your Villain characters can't be challenged."
+  },
+  {
+   "trigger": "static",
+   "condition": {
+    "type": "self_exerted"
+   },
+   "effect": {
+    "type": "protect_from_challenge",
+    "classification": "Villain"
+   },
+   "confidence": "medium",
+   "source": "[CRUEL INTENT] While you have a Villain character in play, this character gets +2 Strength and +1 Lore.[VILLAINOUS BOND] While this character is exerted, your Villain characters can't be challenged."
   }
  ],
  "Three Arrows": [
@@ -2872,8 +2912,12 @@
  ],
  "John Smith - Undaunted Protector": [
   {
-   "impl": "unimplemented",
-   "text": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[DO YOUR WORST] Opponents must choose this character for actions and abilities if able."
+   "trigger": "static",
+   "effect": {
+    "type": "must_be_chosen"
+   },
+   "confidence": "medium",
+   "source": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[DO YOUR WORST] Opponents must choose this character for actions and abilities if able."
   }
  ],
  "Judy Hopps - Snowball Patrol": [
@@ -5698,8 +5742,13 @@
  ],
  "Prince Charming - Protector of the Realm": [
   {
-   "impl": "unimplemented",
-   "text": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[PROTECTIVE PRESENCE] Each turn, only one character can challenge."
+   "trigger": "static",
+   "effect": {
+    "type": "challenge_limit",
+    "count": 1
+   },
+   "confidence": "medium",
+   "source": "Bodyguard (This character may enter play exerted. An opposing character who challenges one of your characters must choose one with Bodyguard if able.)[PROTECTIVE PRESENCE] Each turn, only one character can challenge."
   }
  ],
  "Broadway - Sturdy and Strong": [

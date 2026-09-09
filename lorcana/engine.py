@@ -634,13 +634,27 @@ class Game:
             return []
         p = attacker.owner
         opp = 1 - p
+        # "Each turn, only one character can challenge" applies to both
+        # players and is counted per turn.
+        cap = schema.challenge_limit(self, p)
+        if cap is not None:
+            # turn_flags holds tuples of varying length, so match on shape
+            used = {f[1] for f in self.turn_flags
+                    if len(f) == 2 and f[0] == "challenger_uid"}
+            if len(used) >= cap and attacker.uid not in used:
+                return []
         char_targets = []
         for dc in self.my_chars(opp):
+            if schema.cannot_be_challenged(self, dc):
+                continue
             if not dc.exerted and not abilities.can_challenge_ready(self, attacker, dc):
                 continue
             if self.has_evasive(dc) and not self.can_challenge_evasive(attacker):
                 continue
             char_targets.append(dc)
+        forced = schema.must_be_chosen(self, p)
+        if forced is not None and forced in char_targets:
+            char_targets = [forced]
         # Bodyguard restriction (characters only)
         bg = [c for c in char_targets if self.has_bodyguard(c)]
         if bg:
@@ -756,6 +770,10 @@ class Game:
                 self.pay_ink(p, surcharge)
                 self.emit(f"{atk.card.base_name} pays {surcharge} ink to act (LOW BATTERIES)")
             self.turn_flags.add(("challenged", p))
+            # distinct tag: the existing one records the player, this records
+            # which character challenged, for "only one character can
+            # challenge each turn"
+            self.turn_flags.add(("challenger_uid", atk.uid))
             self._challenge(atk, action[2], action[3])
             return
 

@@ -147,12 +147,11 @@ def repair(g, pool, rng, ink_pair=None):
                   f"not forcing it.")
             _FORCE_WARNED[name] = True
 
-    # --- size: add or remove copies until exactly 60 ---
+        # --- size: add or remove copies until exactly 60 ---
     size = genome_size(g)
     guard = 0
     while size < DECK_SIZE and guard < 10000:
         guard += 1
-        # prefer topping up cards already present, else introduce a new one
         cands = [c.name for c in legal if g.get(c.name, 0) < MAX_COPIES]
         if not cands:
             break
@@ -161,7 +160,7 @@ def repair(g, pool, rng, ink_pair=None):
         size += 1
     while size > DECK_SIZE and guard < 20000:
         guard += 1
-        # never trim a forced card below its floor
+        # trim, but never below a forced floor, and prefer not to strand a 1
         cands = [n for n, k in g.items() if k > forced.get(n, 0)]
         if not cands:
             break
@@ -170,6 +169,62 @@ def repair(g, pool, rng, ink_pair=None):
         if g[pick] == 0:
             del g[pick]
         size -= 1
+
+    # --- no singletons: every included card must be 2..4 copies ---
+    # Resolve each 1-of by either promoting it to 2 or dropping it, chosen so the
+    # deck can still reach exactly 60. Iterate because each change shifts size.
+    fixup_guard = 0
+    while fixup_guard < 20000:
+        fixup_guard += 1
+        singles = [n for n, k in g.items() if k == 1 and forced.get(n, 0) <= 1]
+        # forced cards with floor 1 could legitimately be a 1-of; if you want
+        # forced floors to also obey no-singleton, raise their floor to 2 in FORCE.
+        if not singles:
+            break
+        size = genome_size(g)
+        n = rng.choice(singles)
+        if size <= DECK_SIZE:
+            g[n] = 2            # promote (adds 1 to size)
+        else:
+            del g[n]            # drop (removes 1 from size)
+
+    # After singleton fixup the size may be off by a little; re-normalize WITHOUT
+    # creating new singletons: only add to cards already >=1 (making them >=2),
+    # and only trim cards that are >=3 (so they stay >=2), or drop a 2 to 0.
+    size = genome_size(g)
+    guard = 0
+    while size < DECK_SIZE and guard < 20000:
+        guard += 1
+        # prefer topping up an existing card (keeps it >=2); else add a NEW card
+        # as a 2-of in one step to avoid a transient singleton.
+        present = [n for n in g if g[n] < MAX_COPIES]
+        if present:
+            pick = rng.choice(present)
+            g[pick] += 1
+            size += 1
+        else:
+            newc = [c.name for c in legal if c.name not in g]
+            if not newc:
+                break
+            add = min(2, DECK_SIZE - size)
+            pick = rng.choice(newc)
+            g[pick] = max(2, add) if add >= 2 else 2
+            size = genome_size(g)
+    while size > DECK_SIZE and guard < 40000:
+        guard += 1
+        # trim a card that stays >=2, else drop a 2-of entirely (never leave a 1)
+        trimmable = [n for n, k in g.items() if k >= 3 and k - 1 >= forced.get(n, 0)]
+        if trimmable:
+            pick = rng.choice(trimmable)
+            g[pick] -= 1
+            size -= 1
+        else:
+            twos = [n for n, k in g.items() if k == 2 and forced.get(n, 0) < 2]
+            if not twos:
+                break
+            pick = rng.choice(twos)
+            del g[pick]
+            size -= 2
     return g
 
 

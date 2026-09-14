@@ -47,7 +47,7 @@ MAX_INKS = 2
 # seeded, crossover, mutate all end by calling it). The name must match the DB
 # card name EXACTLY or the force silently does nothing.
 FORCE = {
-    "Powerline - World's Greatest Rock Star": 2,
+#    "Powerline - World's Greatest Rock Star": 2,
 }
 _FORCE_WARNED = {}   # warn-once per missing/illegal forced card
 

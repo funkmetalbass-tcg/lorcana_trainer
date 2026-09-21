@@ -47,9 +47,52 @@ MAX_INKS = 2
 # seeded, crossover, mutate all end by calling it). The name must match the DB
 # card name EXACTLY or the force silently does nothing.
 FORCE = {
-#    "Powerline - World's Greatest Rock Star": 2,
+    "Powerline - World's Greatest Rock Star": 4,   # Ruby, 6-cost
+    "Max Goof - Chart Topper": 4,                  # Emerald, 6-cost
 }
-_FORCE_WARNED = {}   # warn-once per missing/illegal forced card
+
+# --- CATEGORY QUOTAS -------------------------------------------------------
+# Minimum COPIES (not distinct names) of a whole category, enforced in repair()
+# alongside FORCE. 0 disables a quota.
+#
+# Why these exist: fitness is measured by a greedy policy that evaluates one
+# turn at a time, so it systematically undervalues cards whose payoff is
+# structural rather than immediate. A song is only good if you have a singer
+# two turns later; a 1-cost body is only good because it makes turn-3 singing
+# possible at all. Greedy inks both away, and the GA then never explores the
+# region of deck-space where the archetype works. A hard floor is a blunt fix
+# for a biased signal -- expect fitness to push back, i.e. these floors will
+# sit exactly AT their minimum rather than finding their own level.
+MIN_SONGS = 12       # song copies (Actions with the Song classification)
+MIN_ONE_DROPS = 4    # 1-cost Character/Location/Item copies (NOT actions)
+
+_FORCE_WARNED = {}   # warn-once per missing/illegal forced card or unmeetable quota
+
+
+def _quota_specs(legal):
+    """Build the active quota list for an ink-legal card set.
+
+    Returns [(label, members_set, floor)]. Membership is derived from `legal`,
+    so a quota can only ever pull in ink-legal pool cards.
+
+    Members come from a SORTED list before being setified: rng.choice over a
+    set would make card selection depend on string hash order, silently
+    breaking --seed reproducibility across runs."""
+    raw = []
+    if MIN_SONGS > 0:
+        raw.append(("song",
+                    set(sorted(c.name for c in legal if c.is_song)),
+                    MIN_SONGS))
+    if MIN_ONE_DROPS > 0:
+        raw.append(("1-cost permanent",
+                    set(sorted(c.name for c in legal if c.cost == 1
+                               and c.card_type in ("Character", "Location", "Item"))),
+                    MIN_ONE_DROPS))
+    # Clamp each floor to what the pool can physically supply. An unreachable
+    # floor would otherwise mark every member permanently un-trimmable, since
+    # the count can never climb to the floor that lifts the protection.
+    return [(label, members, min(floor, len(members) * MAX_COPIES))
+            for label, members, floor in raw]
 
 
 # =====================================================================
@@ -147,7 +190,54 @@ def repair(g, pool, rng, ink_pair=None):
                   f"not forcing it.")
             _FORCE_WARNED[name] = True
 
-        # --- size: add or remove copies until exactly 60 ---
+    # --- category quotas: songs, 1-cost permanents ---
+    # Placed after ink-legality and after FORCE, so a forced card that happens
+    # to be a quota member already counts toward its floor.
+    _quotas = _quota_specs(legal)
+
+    def _qcount(gg, members):
+        return sum(k for n, k in gg.items() if n in members)
+
+    def _protected(gg, reduce_by=1):
+        """Names that must not lose `reduce_by` copies right now, because doing
+        so would push some quota below its floor.
+
+        `reduce_by` matters: the re-normalize pass below can delete a 2-of
+        outright, which removes TWO copies. Protecting only at `count <= floor`
+        would let a quota sitting one copy above its floor be knocked two
+        copies below it."""
+        out = set()
+        for _label, members, floor in _quotas:
+            if _qcount(gg, members) - reduce_by < floor:
+                out |= members
+        return out
+
+    for _label, _members, _floor in _quotas:
+        if len(_members) * MAX_COPIES < _floor and not _FORCE_WARNED.get("_q:" + _label):
+            print(f"WARNING: pool has {len(_members)} ink-legal {_label}(s) "
+                  f"({len(_members) * MAX_COPIES} copies) < floor {_floor}; "
+                  f"that quota cannot be met and will be left short.")
+            _FORCE_WARNED["_q:" + _label] = True
+        qguard = 0
+        while _qcount(g, _members) < _floor and qguard < 10000:
+            qguard += 1
+            # Prefer topping up a member the genome ALREADY chose. Sprinkling a
+            # fresh random member on every repair would make these slots pure
+            # noise that selection never gets to act on -- the floor would be
+            # met, but WHICH songs / 1-drops would be re-rolled every generation.
+            present = [n for n in sorted(_members) if 0 < g.get(n, 0) < MAX_COPIES]
+            if present:
+                pick = rng.choice(present)
+                g[pick] = g[pick] + 1
+            else:
+                newc = [n for n in sorted(_members) if n not in g]
+                if not newc:
+                    break
+                # Enter at 2, never 1: the no-singleton fixup below resolves a
+                # 1-of by promoting OR dropping, and a drop would undo the quota.
+                g[rng.choice(newc)] = 2
+
+    # --- size: add or remove copies until exactly 60 ---
     size = genome_size(g)
     guard = 0
     while size < DECK_SIZE and guard < 10000:
@@ -160,8 +250,15 @@ def repair(g, pool, rng, ink_pair=None):
         size += 1
     while size > DECK_SIZE and guard < 20000:
         guard += 1
-        # trim, but never below a forced floor, and prefer not to strand a 1
-        cands = [n for n, k in g.items() if k > forced.get(n, 0)]
+        # trim, but never below a forced floor or a quota floor
+        _prot = _protected(g, 1)
+        cands = [n for n, k in g.items()
+                 if k > forced.get(n, 0) and n not in _prot]
+        if not cands:
+            # Nothing unprotected left. A legal 60 is a hard game rule; a quota
+            # is only a search bias, so the quota yields. _format_report marks
+            # the result SHORT so this never passes unnoticed.
+            cands = [n for n, k in g.items() if k > forced.get(n, 0)]
         if not cands:
             break
         pick = rng.choice(cands)
@@ -183,7 +280,10 @@ def repair(g, pool, rng, ink_pair=None):
             break
         size = genome_size(g)
         n = rng.choice(singles)
-        if size <= DECK_SIZE:
+        # A quota member at its floor must be PROMOTED even when the deck is
+        # oversize; dropping it is what would break the floor. The re-normalize
+        # pass below absorbs the extra copy from somewhere unprotected.
+        if size <= DECK_SIZE or n in _protected(g, 1):
             g[n] = 2            # promote (adds 1 to size)
         else:
             del g[n]            # drop (removes 1 from size)
@@ -191,40 +291,54 @@ def repair(g, pool, rng, ink_pair=None):
     # After singleton fixup the size may be off by a little; re-normalize WITHOUT
     # creating new singletons: only add to cards already >=1 (making them >=2),
     # and only trim cards that are >=3 (so they stay >=2), or drop a 2 to 0.
+    # ONE convergent loop, not grow-then-trim. Both directions move in steps of
+    # 2 sometimes (adding a new card as a 2-of; deleting a 2-of outright), so
+    # either can overshoot -- e.g. trimming 61 by deleting a 2-of lands on 59.
+    # Sequential grow-then-trim has no way back from that overshoot and returns
+    # a 59-card deck. Looping until size == DECK_SIZE self-corrects instead.
     size = genome_size(g)
     guard = 0
-    while size < DECK_SIZE and guard < 20000:
+    while size != DECK_SIZE and guard < 60000:
         guard += 1
-        # prefer topping up an existing card (keeps it >=2); else add a NEW card
-        # as a 2-of in one step to avoid a transient singleton.
-        present = [n for n in g if g[n] < MAX_COPIES]
-        if present:
-            pick = rng.choice(present)
-            g[pick] += 1
-            size += 1
+        if size < DECK_SIZE:
+            # prefer topping up an existing card (keeps it >=2); else add a NEW
+            # card as a 2-of to avoid creating a transient singleton.
+            present = [n for n in g if g[n] < MAX_COPIES]
+            if present:
+                pick = rng.choice(present)
+                g[pick] += 1
+                size += 1
+            else:
+                newc = [c.name for c in legal if c.name not in g]
+                if not newc:
+                    break
+                g[rng.choice(newc)] = 2
+                size += 2
         else:
-            newc = [c.name for c in legal if c.name not in g]
-            if not newc:
+            # Trim a card that stays >=2, else drop a 2-of entirely (never leave
+            # a 1). Strict priority: EVERY unprotected option is exhausted
+            # before a quota is allowed to yield. Falling back to a protected
+            # 3-of merely because no unprotected 3-of exists would breach the
+            # floor while unprotected 2-ofs were still sitting there.
+            # deleting a 2-of removes TWO copies, so test the quota at depth 2.
+            _prot1 = _protected(g, 1)
+            _prot2 = _protected(g, 2)
+            threes = [n for n, k in g.items()
+                      if k >= 3 and k - 1 >= forced.get(n, 0)]
+            twos = [n for n, k in g.items()
+                    if k == 2 and forced.get(n, 0) < 2]
+            free3 = [n for n in threes if n not in _prot1]
+            free2 = [n for n in twos if n not in _prot2]
+            if free3:
+                pick = rng.choice(free3); g[pick] -= 1; size -= 1
+            elif free2:
+                pick = rng.choice(free2); del g[pick]; size -= 2
+            elif threes:                 # quota yields; a legal 60 is a hard rule
+                pick = rng.choice(threes); g[pick] -= 1; size -= 1
+            elif twos:
+                pick = rng.choice(twos); del g[pick]; size -= 2
+            else:
                 break
-            add = min(2, DECK_SIZE - size)
-            pick = rng.choice(newc)
-            g[pick] = max(2, add) if add >= 2 else 2
-            size = genome_size(g)
-    while size > DECK_SIZE and guard < 40000:
-        guard += 1
-        # trim a card that stays >=2, else drop a 2-of entirely (never leave a 1)
-        trimmable = [n for n, k in g.items() if k >= 3 and k - 1 >= forced.get(n, 0)]
-        if trimmable:
-            pick = rng.choice(trimmable)
-            g[pick] -= 1
-            size -= 1
-        else:
-            twos = [n for n, k in g.items() if k == 2 and forced.get(n, 0) < 2]
-            if not twos:
-                break
-            pick = rng.choice(twos)
-            del g[pick]
-            size -= 2
     return g
 
 
@@ -388,9 +502,19 @@ def crossover(a, b, pool, rng, ink_pair=None):
 
 def mutate(g, pool, rng, rate, ink_pair=None):
     """Three mutation kinds: adjust a copy count, swap a card for a pool card,
-    and introduce/remove a card entirely."""
+    and introduce/remove a card entirely.
+
+    Swaps are type-aware in ONE direction: a song leaving must be replaced by a
+    song, but a non-song may be replaced by anything, songs included. The
+    asymmetry is the point -- it lets the song count drift UP under selection
+    while MIN_SONGS stops it drifting down. Without it, a song swapped out for
+    an arbitrary card gets replaced by an arbitrary DIFFERENT song by the quota
+    fill in repair(), so the song slots are re-randomized every generation and
+    selection never accumulates pressure on which songs the deck actually wants."""
     g = dict(g)
-    legal = [c.name for c in pool]   # (by_name was built here and never used)
+    by_name = {c.name: c for c in pool}
+    legal = [c.name for c in pool]
+    songs = [c.name for c in pool if c.is_song]
     n_mut = max(1, int(len(g) * rate))
     for _ in range(n_mut):
         r = rng.random()
@@ -403,7 +527,9 @@ def mutate(g, pool, rng, rate, ink_pair=None):
             if g:
                 out = rng.choice(list(g))
                 k = g.pop(out)
-                cands = [n for n in legal if n not in g]
+                _c_out = by_name.get(out)
+                src = songs if (_c_out is not None and _c_out.is_song) else legal
+                cands = [n for n in src if n not in g]
                 if cands:
                     g[rng.choice(cands)] = k
                 else:
@@ -456,6 +582,25 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
         print("ERROR: pool cannot make a legal 60-card deck.")
         sys.exit(1)
 
+    # Over-constraint guard. If the mandatory minimums exceed the deck size,
+    # repair()'s trim loops run out of unprotected candidates and return an
+    # ILLEGAL genome of >60 cards, silently. Fail loudly instead.
+    # Conservative: FORCE and the quotas may overlap (a forced song counts
+    # toward MIN_SONGS), so this can reject a configuration that would in fact
+    # just barely fit. Loosen it only if you hit that case for real.
+    _mandatory = sum(FORCE.values()) + MIN_SONGS + MIN_ONE_DROPS
+    if _mandatory > DECK_SIZE:
+        print(f"ERROR: mandatory minimums total {_mandatory} > {DECK_SIZE} "
+              f"(FORCE={sum(FORCE.values())}, MIN_SONGS={MIN_SONGS}, "
+              f"MIN_ONE_DROPS={MIN_ONE_DROPS}). Lower one of them.")
+        sys.exit(1)
+
+    # Report what the quotas can actually draw on, before burning hours on a
+    # run whose floors can never be met.
+    for _label, _members, _floor in _quota_specs(pool):
+        print(f"Quota {_label}: floor {_floor}, pool has {len(_members)} "
+              f"ink-legal name(s) = {len(_members) * MAX_COPIES} copies available")
+
     _log("CONFIG",
          pool_cards=len(pool),
          field_decks=len(field_paths),
@@ -465,6 +610,8 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
          games=games, policy=pol, fit_iters=iters,
          verify_top=verify_top, verify_games=verify_games,
          verify_iters=verify_iters, workers=workers, seed=seed,
+         min_songs=MIN_SONGS, min_one_drops=MIN_ONE_DROPS,
+         forced=";".join(f"{k}:{v}" for k, v in sorted(FORCE.items())) or "none",
          games_per_gen=pop_size * len(field_paths) * games)
     _run_start = time.time()
 
@@ -475,18 +622,30 @@ def evolve(db_path, pool_path, field_paths, ink_pair,
     # Signature of the settings that determine the final-scoring result. A cached
     # final block is only reused when this matches, so changing the field, games,
     # policy or fit-iters correctly forces a recompute (mirrors gauntlet's guard).
+    # The deck CONSTRAINTS are part of this too: a cached score computed for
+    # unconstrained decks says nothing about a run that now floors songs and
+    # 1-drops, and reusing it would hand back a champion scored under the old
+    # rules without a word of warning.
     final_sig = "|".join(str(x) for x in (
         os.path.abspath(pool_path),
         ";".join(os.path.abspath(p) for p in field_paths),
-        games, pol, iters, seed))
+        games, pol, iters, seed,
+        MIN_SONGS, MIN_ONE_DROPS,
+        ";".join(f"{k}:{v}" for k, v in sorted(FORCE.items()))))
     if checkpoint and os.path.exists(checkpoint):
         try:
             with open(checkpoint) as f:
                 st = json.load(f)
             if st.get("pool_path") == os.path.abspath(pool_path):
-                pop = [dict(g) for g in st["population"]]
+                # Re-repair on load. Elites are carried forward each generation
+                # as dict(pop[i]) WITHOUT a repair call, so a genome checkpointed
+                # before these constraints existed would otherwise survive every
+                # generation untouched while only its offspring obeyed the floors.
+                pop = [repair(dict(g), pool, rng, ink_pair)
+                       for g in st["population"]]
                 start_gen = st["generation"]
-                print(f"Resuming deckbuild from generation {start_gen}")
+                print(f"Resuming deckbuild from generation {start_gen} "
+                      f"(population re-repaired against current constraints)")
                 # Reuse a previously-computed final-scoring pass only when it was
                 # produced for THIS population and THESE settings.
                 fin = st.get("final")
@@ -651,6 +810,20 @@ def _format_report(finalists, vfits, vorder, by_name, field_paths,
         L.append(f"  {k} {name}  [{c.ink_type} {c.cost}]")
     L.append(f"\n  total: {sum(champ.values())} cards, "
              f"inks: {sorted(set().union(*(by_name[n].ink_types for n in champ)) if champ else set())}")
+    # Composition vs. the configured floors: a quota that ended up SHORT means
+    # the pool could not supply it (repair() warns once); a quota sitting exactly
+    # at its floor means fitness is pushing against the constraint.
+    _songs = sum(k for n, k in champ.items() if by_name[n].is_song)
+    _ones = sum(k for n, k in champ.items()
+                if by_name[n].cost == 1
+                and by_name[n].card_type in ("Character", "Location", "Item"))
+    L.append(f"  songs: {_songs} (floor {MIN_SONGS})"
+             f"{'  << SHORT' if _songs < MIN_SONGS else ''}")
+    L.append(f"  1-cost permanents: {_ones} (floor {MIN_ONE_DROPS})"
+             f"{'  << SHORT' if _ones < MIN_ONE_DROPS else ''}")
+    _curve = Counter(by_name[n].cost for n, k in champ.items() for _ in range(k))
+    L.append("  curve: " + "  ".join(f"{c}:{_curve[c]}"
+                                     for c in sorted(_curve)))
     L.append("\nCAVEATS")
     L.append("  * The GA searched with a WEAK policy; greedy undervalues decks that")
     L.append("    need clever sequencing. The MCTS pass re-ranks finalists but cannot")
